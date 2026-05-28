@@ -1133,12 +1133,12 @@ enum ItemEffect ItemBattleEffects(u32 itemBattler, u32 battler, enum HoldEffect 
     case HOLD_EFFECT_ABSORB_BULB:
         effect = TryAbsorbBulb(itemBattler);
         break;
-    case HOLD_EFFECT_JABOCA_BERRY:
+    /*case HOLD_EFFECT_JABOCA_BERRY:
         effect = TryJabocaBerry(itemBattler, battler, item);
         break;
     case HOLD_EFFECT_ROWAP_BERRY:
         effect = TryRowapBerry(itemBattler, battler, item);
-        break;
+        break;*/
     case HOLD_EFFECT_ENIGMA_BERRY: // consume and heal if hit by super effective move
         effect = TrySetEnigmaBerry(itemBattler, battler);
         break;
@@ -1151,12 +1151,12 @@ enum ItemEffect ItemBattleEffects(u32 itemBattler, u32 battler, enum HoldEffect 
     case HOLD_EFFECT_THROAT_SPRAY:
         effect = TryThroatSpray(itemBattler);
         break;
-    case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
+    /*case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
         effect = DamagedStatBoostBerryEffect(itemBattler, battler, STAT_DEF, DAMAGE_CATEGORY_PHYSICAL);
         break;
     case HOLD_EFFECT_MARANGA_BERRY:  // consume and boost sp. defense if used special move
         effect = DamagedStatBoostBerryEffect(itemBattler, battler, STAT_SPDEF, DAMAGE_CATEGORY_SPECIAL);
-        break;
+        break;*/
     case HOLD_EFFECT_SHELL_BELL:
         effect = TryShellBell(itemBattler);
         break;
@@ -1250,9 +1250,9 @@ enum ItemEffect ItemBattleEffects(u32 itemBattler, u32 battler, enum HoldEffect 
     case HOLD_EFFECT_RANDOM_STAT_UP: // Starf Berry
         effect = RandomStatRaiseBerry(itemBattler, item, timing);
         break;
-    case HOLD_EFFECT_MICLE_BERRY:
+    /*case HOLD_EFFECT_MICLE_BERRY:
         effect = TrySetMicleBerry(itemBattler, item, timing);
-        break;
+        break;*/
     default:
         break;
     }
