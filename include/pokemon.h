@@ -644,13 +644,6 @@ enum FusionExtraMoveHandling
     SWAP_EXTRA_MOVES_KYUREM_BLACK
 };
 
-enum FusionExtraMoveHandling
-{
-    FORGET_EXTRA_MOVES,
-    SWAP_EXTRA_MOVES_KYUREM_WHITE,
-    SWAP_EXTRA_MOVES_KYUREM_BLACK
-};
-
 struct Fusion
 {
     u16 fusionStorageIndex;
