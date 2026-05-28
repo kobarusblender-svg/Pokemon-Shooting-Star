@@ -111,7 +111,7 @@ u8 GetItemListPosition(u8 pocketId);
 bool8 UseRegisteredKeyItemOnField(void);
 void CB2_GoToSellMenu(void);
 void GoToBagMenu(u8 location, u8 pocket, MainCallback exitCallback);
-void GoToBagMenu1(u8 location, u8 pocket, MainCallback exitCallback);
+void GoToBagMenu1(u8 location, u8 pocket);
 void DoWallyTutorialBagMenu(void);
 void ResetBagScrollPositions(void);
 void ChooseBerryForMachine(MainCallback exitCallback);
