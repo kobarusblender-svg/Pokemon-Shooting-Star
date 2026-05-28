@@ -353,7 +353,7 @@ static enum ItemEffect TryAbsorbBulb(u32 battlerDef)
     return effect;
 }
 
-static enum ItemEffect TryJabocaBerry(u32 battlerDef, u32 battlerAtk, u32 item)
+/*static enum ItemEffect TryJabocaBerry(u32 battlerDef, u32 battlerAtk, u32 item)
 {
     enum ItemEffect effect = ITEM_NO_EFFECT;
 
@@ -395,7 +395,7 @@ static enum ItemEffect TryRowapBerry(u32 battlerDef, u32 battlerAtk, u32 item)
     }
 
     return effect;
-}
+}*/
 
 static enum ItemEffect TrySetEnigmaBerry(u32 battlerDef, u32 battlerAtk)
 {
@@ -1049,7 +1049,7 @@ static enum ItemEffect RandomStatRaiseBerry(u32 battler, u32 itemId, ActivationT
     return effect;
 }
 
-static enum ItemEffect TrySetMicleBerry(u32 battler, u32 itemId, ActivationTiming timing)
+/*static enum ItemEffect TrySetMicleBerry(u32 battler, u32 itemId, ActivationTiming timing)
 {
     enum ItemEffect effect = ITEM_NO_EFFECT;
 
@@ -1063,7 +1063,7 @@ static enum ItemEffect TrySetMicleBerry(u32 battler, u32 itemId, ActivationTimin
         effect = ITEM_EFFECT_OTHER;
     }
     return effect;
-}
+}*/
 
 enum ItemEffect ItemBattleEffects(u32 itemBattler, u32 battler, enum HoldEffect holdEffect, ActivationTiming timing)
 {
