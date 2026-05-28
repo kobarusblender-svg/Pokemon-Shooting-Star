@@ -359,7 +359,7 @@
       "y": 52,
       "elevation": 0,
       "item": "ITEM_POKEBLOCK_CASE",
-      "flag": "FLAG_TEMP_D"
+      "flag": "FLAG_UNUSED_0x95F"
     }
   ]
 }
