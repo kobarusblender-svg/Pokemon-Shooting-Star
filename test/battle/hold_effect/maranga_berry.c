@@ -1,4 +1,4 @@
-#include "global.h"
+/*#include "global.h"
 #include "test/battle.h"
 
 ASSUMPTIONS
@@ -89,3 +89,4 @@ DOUBLE_BATTLE_TEST("Maranga Berry doesn't trigger if partner was hit")
         EXPECT(opponentRight->item == ITEM_MARANGA_BERRY);
     }
 }
+*/

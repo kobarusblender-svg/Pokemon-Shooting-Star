@@ -10311,235 +10311,229 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_BelueBerry,
     },
 
-    [ITEM_CHILAN_BERRY] =
+    //MOD CONTEST Bag Item E-Reader berries:
+
+    [ITEM_PUMKIN_BERRY] = // E-reader Pumkin Berry
+    {
+        .name = ITEM_NAME("Pumkin Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Pumkin Berries"),
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .holdEffect = HOLD_EFFECT_CURE_FRZ,
+        .description = COMPOUND_STRING(
+            "A hold item that\n"
+            "defrosts Pokémon\n"
+            "in battle."),
+        .pocket = POCKET_BERRIES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_IceHeal,
+        .flingPower = 10,
+        .iconPic = gItemIcon_PumkinBerry,
+        .iconPalette = gItemIconPalette_PumkinBerry,
+    },
+
+    [ITEM_DRASH_BERRY] =// E-reader Drash berry
+    {
+        .name = ITEM_NAME("Drash Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Drash Berries"),
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .holdEffect = HOLD_EFFECT_CURE_PSN,
+        .description = COMPOUND_STRING(
+            "A hold item that\n"
+            "heals poisoning\n"
+            "in battle."),
+        .pocket = POCKET_BERRIES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_Antidote,
+        .flingPower = 10,
+        .iconPic = gItemIcon_DrashBerry,
+        .iconPalette = gItemIconPalette_DrashBerry,
+    },
+
+    [ITEM_EGGANT_BERRY] =// E-reader Eggant berry
+    {
+        .name = ITEM_NAME("Eggant Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Eggant Berries"),
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .holdEffect = HOLD_EFFECT_CURE_STATUS,
+        .effect = gItemEffect_RedFlute,
+        .description = COMPOUND_STRING(
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Eggant."),
+        .pocket = POCKET_BERRIES,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .flingPower = 10,
+        .iconPic = gItemIcon_EggantBerry,
+        .iconPalette = gItemIconPalette_EggantBerry,
+    },
+
+    [ITEM_STRIB_BERRY] = // E-reader Strib Berry
+    {
+        .name = ITEM_NAME("Strib Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Strib Berries"),
+        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .description = COMPOUND_STRING(
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Strib."),
+        .pocket = POCKET_BERRIES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 10,
+        .iconPic = gItemIcon_StribBerry,
+        .iconPalette = gItemIconPalette_StribBerry,
+    },
+
+    [ITEM_CHILANER_BERRY] =// E-reader Chilan berry
     {
         .name = ITEM_NAME("Chilan Berry"),
         .pluralName = ITEM_PLURAL_NAME("Chilan Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_NORMAL,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Normal\n"
-            "move."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Chilan."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
-        .iconPic = gItemIcon_ChilanBerry,
-        .iconPalette = gItemIconPalette_ChilanBerry,
+        .iconPic = gItemIcon_ChilanERBerry,
+        .iconPalette = gItemIconPalette_ChilanERBerry,
     },
 
-    [ITEM_OCCA_BERRY] =
+    [ITEM_NUTPEA_BERRY] =// E-reader Nutpea berry
     {
-        .name = ITEM_NAME("Occa Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Occa Berries"),
+        .name = ITEM_NAME("Nutpea Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Nutpea Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_FIRE,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Fire\n"
-            "move if weak to it."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Nutpea."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
-        .iconPic = gItemIcon_OccaBerry,
-        .iconPalette = gItemIconPalette_OccaBerry,
+        .iconPic = gItemIcon_NutpeaBerry,
+        .iconPalette = gItemIconPalette_NutpeaBerry,
     },
 
-    [ITEM_PASSHO_BERRY] =
+    [ITEM_NOION_BERRY] =// E-reader Noion berry (Japan exclusive Ginema berry)
     {
-        .name = ITEM_NAME("Passho Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Passho Berries"),
+        .name = ITEM_NAME("Noion Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Noion Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_WATER,
-        .description = COMPOUND_STRING(
+        .holdEffect = HOLD_EFFECT_WHITE_HERB,
+        .description = COMPOUND_STRING( 
             "A hold item that\n"
-            "weakens a Water\n"
-            "move if weak to it."),
+            "restores any\n"
+            "lowered stat."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
-        .iconPic = gItemIcon_PasshoBerry,
-        .iconPalette = gItemIconPalette_PasshoBerry,
+        .iconPic = gItemIcon_NoionBerry,
+        .iconPalette = gItemIconPalette_NoionBerry,
     },
 
-    [ITEM_WACAN_BERRY] =
+    [ITEM_ROKA_BERRY] =// E-reader Roka berry (Japanese exclusive Kuo berry)
     {
-        .name = ITEM_NAME("Wacan Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Wacan Berries"),
+        .name = ITEM_NAME("Roka Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Roka Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_ELECTRIC,
+        .holdEffect = HOLD_EFFECT_CURE_BRN,
         .description = COMPOUND_STRING(
             "A hold item that\n"
-            "weakens a Electric\n"
-            "move if weak to it."),
+            "heals a burn in\n"
+            "battle."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_BurnHeal,
         .flingPower = 10,
-        .iconPic = gItemIcon_WacanBerry,
-        .iconPalette = gItemIconPalette_WacanBerry,
+        .iconPic = gItemIcon_RokaBerry,
+        .iconPalette = gItemIconPalette_RokaBerry,
     },
 
-    [ITEM_RINDO_BERRY] =
+    [ITEM_SKUASH_BERRY] =// E-reader Skuash berry (Japanese exclusive Yago berry)
     {
-        .name = ITEM_NAME("Rindo Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Rindo Berries"),
+        .name = ITEM_NAME("Skuash Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Skuash Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_GRASS,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Grass\n"
-            "move if weak to it."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Skuash."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
-        .iconPic = gItemIcon_RindoBerry,
-        .iconPalette = gItemIconPalette_RindoBerry,
+        .iconPic = gItemIcon_SkuashBerry,
+        .iconPalette = gItemIconPalette_SkuashBerry,
     },
 
-    [ITEM_YACHE_BERRY] =
+    [ITEM_PAPRIK_BERRY] =// E-reader Paprik berry (Japanese exclusive Touga berry)
     {
-        .name = ITEM_NAME("Yache Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Yache Berries"),
+        .name = ITEM_NAME("Paprik Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Paprik Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_ICE,
+        .holdEffect = HOLD_EFFECT_CURE_CONFUSION,
         .description = COMPOUND_STRING(
             "A hold item that\n"
-            "weakens a Ice\n"
-            "move if weak to it."),
+            "heals confusion\n"
+            "in battle."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_PersimBerry,
         .flingPower = 10,
-        .iconPic = gItemIcon_YacheBerry,
-        .iconPalette = gItemIconPalette_YacheBerry,
+        .iconPic = gItemIcon_PaprikBerry,
+        .iconPalette = gItemIconPalette_PaprikBerry,
     },
 
-    [ITEM_CHOPLE_BERRY] =
+    [ITEM_MALIUM_BERRY] =// E-reader Malium Berry (Japanese exclusive Niniku berry)
     {
-        .name = ITEM_NAME("Chople Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Chople Berries"),
+        .name = ITEM_NAME("Malium Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Malium Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_FIGHTING,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Fighting\n"
-            "move if weak to it."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Malium."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
-        .iconPic = gItemIcon_ChopleBerry,
-        .iconPalette = gItemIconPalette_ChopleBerry,
+        .iconPic = gItemIcon_MaliumBerry,
+        .iconPalette = gItemIconPalette_MaliumBerry,
     },
 
-    [ITEM_KEBIA_BERRY] =
+    [ITEM_TOPO_BERRY] =// E-reader Topo berry (Japanese exclusive Topo berry)
     {
-        .name = ITEM_NAME("Kebia Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Kebia Berries"),
+        .name = ITEM_NAME("Topo Berry"),
+        .pluralName = ITEM_PLURAL_NAME("Topo Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_POISON,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Poison\n"
-            "move if weak to it."),
+            "{POKEBLOCK} ingredient.\n"
+            "Plant in loamy soil\n"
+            "to grow Topo."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
-        .iconPic = gItemIcon_KebiaBerry,
-        .iconPalette = gItemIconPalette_KebiaBerry,
+        .iconPic = gItemIcon_TopoBerry,
+        .iconPalette = gItemIconPalette_TopoBerry,
     },
 
-    [ITEM_SHUCA_BERRY] =
-    {
-        .name = ITEM_NAME("Shuca Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Shuca Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_GROUND,
-        .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Ground\n"
-            "move if weak to it."),
-        .pocket = POCKET_BERRIES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .flingPower = 10,
-        .iconPic = gItemIcon_ShucaBerry,
-        .iconPalette = gItemIconPalette_ShucaBerry,
-    },
-
-    [ITEM_COBA_BERRY] =
-    {
-        .name = ITEM_NAME("Coba Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Coba Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_FLYING,
-        .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Flying\n"
-            "move if weak to it."),
-        .pocket = POCKET_BERRIES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .flingPower = 10,
-        .iconPic = gItemIcon_CobaBerry,
-        .iconPalette = gItemIconPalette_CobaBerry,
-    },
-
-    [ITEM_PAYAPA_BERRY] =
-    {
-        .name = ITEM_NAME("Payapa Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Payapa Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_PSYCHIC,
-        .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Psychic\n"
-            "move if weak to it."),
-        .pocket = POCKET_BERRIES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .flingPower = 10,
-        .iconPic = gItemIcon_PayapaBerry,
-        .iconPalette = gItemIconPalette_PayapaBerry,
-    },
-
-    [ITEM_TANGA_BERRY] =
-    {
-        .name = ITEM_NAME("Tanga Berry"),
-        .pluralName = ITEM_PLURAL_NAME("Tanga Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_RESIST_BERRY,
-        .holdEffectParam = TYPE_BUG,
-        .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "weakens a Bug\n"
-            "move if weak to it."),
-        .pocket = POCKET_BERRIES,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .flingPower = 10,
-        .iconPic = gItemIcon_TangaBerry,
-        .iconPalette = gItemIconPalette_TangaBerry,
-    },
-
-    [ITEM_CHARTI_BERRY] =
+    /*[ITEM_CHARTI_BERRY] =
     {
         .name = ITEM_NAME("Charti Berry"),
         .pluralName = ITEM_PLURAL_NAME("Charti Berries"),
@@ -10556,9 +10550,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_ChartiBerry,
         .iconPalette = gItemIconPalette_ChartiBerry,
-    },
+    },*/
 
-    [ITEM_KASIB_BERRY] =
+    /*[ITEM_KASIB_BERRY] =
     {
         .name = ITEM_NAME("Kasib Berry"),
         .pluralName = ITEM_PLURAL_NAME("Kasib Berries"),
@@ -10575,9 +10569,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_KasibBerry,
         .iconPalette = gItemIconPalette_KasibBerry,
-    },
+    },*/
 
-    [ITEM_HABAN_BERRY] =
+    /*[ITEM_HABAN_BERRY] =
     {
         .name = ITEM_NAME("Haban Berry"),
         .pluralName = ITEM_PLURAL_NAME("Haban Berries"),
@@ -10594,9 +10588,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_HabanBerry,
         .iconPalette = gItemIconPalette_HabanBerry,
-    },
+    },*/
 
-    [ITEM_COLBUR_BERRY] =
+    /*[ITEM_COLBUR_BERRY] =
     {
         .name = ITEM_NAME("Colbur Berry"),
         .pluralName = ITEM_PLURAL_NAME("Colbur Berries"),
@@ -10613,9 +10607,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_ColburBerry,
         .iconPalette = gItemIconPalette_ColburBerry,
-    },
+    },*/
 
-    [ITEM_BABIRI_BERRY] =
+    /*[ITEM_BABIRI_BERRY] =
     {
         .name = ITEM_NAME("Babiri Berry"),
         .pluralName = ITEM_PLURAL_NAME("Babiri Berries"),
@@ -10632,9 +10626,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_BabiriBerry,
         .iconPalette = gItemIconPalette_BabiriBerry,
-    },
+    },*/
 
-    [ITEM_ROSELI_BERRY] =
+    /*[ITEM_ROSELI_BERRY] =
     {
         .name = ITEM_NAME("Roseli Berry"),
         .pluralName = ITEM_PLURAL_NAME("Roseli Berries"),
@@ -10651,7 +10645,7 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_RoseliBerry,
         .iconPalette = gItemIconPalette_RoseliBerry,
-    },
+    },*/
 
     [ITEM_LIECHI_BERRY] =
     {
@@ -10804,7 +10798,7 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_EnigmaBerry,
     },
 
-    [ITEM_MICLE_BERRY] =
+    /*[ITEM_MICLE_BERRY] =
     {
         .name = ITEM_NAME("Micle Berry"),
         .pluralName = ITEM_PLURAL_NAME("Micle Berries"),
@@ -10821,9 +10815,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_MicleBerry,
         .iconPalette = gItemIconPalette_MicleBerry,
-    },
+    },*/
 
-    [ITEM_CUSTAP_BERRY] =
+    /*[ITEM_CUSTAP_BERRY] =
     {
         .name = ITEM_NAME("Custap Berry"),
         .pluralName = ITEM_PLURAL_NAME("Custap Berries"),
@@ -10840,9 +10834,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_CustapBerry,
         .iconPalette = gItemIconPalette_CustapBerry,
-    },
+    },*/
 
-    [ITEM_JABOCA_BERRY] =
+    /*[ITEM_JABOCA_BERRY] =
     {
         .name = ITEM_NAME("Jaboca Berry"),
         .pluralName = ITEM_PLURAL_NAME("Jaboca Berries"),
@@ -10858,9 +10852,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_JabocaBerry,
         .iconPalette = gItemIconPalette_JabocaBerry,
-    },
+    },*/
 
-    [ITEM_ROWAP_BERRY] =
+    /*[ITEM_ROWAP_BERRY] =
     {
         .name = ITEM_NAME("Rowap Berry"),
         .pluralName = ITEM_PLURAL_NAME("Rowap Berries"),
@@ -10876,9 +10870,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_RowapBerry,
         .iconPalette = gItemIconPalette_RowapBerry,
-    },
+    },*/
 
-    [ITEM_KEE_BERRY] =
+    /*[ITEM_KEE_BERRY] =
     {
         .name = ITEM_NAME("Kee Berry"),
         .pluralName = ITEM_PLURAL_NAME("Kee Berries"),
@@ -10894,9 +10888,9 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_KeeBerry,
         .iconPalette = gItemIconPalette_KeeBerry,
-    },
+    },*/
 
-    [ITEM_MARANGA_BERRY] =
+    /*[ITEM_MARANGA_BERRY] =
     {
         .name = ITEM_NAME("Maranga Berry"),
         .pluralName = ITEM_PLURAL_NAME("Maranga Berries"),
@@ -10912,7 +10906,7 @@ const struct Item gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_MarangaBerry,
         .iconPalette = gItemIconPalette_MarangaBerry,
-    },
+    },*/
 
     [ITEM_ENIGMA_BERRY_E_READER] =
     {

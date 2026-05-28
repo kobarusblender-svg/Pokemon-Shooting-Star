@@ -73,6 +73,7 @@ enum MonData {
     MON_DATA_ABILITY_NUM,
     MON_DATA_TOUGH,
     MON_DATA_SHEEN,
+    MON_DATA_OVERFLOWSHEEN,
     MON_DATA_OT_GENDER,
     MON_DATA_COOL_RIBBON,
     MON_DATA_BEAUTY_RIBBON,
@@ -128,15 +129,14 @@ struct PokemonSubstruct0
     u16 species:11; // 2047 species.
     u16 teraType:5; // 30 types.
     u16 heldItem:10; // 1023 items.
-    u16 unused_02:6;
+    u16 pokeball:6; // 63 balls.
     u32 experience:21;
     u32 nickname11:8; // 11th character of nickname.
     u32 unused_04:3;
     u8 ppBonuses;
-    u8 friendship;
-    u16 pokeball:6; // 63 balls.
-    u16 nickname12:8; // 12th character of nickname.
-    u16 unused_0A:2;
+    u16 friendship:8;
+    u8 overflowSheen; // MOD CONTEST stores extra sheen values separately, up to 255.
+    u8 nickname12; // 12th character of nickname.
 };
 
 struct PokemonSubstruct1
@@ -631,6 +631,13 @@ struct FormChange
     u16 param3;
 };
 
+enum FusionExtraMoveHandling
+{
+    FORGET_EXTRA_MOVES,
+    SWAP_EXTRA_MOVES_KYUREM_WHITE,
+    SWAP_EXTRA_MOVES_KYUREM_BLACK
+};
+
 struct Fusion
 {
     u16 fusionStorageIndex;
@@ -639,10 +646,21 @@ struct Fusion
     u16 targetSpecies2;
     u16 fusingIntoMon;
     u16 fusionMove;
-    u16 unfuseForgetMove;
+    enum FusionExtraMoveHandling extraMoveHandling;
 };
 
 extern const struct Fusion *const gFusionTablePointers[NUM_SPECIES];
+
+#if P_FUSION_FORMS
+#if P_FAMILY_KYUREM
+#if P_FAMILY_RESHIRAM
+extern const u16 gKyurenWhiteSwapMoveTable[][2];
+#endif //P_FAMILY_RESHIRAM
+#if P_FAMILY_ZEKROM
+extern const u16 gKyurenBlackSwapMoveTable[][2];
+#endif //P_FAMILY_ZEKROM
+#endif //P_FAMILY_KYUREM
+#endif //P_FUSION_FORMS
 
 #define NUM_UNOWN_FORMS 28
 

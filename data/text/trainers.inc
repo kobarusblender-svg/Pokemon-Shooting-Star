@@ -1,3 +1,16 @@
+Testing_Grounds_Text_JaimitoIntro:
+	.string "Well, I herd you wanted to try and do\n"
+	.string "a contest battle to see if it breaks...\l"
+	.string "Let's get to it!$"
+
+Testing_Grounds_Text_JaimitoDefeated:
+	.string "And, I lost.\n"
+	.string "Well... Did it break?$"
+
+Testing_Grounds_Text_JaimitoPostBattle:
+	.string "How did I do?\n"
+	.string "Was it fun?$"
+
 Route102_Text_CalvinIntro:
 	.string "If you have POKéMON with you, then\n"
 	.string "you're an official POKéMON TRAINER!\l"

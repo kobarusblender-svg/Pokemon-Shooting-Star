@@ -529,8 +529,7 @@ void HandleAction_UseMove(void)
             gBattlescriptCurrInstr = BattleScript_MoveUsedLoafingAround;
         }
     }
-
-    if (IsBattlerAlly(gBattlerAttacker, gBattlerTarget) && !IsBattlerAlive(gBattlerTarget))
+    else if (IsBattlerAlly(gBattlerAttacker, gBattlerTarget) && !IsBattlerAlive(gBattlerTarget))
     {
         gBattlescriptCurrInstr = BattleScript_FailedFromAtkCanceler;
     }
@@ -3691,8 +3690,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_ANTICIPATION:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
-                u32 types[3];
-                GetBattlerTypes(battler, FALSE, types);
+                struct DamageContext ctx = {0};
+                uq4_12_t modifier = UQ_4_12(1.0);
                 for (i = 0; i < MAX_BATTLERS_COUNT; i++)
                 {
                     if (IsBattlerAlive(i) && !IsBattlerAlly(i, battler))
@@ -3703,9 +3702,14 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                             enum BattleMoveEffects moveEffect = GetMoveEffect(move);
                             moveType = GetBattleMoveType(move);
 
-                            if (GetTypeModifier(moveType, types[0]) >= UQ_4_12(2.0)
-                             || (types[0] != types[1] && GetTypeModifier(moveType, types[1]) >= UQ_4_12(2.0))
-                             || (types[2] != TYPE_MYSTERY && GetTypeModifier(moveType, types[2]) >= UQ_4_12(2.0))
+                            ctx.battlerAtk = i;
+                            ctx.battlerDef = battler;
+                            ctx.move = move;
+                            ctx.moveType = moveType;
+                            ctx.isAnticipation = TRUE;
+                            modifier = CalcTypeEffectivenessMultiplier(&ctx);
+
+                            if (modifier >= UQ_4_12(2.0)
                              || moveEffect == EFFECT_OHKO
                              || moveEffect == EFFECT_SHEER_COLD)
                             {
@@ -4533,8 +4537,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && gDisableStructs[gBattlerAttacker].disabledMove == MOVE_NONE
              && IsBattlerAlive(gBattlerAttacker)
              && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
-             && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
-             && !(GetActiveGimmick(gBattlerAttacker) == GIMMICK_DYNAMAX) // TODO: Max Moves don't make contact, useless?
+             && gChosenMove != MOVE_STRUGGLE
              && RandomPercentage(RNG_CURSED_BODY, 30))
             {
                 gDisableStructs[gBattlerAttacker].disabledMove = gChosenMove;
@@ -4689,7 +4692,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         case ABILITY_EFFECT_SPORE:
         {
             u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-            if ((!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS) || B_POWDER_GRASS < GEN_6)
+            if ((GetGenConfig(GEN_CONFIG_POWDER_GRASS) < GEN_6 || !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS))
              && abilityAtk != ABILITY_OVERCOAT
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
@@ -5616,7 +5619,7 @@ bool32 CanSetNonVolatileStatus(u32 battlerAtk, u32 battlerDef, u32 abilityAtk, u
         {
             battleScript = BattleScript_AlreadyParalyzed;
         }
-        else if (B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC))
+        else if (GetGenConfig(GEN_CONFIG_PARALYZE_ELECTRIC) >= GEN_6 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC))
         {
             battleScript = BattleScript_NotAffected;
         }
@@ -5930,7 +5933,7 @@ static enum ItemEffect RandomStatRaiseBerry(u32 battler, u32 itemId, enum ItemCa
     return ITEM_NO_EFFECT;
 }
 
-static enum ItemEffect TrySetMicleBerry(u32 battler, u32 itemId, enum ItemCaseId caseID)
+/*static enum ItemEffect TrySetMicleBerry(u32 battler, u32 itemId, enum ItemCaseId caseID)
 {
     if (HasEnoughHpToEatBerry(battler, 4, itemId))
     {
@@ -5946,7 +5949,7 @@ static enum ItemEffect TrySetMicleBerry(u32 battler, u32 itemId, enum ItemCaseId
         return ITEM_EFFECT_OTHER;
     }
     return ITEM_NO_EFFECT;
-}
+}*/
 
 static enum ItemEffect TrySetEnigmaBerry(u32 battler)
 {
@@ -5967,7 +5970,8 @@ static enum ItemEffect TrySetEnigmaBerry(u32 battler)
     return ITEM_NO_EFFECT;
 }
 
-static enum ItemEffect DamagedStatBoostBerryEffect(u32 battler, u8 statId, enum DamageCategory category)
+//berries that use this are disabled, and the warning did not vibe with me  MOD CONTEST
+/*static enum ItemEffect DamagedStatBoostBerryEffect(u32 battler, u8 statId, enum DamageCategory category)
 {
     if (IsBattlerAlive(battler)
      && CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN)
@@ -5993,7 +5997,7 @@ static enum ItemEffect DamagedStatBoostBerryEffect(u32 battler, u8 statId, enum 
         return ITEM_STATS_CHANGE;
     }
     return ITEM_NO_EFFECT;
-}
+}*/
 
 enum ItemEffect TryHandleSeed(u32 battler, u32 terrainFlag, u32 statId, u32 itemId, enum ItemCaseId caseID)
 {
@@ -6235,10 +6239,10 @@ static u8 ItemEffectMoveEnd(u32 battler, enum ItemHoldEffect holdEffect)
 
     switch (holdEffect)
     {
-    case HOLD_EFFECT_MICLE_BERRY:
+    /*case HOLD_EFFECT_MICLE_BERRY:
         if (B_HP_BERRIES >= GEN_4)
             effect = TrySetMicleBerry(battler, gLastUsedItem, ITEMEFFECT_NONE);
-        break;
+        break;*/
     case HOLD_EFFECT_RESTORE_HP:
         if (B_HP_BERRIES >= GEN_4)
             effect = ItemHealHp(battler, gLastUsedItem, ITEMEFFECT_NONE, FALSE);
@@ -6294,12 +6298,12 @@ static u8 ItemEffectMoveEnd(u32 battler, enum ItemHoldEffect holdEffect)
     case HOLD_EFFECT_ENIGMA_BERRY: // consume and heal if hit by super effective move
         effect = TrySetEnigmaBerry(battler);
         break;
-    case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
+    /*case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
         effect = DamagedStatBoostBerryEffect(battler, STAT_DEF, DAMAGE_CATEGORY_PHYSICAL);
-        break;
-    case HOLD_EFFECT_MARANGA_BERRY:  // consume and boost sp. defense if used special move
+        break;*/
+    /*case HOLD_EFFECT_MARANGA_BERRY:  // consume and boost sp. defense if used special move
         effect = DamagedStatBoostBerryEffect(battler, STAT_SPDEF, DAMAGE_CATEGORY_SPECIAL);
-        break;
+        break;*/
     case HOLD_EFFECT_RANDOM_STAT_UP:
         if (B_BERRIES_INSTANT >= GEN_4)
             effect = RandomStatRaiseBerry(battler, gLastUsedItem, ITEMEFFECT_NONE);
@@ -6866,9 +6870,9 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler)
                     effect = ITEM_EFFECT_OTHER;
                 }
                 break;
-            case HOLD_EFFECT_MICLE_BERRY:
+            /*case HOLD_EFFECT_MICLE_BERRY:
                 effect = TrySetMicleBerry(battler, gLastUsedItem, caseID);
-                break;
+                break;*/
             case HOLD_EFFECT_BERSERK_GENE:
                 effect = ConsumeBerserkGene(battler, caseID);
                 break;
@@ -7092,7 +7096,7 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler)
                 effect = TrySetEnigmaBerry(battler);
                 break;
             case HOLD_EFFECT_JABOCA_BERRY:  // consume and damage attacker if used physical move
-                if (IsBattlerAlive(gBattlerAttacker)
+                /*if (IsBattlerAlive(gBattlerAttacker)
                  && IsBattlerTurnDamaged(gBattlerTarget)
                  && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
                  && IsBattleMovePhysical(gCurrentMove)
@@ -7109,9 +7113,9 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler)
                     PREPARE_ITEM_BUFFER(gBattleTextBuff1, gLastUsedItem);
                     RecordItemEffectBattle(battler, HOLD_EFFECT_JABOCA_BERRY);
                 }
-                break;
-            case HOLD_EFFECT_ROWAP_BERRY:  // consume and damage attacker if used special move
-                if (IsBattlerAlive(gBattlerAttacker)
+                break;*/
+           // case HOLD_EFFECT_ROWAP_BERRY:  // consume and damage attacker if used special move
+                /*if (IsBattlerAlive(gBattlerAttacker)
                  && IsBattlerTurnDamaged(gBattlerTarget)
                  && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
                  && IsBattleMoveSpecial(gCurrentMove)
@@ -7128,13 +7132,13 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler)
                     PREPARE_ITEM_BUFFER(gBattleTextBuff1, gLastUsedItem);
                     RecordItemEffectBattle(battler, HOLD_EFFECT_ROWAP_BERRY);
                 }
-                break;
-            case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
+                break;*/
+            /*case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
                 effect = DamagedStatBoostBerryEffect(battler, STAT_DEF, DAMAGE_CATEGORY_PHYSICAL);
-                break;
-            case HOLD_EFFECT_MARANGA_BERRY:  // consume and boost sp. defense if used special move
+                break;*/
+           /* case HOLD_EFFECT_MARANGA_BERRY:  // consume and boost sp. defense if used special move
                 effect = DamagedStatBoostBerryEffect(battler, STAT_SPDEF, DAMAGE_CATEGORY_SPECIAL);
-                break;
+                break;*/
             case HOLD_EFFECT_CURE_STATUS: // only Toxic Chain's interaction with Knock Off
             case HOLD_EFFECT_CURE_PSN:
                 if (gBattleMons[battler].status1 & STATUS1_PSN_ANY && !UnnerveOn(battler, gLastUsedItem) && GetBattlerAbility(gBattlerAttacker) == ABILITY_TOXIC_CHAIN && GetMoveEffect(gCurrentMove) == EFFECT_KNOCK_OFF)
@@ -7641,13 +7645,13 @@ enum IronBallCheck
 };
 
 // Only called directly when calculating damage type effectiveness, and Iron Ball's type effectiveness mechanics
-static bool32 IsBattlerGroundedInverseCheck(u32 battler, u32 ability, enum InverseBattleCheck checkInverse, enum IronBallCheck checkIronBall)
+static bool32 IsBattlerGroundedInverseCheck(u32 battler, u32 ability, enum InverseBattleCheck checkInverse, enum IronBallCheck checkIronBall, bool32 isAnticipation)
 {
     enum ItemHoldEffect holdEffect = GetBattlerHoldEffect(battler, TRUE);
 
     if (!(checkIronBall == IGNORE_IRON_BALL) && holdEffect == HOLD_EFFECT_IRON_BALL)
         return TRUE;
-    if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+    if (gFieldStatuses & STATUS_FIELD_GRAVITY && isAnticipation == FALSE)
         return TRUE;
     if (B_ROOTED_GROUNDING >= GEN_4 && gBattleMons[battler].volatiles.root)
         return TRUE;
@@ -7668,7 +7672,7 @@ static bool32 IsBattlerGroundedInverseCheck(u32 battler, u32 ability, enum Inver
 
 bool32 IsBattlerGrounded(u32 battler)
 {
-    return IsBattlerGroundedInverseCheck(battler, GetBattlerAbility(battler), NOT_INVERSE_BATTLE, CHECK_IRON_BALL);
+    return IsBattlerGroundedInverseCheck(battler, GetBattlerAbility(battler), NOT_INVERSE_BATTLE, CHECK_IRON_BALL, FALSE);
 }
 
 u32 GetMoveSlot(u16 *moves, u32 move)
@@ -7805,24 +7809,24 @@ const struct TypePower gNaturalGiftTable[] =
     [ITEM_TO_BERRY(ITEM_AGUAV_BERRY)] = {TYPE_DRAGON, 80},
     [ITEM_TO_BERRY(ITEM_IAPAPA_BERRY)] = {TYPE_DARK, 80},
     [ITEM_TO_BERRY(ITEM_RAZZ_BERRY)] = {TYPE_STEEL, 80},
-    [ITEM_TO_BERRY(ITEM_OCCA_BERRY)] = {TYPE_FIRE, 80},
-    [ITEM_TO_BERRY(ITEM_PASSHO_BERRY)] = {TYPE_WATER, 80},
-    [ITEM_TO_BERRY(ITEM_WACAN_BERRY)] = {TYPE_ELECTRIC, 80},
-    [ITEM_TO_BERRY(ITEM_RINDO_BERRY)] = {TYPE_GRASS, 80},
-    [ITEM_TO_BERRY(ITEM_YACHE_BERRY)] = {TYPE_ICE, 80},
-    [ITEM_TO_BERRY(ITEM_CHOPLE_BERRY)] = {TYPE_FIGHTING, 80},
-    [ITEM_TO_BERRY(ITEM_KEBIA_BERRY)] = {TYPE_POISON, 80},
-    [ITEM_TO_BERRY(ITEM_SHUCA_BERRY)] = {TYPE_GROUND, 80},
-    [ITEM_TO_BERRY(ITEM_COBA_BERRY)] = {TYPE_FLYING, 80},
-    [ITEM_TO_BERRY(ITEM_PAYAPA_BERRY)] = {TYPE_PSYCHIC, 80},
-    [ITEM_TO_BERRY(ITEM_TANGA_BERRY)] = {TYPE_BUG, 80},
-    [ITEM_TO_BERRY(ITEM_CHARTI_BERRY)] = {TYPE_ROCK, 80},
-    [ITEM_TO_BERRY(ITEM_KASIB_BERRY)] = {TYPE_GHOST, 80},
-    [ITEM_TO_BERRY(ITEM_HABAN_BERRY)] = {TYPE_DRAGON, 80},
-    [ITEM_TO_BERRY(ITEM_COLBUR_BERRY)] = {TYPE_DARK, 80},
-    [ITEM_TO_BERRY(ITEM_BABIRI_BERRY)] = {TYPE_STEEL, 80},
-    [ITEM_TO_BERRY(ITEM_CHILAN_BERRY)] = {TYPE_NORMAL, 80},
-    [ITEM_TO_BERRY(ITEM_ROSELI_BERRY)] = {TYPE_FAIRY, 80},
+    [ITEM_TO_BERRY(ITEM_DRASH_BERRY)] = {TYPE_POISON, 80},//MOD CONTEST E-Reader Berries battle types:
+    [ITEM_TO_BERRY(ITEM_EGGANT_BERRY)] = {TYPE_NORMAL, 80},
+    [ITEM_TO_BERRY(ITEM_STRIB_BERRY)] = {TYPE_GRASS, 80},
+    [ITEM_TO_BERRY(ITEM_CHILANER_BERRY)] = {TYPE_DRAGON, 80},
+    [ITEM_TO_BERRY(ITEM_NUTPEA_BERRY)] = {TYPE_STEEL, 80},
+    [ITEM_TO_BERRY(ITEM_NOION_BERRY)] = {TYPE_PSYCHIC, 80},
+    [ITEM_TO_BERRY(ITEM_ROKA_BERRY)] = {TYPE_ROCK, 80},
+    [ITEM_TO_BERRY(ITEM_SKUASH_BERRY)] = {TYPE_FLYING, 80},
+    [ITEM_TO_BERRY(ITEM_PAPRIK_BERRY)] = {TYPE_FIRE, 80},
+    [ITEM_TO_BERRY(ITEM_MALIUM_BERRY)] = {TYPE_DARK, 80},
+    [ITEM_TO_BERRY(ITEM_TOPO_BERRY)] = {TYPE_GROUND, 80},
+    //[ITEM_TO_BERRY(ITEM_CHARTI_BERRY)] = {TYPE_ROCK, 80},
+    //[ITEM_TO_BERRY(ITEM_KASIB_BERRY)] = {TYPE_GHOST, 80},
+    //[ITEM_TO_BERRY(ITEM_HABAN_BERRY)] = {TYPE_DRAGON, 80},
+    //[ITEM_TO_BERRY(ITEM_COLBUR_BERRY)] = {TYPE_DARK, 80},
+    //[ITEM_TO_BERRY(ITEM_BABIRI_BERRY)] = {TYPE_STEEL, 80},
+    [ITEM_TO_BERRY(ITEM_PUMKIN_BERRY)] = {TYPE_ICE, 80},// MOD CONTEST Pumkin Berry
+    //[ITEM_TO_BERRY(ITEM_ROSELI_BERRY)] = {TYPE_FAIRY, 80},
     [ITEM_TO_BERRY(ITEM_BLUK_BERRY)] = {TYPE_FIRE, 90},
     [ITEM_TO_BERRY(ITEM_NANAB_BERRY)] = {TYPE_WATER, 90},
     [ITEM_TO_BERRY(ITEM_WEPEAR_BERRY)] = {TYPE_ELECTRIC, 90},
@@ -7850,12 +7854,12 @@ const struct TypePower gNaturalGiftTable[] =
     [ITEM_TO_BERRY(ITEM_LANSAT_BERRY)] = {TYPE_FLYING, 100},
     [ITEM_TO_BERRY(ITEM_STARF_BERRY)] = {TYPE_PSYCHIC, 100},
     [ITEM_TO_BERRY(ITEM_ENIGMA_BERRY)] = {TYPE_BUG, 100},
-    [ITEM_TO_BERRY(ITEM_MICLE_BERRY)] = {TYPE_ROCK, 100},
-    [ITEM_TO_BERRY(ITEM_CUSTAP_BERRY)] = {TYPE_GHOST, 100},
-    [ITEM_TO_BERRY(ITEM_JABOCA_BERRY)] = {TYPE_DRAGON, 100},
-    [ITEM_TO_BERRY(ITEM_ROWAP_BERRY)] = {TYPE_DARK, 100},
-    [ITEM_TO_BERRY(ITEM_KEE_BERRY)] = {TYPE_FAIRY, 100},
-    [ITEM_TO_BERRY(ITEM_MARANGA_BERRY)] = {TYPE_DARK, 100},
+    //[ITEM_TO_BERRY(ITEM_MICLE_BERRY)] = {TYPE_ROCK, 100},
+    //[ITEM_TO_BERRY(ITEM_CUSTAP_BERRY)] = {TYPE_GHOST, 100},
+    //[ITEM_TO_BERRY(ITEM_JABOCA_BERRY)] = {TYPE_DRAGON, 100},
+    //[ITEM_TO_BERRY(ITEM_ROWAP_BERRY)] = {TYPE_DARK, 100},
+    //[ITEM_TO_BERRY(ITEM_KEE_BERRY)] = {TYPE_FAIRY, 100},
+    //[ITEM_TO_BERRY(ITEM_MARANGA_BERRY)] = {TYPE_DARK, 100},
 };
 
 u32 CalcRolloutBasePower(u32 battlerAtk, u32 basePower, u32 rolloutTimer)
@@ -9524,7 +9528,7 @@ static inline void MulByTypeEffectiveness(struct DamageContext *ctx, uq4_12_t *m
 
     if (ctx->moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gBattleMons[ctx->battlerDef].volatiles.miracleEye && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
-    if (GetMoveEffect(ctx->move) == EFFECT_SUPER_EFFECTIVE_ON_ARG && defType == GetMoveArgType(ctx->move))
+    if (GetMoveEffect(ctx->move) == EFFECT_SUPER_EFFECTIVE_ON_ARG && defType == GetMoveArgType(ctx->move) && !ctx->isAnticipation)
         mod = UQ_4_12(2.0);
     if (ctx->moveType == TYPE_GROUND && defType == TYPE_FLYING && IsBattlerGrounded(ctx->battlerDef) && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
@@ -9532,7 +9536,7 @@ static inline void MulByTypeEffectiveness(struct DamageContext *ctx, uq4_12_t *m
         mod = UQ_4_12(2.0);
 
     // B_WEATHER_STRONG_WINDS weakens Super Effective moves against Flying-type Pokémon
-    if (gBattleWeather & B_WEATHER_STRONG_WINDS && HasWeatherEffect())
+    if (gBattleWeather & B_WEATHER_STRONG_WINDS && HasWeatherEffect() && !ctx->isAnticipation)
     {
         if (defType == TYPE_FLYING && mod >= UQ_4_12(2.0))
             mod = UQ_4_12(1.0);
@@ -9623,7 +9627,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct DamageCont
         if (B_GLARE_GHOST < GEN_4 && ctx->move == MOVE_GLARE && IS_BATTLER_OF_TYPE(ctx->battlerDef, TYPE_GHOST))
             modifier = UQ_4_12(0.0);
     }
-    else if (ctx->moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(ctx->battlerDef, ctx->abilityDef, INVERSE_BATTLE, CHECK_IRON_BALL) && !(MoveIgnoresTypeIfFlyingAndUngrounded(ctx->move)))
+    else if (ctx->moveType == TYPE_GROUND && !IsBattlerGroundedInverseCheck(ctx->battlerDef, ctx->abilityDef, INVERSE_BATTLE, CHECK_IRON_BALL, ctx->isAnticipation) && !(MoveIgnoresTypeIfFlyingAndUngrounded(ctx->move)))
     {
         modifier = UQ_4_12(0.0);
         if (ctx->updateFlags && ctx->abilityDef == ABILITY_LEVITATE)
@@ -9653,7 +9657,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(struct DamageCont
         && ctx->moveType == TYPE_GROUND
         && IS_BATTLER_OF_TYPE(ctx->battlerDef, TYPE_FLYING)
         && GetBattlerHoldEffect(ctx->battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL
-        && !IsBattlerGroundedInverseCheck(ctx->battlerDef, ctx->abilityDef, NOT_INVERSE_BATTLE, IGNORE_IRON_BALL)
+        && !IsBattlerGroundedInverseCheck(ctx->battlerDef, ctx->abilityDef, NOT_INVERSE_BATTLE, IGNORE_IRON_BALL, FALSE)
         && !FlagGet(B_FLAG_INVERSE_BATTLE))
     {
         modifier = UQ_4_12(1.0);
@@ -9687,7 +9691,7 @@ uq4_12_t CalcTypeEffectivenessMultiplier(struct DamageContext *ctx)
     if (ctx->move != MOVE_STRUGGLE && ctx->moveType != TYPE_MYSTERY)
     {
         modifier = CalcTypeEffectivenessMultiplierInternal(ctx, modifier);
-        if (GetMoveEffect(ctx->move) == EFFECT_TWO_TYPED_MOVE)
+        if (GetMoveEffect(ctx->move) == EFFECT_TWO_TYPED_MOVE && !ctx->isAnticipation)
         {
             ctx->moveType = GetMoveArgType(ctx->move);
             modifier = CalcTypeEffectivenessMultiplierInternal(ctx, modifier);
@@ -10378,7 +10382,7 @@ u32 TryImmunityAbilityHealStatus(u32 battler, u32 caseID)
     case ABILITY_OBLIVIOUS:
         if (gBattleMons[battler].volatiles.infatuation)
             effect = 3;
-        else if (gDisableStructs[battler].tauntTimer != 0)
+        else if (GetGenConfig(GEN_CONFIG_OBLIVIOUS_TAUNT) >= GEN_6 && gDisableStructs[battler].tauntTimer != 0)
             effect = 4;
         break;
     }
@@ -11663,7 +11667,7 @@ bool32 CanMoveSkipAccuracyCalc(u32 battlerAtk, u32 battlerDef, u32 abilityAtk, u
     u32 nonVolatileStatus = GetMoveNonVolatileStatus(move);
 
     if ((gBattleMons[battlerDef].volatiles.lockOn && gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
-     || (B_TOXIC_NEVER_MISS >= GEN_6 && nonVolatileStatus == MOVE_EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
+     || (GetGenConfig(GEN_CONFIG_TOXIC_NEVER_MISS) >= GEN_6 && nonVolatileStatus == MOVE_EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
      || gBattleMons[battlerDef].volatiles.glaiveRush)
     {
         effect = TRUE;
@@ -11840,13 +11844,13 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         break;
     }
 
-    if (gBattleStruct->battlerState[battlerAtk].usedMicleBerry)
+    /*if (gBattleStruct->battlerState[battlerAtk].usedMicleBerry)
     {
         if (atkAbility == ABILITY_RIPEN)
             calc = (calc * 140) / 100;  // ripen gives 40% acc boost
         else
             calc = (calc * 120) / 100;  // 20% acc boost
-    }
+    }*/
 
     if (gFieldStatuses & STATUS_FIELD_GRAVITY)
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost

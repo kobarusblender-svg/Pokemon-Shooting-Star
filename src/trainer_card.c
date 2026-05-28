@@ -320,12 +320,12 @@ static const u8 sTrainerPicFacilityClass[][GENDER_COUNT] =
 
 static bool8 (*const sTrainerCardFlipTasks[])(struct Task *) =
 {
-    Task_BeginCardFlip,
-    Task_AnimateCardFlipDown,
-    Task_DrawFlippedCardSide,
-    Task_SetCardFlipped,
-    Task_AnimateCardFlipUp,
-    Task_EndCardFlip,
+    Task_BeginCardFlip, //hides the data on the card
+    Task_AnimateCardFlipDown, //does exactly what it says
+    Task_DrawFlippedCardSide, // this one changes the tilemap to the back's version
+    Task_SetCardFlipped, // this one, apparently, prints the info for the back and sets the flip variable so it can be flipped back.
+    Task_AnimateCardFlipUp, //does exactly what it says, it refferences the exact same sprite as the other one and reuses the same tilemap.
+    Task_EndCardFlip, //shows the data set on the card, the opposite of the first function, the data is set elsewhere, both of these just hide and show it.
 };
 
 static void VblankCb_TrainerCard(void)
@@ -847,9 +847,9 @@ static void SetDataFromTrainerCard(void)
     }
 }
 
-static void InitGpuRegs(void)
+static void InitGpuRegs(void) //MOD CONTEST FIXINGIT
 {
-    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
+    SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP); //THIS ONE MAKES THE ANIMATION WORK (Along with the last one too....)
     ShowBg(0);
     ShowBg(1);
     ShowBg(2);
@@ -857,13 +857,13 @@ static void InitGpuRegs(void)
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG0 | BLDCNT_EFFECT_DARKEN);
     SetGpuReg(REG_OFFSET_BLDY, 0);
     SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR);
-    SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG1 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ);
+    SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG1 | WINOUT_WIN01_BG2 | WINOUT_WIN01_BG3 | WINOUT_WIN01_OBJ); //This one tells the other BG not to do the anim...?
     SetGpuReg(REG_OFFSET_WIN0V, DISPLAY_HEIGHT);
     SetGpuReg(REG_OFFSET_WIN0H, DISPLAY_WIDTH);
     if (gReceivedRemoteLinkPlayers)
         EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK | INTR_FLAG_VCOUNT | INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
     else
-        EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK);
+        EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_HBLANK); //this makes the animation... scrunch the tiles? what
 }
 
 static void UpdateCardFlipRegs(u16 cardTop)
@@ -914,7 +914,7 @@ static void SetUpTrainerCardTask(void)
 {
     ResetTasks();
     ScanlineEffect_Stop();
-    CreateTask(Task_TrainerCard, 0);
+    CreateTask(Task_TrainerCard, 1);
     InitTrainerCardData();
     SetDataFromTrainerCard();
 }
@@ -1659,7 +1659,7 @@ static bool8 Task_AnimateCardFlipDown(struct Task *task)
     }
     var = var_24 >> 16;
     for (; i < DISPLAY_HEIGHT; i++)
-        gScanlineEffectRegBuffers[0][i] = var;
+        gScanlineEffectRegBuffers[0][i] = var; //this things squish the grafics, but not the sprite?
 
     sData->allowDMACopy = TRUE;
     if (task->tCardTop >= CARD_FLIP_Y)

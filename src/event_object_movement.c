@@ -3013,12 +3013,12 @@ void PlayerObjectTurn(struct PlayerAvatar *playerAvatar, u8 direction)
     ObjectEventTurn(&gObjectEvents[playerAvatar->objectEventId], direction);
 }
 
-static void SetBerryTreeGraphicsById(struct ObjectEvent *objectEvent, u8 berryId, u8 berryStage)
+static void SetBerryTreeGraphicsById(struct ObjectEvent *objectEvent, u8 berryId, u8 berryStage) //MOD CONTEST FIXINGIT
 {
     const u16 graphicsId = gBerryTreeObjectEventGraphicsIdTable[berryStage];
     const struct ObjectEventGraphicsInfo *graphicsInfo = GetObjectEventGraphicsInfo(graphicsId);
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
-    UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers[berryId][berryStage]-2], sprite);
+    UpdateSpritePalette(&sObjectEventSpritePalettes[gBerryTreePaletteSlotTablePointers[berryId][berryStage]-2], sprite); 
     sprite->oam.shape = graphicsInfo->oam->shape;
     sprite->oam.size = graphicsInfo->oam->size;
     sprite->images = gBerryTreePicTablePointers[berryId];
@@ -3052,7 +3052,7 @@ static void SetBerryTreeGraphics(struct ObjectEvent *objectEvent, struct Sprite 
         if (berryId > ITEM_TO_BERRY(LAST_BERRY_INDEX))
             berryId = 0;
 
-        SetBerryTreeGraphicsById(objectEvent, berryId, berryStage);
+        SetBerryTreeGraphicsById(objectEvent, berryId, berryStage); //MOD CONYTESTS FIXINGIT
         StartSpriteAnim(sprite, berryStage);
     }
 }
@@ -6591,7 +6591,7 @@ bool8 ObjectEventIsHeldMovementActive(struct ObjectEvent *objectEvent)
 
 static u8 TryUpdateMovementActionOnStairs(struct ObjectEvent *objectEvent, u8 movementActionId)
 {
-    if (objectEvent->isPlayer || objectEvent->localId == OBJ_EVENT_ID_FOLLOWER)
+    if (objectEvent->isPlayer || objectEvent->localId == OBJ_EVENT_ID_FOLLOWER || objectEvent->localId == OBJ_EVENT_ID_NPC_FOLLOWER)
         return movementActionId;    // handled separately
 
     if (!ObjectMovingOnRockStairs(objectEvent, objectEvent->movementDirection))

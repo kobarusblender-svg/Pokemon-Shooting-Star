@@ -80,7 +80,7 @@
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
 
-static void CB2_InitBattleInternal(void);
+static void CB2_InitBattleInternal(void); //aqui se inicia y se selecciona el tipo de
 static void CB2_PreInitMultiBattle(void);
 static void CB2_PreInitIngamePlayerPartnerBattle(void);
 static void CB2_HandleStartMultiPartnerBattle(void);
@@ -105,7 +105,7 @@ static void TurnValuesCleanUp(bool8 var0);
 static void SpriteCB_BounceEffect(struct Sprite *sprite);
 static void BattleStartClearSetData(void);
 static void DoBattleIntro(void);
-static void TryDoEventsBeforeFirstTurn(void);
+static void TryDoEventsBeforeFirstTurn(void); //Here I should define the contest performance value and the selection of pokemon
 static void HandleTurnActionSelectionState(void);
 static void RunTurnActionsFunctions(void);
 static void SetActionsAndBattlersTurnOrder(void);
@@ -459,7 +459,7 @@ void CB2_InitBattle(void)
     }
 }
 
-static void CB2_InitBattleInternal(void)
+static void CB2_InitBattleInternal(void)//Aqui se define la batalla antes de empezar////////////////////////////////////////////////////////////////////////
 {
     s32 i;
 
@@ -526,15 +526,22 @@ static void CB2_InitBattleInternal(void)
                                                                         | BATTLE_TYPE_TRAINER_HILL
                                                                         | BATTLE_TYPE_RECORDED)))
     {
-        switch (GetTrainerBattleType(TRAINER_BATTLE_PARAM.opponentA))
+        switch (GetTrainerBattleType(TRAINER_BATTLE_PARAM.opponentA)) //Here is where the battle type is defined on regular battles////////////////////////////////////////////////////////////////
         {
         case TRAINER_BATTLE_TYPE_SINGLES:
             break;
-        case TRAINER_BATTLE_TYPE_DOUBLES:
+        case TRAINER_BATTLE_TYPE_CONTESTSINGLES://MOD_CONTESTS (This is so I know what I touched if I mess up)
+            gBattleTypeFlags |= BATTLE_TYPE_CONTEST;
+            break;
+        case TRAINER_BATTLE_TYPE_DOUBLES: 
             gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
             break;
+        case TRAINER_BATTLE_TYPE_CONTESTDOUBLES: //MOD_CONTESTS 
+            gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+            gBattleTypeFlags |= BATTLE_TYPE_CONTEST;
+            break;
         }
-    }
+    }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     InitBattleBgsVideo();
     LoadBattleTextboxAndBackground();
@@ -554,7 +561,7 @@ static void CB2_InitBattleInternal(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
         SetMainCallback2(CB2_HandleStartMultiBattle);
     else
-        SetMainCallback2(CB2_HandleStartBattle);
+        SetMainCallback2(CB2_HandleStartBattle); //TODO: Que concha es esto :/
 
     if (!DEBUG_OVERWORLD_MENU || (DEBUG_OVERWORLD_MENU && !gIsDebugBattle))
     {
@@ -834,7 +841,7 @@ static void FindLinkBattleMaster(u8 numPlayers, u8 multiPlayerId)
     }
 }
 
-static void CB2_HandleStartBattle(void)
+static void CB2_HandleStartBattle(void) //Aqui se inicia la batalla////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 {
     u8 playerMultiplayerId;
     u8 enemyMultiplayerId;
@@ -1916,7 +1923,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             u32 fixedOtId = 0;
             u32 abilityNum = 0;
 
-            if (trainer->battleType != TRAINER_BATTLE_TYPE_SINGLES)
+            if (trainer->battleType != TRAINER_BATTLE_TYPE_SINGLES && trainer->battleType != TRAINER_BATTLE_TYPE_CONTESTSINGLES)
                 personalityValue = 0x80;
             else if (trainer->encounterMusic_gender & F_TRAINER_FEMALE)
                 personalityValue = 0x78; // Use personality more likely to result in a female Pokémon
@@ -5143,6 +5150,7 @@ static void TurnValuesCleanUp(bool8 var0)
         gSpecialStatuses[i].parentalBondState = PARENTAL_BOND_OFF;
         gBattleStruct->battlerState[i].usedEjectItem = FALSE;
         gProtectStructs[i].lashOutAffected = FALSE;
+        gDisableStructs[i].endured = FALSE;
     }
 
     gSideTimers[B_SIDE_PLAYER].followmeTimer = 0;
@@ -5314,7 +5322,7 @@ static void CheckChangingTurnOrderEffects(void)
                     if (GetBattlerHoldEffect(battler, FALSE) == HOLD_EFFECT_CUSTAP_BERRY)
                     {
                         // don't record berry since its gone now
-                        BattleScriptExecute(BattleScript_CustapBerryActivation);
+                        //BattleScriptExecute(BattleScript_CustapBerryActivation); MOD CONTEST there isn't a custap berry either
                     }
                     else
                     {
@@ -5718,20 +5726,24 @@ static void TryEvolvePokemon(void)
         if (!(sTriedEvolving & (1u << i)))
         {
             bool32 canStopEvo = TRUE;
-            u32 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_SPECIAL, i, NULL, &canStopEvo, CHECK_EVO);
+            enum EvolutionMode mode = EVO_MODE_BATTLE_SPECIAL;
+            u32 evolutionItemArg = i;
+            u32 species = GetEvolutionTargetSpecies(&gPlayerParty[i], mode, evolutionItemArg, NULL, &canStopEvo, CHECK_EVO);
             sTriedEvolving |= 1u << i;
 
             if (species == SPECIES_NONE && (gLeveledUpInBattle & (1u << i)))
             {
                 gLeveledUpInBattle &= ~(1u << i);
-                species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_ONLY, gLeveledUpInBattle, NULL, &canStopEvo, CHECK_EVO);
+                mode = EVO_MODE_BATTLE_ONLY;
+                evolutionItemArg = gLeveledUpInBattle;
+                species = GetEvolutionTargetSpecies(&gPlayerParty[i], mode, evolutionItemArg, NULL, &canStopEvo, CHECK_EVO);
             }
 
             if (species != SPECIES_NONE)
             {
                 FreeAllWindowBuffers();
                 gBattleMainFunc = WaitForEvoSceneToFinish;
-                GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_ONLY, gLeveledUpInBattle, NULL, &canStopEvo, DO_EVO);
+                GetEvolutionTargetSpecies(&gPlayerParty[i], mode, evolutionItemArg, NULL, &canStopEvo, DO_EVO);
                 EvolutionScene(&gPlayerParty[i], species, canStopEvo, i);
                 return;
             }
@@ -5857,11 +5869,11 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, enum MonState
     enum ItemHoldEffect holdEffect;
     enum Gimmick gimmick = GetActiveGimmick(battler);
 
-    if (move == MOVE_STRUGGLE)
-        return TYPE_NORMAL;
-
     if (state == MON_IN_BATTLE)
     {
+        if (moveEffect == EFFECT_STRUGGLE)
+            return TYPE_MYSTERY;
+
         species = gBattleMons[battler].species;
         heldItem = gBattleMons[battler].item;
         holdEffect = GetBattlerHoldEffect(battler, TRUE);
@@ -6114,8 +6126,7 @@ void SetTypeBeforeUsingMove(u32 move, u32 battler)
         && GetBattleMoveType(move) == GetItemSecondaryId(heldItem)
         && effect != EFFECT_PLEDGE
         && effect != EFFECT_OHKO
-        && effect != EFFECT_SHEER_COLD
-        && effect != EFFECT_STRUGGLE)
+        && effect != EFFECT_SHEER_COLD)
     {
         gSpecialStatuses[battler].gemParam = GetBattlerHoldEffectParam(battler);
         gSpecialStatuses[battler].gemBoost = TRUE;

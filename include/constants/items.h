@@ -679,45 +679,67 @@
 #define ITEM_PAMTRE_BERRY 545
 #define ITEM_WATMEL_BERRY 546
 #define ITEM_DURIN_BERRY 547
-#define ITEM_BELUE_BERRY 548
-#define ITEM_CHILAN_BERRY 549
-#define ITEM_OCCA_BERRY 550
-#define ITEM_PASSHO_BERRY 551
-#define ITEM_WACAN_BERRY 552
-#define ITEM_RINDO_BERRY 553
-#define ITEM_YACHE_BERRY 554
-#define ITEM_CHOPLE_BERRY 555
-#define ITEM_KEBIA_BERRY 556
-#define ITEM_SHUCA_BERRY 557
-#define ITEM_COBA_BERRY 558
-#define ITEM_PAYAPA_BERRY 559
-#define ITEM_TANGA_BERRY 560
-#define ITEM_CHARTI_BERRY 561
-#define ITEM_KASIB_BERRY 562
-#define ITEM_HABAN_BERRY 563
-#define ITEM_COLBUR_BERRY 564
-#define ITEM_BABIRI_BERRY 565
-#define ITEM_ROSELI_BERRY 566
-#define ITEM_LIECHI_BERRY 567
-#define ITEM_GANLON_BERRY 568
-#define ITEM_SALAC_BERRY 569
-#define ITEM_PETAYA_BERRY 570
-#define ITEM_APICOT_BERRY 571
-#define ITEM_LANSAT_BERRY 572
-#define ITEM_STARF_BERRY 573
-#define ITEM_ENIGMA_BERRY 574
-#define ITEM_MICLE_BERRY 575
-#define ITEM_CUSTAP_BERRY 576
-#define ITEM_JABOCA_BERRY 577
-#define ITEM_ROWAP_BERRY 578
-#define ITEM_KEE_BERRY 579
-#define ITEM_MARANGA_BERRY 580
-#define ITEM_ENIGMA_BERRY_E_READER 581
+#define ITEM_BELUE_BERRY 548 //New berry index start here.
+#define ITEM_PAPRIK_BERRY 549 //(Japan exclusive Touga berry)
+#define ITEM_EGGANT_BERRY 550
+#define ITEM_DRASH_BERRY 551
+#define ITEM_SKUASH_BERRY 552 //(Japan exclusive Yago berry)
+#define ITEM_PUMKIN_BERRY  553 //New berry index start here.
+#define ITEM_CHILANER_BERRY 554
+#define ITEM_MALIUM_BERRY 555 //(Japan exclusive Niniku berry)
+#define ITEM_TOPO_BERRY 556 //(Japan exclusive Topo berry)
+#define ITEM_STRIB_BERRY 557
+#define ITEM_NOION_BERRY 558 //(Japan exclusive Ginema berry)
+#define ITEM_NUTPEA_BERRY 559
+#define ITEM_ROKA_BERRY 560 //(Japan exclusive Kuo berry)
+#define ITEM_LIECHI_BERRY 561 
+#define ITEM_GANLON_BERRY 562 
+#define ITEM_SALAC_BERRY 563 
+#define ITEM_PETAYA_BERRY 564 
+#define ITEM_APICOT_BERRY 565 
+#define ITEM_LANSAT_BERRY 566 
+#define ITEM_STARF_BERRY 567 
+#define ITEM_ENIGMA_BERRY 568 //(The one the game actually uses)
+#define ITEM_ENIGMA_BERRY_E_READER 569 // MOD CONTEST (leaving this one here... What's the worst that can happen?)
+//#define ITEM_CHILAN_BERRY 549
+//#define ITEM_OCCA_BERRY 550 
+//#define ITEM_PASSHO_BERRY 551 
+//#define ITEM_WACAN_BERRY 552 
+//#define ITEM_RINDO_BERRY 553 
+//#define ITEM_YACHE_BERRY 554 
+//#define ITEM_CHOPLE_BERRY 555 
+//#define ITEM_KEBIA_BERRY 556 
+//#define ITEM_SHUCA_BERRY 557 
+//#define ITEM_COBA_BERRY 558 
+//#define ITEM_PAYAPA_BERRY 559 
+//#define ITEM_TANGA_BERRY 560 
+//#define ITEM_CHARTI_BERRY 561 
+//#define ITEM_KASIB_BERRY 562 
+//#define ITEM_HABAN_BERRY 563 
+//#define ITEM_COLBUR_BERRY 564 
+//#define ITEM_BABIRI_BERRY 565 
+//#define ITEM_ROSELI_BERRY 566 
+//#define ITEM_LIECHI_BERRY 567 //Old index for legendary Berries:
+//#define ITEM_GANLON_BERRY 568 
+//#define ITEM_SALAC_BERRY 569 
+//#define ITEM_PETAYA_BERRY 570 
+//#define ITEM_APICOT_BERRY 571 
+//#define ITEM_LANSAT_BERRY 572 
+//#define ITEM_STARF_BERRY 573 
+//#define ITEM_ENIGMA_BERRY 574 
+//#define ITEM_MICLE_BERRY 575 
+//#define ITEM_CUSTAP_BERRY 576 
+//#define ITEM_JABOCA_BERRY 577 
+//#define ITEM_ROWAP_BERRY 578 
+//#define ITEM_KEE_BERRY 579 
+//#define ITEM_MARANGA_BERRY 580 
+//#define ITEM_ENIGMA_BERRY_E_READER 581 // Old index for original Enigma Berry
 
 #define FIRST_BERRY_INDEX ITEM_CHERI_BERRY
 #define LAST_BERRY_INDEX  ITEM_ENIGMA_BERRY_E_READER
 
 // TMs/HMs
+#define ITEM_TM00 581 // MOD CONTEST New TM machine that erases any pokemon move and stores it for later use, with some limitations. Obtained once every other TM has been found
 #define ITEM_TM01 582
 #define ITEM_TM02 583
 #define ITEM_TM03 584

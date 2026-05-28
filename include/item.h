@@ -208,6 +208,7 @@ void SetBagItemsPointers(void);
 u8 *CopyItemName(u16 itemId, u8 *dst);
 u8 *CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity);
 bool32 IsBagPocketNonEmpty(enum Pocket pocketId);
+bool32 HasEnoughBerries(void);
 bool32 CheckBagHasItem(u16 itemId, u16 count);
 bool32 HasAtLeastOneBerry(void);
 bool32 HasAtLeastOnePokeBall(void);

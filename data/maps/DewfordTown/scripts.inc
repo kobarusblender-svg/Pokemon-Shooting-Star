@@ -69,6 +69,10 @@ DewfordTown_EventScript_HallSign::
 	msgbox DewfordTown_Text_HallSign, MSGBOX_SIGN
 	end
 
+DewfordTown_EventScript_ContestHallSign::
+	msgbox DewfordTown_Text_ContestHallSign, MSGBOX_SIGN
+	end
+
 DewfordTown_EventScript_OldRodFisherman::
 	lock
 	faceplayer
@@ -640,6 +644,11 @@ DewfordTown_Text_GymSign:
 	.string "DEWFORD TOWN POKéMON GYM\n"
 	.string "LEADER: BRAWLY\l"
 	.string "“A big wave in fighting!”$"
+
+DewfordTown_Text_ContestHallSign:
+	.string "DEWFORD TOWN CONTEST HALL\n"
+	.string "Gather here,\l"
+	.string "oh POKéMON stars!$"
 
 DewfordTown_Text_HallSign:
 	.string "DEWFORD HALL\n"

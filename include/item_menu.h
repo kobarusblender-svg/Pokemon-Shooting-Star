@@ -94,6 +94,9 @@ struct BagMenu
 
 extern struct BagMenu *gBagMenu;
 extern u16 gSpecialVar_ItemId;
+extern u16 gSpecialVar_ItemId1;
+extern u16 gSpecialVar_ItemId2;
+extern u16 gSpecialVar_ItemId3;
 
 void CB2_GoToItemDepositMenu(void);
 void FavorLadyOpenBagMenu(void);
@@ -107,9 +110,11 @@ u8 GetItemListPosition(u8 pocketId);
 bool8 UseRegisteredKeyItemOnField(void);
 void CB2_GoToSellMenu(void);
 void GoToBagMenu(u8 location, u8 pocket, void ( *exitCallback)());
+void GoToBagMenu1(u8 location, u8 pocket);
 void DoWallyTutorialBagMenu(void);
 void ResetBagScrollPositions(void);
 void ChooseBerryForMachine(void (*exitCallback)(void));
+void ChooseBerryForMachine1(void);
 void CB2_ChooseBerry(void);
 void CB2_ChooseMulch(void);
 void Task_FadeAndCloseBagMenu(u8 taskId);

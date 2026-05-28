@@ -64,10 +64,10 @@
 #define GEN_8 7
 #define GEN_9 8
 // Changing GEN_LATEST's value to a different Generation will change every default setting that uses it at once.
-#define GEN_LATEST GEN_9
+#define GEN_LATEST GEN_7
 
 // General settings
-#define EXPANSION_INTRO              TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
+#define EXPANSION_INTRO              TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen. (Have to make one) //MOD CONTEST//
 #define HQ_RANDOM                    TRUE    // If TRUE, replaces the default RNG with an implementation of SFC32 RNG. May break code that relies on RNG.
 #define AUTO_SCROLL_TEXT             FALSE   // If TRUE, text will automatically scroll to the next line after NUM_FRAMES_AUTO_SCROLL_DELAY. Players can still press A_BUTTON or B_BUTTON to scroll on their own.
 #define NUM_FRAMES_AUTO_SCROLL_DELAY 49

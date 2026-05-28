@@ -11,7 +11,7 @@
 #define POOL_MEMBER_COUNT_UNLIMITED 0
 #define POOL_MEMBER_COUNT_NONE      0xff
 
-enum PoolRulesets {
+enum PoolRulesets { //MOD CONTEST (Might be where I add the new rules?)
     POOL_RULESET_BASIC,
     POOL_RULESET_DOUBLES,
     POOL_RULESET_WEATHER_SINGLES,

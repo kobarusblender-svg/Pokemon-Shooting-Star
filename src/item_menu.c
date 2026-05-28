@@ -579,6 +579,9 @@ EWRAM_DATA struct BagPosition gBagPosition = {0};
 static EWRAM_DATA struct ListBuffer1 *sListBuffer1 = 0;
 static EWRAM_DATA struct ListBuffer2 *sListBuffer2 = 0;
 EWRAM_DATA u16 gSpecialVar_ItemId = 0;
+EWRAM_DATA u16 gSpecialVar_ItemId1 = 0;
+EWRAM_DATA u16 gSpecialVar_ItemId2 = 0;
+EWRAM_DATA u16 gSpecialVar_ItemId3 = 0;
 static EWRAM_DATA struct TempWallyBag *sTempWallyBag = 0;
 
 void ResetBagScrollPositions(void)
@@ -617,6 +620,11 @@ void CB2_ChooseMulch(void)
 void ChooseBerryForMachine(void (*exitCallback)(void))
 {
     GoToBagMenu(ITEMMENULOCATION_BERRY_BLENDER_CRUSH, POCKET_BERRIES, exitCallback);
+}
+
+void ChooseBerryForMachine1(void)
+{
+    GoToBagMenu1(ITEMMENULOCATION_BERRY_BLENDER_CRUSH, POCKET_BERRIES);
 }
 
 void CB2_GoToSellMenu(void)
@@ -662,6 +670,32 @@ void GoToBagMenu(u8 location, u8 pocket, void ( *exitCallback)())
             gBagPosition.location = location;
         if (exitCallback)
             gBagPosition.exitCallback = exitCallback;
+        if (pocket < POCKETS_COUNT)
+            gBagPosition.pocket = pocket;
+        if (gBagPosition.location == ITEMMENULOCATION_BERRY_TREE ||
+            gBagPosition.location == ITEMMENULOCATION_BERRY_BLENDER_CRUSH ||
+            gBagPosition.location == ITEMMENULOCATION_BERRY_TREE_MULCH)
+            gBagMenu->pocketSwitchDisabled = TRUE;
+        gBagMenu->newScreenCallback = NULL;
+        gBagMenu->toSwapPos = NOT_SWAPPING;
+        gBagMenu->pocketScrollArrowsTask = TASK_NONE;
+        gBagMenu->pocketSwitchArrowsTask = TASK_NONE;
+        memset(gBagMenu->spriteIds, SPRITE_NONE, sizeof(gBagMenu->spriteIds));
+        memset(gBagMenu->windowIds, WINDOW_NONE, sizeof(gBagMenu->windowIds));
+        SetMainCallback2(CB2_Bag);
+    }
+}
+void GoToBagMenu1(u8 location, u8 pocket)
+{
+    gBagMenu = AllocZeroed(sizeof(*gBagMenu));
+    if (gBagMenu == NULL)
+    {
+        // Alloc failed, exit
+    }
+    else
+    {
+        if (location != ITEMMENULOCATION_LAST)
+            gBagPosition.location = location;
         if (pocket < POCKETS_COUNT)
             gBagPosition.pocket = pocket;
         if (gBagPosition.location == ITEMMENULOCATION_BERRY_TREE ||

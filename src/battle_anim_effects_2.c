@@ -3198,7 +3198,7 @@ static void AnimTask_FakeOut_Step2(u8 taskId)
     }
 }
 
-void AnimTask_StretchTargetUp(u8 taskId)
+void AnimTask_StretchTargetUp(u8 taskId) //MOD CONTEST TODO base berry tag animation after this
 {
     u8 spriteId = GetAnimBattlerSpriteId(ANIM_TARGET);
     if (++gTasks[taskId].data[0] == 1)

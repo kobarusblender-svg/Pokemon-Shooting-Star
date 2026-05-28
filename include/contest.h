@@ -105,6 +105,7 @@ struct ContestPokemon
     u8 smart;
     u8 tough;
     u8 sheen;
+    u8 overflowSheen;
     u8 highestRank;
     bool8 gameCleared;
     u8 isShiny:1;

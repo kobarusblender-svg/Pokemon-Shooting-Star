@@ -744,11 +744,37 @@
 	.endif
 	.endm
 
+	@ MOD CONTEST :
+	@ Starts a single trainer contest battle. Takes a trainer, intro text, loss text, and an optional event script.
+	@ When used with an event script, you can also pass in an optional flag to disable music
+	.macro trainerbattle_contestsingle trainer:req, intro_text:req, lose_text:req, event_script=FALSE, music=TRUE
+	.if \event_script == FALSE
+	trainerbattle TRAINER_BATTLE_SINGLE_CONTEST, LOCALID_NONE, \trainer, \intro_text, \lose_text, NULL, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE
+	.elseif \music == TRUE
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT, LOCALID_NONE, \trainer, \intro_text, \lose_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE
+	.else
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC, LOCALID_NONE, \trainer, \intro_text, \lose_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, NULL, FALSE, TRUE, FALSE, FALSE
+	.endif
+	.endm
+
 	@ Starts a double trainer battle. Takes a trainer, intro text, loss text, text for when you have too few pokemon
 	@ and an optional event script. When used with an event script you can pass in an optional flag to disable music
 	.macro trainerbattle_double trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req, event_script=FALSE, music=TRUE
 	.if \event_script == FALSE
 	trainerbattle TRAINER_BATTLE_DOUBLE, LOCALID_NONE, \trainer, \intro_text, \lose_text, NULL, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE
+	.elseif \music == TRUE
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE, LOCALID_NONE, \trainer, \intro_text, \lose_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE
+	.else
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC, LOCALID_NONE, \trainer, \intro_text, \lose_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, FALSE, FALSE, FALSE
+	.endif
+	.endm
+
+	@ MOD CONTEST :
+	@ Starts a double trainer contest battle. Takes a trainer, intro text, loss text, text for when you have too few pokemon
+	@ and an optional event script. When used with an event script you can pass in an optional flag to disable music
+	.macro trainerbattle_contestdouble trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req, event_script=FALSE, music=TRUE
+	.if \event_script == FALSE
+	trainerbattle TRAINER_BATTLE_DOUBLE_CONTEST, LOCALID_NONE, \trainer, \intro_text, \lose_text, NULL, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE
 	.elseif \music == TRUE
 	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE, LOCALID_NONE, \trainer, \intro_text, \lose_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE
 	.else
@@ -888,7 +914,7 @@
 
 	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made.
 	@ Lists of options are predefined (sMultichoiceLists) and the one to be used is specified with multichoiceId.
-	@ If ignoreBPress is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button.
+	@ If ignoreBPress is set to a non-zero value, then the user will not be allowed to back out of the multichoice with the B button. ChoiceBerry
 	.macro multichoice x:req, y:req, multichoiceId:req, ignoreBPress:req
 	.byte SCR_OP_MULTICHOICE
 	.byte \x
@@ -986,7 +1012,7 @@
 
 	@ Gives the player a Pokémon of the specified species and level, and allows to customize extra parameters.
 	@ VAR_RESULT will be set to MON_GIVEN_TO_PARTY, MON_GIVEN_TO_PC, or MON_CANT_GIVE depending on the outcome.
-	.macro givemon species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, gmaxFactor, teraType, dmaxLevel
+	.macro givemon species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, shinyMode, gmaxFactor, teraType, dmaxLevel
 	callnative ScrCmd_createmon, requests_effects=1
 	.byte 0
 	.byte PARTY_SIZE @ assign to first empty slot
@@ -1014,7 +1040,7 @@
 	.ifnb \move2; .set givemon_flags, givemon_flags | (1 << 18); .endif
 	.ifnb \move3; .set givemon_flags, givemon_flags | (1 << 19); .endif
 	.ifnb \move4; .set givemon_flags, givemon_flags | (1 << 20); .endif
-	.ifnb \isShiny; .set givemon_flags, givemon_flags | (1 << 21); .endif
+	.ifnb \shinyMode; .set givemon_flags, givemon_flags | (1 << 21); .endif
 	.ifnb \gmaxFactor; .set givemon_flags, givemon_flags | (1 << 22); .endif
 	.ifnb \teraType; .set givemon_flags, givemon_flags | (1 << 23); .endif
 	.ifnb \dmaxLevel; .set givemon_flags, givemon_flags | (1 << 24); .endif
@@ -1040,7 +1066,7 @@
 	.ifnb \move2; .2byte \move2; .endif
 	.ifnb \move3; .2byte \move3; .endif
 	.ifnb \move4; .2byte \move4; .endif
-	.ifnb \isShiny; .2byte \isShiny; .endif
+	.ifnb \shinyMode; .2byte \shinyMode; .endif
 	.ifnb \gmaxFactor; .2byte \gmaxFactor; .endif
 	.ifnb \teraType; .2byte \teraType; .endif
 	.ifnb \dmaxLevel; .2byte \dmaxLevel; .endif
@@ -1048,7 +1074,7 @@
 
 	@ creates a mon for a given party and slot
 	@ otherwise
-	.macro createmon side:req, slot:req, species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, isShiny, gmaxFactor, teraType, dmaxLevel
+	.macro createmon side:req, slot:req, species:req, level:req, item, ball, nature, abilityNum, gender, hpEv, atkEv, defEv, speedEv, spAtkEv, spDefEv, hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv, move1, move2, move3, move4, shinyMode, gmaxFactor, teraType, dmaxLevel
 	callnative ScrCmd_createmon, requests_effects=1
 	.byte \side	 @ 0 - player, 1 - opponent
 	.byte \slot	 @ 0-5
@@ -1076,7 +1102,7 @@
 	.ifnb \move2; .set givemon_flags, givemon_flags | (1 << 18); .endif
 	.ifnb \move3; .set givemon_flags, givemon_flags | (1 << 19); .endif
 	.ifnb \move4; .set givemon_flags, givemon_flags | (1 << 20); .endif
-	.ifnb \isShiny; .set givemon_flags, givemon_flags | (1 << 21); .endif
+	.ifnb \shinyMode; .set givemon_flags, givemon_flags | (1 << 21); .endif
 	.ifnb \gmaxFactor; .set givemon_flags, givemon_flags | (1 << 22); .endif
 	.ifnb \teraType; .set givemon_flags, givemon_flags | (1 << 23); .endif
 	.ifnb \dmaxLevel; .set givemon_flags, givemon_flags | (1 << 24); .endif
@@ -1102,7 +1128,7 @@
 	.ifnb \move2; .2byte \move2; .endif
 	.ifnb \move3; .2byte \move3; .endif
 	.ifnb \move4; .2byte \move4; .endif
-	.ifnb \isShiny; .2byte \isShiny; .endif
+	.ifnb \shinyMode; .2byte \shinyMode; .endif
 	.ifnb \gmaxFactor; .2byte \gmaxFactor; .endif
 	.ifnb \teraType; .2byte \teraType; .endif
 	.ifnb \dmaxLevel; .2byte \dmaxLevel; .endif
@@ -2028,7 +2054,7 @@
 	goto_if_eq \dest
 	.endm
 
-	@ Message box types
+	@ Message box types ChoiceBerry
 	MSGBOX_NPC = 2
 	MSGBOX_SIGN = 3
 	MSGBOX_DEFAULT = 4

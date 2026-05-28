@@ -1046,7 +1046,7 @@ bool32 IsMovePowderBlocked(u32 battlerAtk, u32 battlerDef, u32 move)
 
     if (IsPowderMove(move) && (battlerAtk != battlerDef))
     {
-        if (B_POWDER_GRASS >= GEN_6
+        if (GetGenConfig(GEN_CONFIG_POWDER_GRASS) >= GEN_6
          && (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS) || GetBattlerAbility(battlerDef) == ABILITY_OVERCOAT))
         {
             gBattlerAbility = battlerDef;
@@ -1901,13 +1901,13 @@ static void Cmd_adjustdamage(void)
             gBattleStruct->moveResultFlags[battlerDef] &= ~(MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE);
             gBattleStruct->moveDamage[battlerDef] = 0;
             gSpecialStatuses[battlerDef].enduredDamage = TRUE;
-            RecordAbilityBattle(gBattlerTarget, ABILITY_ICE_FACE);
+            RecordAbilityBattle(battlerDef, ABILITY_ICE_FACE);
             gDisableStructs[battlerDef].iceFaceActivationPrevention = TRUE;
             // Form change will be done after attack animation in Cmd_resultmessage.
             continue;
         }
 
-        if (gBattleMons[gBattlerTarget].hp > gBattleStruct->moveDamage[battlerDef])
+        if (gBattleMons[battlerDef].hp > gBattleStruct->moveDamage[battlerDef])
             continue;
 
         holdEffect = GetBattlerHoldEffect(battlerDef, TRUE);
@@ -5694,26 +5694,29 @@ static bool32 HandleMoveEndMoveBlock(u32 moveEffect)
         return FALSE;
 
     u32 effect = FALSE;
+    u32 side = GetBattlerSide(gBattlerTarget);
     switch (moveEffect)
     {
     case EFFECT_KNOCK_OFF:
         if (gBattleStruct->battlerState[gBattlerTarget].itemCanBeKnockedOff
          && gBattleMons[gBattlerTarget].item != ITEM_NONE
          && IsBattlerTurnDamaged(gBattlerTarget)
-         && IsBattlerAlive(gBattlerAttacker))
+         && IsBattlerAlive(gBattlerAttacker)
+         && !(B_KNOCK_OFF_REMOVAL >= GEN_5 && side == B_SIDE_PLAYER && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
         {
-            u32 side = GetBattlerSide(gBattlerTarget);
             gLastUsedItem = gBattleMons[gBattlerTarget].item;
             gBattleMons[gBattlerTarget].item = 0;
             if (gBattleMons[gBattlerTarget].ability != ABILITY_GORILLA_TACTICS)
                 gBattleStruct->choicedMove[gBattlerTarget] = MOVE_NONE;
             CheckSetUnburden(gBattlerTarget);
 
-            // In Gen 5+, Knock Off removes the target's item rather than rendering it unusable.
+            // In Gen 5+, Knock Off removes the target's item rather than rendering it unusable
             if (B_KNOCK_OFF_REMOVAL >= GEN_5)
             {
                 BtlController_EmitSetMonData(gBattlerTarget, B_COMM_TO_CONTROLLER, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].item), &gBattleMons[gBattlerTarget].item);
                 MarkBattlerForControllerExec(gBattlerTarget);
+                // Mark item as stolen so it will be restored after battle
+                gBattleStruct->itemLost[side][gBattlerPartyIndexes[gBattlerTarget]].stolen = TRUE;
             }
             else
             {
@@ -5875,7 +5878,7 @@ static bool32 HandleMoveEndMoveBlock(u32 moveEffect)
         }
         break;
     case EFFECT_STONE_AXE:
-        if (!IsHazardOnSide(GetBattlerSide(gBattlerTarget), HAZARDS_STEALTH_ROCK)
+        if (!IsHazardOnSide(side, HAZARDS_STEALTH_ROCK)
          && IsBattlerTurnDamaged(gBattlerTarget)
          && IsBattlerAlive(gBattlerAttacker))
         {
@@ -5886,7 +5889,7 @@ static bool32 HandleMoveEndMoveBlock(u32 moveEffect)
         }
         break;
     case EFFECT_CEASELESS_EDGE:
-        if (gSideTimers[GetBattlerSide(gBattlerTarget)].spikesAmount < 3
+        if (gSideTimers[side].spikesAmount < 3
          && IsBattlerTurnDamaged(gBattlerTarget)
          && IsBattlerAlive(gBattlerAttacker))
         {
@@ -6930,7 +6933,7 @@ static void Cmd_moveend(void)
             gBattleStruct->additionalEffectsCounter = 0;
             gBattleStruct->poisonPuppeteerConfusion = FALSE;
             gBattleStruct->fickleBeamBoosted = FALSE;
-            gBattleStruct->battlerState[gBattlerAttacker].usedMicleBerry = FALSE;
+            //gBattleStruct->battlerState[gBattlerAttacker].usedMicleBerry = FALSE;
             gBattleStruct->noTargetPresent = FALSE;
             if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 gBattleStruct->pledgeMove = FALSE;
@@ -12765,7 +12768,7 @@ static void Cmd_settaunt(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (B_OBLIVIOUS_TAUNT >= GEN_6 && GetBattlerAbility(gBattlerTarget) == ABILITY_OBLIVIOUS)
+    if (GetGenConfig(GEN_CONFIG_OBLIVIOUS_TAUNT) >= GEN_6 && GetBattlerAbility(gBattlerTarget) == ABILITY_OBLIVIOUS)
     {
         gBattlescriptCurrInstr = BattleScript_NotAffectedAbilityPopUp;
         gLastUsedAbility = ABILITY_OBLIVIOUS;
@@ -15285,34 +15288,55 @@ void BS_SetTerrain(void)
     switch (GetMoveEffect(gCurrentMove))
     {
     case EFFECT_MISTY_TERRAIN:
-        statusFlag = STATUS_FIELD_MISTY_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
+        if (!(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+        {
+            statusFlag = STATUS_FIELD_MISTY_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
+        }
         break;
     case EFFECT_GRASSY_TERRAIN:
-        statusFlag = STATUS_FIELD_GRASSY_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
+        if (!(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
+        {
+            statusFlag = STATUS_FIELD_GRASSY_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
+        }
         break;
     case EFFECT_ELECTRIC_TERRAIN:
-        statusFlag = STATUS_FIELD_ELECTRIC_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
+        if (!(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+        {
+            statusFlag = STATUS_FIELD_ELECTRIC_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
+        }
         break;
     case EFFECT_PSYCHIC_TERRAIN:
-        statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
+        if (!(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+        {
+            statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
+        }
         break;
     case EFFECT_HIT_SET_TERRAIN:
-        statusFlag = GetMoveTerrainFlag(gCurrentMove);
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
+        if (!(gFieldStatuses & GetMoveTerrainFlag(gCurrentMove)))
+        {
+            statusFlag = GetMoveTerrainFlag(gCurrentMove);
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
+        }
         break;
     default:
         break;
     }
-    enum ItemHoldEffect atkHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
-
-    gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;
-    gFieldStatuses |= statusFlag;
-    gFieldTimers.terrainTimer = gBattleTurnCounter + (atkHoldEffect == HOLD_EFFECT_TERRAIN_EXTENDER) ? 8 : 5;
-    gBattlescriptCurrInstr = cmd->nextInstr;
+    if (statusFlag)
+    {
+        enum ItemHoldEffect atkHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
+        gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;
+        gFieldStatuses |= statusFlag;
+        gFieldTimers.terrainTimer = gBattleTurnCounter + (atkHoldEffect == HOLD_EFFECT_TERRAIN_EXTENDER) ? 8 : 5;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    }
 }
 
 void BS_JumpIfTerrainAffected(void)
@@ -17122,13 +17146,12 @@ void BS_EraseArenaRefTextBox(void)
 
 void BS_ArenaJudgmentString(void)
 {
-    CMD_ARGS(u8 id);
+    NATIVE_ARGS(u8 id);
     BattleStringExpandPlaceholdersToDisplayedString(gRefereeStringsTable[cmd->id]);
     BattlePutTextOnWindow(gDisplayedStringBattle, ARENA_WIN_JUDGMENT_TEXT);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-// Argument passed but no use
 void BS_ArenaWaitMessage(void)
 {
     NATIVE_ARGS();

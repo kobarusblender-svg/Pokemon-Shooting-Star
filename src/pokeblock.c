@@ -211,11 +211,12 @@ const u8 *const gPokeblockNames[] =
     [PBLOCK_CLR_INDIGO]    = COMPOUND_STRING("INDIGO {POKEBLOCK}"),
     [PBLOCK_CLR_BROWN]     = COMPOUND_STRING("BROWN {POKEBLOCK}"),
     [PBLOCK_CLR_LITE_BLUE] = COMPOUND_STRING("LITEBLUE {POKEBLOCK}"),
-    [PBLOCK_CLR_OLIVE]     = COMPOUND_STRING("OLIVE {POKEBLOCK}"),
+    [PBLOCK_CLR_OLIVE]     = COMPOUND_STRING("OLIVE {POKEBLOCK}"), 
     [PBLOCK_CLR_GRAY]      = COMPOUND_STRING("GRAY {POKEBLOCK}"),
     [PBLOCK_CLR_BLACK]     = COMPOUND_STRING("BLACK {POKEBLOCK}"),
     [PBLOCK_CLR_WHITE]     = COMPOUND_STRING("WHITE {POKEBLOCK}"),
-    [PBLOCK_CLR_GOLD]      = COMPOUND_STRING("GOLD {POKEBLOCK}")
+    [PBLOCK_CLR_GOLD]      = COMPOUND_STRING("GOLD {POKEBLOCK}"), 
+    [PBLOCK_CLR_CLEAR]     = COMPOUND_STRING("CLEAR {POKEBLOCK}")//
 };
 
 static const struct MenuAction sPokeblockMenuActions[] =
@@ -658,7 +659,7 @@ static bool8 LoadPokeblockMenuGfx(void)
         }
         break;
     case 2:
-        LoadPalette(gMenuPokeblock_Pal, BG_PLTT_ID(0), 6 * PLTT_SIZE_4BPP);
+        LoadPalette(gMenuPokeblock_Pal, BG_PLTT_ID(0), 9 * PLTT_SIZE_4BPP);
         sPokeblockMenu->gfxState++;
         break;
     case 3:
@@ -764,11 +765,14 @@ static void MovePokeblockMenuCursor(s32 pkblId, bool8 onInit, struct ListMenu *l
         DrawPokeblockInfo(pkblId);
 }
 
-static void DrawPokeblockInfo(s32 pkblId)
+static void DrawPokeblockInfo(s32 pkblId) //MOD CONTEST FIXING IT Pokeblock selection now displays weakest flavors with a tiny pokeblock
 {
     u8 i;
     struct Pokeblock *pokeblock;
     u16 rectTilemapSrc[2];
+    u8 HighestFlavors = 0;
+    u8 Flavors = 0;
+    u8 HighestValue = 0;
 
     FillWindowPixelBuffer(WIN_FEEL, PIXEL_FILL(0));
 
@@ -779,15 +783,63 @@ static void DrawPokeblockInfo(s32 pkblId)
         rectTilemapSrc[1] = 0x18;
         for (i = 0; i < FLAVOR_COUNT; i++)
         {
-            if (GetPokeblockData(pokeblock, PBLOCK_SPICY + i) > 0)
+            if (GetPokeblockData(pokeblock, PBLOCK_SPICY + i) > 0) //MOD CONTEST 
             {
+                if(HighestValue == GetPokeblockData(pokeblock, PBLOCK_SPICY + i)){ //Registers first or new highest flavour
+                    HighestValue = GetPokeblockData(pokeblock, PBLOCK_SPICY + i);
+                    Flavors |= (1 << i);
+                    HighestFlavors |= (1 << i);
+                }
+                else if (GetPokeblockData(pokeblock, PBLOCK_SPICY + i) > HighestValue){ //Set every secondary flavour to flavors, then set new Highest flavor
+                    HighestValue = GetPokeblockData(pokeblock, PBLOCK_SPICY + i);
+                    HighestFlavors = 0;
+                    HighestFlavors |= (1 << i);
+                    Flavors |= (1 << i);
+                }
+                else{ //Set secondary flavor
+                    Flavors |= (1 << i);
+                }
                 // Pokéblock has this flavor, draw Pokéblock icon next to it
+                //rectTilemapSrc[0] = (i << 12) + 0x17;
+                //rectTilemapSrc[1] = (i << 12) + 0x18;
+            }
+            /*else
+            {
+                // Pokéblock doesn't have this flavor, draw regular tiles
+                rectTilemapSrc[0] = 0xF;
+                rectTilemapSrc[1] = 0xF;
+            }*/
+        }
+        for (i = 0; i < FLAVOR_COUNT; i++)
+        {
+            if(HighestFlavors & (1 << i) && GetPokeblockData(pokeblock, PBLOCK_COLOR)  == PBLOCK_CLR_GOLD){
+                // Gold
+                rectTilemapSrc[0] = (7 << 12) + 0x17;
+                rectTilemapSrc[1] = (7 << 12) + 0x18;
+            }
+            else if(HighestFlavors & (1 << i) && GetPokeblockData(pokeblock, PBLOCK_COLOR)  == PBLOCK_CLR_CLEAR){
+                // Clear
+                rectTilemapSrc[0] = (8 << 12) + 0x17;
+                rectTilemapSrc[1] = (8 << 12) + 0x18;
+            }
+            else if(HighestFlavors & (1 << i) && GetPokeblockData(pokeblock, PBLOCK_COLOR)  == PBLOCK_CLR_BLACK){
+                // Black
+                rectTilemapSrc[0] = 0xF;
+                rectTilemapSrc[1] = (6 << 12) + 0x0;
+            }
+            else if(HighestFlavors & (1 << i)){ 
+                // Big
                 rectTilemapSrc[0] = (i << 12) + 0x17;
                 rectTilemapSrc[1] = (i << 12) + 0x18;
             }
+            else if(Flavors & (1 << i)){
+                // Small
+                rectTilemapSrc[0] = 0xF;
+                rectTilemapSrc[1] = (i << 12) + 0x0;
+            }
             else
             {
-                // Pokéblock doesn't have this flavor, draw regular tiles
+                // Pokéblock doesn't have this flavor
                 rectTilemapSrc[0] = 0xF;
                 rectTilemapSrc[1] = 0xF;
             }
@@ -1334,6 +1386,8 @@ u8 GetHighestPokeblocksFlavorLevel(const struct Pokeblock *pokeblock)
         u8 currFlavor = GetPokeblockData(pokeblock, PBLOCK_SPICY + i);
         if (maxFlavor < currFlavor)
             maxFlavor = currFlavor;
+        if (GetPokeblockData(pokeblock, PBLOCK_COLOR) == PBLOCK_CLR_CLEAR)  //MOD CONTESt the higest flavour will always be sheen with clear pkblocks
+            maxFlavor = GetPokeblockData(pokeblock, PBLOCK_FEEL);
     }
 
     return maxFlavor;
@@ -1344,7 +1398,6 @@ u8 GetPokeblocksFeel(const struct Pokeblock *pokeblock)
     u8 feel = GetPokeblockData(pokeblock, PBLOCK_FEEL);
     if (feel > POKEBLOCK_MAX_FEEL)
         feel = POKEBLOCK_MAX_FEEL;
-
     return feel;
 }
 
@@ -1393,32 +1446,36 @@ s16 GetPokeblockData(const struct Pokeblock *pokeblock, u8 field)
 {
     if (field == PBLOCK_COLOR)
         return pokeblock->color;
-    if (field == PBLOCK_SPICY)
-        return pokeblock->spicy;
-    if (field == PBLOCK_DRY)
-        return pokeblock->dry;
-    if (field == PBLOCK_SWEET)
-        return pokeblock->sweet;
-    if (field == PBLOCK_BITTER)
-        return pokeblock->bitter;
-    if (field == PBLOCK_SOUR)
-        return pokeblock->sour;
-    if (field == PBLOCK_FEEL)
-        return pokeblock->feel;
-
+        if (field == PBLOCK_SPICY)
+            return pokeblock->spicy;
+        if (field == PBLOCK_DRY)
+            return pokeblock->dry;
+        if (field == PBLOCK_SWEET)
+            return pokeblock->sweet;
+        if (field == PBLOCK_BITTER)
+            return pokeblock->bitter;
+        if (field == PBLOCK_SOUR)
+            return pokeblock->sour;
+        if (field == PBLOCK_FEEL)
+            return pokeblock->feel;
     return 0;
 }
 
-s16 PokeblockGetGain(u8 nature, const struct Pokeblock *pokeblock)
+s16 PokeblockGetGain(u8 nature, const struct Pokeblock *pokeblock)//FIXINGIT
 {
     u8 flavor;
     s16 curGain, totalGain = 0;
-
     for (flavor = 0; flavor < FLAVOR_COUNT; flavor++)
     {
         curGain = GetPokeblockData(pokeblock, flavor + PBLOCK_SPICY);
-        if (curGain > 0)
+        if (curGain > 0 && pokeblock->color != PBLOCK_CLR_CLEAR){
             totalGain += curGain * gPokeblockFlavorCompatibilityTable[FLAVOR_COUNT * nature + flavor];
+        }
+        else if (pokeblock->color == PBLOCK_CLR_CLEAR){ // MOD CONTEST If pokeblock is clear it lowers the stats
+            if(curGain > PBLOCK_FEEL){
+                totalGain -= GetPokeblockData(pokeblock, flavor + PBLOCK_FEEL);
+            }
+        }
     }
 
     return totalGain;

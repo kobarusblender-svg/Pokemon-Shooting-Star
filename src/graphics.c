@@ -1761,6 +1761,7 @@ const u16 gPokeblockOlive_Pal[] = INCBIN_U16("graphics/pokeblock/olive.gbapal");
 const u16 gPokeblockGray_Pal[] = INCBIN_U16("graphics/pokeblock/gray.gbapal");
 const u16 gPokeblockBlack_Pal[] = INCBIN_U16("graphics/pokeblock/black.gbapal");
 const u16 gPokeblockWhite_Pal[] = INCBIN_U16("graphics/pokeblock/white.gbapal");
+const u16 gPokeblockClear_Pal[] = INCBIN_U16("graphics/pokeblock/clear.gbapal"); //MOD CONTEST new clear pokeblock palette
 const u16 gPokeblockGold_Pal[] = INCBIN_U16("graphics/pokeblock/gold.gbapal");
 
 const u32 gPokeblockFeedBg_Tilemap[] = INCBIN_U32("graphics/pokeblock/feeding_bg.bin.smolTM");
