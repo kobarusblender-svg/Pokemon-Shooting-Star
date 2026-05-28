@@ -7091,7 +7091,7 @@ static void Cmd_moveend(void)
             gBattleStruct->fickleBeamBoosted = FALSE;
             gBattleStruct->tryDestinyBond = FALSE;
             gBattleStruct->tryGrudge = FALSE;
-            gBattleStruct->battlerState[gBattlerAttacker].usedMicleBerry = FALSE;
+            //gBattleStruct->battlerState[gBattlerAttacker].usedMicleBerry = FALSE;
             gBattleStruct->noTargetPresent = FALSE;
             gBattleStruct->toxicChainPriority = FALSE;
             if (gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
