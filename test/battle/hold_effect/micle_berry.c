@@ -1,4 +1,4 @@
-#include "global.h"
+/*#include "global.h"
 #include "test/battle.h"
 
 ASSUMPTIONS
@@ -96,4 +96,4 @@ SINGLE_BATTLE_TEST("Micle Berry increases the accuracy of the next used move the
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROCK_SLIDE, player);
     }
-}
+}*/

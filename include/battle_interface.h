@@ -3,7 +3,7 @@
 
 #include "battle_controllers.h"
 
-// used for sBattlerCoords and sBattlerHealthboxCoords
+// used for sBattlerCoords and sBattlerHealthboxCoords //MOD CONTEST (For the Performance bar)
 enum BattleCoordTypes
 {
     BATTLE_COORDS_SINGLES,

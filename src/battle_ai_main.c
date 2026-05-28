@@ -145,7 +145,7 @@ void BattleAI_SetupItems(void)
     if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_SAFARI | BATTLE_TYPE_BATTLE_TOWER
                                | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_SECRET_BASE | BATTLE_TYPE_FRONTIER
-                               | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_RECORDED_LINK)
+                               | BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_CONTEST) //MOD CONTEST
             )
        )
     {
@@ -317,6 +317,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
 }
 
 bool32 BattlerChooseNonMoveAction(void)
+bool32 BattlerChooseNonMoveAction(void)
 {
     if (gAiThinkingStruct->aiAction & AI_ACTION_FLEE)
     {
@@ -353,7 +354,7 @@ void SetupAIPredictionData(u32 battler, enum SwitchType switchType)
     gAiLogicData->aiPredictionInProgress = FALSE;
 }
 
-void ComputeBattlerDecisions(u32 battler)
+void ComputeBattlerDecisions(u32 battler) //MOD CONTEST (Add behabiors for contest battles)
 {
     bool32 isAiBattler = (gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart()) && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE));
     if (isAiBattler || CanAiPredictMove())
@@ -378,6 +379,8 @@ void ComputeBattlerDecisions(u32 battler)
 
         // AI's move scoring
         gAiBattleData->chosenMoveIndex[battler] = BattleAI_ChooseMoveIndex(battler); // Calculate score and chose move index
+        if (isAiBattler)
+            BattlerChooseNonMoveAction();
         if (isAiBattler)
             BattlerChooseNonMoveAction();
         ModifySwitchAfterMoveScoring(battler);
@@ -635,7 +638,7 @@ static void SetBattlerAiMovesData(struct AiLogicData *aiData, u32 battlerAtk, u3
     RestoreBattlerData(battlerAtk);
 }
 
-void SetAiLogicDataForTurn(struct AiLogicData *aiData)
+void SetAiLogicDataForTurn(struct AiLogicData *aiData) //MOD CONTEST (Add behavior for contest battles)
 {
     u32 battlerAtk, battlersCount, weather;
 
@@ -796,7 +799,7 @@ static u32 ChooseMoveOrAction_Singles(u32 battler)
     return consideredMoveArray[Random() % numOfBestMoves];
 }
 
-static u32 ChooseMoveOrAction_Doubles(u32 battler)
+static u32 ChooseMoveOrAction_Doubles(u32 battler) //MOD CONTEST (Add behavior for Contest battles)
 {
     s32 i, j;
     u64 flags;
@@ -3831,8 +3834,8 @@ static bool32 IsPinchBerryItemEffect(enum HoldEffect holdEffect)
     case HOLD_EFFECT_SP_DEFENSE_UP:
     case HOLD_EFFECT_CRITICAL_UP:
     case HOLD_EFFECT_RANDOM_STAT_UP:
-    case HOLD_EFFECT_CUSTAP_BERRY:
-    case HOLD_EFFECT_MICLE_BERRY:
+    //case HOLD_EFFECT_CUSTAP_BERRY:
+    //case HOLD_EFFECT_MICLE_BERRY:
         return TRUE;
     default:
         return FALSE;

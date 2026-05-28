@@ -66,7 +66,11 @@ AI_SINGLE_BATTLE_TEST("AI avoids Thunder Wave when it can not paralyse target")
 }
 
 SINGLE_BATTLE_TEST("Thunder Wave doesn't affect Electric types (Gen6+)")
+SINGLE_BATTLE_TEST("Thunder Wave doesn't affect Electric types (Gen6+)")
 {
+    u32 gen = 0;
+    PARAMETRIZE { gen = GEN_5; }
+    PARAMETRIZE { gen = GEN_6; }
     u32 gen = 0;
     PARAMETRIZE { gen = GEN_5; }
     PARAMETRIZE { gen = GEN_6; }

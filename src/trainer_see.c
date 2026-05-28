@@ -514,7 +514,8 @@ static u8 CheckTrainer(u8 objectEventId)
         TrainerBattleParameter *temp = (TrainerBattleParameter *)(trainerBattlePtr + 1);
         if (temp->params.mode == TRAINER_BATTLE_DOUBLE
             || temp->params.mode == TRAINER_BATTLE_REMATCH_DOUBLE
-            || temp->params.mode == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE)
+            || temp->params.mode == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE
+            || temp->params.mode == TRAINER_BATTLE_DOUBLE_CONTEST) //MOD CONTEST
         {
             if (GetMonsStateToDoubles_2() != PLAYER_HAS_TWO_USABLE_MONS)
                 return 0;

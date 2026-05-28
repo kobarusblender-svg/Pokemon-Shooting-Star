@@ -320,6 +320,10 @@ def parse_trainers(content, output):
                     trainer.double_battle = "Doubles"
                 elif double_battle == 'TRAINER_BATTLE_TYPE_SINGLES':
                     trainer.double_battle = "Singles"
+                elif double_battle == 'TRAINER_BATTLE_TYPE_CONTESTSINGLES': #MOD CONTEST
+                    trainer.double_battle = "Singles"
+                elif double_battle == 'TRAINER_BATTLE_TYPE_CONTESTDOUBLES': #MOD CONTEST
+                    trainer.double_battle = "Doubles"
             elif m := trainer_ai_flags_definition.search(line):
                 [ai_flags] = m.groups()
                 trainer.ai_flags = " / ".join(ai_flag.replace("_", " ").title() for ai_flag in trainer_ai_flag_definition.findall(ai_flags))

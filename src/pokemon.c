@@ -2471,6 +2471,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_SHEEN:
             retVal = GetSubstruct2(boxMon)->sheen;
             break;
+        case MON_DATA_OVERFLOWSHEEN:
+            retVal = GetSubstruct0(boxMon)->overflowSheen;
+            break;
         case MON_DATA_POKERUS:
             retVal = GetSubstruct3(boxMon)->pokerus;
             break;
@@ -2979,6 +2982,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_SHEEN:
             SET8(GetSubstruct2(boxMon)->sheen);
+            break;
+        case MON_DATA_OVERFLOWSHEEN:
+            SET8(GetSubstruct0(boxMon)->overflowSheen);
             break;
         case MON_DATA_POKERUS:
             SET8(GetSubstruct3(boxMon)->pokerus);

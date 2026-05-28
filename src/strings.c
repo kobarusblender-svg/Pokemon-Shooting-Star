@@ -672,6 +672,7 @@ const u8 gText_Cuteness[] = _("Cuteness ");
 const u8 gText_Smartness[] = _("Smartness ");
 const u8 gText_Toughness[] = _("Toughness ");
 const u8 gText_WasEnhanced[] = _("was enhanced!");
+const u8 gText_WasLowered[] = _("was lowered!");
 const u8 gText_NothingChanged[] = _("Nothing changed!");
 const u8 gText_WontEatAnymore[] = _("It won't eat anymore…");
 const u8 gText_SaveFailedCheckingBackup[] = _("Save failed. Checking the backup\nmemory… Please wait.\n{COLOR RED}“Time required: about 1 minute”");

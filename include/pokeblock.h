@@ -19,7 +19,8 @@ enum
     PBLOCK_CLR_GRAY,
     PBLOCK_CLR_BLACK,
     PBLOCK_CLR_WHITE,
-    PBLOCK_CLR_GOLD,
+    PBLOCK_CLR_GOLD, 
+    PBLOCK_CLR_CLEAR //MOD CONTEST Clear pokeblocks lower the stats and sheen
 };
 
 enum
