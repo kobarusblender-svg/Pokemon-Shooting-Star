@@ -70,10 +70,10 @@
 #define GEN_9 8
 #define GEN_COUNT 9
 // Changing GEN_LATEST's value to a different Generation will change every default setting that uses it at once.
-#define GEN_LATEST GEN_9
+#define GEN_LATEST GEN_7
 
 // General settings
-#define EXPANSION_INTRO              TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
+#define EXPANSION_INTRO              TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen. (Have to make one) //MOD CONTEST//
 #define HQ_RANDOM                    TRUE    // If TRUE, replaces the default RNG with an implementation of SFC32 RNG. May break code that relies on RNG.
 #define PHONEMES_SHARED              FALSE   // If TRUE, bard phonemes all reference the same sound (sound/direct_sound_samples/phonemes/shared.bin) to save ROM space.
 

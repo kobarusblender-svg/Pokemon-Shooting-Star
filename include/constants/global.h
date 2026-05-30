@@ -58,7 +58,7 @@ enum Language
     LANGUAGE_ITALIAN = 4,
     LANGUAGE_GERMAN = 5,
     LANGUAGE_KOREAN = 6, // 6 goes unused but the theory is it was meant to be Korean,
-    LANGUAGE_SPANISH = 7,
+    LANGUAGE_SPANISH = 7,//MOD CONTEST TODO make spanish version once everything works
     NUM_LANGUAGES = LANGUAGE_SPANISH,
 };
 
@@ -111,9 +111,9 @@ enum Language
 // Bag constants
 #define BAG_ITEMS_COUNT 30
 #define BAG_KEYITEMS_COUNT 30
-#define BAG_POKEBALLS_COUNT 16
+#define BAG_POKEBALLS_COUNT 16 //Might need up to 24 if we add the bonguri balls.
 #define BAG_TMHM_COUNT 64
-#define BAG_BERRIES_COUNT 46
+#define BAG_BERRIES_COUNT 55
 
 // Number of facilities for Ranking Hall.
 // 7 facilities for single mode + tower double mode + tower multi mode.

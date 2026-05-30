@@ -883,8 +883,14 @@ enum BattleTransition GetTrainerBattleTransition(void)
     case TRAINER_BATTLE_TYPE_SINGLES:
         minPartyCount = 1;
         break;
+    case TRAINER_BATTLE_TYPE_CONTESTSINGLES: //MOD CONTESTS
+        minPartyCount = 1;
+        break;
     case TRAINER_BATTLE_TYPE_DOUBLES:
         minPartyCount = 2; // double battles always at least have 2 Pokémon.
+        break;
+    case TRAINER_BATTLE_TYPE_CONTESTDOUBLES: //MOD CONTESTS
+        minPartyCount = 2; 
         break;
     }
 
@@ -1119,6 +1125,8 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
     case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT:
         return EventScript_DoNoIntroTrainerBattle;
     case TRAINER_BATTLE_DOUBLE:
+        SetMapVarsToTrainerA();
+    case TRAINER_BATTLE_DOUBLE_CONTEST: //MOD CONTEST
         SetMapVarsToTrainerA();
         return EventScript_TryDoDoubleTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT:

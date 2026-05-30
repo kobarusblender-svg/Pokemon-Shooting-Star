@@ -43,6 +43,7 @@ enum BattleType
 {
     BATTLE_TYPE_SINGLE,
     BATTLE_TYPE_DOUBLE,
+    BATTLE_TYPE_CONTEST,
 };
 
 // TODO: Support Hidden Power.
@@ -874,7 +875,7 @@ static bool token_gender(struct Parser *p, const struct Token *t, enum Gender *g
     }
 }
 
-static bool token_battle_type(struct Parser *p, const struct Token *t, enum BattleType *g)
+static bool token_battle_type(struct Parser *p, const struct Token *t, enum BattleType *g) //MOD CONTEST (Does this mean the battle type is set with both terms for some reason?)
 {
     if (is_literal_token(t, "Single") || is_literal_token(t, "Singles"))
     {
@@ -1859,6 +1860,10 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
             fprintf(f, "        .battleType = ");
             if (trainer->battle_type == BATTLE_TYPE_DOUBLE)
                 fprintf(f, "TRAINER_BATTLE_TYPE_DOUBLES,\n");
+            else if (trainer->battle_type == BATTLE_TYPE_DOUBLE && BATTLE_TYPE_CONTEST) //MOD CONTEST
+                fprintf(f, "TRAINER_BATTLE_TYPE_CONTESTDOUBLES,\n");
+            else if (trainer->battle_type == BATTLE_TYPE_SINGLE && BATTLE_TYPE_CONTEST) //MOD CONTEST
+                fprintf(f, "TRAINER_BATTLE_TYPE_CONTESTSINGLES,\n");
             else
                 fprintf(f, "TRAINER_BATTLE_TYPE_SINGLES,\n");
         }

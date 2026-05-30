@@ -72,6 +72,27 @@ Comments can be added as C comment blocks
 
 /*Comments can also be on a single line*/
 
+=== TRAINER_JAIMITO ===
+Name: Jaimito
+Class: Collector
+Pic: Collector
+Gender: Male
+Music: Suspicious
+Items: Hyper Potion
+Double Battle: No
+AI: Basic Trainer
+
+Charmeleon
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Tackle
+- Scratch
+
+Ivysaur
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Tackle
+- Scratch
 
 === TRAINER_NONE ===
 Name:

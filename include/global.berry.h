@@ -25,6 +25,12 @@ struct Berry
     u8 sour;
     u8 smoothness;
     u8 drainRate;
+    u8 growthSeasons;
+    u8 flavorProfile1;
+    u8 flavorProfile2;
+    u8 graficGroup;
+    u8 tileNumber1;
+    u8 tileNumber2;
 };
 
 // with no const fields
@@ -50,6 +56,12 @@ struct Berry2
     u8 sour;
     u8 smoothness;
     u8 drainRate;
+    u8 growthSeasons;
+    u8 flavorProfile1;
+    u8 flavorProfile2;
+    u8 graficGroup;
+    //u8 tileNumber1;
+    //u8 tileNumber2;
 };
 
 struct EnigmaBerry

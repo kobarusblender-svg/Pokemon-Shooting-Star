@@ -778,6 +778,22 @@ static const struct MenuAction MultichoiceList_BerryPlot[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_BerryBlender[] =
+{
+    //{COMPOUND_STRING("ONE BERRY")}, (Never used)
+    {COMPOUND_STRING("TWO BERRIES")},
+    {COMPOUND_STRING("THREE BERRIES")},
+    {COMPOUND_STRING("FOUR BERRIES")},
+    {gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_SoloOrLinkBerryBlender[] =
+{
+    {COMPOUND_STRING("BLEND ALONE")},
+    {COMPOUND_STRING("LINK WITH FRIENDS")},
+    {gText_Exit},
+};
+
 static const struct MenuAction sMultichoiceList_BikeShop[] = {
     { COMPOUND_STRING("BICYCLE{CLEAR_TO 0x49}{FONT_SMALL}¥1,000,000") },
     { COMPOUND_STRING("NO THANKS") }
@@ -1216,6 +1232,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
+    [MULTI_BERRY_BLENDER]              = MULTICHOICE(MultichoiceList_BerryBlender),
+    [MULTI_SOLO_OR_LINK]               = MULTICHOICE(MultichoiceList_SoloOrLinkBerryBlender),
     [MULTI_BIKE_SHOP]                  = MULTICHOICE(sMultichoiceList_BikeShop),
     [MULTI_EEVEELUTIONS]               = MULTICHOICE(sMultichoiceList_Eeveelutions),
     [MULTI_ISLAND_23]                  = MULTICHOICE(sMultichoiceList_Island23),

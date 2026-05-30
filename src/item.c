@@ -198,6 +198,60 @@ bool32 IsBagPocketNonEmpty(enum Pocket pocketId)
     return FALSE;
 }
 
+bool32 HasEnoughBerries(void) //MOD CONTEST Idk about this, it was deleted on the merge file...
+{
+    u8  i;
+    u16 BerryQ = 0;
+
+    for (i = 0; i < gBagPockets[POCKET_BERRIES].capacity; i++)
+    {
+        if (GetBagItemId(POCKET_BERRIES, i) != ITEM_NONE)
+        {
+           BerryQ += GetBagItemQuantity(POCKET_BERRIES, i);
+        }
+    }
+    if (BerryQ > 1 && gSpecialVar_0x8004 == 5)
+    { 
+        return TRUE;
+    }
+    else if (BerryQ > 2 && gSpecialVar_0x8004 == 6)
+    { 
+        return TRUE;
+    }
+    else if (BerryQ > 3 && gSpecialVar_0x8004 == 7)
+    { 
+        return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 HasEnoughBerries(void)
+{
+    u8  i;
+    u16 BerryQ = 0;
+
+    for (i = 0; i < gBagPockets[POCKET_BERRIES].capacity; i++)
+    {
+        if (GetBagItemId(POCKET_BERRIES, i) != ITEM_NONE)
+        {
+           BerryQ += GetBagItemQuantity(POCKET_BERRIES, i);
+        }
+    }
+    if (BerryQ > 1 && gSpecialVar_0x8004 == 5)
+    { 
+        return TRUE;
+    }
+    else if (BerryQ > 2 && gSpecialVar_0x8004 == 6)
+    { 
+        return TRUE;
+    }
+    else if (BerryQ > 3 && gSpecialVar_0x8004 == 7)
+    { 
+        return TRUE;
+    }
+    return FALSE;
+}
+
 static bool32 NONNULL BagPocket_CheckHasItem(struct BagPocket *pocket, enum Item itemId, u16 count)
 {
     struct ItemSlot tempItem;

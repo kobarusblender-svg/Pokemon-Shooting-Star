@@ -266,17 +266,49 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER                    0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
-#define VAR_UNUSED_0x40F7                                0x40F7 // Unused Var
-#define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
-#define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
-#define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
-#define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
-#define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
 
-#define VARS_END                                         0x40FF
+//MOD CONTEST
+// Here are the variables that control which ribbon is displayed on the ribbon cases, as they are added in order of obtention.
+// Ech var corresponds to a ribbon notch in one of the cases, ribbon notch numbers that start with 0 are for the main story, while the 1s are for the postgame.
+// Values are: 
+// 0=Blank(No ribbon) | 1=Rustboro | 2=Dewford | 3=Slateport | 4=Verdanturf | 5=Fallarbor | 6=Fortree | 7=??? | 8=??? | 9=Lilycove | 10=Purika
+// 11=Mossdeep | 12=Pacifylog | 13=Evergrande | 14=??? | 15=???
+
+//This case registers the 5 ribbons the player needs to progress in the story and/or to access the Grand Festival.
+#define VAR_CONTEST_RIBBON01                             0x40F7 // Contest ribbon Case 1 Ribbon 01  (Normal range would be 1-5, 0 included)
+#define VAR_CONTEST_RIBBON02                             0x40F8 // Contest ribbon Case 1 Ribbon 02  (Normal range would be 1-5, 0 included)
+#define VAR_CONTEST_RIBBON03                             0x40F9 // Contest ribbon Case 1 Ribbon 03  (Normal range would be 6-10, 0 included)
+#define VAR_CONTEST_RIBBON04                             0x40FA // Contest ribbon Case 1 Ribbon 04  (Normal range would be 6-10, 0 included)
+#define VAR_CONTEST_RIBBON05                             0x40FB // Contest ribbon Case 1 Ribbon 05  (Normal range would be 11-13, 0 included)
+
+//This case is awarded after beating the Grand Festivale for the first time. It allows the player to collect the remaining 10 ribbons in any order
+//This case can contain any ribbon in any notch with any order.
+#define VAR_CONTEST_RIBBON10                             0x40FC // Contest ribbon Case 2 Ribbon 01 
+#define VAR_CONTEST_RIBBON11                             0x40FD // Contest ribbon Case 2 Ribbon 02 
+#define VAR_CONTEST_RIBBON12                             0x40FE // Contest ribbon Case 2 Ribbon 03 
+#define VAR_CONTEST_RIBBON13                             0x40FF // Contest ribbon Case 2 Ribbon 04 
+#define VAR_CONTEST_RIBBON14                             0x4100 // Contest ribbon Case 2 Ribbon 05 
+#define VAR_CONTEST_RIBBON15                             0x4101 // Contest ribbon Case 2 Ribbon 06 
+#define VAR_CONTEST_RIBBON16                             0x4102 // Contest ribbon Case 2 Ribbon 07 
+#define VAR_CONTEST_RIBBON17                             0x4103 // Contest ribbon Case 2 Ribbon 08 
+#define VAR_CONTEST_RIBBON18                             0x4104 // Contest ribbon Case 2 Ribbon 09 
+#define VAR_CONTEST_RIBBON19                             0x4105 // Contest ribbon Case 2 Ribbon 10 
+
+#define VAR_CONTEST_RIBBON_COUNT                         0x4106 // Registers how many ribbons the player has already obtained (0-15)
+
+//More unused VARs:
+#define VAR_UNUSED_0x4107                                0x4107 // Unused Var
+#define VAR_UNUSED_0x4108                                0x4108 // Unused Var
+#define VAR_UNUSED_0x4109                                0x4109 // Unused Var
+#define VAR_UNUSED_0x4110                                0x4110 // Unused Var
+#define VAR_UNUSED_0x4111                                0x4111 // Unused Var
+#define VAR_UNUSED_0x4112                                0x4112 // Unused Var
+#define VAR_UNUSED_0x4113                                0x4113 // Unused Var
+#define VAR_UNUSED_0x4114                                0x4114 // Unused Var
+#define VAR_UNUSED_0x4115                                0x4115 // Unused Var
+#define VAR_UNUSED_0x4116                                0x4116 // Unused Var
+
+#define VARS_END                                         0x4116 //MOD CONTEST (Previously limit was 0x40FF)
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000

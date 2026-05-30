@@ -643,35 +643,35 @@ bool8 GivePokeblockToContestLady(struct Pokeblock *pokeblock)
     switch (sContestLadyPtr->category)
     {
     case CONTEST_CATEGORY_COOL:
-        if (pokeblock->spicy != 0)
+        if (pokeblock->spicy != 0 && pokeblock->color != PBLOCK_CLR_CLEAR)
         {
             sheen = pokeblock->spicy;
             correctFlavor = TRUE;
         }
         break;
     case CONTEST_CATEGORY_BEAUTY:
-        if (pokeblock->dry != 0)
+        if (pokeblock->dry != 0 && pokeblock->color != PBLOCK_CLR_CLEAR)
         {
             sheen = pokeblock->dry;
             correctFlavor = TRUE;
         }
         break;
     case CONTEST_CATEGORY_CUTE:
-        if (pokeblock->sweet != 0)
+        if (pokeblock->sweet != 0 && pokeblock->color != PBLOCK_CLR_CLEAR)
         {
             sheen = pokeblock->sweet;
             correctFlavor = TRUE;
         }
         break;
     case CONTEST_CATEGORY_SMART:
-        if (pokeblock->bitter != 0)
+        if (pokeblock->bitter != 0 && pokeblock->color != PBLOCK_CLR_CLEAR)
         {
             sheen = pokeblock->bitter;
             correctFlavor = TRUE;
         }
         break;
     case CONTEST_CATEGORY_TOUGH:
-        if (pokeblock->sour != 0)
+        if (pokeblock->sour != 0 && pokeblock->color != PBLOCK_CLR_CLEAR)
         {
             sheen = pokeblock->sour;
             correctFlavor = TRUE;

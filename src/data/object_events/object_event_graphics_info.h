@@ -1096,7 +1096,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTree = {
     .images = sPicTable_PechaBerryTree,
 };
 
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeEarlyStages = {
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeEarlyStages = {// MOD CONTEST FIXINGIT
     .tileTag = TAG_NONE,
     .paletteTag = OBJ_EVENT_PAL_TAG_NPC_1,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,

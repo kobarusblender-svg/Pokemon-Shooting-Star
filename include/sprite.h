@@ -287,7 +287,7 @@ void ProcessSpriteCopyRequests(void);
 void RequestSpriteCopy(const u8 *src, u8 *dest, u16 size);
 void FreeSpriteTiles(struct Sprite *sprite);
 void FreeSpritePalette(struct Sprite *sprite);
-void FreeSpriteOamMatrix(struct Sprite *sprite);
+void FreeSpriteOamMatrix(struct Sprite *sprite); //MOD CONTEST might be useful.
 void DestroySpriteAndFreeResources(struct Sprite *sprite);
 void AnimateSprite(struct Sprite *sprite);
 void SetSpriteMatrixAnchor(struct Sprite *sprite, s16 x, s16 y);

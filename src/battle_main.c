@@ -84,7 +84,7 @@
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
 
-static void CB2_InitBattleInternal(void);
+static void CB2_InitBattleInternal(void); //aqui se inicia y se selecciona el tipo de
 static void CB2_PreInitMultiBattle(void);
 static void CB2_PreInitIngamePlayerPartnerBattle(void);
 static void CB2_HandleStartMultiPartnerBattle(void);
@@ -109,7 +109,7 @@ static void TurnValuesCleanUp(bool8 var0);
 static void SpriteCB_BounceEffect(struct Sprite *sprite);
 static void BattleStartClearSetData(void);
 static void DoBattleIntro(void);
-static void TryDoEventsBeforeFirstTurn(void);
+static void TryDoEventsBeforeFirstTurn(void); //Here I should define the contest performance value and the selection of pokemon
 static void HandleTurnActionSelectionState(void);
 static void RunTurnActionsFunctions(void);
 static void SetActionsAndBattlersTurnOrder(void);
@@ -511,7 +511,7 @@ void CB2_InitBattle(void)
     }
 }
 
-static void CB2_InitBattleInternal(void)
+static void CB2_InitBattleInternal(void)//Aqui se define la batalla antes de empezar////////////////////////////////////////////////////////////////////////
 {
     s32 i;
 
@@ -573,6 +573,28 @@ static void CB2_InitBattleInternal(void)
     if (TestRunner_Battle_GetForcedEnvironment())
         gBattleEnvironment = TestRunner_Battle_GetForcedEnvironment() - 1;
 
+    /*if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & (BATTLE_TYPE_FRONTIER  //MOD CONTEST They removed this...
+                                                                        | BATTLE_TYPE_EREADER_TRAINER
+                                                                        | BATTLE_TYPE_TRAINER_HILL
+                                                                        | BATTLE_TYPE_RECORDED)))
+    {
+        switch (GetTrainerBattleType(TRAINER_BATTLE_PARAM.opponentA)) //Here is where the battle type is defined on regular battles////////////////////////////////////////////////////////////////
+        {
+        case TRAINER_BATTLE_TYPE_SINGLES:
+            break;
+        case TRAINER_BATTLE_TYPE_CONTESTSINGLES://MOD_CONTESTS (This is so I know what I touched if I mess up)
+            gBattleTypeFlags |= BATTLE_TYPE_CONTEST;
+            break;
+        case TRAINER_BATTLE_TYPE_DOUBLES: 
+            gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+            break;
+        case TRAINER_BATTLE_TYPE_CONTESTDOUBLES: //MOD_CONTESTS 
+            gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+            gBattleTypeFlags |= BATTLE_TYPE_CONTEST;
+            break;
+        }
+    }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+*/
     InitBattleBgsVideo();
     LoadBattleTextboxAndBackground();
     ResetSpriteData();
@@ -591,7 +613,7 @@ static void CB2_InitBattleInternal(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
         SetMainCallback2(CB2_HandleStartMultiBattle);
     else
-        SetMainCallback2(CB2_HandleStartBattle);
+        SetMainCallback2(CB2_HandleStartBattle); //TODO: Que concha es esto :/
 
     if (!DEBUG_OVERWORLD_MENU || (DEBUG_OVERWORLD_MENU && !gIsDebugBattle))
     {
@@ -877,7 +899,7 @@ static void FindLinkBattleMaster(u8 numPlayers, u8 multiPlayerId)
     }
 }
 
-static void CB2_HandleStartBattle(void)
+static void CB2_HandleStartBattle(void) //Aqui se inicia la batalla////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 {
     u8 playerMultiplayerId;
     u8 enemyMultiplayerId;
@@ -1960,7 +1982,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             struct OriginalTrainerId otId = OTID_STRUCT_RANDOM_NO_SHINY;
             u32 abilityNum = 0;
 
-            if (trainer->battleType != TRAINER_BATTLE_TYPE_SINGLES)
+            if (trainer->battleType != TRAINER_BATTLE_TYPE_SINGLES && trainer->battleType != TRAINER_BATTLE_TYPE_CONTESTSINGLES)
                 personalityValue = 0x80;
             else if (trainer->gender == TRAINER_GENDER_FEMALE)
                 personalityValue = 0x78; // Use personality more likely to result in a female Pokémon
@@ -5321,7 +5343,7 @@ static void CheckChangingTurnOrderEffects(void)
                     if (GetBattlerHoldEffect(battler) == HOLD_EFFECT_CUSTAP_BERRY)
                     {
                         // don't record berry since its gone now
-                        BattleScriptExecute(BattleScript_CustapBerryActivation);
+                        //BattleScriptExecute(BattleScript_CustapBerryActivation); MOD CONTEST there isn't a custap berry either
                     }
                     else
                     {

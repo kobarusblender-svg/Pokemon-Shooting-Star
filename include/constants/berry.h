@@ -33,6 +33,18 @@ enum __attribute__((__packed__)) Flavor
     FLAVOR_COUNT,
 };
 
+//These Define The Planting Seasons of the berries (Flavor text)
+#define SEASON_A   0 //Spring
+#define SEASON_B   1 //Summer
+#define SEASON_C   2 //Autumm
+#define SEASON_D   3 //Winter
+#define SEASON_E   4 //Spring-Summer
+#define SEASON_F   5 //Summer-Autumm
+#define SEASON_G   6 //Autumm-Winter
+#define SEASON_H   7 //Winter-Spring
+#define SEASON_I   8 //Invasive/All-Year
+#define SEASON_J   9 //Unknown
+
 #define BERRY_STAGE_NO_BERRY    0  // there is no tree planted and the soil is completely flat.
 #define BERRY_STAGE_PLANTED     1
 #define BERRY_STAGE_SPROUTED    2
@@ -142,6 +154,31 @@ enum __attribute__((__packed__)) Flavor
 #define BERRY_TREE_ROUTE_123_PECHA    87
 #define BERRY_TREE_ROUTE_123_SITRUS   88
 #define BERRY_TREE_ROUTE_123_RAWST    89
+#define BERRY_TREE_E_READER_PUMKIN_1   90
+#define BERRY_TREE_E_READER_DRASH_1    91
+#define BERRY_TREE_E_READER_ROKA_1     92
+#define BERRY_TREE_E_READER_TOPO_1     93
+#define BERRY_TREE_E_READER_MALIUM_1   94
+#define BERRY_TREE_E_READER_SKUASH_1   95
+#define BERRY_TREE_E_READER_NOION_1    96
+#define BERRY_TREE_E_READER_STRIB_1    97
+#define BERRY_TREE_E_READER_PAPRIK_1   98
+#define BERRY_TREE_E_READER_EGGANT_1   99
+#define BERRY_TREE_E_READER_CHILAN_1  100
+#define BERRY_TREE_E_READER_NUTPEA_1  101
+#define BERRY_TREE_APICOT_1           102
+#define BERRY_TREE_BELUE_1            103
+#define BERRY_TREE_ENIGMA_1           104
+#define BERRY_TREE_GANLON_1           105
+#define BERRY_TREE_LANSAT_1           106
+#define BERRY_TREE_MAGOST_1           107
+#define BERRY_TREE_NANAB_1            108
+#define BERRY_TREE_PETAYA_1           109
+#define BERRY_TREE_PINAP_1            110
+#define BERRY_TREE_QUALOT_1           111
+#define BERRY_TREE_SALAC_1            112
+#define BERRY_TREE_STARF_1            113
+#define BERRY_TREE_WATMEL_1           114
 
 // Remainder are unused
 

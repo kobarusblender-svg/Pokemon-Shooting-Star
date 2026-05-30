@@ -73,7 +73,11 @@ enum {
     BLENDER_LASSIE,
     BLENDER_MASTER,
     BLENDER_DUDE,
-    BLENDER_MISS
+    BLENDER_MISS,
+    BLENDER_A,
+    BLENDER_B,
+    BLENDER_L,
+    BLENDER_R
 };
 
 #define BLENDER_MAX_PLAYERS MAX_LINK_PLAYERS
@@ -233,8 +237,16 @@ static bool8 PrintBlendingResults(void);
 static void CB2_CheckPlayAgainLocal(void);
 static void CB2_CheckPlayAgainLink(void);
 static void UpdateProgressBar(u16, u16);
+static void SettingUpBerry2(void);
+static void SettingUpBerry3(void);
+static void SettingUpBerry4(void);
 static void PrintMadePokeblockString(struct Pokeblock *, u8 *);
 static bool32 TryAddContestLinkTvShow(struct Pokeblock *, struct TvBlenderStruct *);
+static bool8 pressedA = FALSE; //MOD CONTEST Moved here to check outside of button press function ofr SOLO mode.
+static bool8 pressedB = FALSE;
+static bool8 pressedL = FALSE;
+static bool8 pressedR = FALSE;
+static bool8 NoFlavor = FALSE;
 
 EWRAM_DATA static struct BerryBlender *sBerryBlender = NULL;
 
@@ -242,6 +254,9 @@ static s16 sPokeblockFlavors[FLAVOR_COUNT + 1]; // + 1 for feel
 static s16 sPokeblockPresentFlavors[FLAVOR_COUNT + 1];
 static s16 sDebug_MaxRPMStage;
 static s16 sDebug_GameTimeStage;
+//static s16 sSOLOBerryId1;
+//static s16 sSOLOBerryId2;
+//static s16 sSOLOBerryId3;
 
 COMMON_DATA u8 gInGameOpponentsNo = 0;
 
@@ -255,6 +270,7 @@ static const u16 sEmpty_Pal[16 * 14] = {0};
 static const u8 sText_BerryBlenderStart[] = _("Starting up the BERRY BLENDER.\pPlease select a BERRY from your BAG\nto put in the BERRY BLENDER.\p");
 static const u8 sText_NewParagraph[] = _("\p");
 static const u8 sText_WasMade[] = _(" was made!");
+static const u8 sText_WereMade[] = _("s were made!");
 
 static const u8 *const sBlenderOpponentsNames[] =
 {
@@ -264,11 +280,16 @@ static const u8 *const sBlenderOpponentsNames[] =
     [BLENDER_MASTER] = COMPOUND_STRING("MASTER"),
     [BLENDER_DUDE]   = COMPOUND_STRING("DUDE"),
     [BLENDER_MISS]   = COMPOUND_STRING("MISS"),
+    [BLENDER_A]      = COMPOUND_STRING("A Button"),
+    [BLENDER_B]      = COMPOUND_STRING("B Button"),
+    [BLENDER_L]      = COMPOUND_STRING("L Button"),
+    [BLENDER_R]      = COMPOUND_STRING("R Button"),
 };
 
 static const u8 sText_CommunicationStandby[] = _("Communication standby…");
 static const u8 sText_WouldLikeToBlendAnotherBerry[] = _("Would you like to blend another BERRY?");
 static const u8 sText_RunOutOfBerriesForBlending[] = _("You've run out of BERRIES for\nblending in the BERRY BLENDER.\p");
+static const u8 sText_NotEnoughBerriesForBlending[] = _("You don't have enough BERRIES\nfor this BERRY BLENDER mode.\p");
 static const u8 sText_YourPokeblockCaseIsFull[] = _("Your {POKEBLOCK} CASE is full.\p");
 static const u8 sText_HasNoBerriesToPut[] = _(" has no BERRIES to put in\nthe BERRY BLENDER.");
 static const u8 sText_ApostropheSPokeblockCaseIsFull[] = _("'s {POKEBLOCK} CASE is full.\p");
@@ -407,11 +428,12 @@ static const u8 sPlayerArrowPos[BLENDER_MAX_PLAYERS][2] =
     {168, 128}
 };
 
-static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS - 1][BLENDER_MAX_PLAYERS] =
+static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS][BLENDER_MAX_PLAYERS] =
 {
-    {NO_PLAYER, 0, 1, NO_PLAYER}, // 2 Players
-    {NO_PLAYER, 0, 1,         2}, // 3 Players
-    {        0, 1, 2,         3}  // 4 Players
+    {NO_PLAYER,         0, 1, NO_PLAYER}, // 2 Players
+    {NO_PLAYER,         0, 1,         2}, // 3 Players
+    {        0,         1, 2,         3},  // 4 Players
+    {NO_PLAYER, NO_PLAYER, 0, NO_PLAYER} // MOD CONTEST 1 Player (Never used)
 };
 
 
@@ -845,6 +867,7 @@ static const s16 sBerrySpriteData[][5] =
 // There are only 5 different berries the NPCs will ever use
 // Each of these sets represents 3 berries chosen to be used by the NPCs
 // If the player's berry is one of the 5 possible berries, a set is chosen that excludes it
+//MOD CONTEST TODO make new berries work with these and the blend master
 static const u8 sOpponentBerrySets[NUM_NPC_BERRIES * 2][3] =
 {
     // These sets are used if the player chose one of the 5 NPC berries
@@ -856,9 +879,9 @@ static const u8 sOpponentBerrySets[NUM_NPC_BERRIES * 2][3] =
 
     // These sets are used if the player chose a different berry (set is selected by player's berry % 5)
     {ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1,  ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1,  ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1},   // player chose Leppa, Figy, ...
-    {ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1, ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1},  // player chose Oran, Wiki, ...
+    {ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1, ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1},  // player chose Oran, Wiki, ... 
     {ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1, ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1},   // player chose Persim, Mago, ...
-    {ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1},  // player chose Lum, Aguav, ...
+    {ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1},  // player chose Lum, Aguav, ... 
     {ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1, ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1, ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1},   // player chose Sitrus, Iapapa, ...
 };
 
@@ -1017,6 +1040,7 @@ static void InitBerryBlenderWindows(void)
 
 // gSpecialVar_0x8004 is the number of NPC opponents
 // Set to 0 indicates it's a link blender
+// MOD CONTEST > 4 means is solo blender
 void DoBerryBlending(void)
 {
     if (sBerryBlender == NULL)
@@ -1097,14 +1121,18 @@ static void CB2_LoadBerryBlender(void)
         break;
     case 6:
         if (!gPaletteFade.active)
-        {
-            // Go to bag menu to choose berry, set callback to StartBlender
+        {   
+            // Go to bag menu to choose berry, set callback to StartBlender //MOD CONTEST Made it so you can choose up to 4 berries.
             FreeAllWindowBuffers();
             UnsetBgTilemapBuffer(2);
             UnsetBgTilemapBuffer(1);
             SetVBlankCallback(NULL);
-            ChooseBerryForMachine(StartBlender);
-
+            if(gSpecialVar_0x8004 < 5){ //MOD CONTEST Multiple choice for SOLO blending
+                ChooseBerryForMachine(StartBlender);
+            }
+            else{ // Vanilla behabior
+                ChooseBerryForMachine(SettingUpBerry2);
+            }
             sBerryBlender->mainState = 0;
         }
         break;
@@ -1114,6 +1142,46 @@ static void CB2_LoadBerryBlender(void)
     BuildOamBuffer();
     RunTextPrinters();
     UpdatePaletteFade();
+}
+
+static void SettingUpBerry2(void)
+{
+    if(gSpecialVar_0x8004 > 5)
+    {
+        gSpecialVar_0x8008 = gSpecialVar_ItemId;
+        RemoveBagItem(gSpecialVar_0x8008, 1);
+        ChooseBerryForMachine(SettingUpBerry3);
+    }
+    else
+    {
+        gSpecialVar_0x8008 = gSpecialVar_ItemId;
+        RemoveBagItem(gSpecialVar_0x8008, 1);
+        ChooseBerryForMachine(StartBlender);
+    }
+}
+
+static void SettingUpBerry3(void)
+{
+
+    if(gSpecialVar_0x8004 > 6)
+    {
+        gSpecialVar_0x8009 = gSpecialVar_ItemId;
+        RemoveBagItem(gSpecialVar_0x8009, 1);
+        ChooseBerryForMachine(SettingUpBerry4);
+    }
+    else
+    {
+        gSpecialVar_0x8009 = gSpecialVar_ItemId;
+        RemoveBagItem(gSpecialVar_0x8009, 1);
+        ChooseBerryForMachine(StartBlender);
+    }
+}
+
+static void SettingUpBerry4(void)
+{
+        gSpecialVar_0x800A = gSpecialVar_ItemId;
+        RemoveBagItem(gSpecialVar_0x800A, 1);
+        ChooseBerryForMachine(StartBlender);
 }
 
 // Because of changing how Berry sprites are generated, we have to leave data[6] and data[7] untouched as it has an allocated memory ptr for berry's gfx.
@@ -1249,6 +1317,54 @@ static void InitLocalPlayers(u8 opponentsNum)
         StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_LADDIE]);
         StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_LASSIE]);
 
+        gLinkPlayers[0].language = GAME_LANGUAGE;
+        gLinkPlayers[1].language = GAME_LANGUAGE;
+        gLinkPlayers[2].language = GAME_LANGUAGE;
+        gLinkPlayers[3].language = GAME_LANGUAGE;
+        break;
+   case 4: //One berry SOLO blending UNUSED, extremely broken
+        gInGameOpponentsNo = 0;
+        sBerryBlender->numPlayers = 1;
+        StringCopy(gLinkPlayers[0].name, sBlenderOpponentsNames[BLENDER_A]);
+        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_B]);
+        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_R]);
+        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_L]);
+        gLinkPlayers[0].language = GAME_LANGUAGE;
+        gLinkPlayers[1].language = GAME_LANGUAGE;
+        gLinkPlayers[2].language = GAME_LANGUAGE;
+        gLinkPlayers[3].language = GAME_LANGUAGE;
+        break;
+    case 5: //Two berries SOLO blending
+        gInGameOpponentsNo = 1;
+        sBerryBlender->numPlayers = 2;
+        StringCopy(gLinkPlayers[0].name, sBlenderOpponentsNames[BLENDER_A]);
+        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_B]);
+        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_R]);
+        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_L]);
+        gLinkPlayers[0].language = GAME_LANGUAGE;
+        gLinkPlayers[1].language = GAME_LANGUAGE;
+        gLinkPlayers[2].language = GAME_LANGUAGE;
+        gLinkPlayers[3].language = GAME_LANGUAGE;
+        break;
+    case 6: //Three berries SOLO blending
+        gInGameOpponentsNo = 2;
+        sBerryBlender->numPlayers = 3;
+        StringCopy(gLinkPlayers[0].name, sBlenderOpponentsNames[BLENDER_A]);
+        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_B]);
+        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_R]);
+        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_L]);
+        gLinkPlayers[0].language = GAME_LANGUAGE;
+        gLinkPlayers[1].language = GAME_LANGUAGE;
+        gLinkPlayers[2].language = GAME_LANGUAGE;
+        gLinkPlayers[3].language = GAME_LANGUAGE;
+        break;
+    case 7: //Four berries SOLO blending
+        gInGameOpponentsNo = 3;
+        sBerryBlender->numPlayers = 4;
+        StringCopy(gLinkPlayers[0].name, sBlenderOpponentsNames[BLENDER_L]);
+        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_A]);
+        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_B]);
+        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_R]);
         gLinkPlayers[0].language = GAME_LANGUAGE;
         gLinkPlayers[1].language = GAME_LANGUAGE;
         gLinkPlayers[2].language = GAME_LANGUAGE;
@@ -1534,38 +1650,53 @@ static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct B
     u16 opponentBerryId;
     u16 berryMasterDiff;
     u16 i;
-
-    if (playerBerryItemId == ITEM_ENIGMA_BERRY_E_READER)
-    {
-        for (i = 0; i < FLAVOR_COUNT; i++)
+        if (playerBerryItemId == ITEM_ENIGMA_BERRY_E_READER ) //this checks the flavors of the e-reader berry stored to not weaken it's flavors (Doesn't work very well tbh.)
         {
-            if (playerBerry->flavors[opponentSetId] > playerBerry->flavors[i])
-                opponentSetId = i;
+            for (i = 0; i < FLAVOR_COUNT; i++)
+            {
+                if (playerBerry->flavors[opponentSetId] > playerBerry->flavors[i])
+                    opponentSetId = i;
+            }
+            opponentSetId += NUM_NPC_BERRIES;
         }
-        opponentSetId += NUM_NPC_BERRIES;
-    }
-    else
-    {
-        opponentSetId = ITEM_TO_BERRY(playerBerryItemId) - 1;
-        if (opponentSetId >= NUM_NPC_BERRIES)
-            opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
-    }
-    for (i = 0; i < playersNum - 1; i++)
-    {
-        opponentBerryId = sOpponentBerrySets[opponentSetId][i];
-        berryMasterDiff = ITEM_TO_BERRY(playerBerryItemId) - ITEM_TO_BERRY(ITEM_SPELON_BERRY);
-        if (!FlagGet(FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER) && gSpecialVar_0x8004 == 1)
+        if (playerBerryItemId == ITEM_NUTPEA_BERRY || playerBerryItemId == ITEM_ROKA_BERRY //MOD CONTEST The E-reader berries fit with the pattern of the rest, so now, they work the same,
+                                                                                        ) //But for the Roka and the Nutpea berries, they choose a random set of berries.
         {
-            opponentSetId %= ARRAY_COUNT(sBerryMasterBerries);
-            opponentBerryId = sBerryMasterBerries[opponentSetId];
-
-            // If the player's berry is any of the Berry Master's berries,
-            // then use the next lower set of berries
-            if (berryMasterDiff < ARRAY_COUNT(sBerryMasterBerries))
-                opponentBerryId -= ARRAY_COUNT(sBerryMasterBerries);
+            opponentSetId = ITEM_TO_BERRY(RandomUniform(RNG_NONE, 1, 5));
+            if (opponentSetId >= NUM_NPC_BERRIES)
+                opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
         }
-        SetPlayerBerryData(i + 1, opponentBerryId + FIRST_BERRY_INDEX);
-    }
+        else if (playerBerryItemId == ITEM_LIECHI_BERRY || playerBerryItemId == ITEM_GANLON_BERRY
+                                                        || playerBerryItemId == ITEM_SALAC_BERRY || playerBerryItemId == ITEM_PETAYA_BERRY // MOD CONTEST This function makes NPCs choose the correct berries for the
+                                                        || playerBerryItemId == ITEM_APICOT_BERRY || playerBerryItemId == ITEM_LANSAT_BERRY // player berries listed after the E-Reader ones, as the numbers don't match anymore.
+                                                        || playerBerryItemId == ITEM_STARF_BERRY || playerBerryItemId == ITEM_ENIGMA_BERRY)
+        {
+            opponentSetId = ITEM_TO_BERRY(playerBerryItemId) - 3;
+            if (opponentSetId >= NUM_NPC_BERRIES)
+                opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
+        }
+        else
+        {
+            opponentSetId = ITEM_TO_BERRY(playerBerryItemId) - 1;
+            if (opponentSetId >= NUM_NPC_BERRIES)
+                opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
+        }
+        for (i = 0; i < playersNum - 1; i++)
+        {
+            opponentBerryId = sOpponentBerrySets[opponentSetId][i];
+            berryMasterDiff = ITEM_TO_BERRY(playerBerryItemId) - ITEM_TO_BERRY(ITEM_SPELON_BERRY);
+            if (!FlagGet(FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER) && gSpecialVar_0x8004 == 1)
+            {
+                opponentSetId %= ARRAY_COUNT(sBerryMasterBerries);
+                opponentBerryId = sBerryMasterBerries[opponentSetId];
+
+                // If the player's berry is any of the Berry Master's berries,
+                // then use the next lower set of berries
+                if (berryMasterDiff < ARRAY_COUNT(sBerryMasterBerries))
+                    opponentBerryId -= ARRAY_COUNT(sBerryMasterBerries);
+            }
+            SetPlayerBerryData(i + 1, opponentBerryId + FIRST_BERRY_INDEX);
+        }
 }
 
 static void SetPlayerIdMaps(void)
@@ -1607,7 +1738,7 @@ static void PrintPlayerNames(void)
             StringCopy(text, gLinkPlayers[sBerryBlender->arrowIdToPlayerId[i]].name);
             xPos = GetStringCenterAlignXOffset(FONT_NORMAL, text, 0x38);
 
-            if (playerId == sBerryBlender->arrowIdToPlayerId[i])
+            if (playerId == sBerryBlender->arrowIdToPlayerId[i] && gSpecialVar_0x8004 < 4)
                 Blender_AddTextPrinter(i, text, xPos, 1, 0, 2); // Highlight player's name in red
             else
                 Blender_AddTextPrinter(i, text, xPos, 1, 0, 1);
@@ -1629,15 +1760,31 @@ static void CB2_StartBlenderLocal(void)
         InitBlenderBgs();
         SetPlayerBerryData(0, gSpecialVar_ItemId);
         ConvertItemToBlenderBerry(&sBerryBlender->blendedBerries[0], gSpecialVar_ItemId);
-        SetOpponentsBerryData(gSpecialVar_ItemId, sBerryBlender->numPlayers, &sBerryBlender->blendedBerries[0]);
-
+        //MOD CONTEST Instead of NPCs choosing berries, the player chooses another one for each number above 4 in the special Var.
+        if(gSpecialVar_0x8004 >= 4){
+            if(gSpecialVar_0x8004 >= 5){    //Second Berry
+                SetPlayerBerryData(1, gSpecialVar_0x8008);
+                ConvertItemToBlenderBerry(&sBerryBlender->blendedBerries[1], gSpecialVar_0x8008); 
+            }
+            if(gSpecialVar_0x8004 >= 6){    //Third Berry
+                SetPlayerBerryData(2, gSpecialVar_0x8009);
+                ConvertItemToBlenderBerry(&sBerryBlender->blendedBerries[2], gSpecialVar_0x8009); 
+            }
+            if(gSpecialVar_0x8004 > 6){    //Fourth Berry
+                SetPlayerBerryData(3, gSpecialVar_0x800A);
+                ConvertItemToBlenderBerry(&sBerryBlender->blendedBerries[3], gSpecialVar_0x800A); 
+            }
+        }  
+        else{//normal berry blender code:
+            SetOpponentsBerryData(gSpecialVar_ItemId, sBerryBlender->numPlayers, &sBerryBlender->blendedBerries[0]);
+        }
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            sBerryBlender->playerContinueResponses[i] = 0;
-            for (j = 0; j < NUM_SCORE_TYPES; j++)
-            {
-                sBerryBlender->scores[i][j] = 0;
-            }
+                sBerryBlender->playerContinueResponses[i] = 0;
+                for (j = 0; j < NUM_SCORE_TYPES; j++)
+                {
+                    sBerryBlender->scores[i][j] = 0;
+                }
         }
 
         sBerryBlender->playAgainState = 0;
@@ -1680,11 +1827,14 @@ static void CB2_StartBlenderLocal(void)
         {
             // Throw 1 player's berry in
             u32 playerId = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
+            if( gSpecialVar_0x8004 == 4){ //This throws berry for SOLO mode with 1 berry. (never used)
+                playerId = sPlayerIdMap[3][i];
+            }
             if (sBerryBlender->playerToThrowBerry == playerId)
             {
                 CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry++], i);
                 // If we're throwing all at once, continue the loop. If not, break out of the loop(vanilla behavior).
-                if (!BERRY_BLENDER_THROW_ALL_BERRIES_AT_ONCE)
+                if (!BERRY_BLENDER_THROW_ALL_BERRIES_AT_ONCE && gSpecialVar_0x8004 < 5)
                     break;
             }
         }
@@ -1697,7 +1847,12 @@ static void CB2_StartBlenderLocal(void)
             if (sBerryBlender->playerToThrowBerry >= sBerryBlender->numPlayers)
             {
                 // Finished throwing berries in
-                sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]] - ARROW_FALL_ROTATION;
+                if( gSpecialVar_0x8004 > 3){ // MOD CONTEST This makes the lid fall before the A button in all SOLO modes
+                    sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[0]] - ARROW_FALL_ROTATION;
+                }
+                else{
+                    sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]] - ARROW_FALL_ROTATION;
+                }
                 sBerryBlender->mainState++;
             }
             else
@@ -1723,7 +1878,12 @@ static void CB2_StartBlenderLocal(void)
         {
             sBerryBlender->mainState++;
             sBerryBlender->centerScale = 256;
-            sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]];
+            if(gSpecialVar_0x8004 > 3){
+                sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[0]];
+            }
+            else{
+                sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]];
+            }
             SetGpuRegBits(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2));
             sBerryBlender->framesToWait = 0;
             PlaySE(SE_TRUCK_DOOR);
@@ -1771,7 +1931,7 @@ static void CB2_StartBlenderLocal(void)
                 sBerryBlender->opponentTaskIds[0] = CreateTask(sLocalOpponentTasks[0], 10);
         }
 
-        if (gSpecialVar_0x8004 > 1)
+        if (gSpecialVar_0x8004 > 1 && gSpecialVar_0x8004 < 4)
         {
             for (i = 0; i < gSpecialVar_0x8004; i++)
                 sBerryBlender->opponentTaskIds[i] = CreateTask(sLocalOpponentTasks[i], 10 + i);
@@ -2096,8 +2256,35 @@ static void UpdateOpponentScores(void)
     for (i = 0; i < sBerryBlender->numPlayers; i++)
     {
         if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_BLENDER_SEND_KEYS, RFUCMD_BLENDER_SEND_KEYS))
-        {
+        { //MOD CONTEST TODO make it so if other buttons ar pressed in solo play, the sprites appear above their respective arrows.
             u32 arrowId = sBerryBlender->playerIdToArrowId[i];
+
+            if (gSpecialVar_0x8004 != 7){
+                if(pressedB == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[1]; 
+                }
+                if(pressedL == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[3];
+                }
+                if(pressedR == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[2];
+                }
+            }
+            else{ // MOD CONTEST SOLO mode with 4 berries behaves differently... What a pain.
+
+                if(pressedA == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[1]; 
+                }
+                if(pressedB == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[2]; 
+                }
+                if(pressedL == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[0];
+                }
+                if(pressedR == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[3];
+                }
+            }
             if (gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_BEST)
             {
                 UpdateSpeedFromHit(LINKCMD_BLENDER_SCORE_BEST);
@@ -2151,10 +2338,13 @@ static void UpdateOpponentScores(void)
     }
 }
 
-static void HandlePlayerInput(void)
+static void HandlePlayerInput(void) //MOD CONTEST the new extra buttons for the berry blender are (B) [L ] And [ R].
 {
     u8 arrowId;
-    bool8 pressedA = FALSE;
+    pressedA = FALSE;
+    pressedB = FALSE;
+    pressedL = FALSE;
+    pressedR = FALSE;
     u8 playerId = 0;
 
     if (gReceivedRemoteLinkPlayers)
@@ -2164,10 +2354,21 @@ static void HandlePlayerInput(void)
 
     if (sBerryBlender->gameEndState == 0)
     {
-        if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A && JOY_NEW(A_BUTTON))
+        if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A && JOY_NEW(A_BUTTON) && gSpecialVar_0x8004 < 4)
         {
             if (JOY_HELD_RAW(A_BUTTON | L_BUTTON) != (A_BUTTON | L_BUTTON))
                 pressedA = TRUE;
+        }
+        else if (gSpecialVar_0x8004 > 4)
+        {
+            if (JOY_NEW(A_BUTTON))
+                pressedA = TRUE;
+            if (JOY_NEW(B_BUTTON))
+                pressedB = TRUE;
+            if (JOY_NEW(L_BUTTON))
+                pressedL = TRUE;
+            if (JOY_NEW(R_BUTTON))
+                pressedR = TRUE;
         }
         else if (JOY_NEW(A_BUTTON))
         {
@@ -2177,8 +2378,66 @@ static void HandlePlayerInput(void)
         if (pressedA)
         {
             u8 proximity;
-            StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[arrowId]]], arrowId + 4);
-            proximity = GetArrowProximity(sBerryBlender->arrowPos, playerId);
+            
+            if(gSpecialVar_0x8004 == 7){
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[1]]], 1 + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, 1);
+            }
+            else{
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[arrowId]]], arrowId + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, playerId);
+            }
+
+            if (proximity == PROXIMITY_BEST)
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+            else if (proximity == PROXIMITY_GOOD)
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+            else
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_MISS;
+        }
+        if (pressedB && gSpecialVar_0x8004 > 4)
+        {
+            u8 proximity;
+            if(gSpecialVar_0x8004 == 7){
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[2]]], 2 + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, 2);
+            }
+            else{
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[2]]], 2 + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, 1);
+            }
+
+            if (proximity == PROXIMITY_BEST)
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+            else if (proximity == PROXIMITY_GOOD)
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+            else
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_MISS;
+        }
+        if (pressedR && gSpecialVar_0x8004 > 5 )
+        {
+            u8 proximity;
+            if(gSpecialVar_0x8004 == 7){
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[3]]], 3 + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, 3);
+            }
+            else{
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[3]]], 3 + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, 2);
+            }
+
+            if (proximity == PROXIMITY_BEST)
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+            else if (proximity == PROXIMITY_GOOD)
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+            else
+                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_MISS;
+        }
+        if (pressedL && gSpecialVar_0x8004 > 6)
+        {
+            u8 proximity;
+            StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[0]]], 0 + 4);
+            proximity = GetArrowProximity(sBerryBlender->arrowPos, 0);
 
             if (proximity == PROXIMITY_BEST)
                 gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
@@ -2199,7 +2458,7 @@ static void HandlePlayerInput(void)
         sBerryBlender->perfectOpponents ^= 1;
 }
 
-static void CB2_PlayBlender(void)
+static void CB2_PlayBlender(void) //MOD CONTEST Added more buttons for solo play
 {
     UpdateBlenderCenter();
 
@@ -2212,7 +2471,7 @@ static void CB2_PlayBlender(void)
     TryUpdateProgressBar(sBerryBlender->progressBarValue, MAX_PROGRESS_BAR);
     UpdateRPM(sBerryBlender->speed);
     RestoreBgCoords();
-    ProcessLinkPlayerCmds();
+    ProcessLinkPlayerCmds(); //MOD CONTEST TODO seems like the problem starts here, after finishing the blend.
     if (sBerryBlender->gameEndState == 0 && sBerryBlender->maxProgressBarValue >= MAX_PROGRESS_BAR)
     {
         sBerryBlender->progressBarValue = MAX_PROGRESS_BAR;
@@ -2239,7 +2498,7 @@ static bool8 AreBlenderBerriesSame(struct BlenderBerry *berries, u8 a, u8 b)
     // Only used to determine if two enigma berries are equivalent
     if (berries[a].itemId != berries[b].itemId
      || (StringCompare(berries[a].name, berries[b].name) == 0
-      && (berries[a].flavors[FLAVOR_SPICY] == berries[b].flavors[FLAVOR_SPICY]
+      && (berries[a].flavors[FLAVOR_SPICY] == berries[b].flavors[FLAVOR_SPICY] //Here I changed the && for an ||, so it will check the flavours anyways
        && berries[a].flavors[FLAVOR_DRY] == berries[b].flavors[FLAVOR_DRY]
        && berries[a].flavors[FLAVOR_SWEET] == berries[b].flavors[FLAVOR_SWEET]
        && berries[a].flavors[FLAVOR_BITTER] == berries[b].flavors[FLAVOR_BITTER]
@@ -2255,6 +2514,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     s16 flavors[FLAVOR_COUNT + 1];
     s32 i, j;
     u8 numFlavors;
+    
 
     for (i = 0; i < FLAVOR_COUNT + 1; i++)
         flavors[i] = _flavors[i];
@@ -2266,9 +2526,11 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
             j++;
     }
 
-    // If all 5 flavors are 0, or if 4-5 flavors were negative,
+
+    // If 4 flavors were negative,
     // or if players used the same berry, color is black
-    if (j == FLAVOR_COUNT || negativeFlavors > 3)
+    // MOD CONTEST If 4 of the same berry are used, The flavors are null
+    if (/*j == FLAVOR_COUNT ||*/ negativeFlavors == 4) //MOD CONTEST FIXINGIT
         return PBLOCK_CLR_BLACK;
 
     for (i = 0; i < numPlayers; i++)
@@ -2276,8 +2538,13 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
         for (j = 0; j < numPlayers; j++)
         {
             if (berries[i].itemId == berries[j].itemId && i != j
-                && (berries[i].itemId != ITEM_ENIGMA_BERRY_E_READER || AreBlenderBerriesSame(berries, i, j)))
-                    return PBLOCK_CLR_BLACK;
+                && (berries[i].itemId != ITEM_ENIGMA_BERRY_E_READER || AreBlenderBerriesSame(berries, i, j))){
+                    if(berries[0].itemId == berries[1].itemId && berries[0].itemId == berries[2].itemId && berries[0].itemId == berries[3].itemId){
+                        // MOD CONTEST If all 4 berries are the same, Instead of giving random flavors, it loses all of them.
+                        NoFlavor = TRUE;
+                    }
+                        return PBLOCK_CLR_BLACK;
+                }
         }
     }
 
@@ -2288,8 +2555,8 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
             numFlavors++;
     }
 
-    // Check for special colors (White/Gray/Gold)
-    if (numFlavors > 3)
+    // Check for special colors (White/Gray/Gold/Clear)
+    if (numFlavors == 4)
         return PBLOCK_CLR_WHITE;
 
     if (numFlavors == 3)
@@ -2300,6 +2567,8 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
         if (flavors[i] > 50)
             return PBLOCK_CLR_GOLD;
     }
+    if (numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5)    // MOD CONTEST If all 5 flavors are equal, color is clear
+        return PBLOCK_CLR_CLEAR;
 
     // Only 1 flavor present, return corresponding color
     if (numFlavors == 1 && flavors[FLAVOR_SPICY] > 0)
@@ -2379,6 +2648,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     s32 i, j;
     s32 multiuseVar;
     u8 numNegatives;
+    u8 ClearSubstract;
 
     for (i = 0; i < FLAVOR_COUNT + 1; i++)
         sPokeblockFlavors[i] = 0;
@@ -2393,22 +2663,41 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     // Subtract each flavor total from the prev one
     // The idea is to focus on only the flavors with the highest totals
     // Bad way to do it though (order matters here)
+
+    // MOD CONTEST Made it so if all flavors are equal, 
+    // they are lowered by half of every flavour combined.
+    // It allows the player to make some neat combinations.
+
     multiuseVar = sPokeblockFlavors[0];
-    sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
-    sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
-    sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
-    sPokeblockFlavors[FLAVOR_BITTER] -= sPokeblockFlavors[FLAVOR_SOUR];
-    sPokeblockFlavors[FLAVOR_SOUR]   -= multiuseVar;
+    ClearSubstract = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]) / 10 ;
+
+    if(sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_DRY] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SWEET]
+        && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SOUR] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_BITTER])
+    {
+
+        sPokeblockFlavors[FLAVOR_SPICY]  -= ClearSubstract;
+        sPokeblockFlavors[FLAVOR_DRY]    -= ClearSubstract;
+        sPokeblockFlavors[FLAVOR_SWEET]  -= ClearSubstract;
+        sPokeblockFlavors[FLAVOR_BITTER] -= ClearSubstract;
+        sPokeblockFlavors[FLAVOR_SOUR]   -= ClearSubstract;
+    }
+    else{
+        sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
+        sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
+        sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
+        sPokeblockFlavors[FLAVOR_BITTER] -= sPokeblockFlavors[FLAVOR_SOUR];
+        sPokeblockFlavors[FLAVOR_SOUR]   -= multiuseVar;
+    }
 
     // Count (and reset) the resulting negative flavors
     multiuseVar = 0;
     for (i = 0; i < FLAVOR_COUNT; i++)
     {
-        if (sPokeblockFlavors[i] < 0)
-        {
-            sPokeblockFlavors[i] = 0;
-            multiuseVar++;
-        }
+            if(sPokeblockFlavors[i] < 0 )
+            {
+                sPokeblockFlavors[i] = 0;
+                multiuseVar++;
+            }
     }
     numNegatives = multiuseVar;
 
@@ -2457,11 +2746,48 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
                 sPokeblockFlavors[i] = 0;
         }
     }
+    if (NoFlavor) //MOD CONTEST Here, void flavors are asigned and the color is changed back to black for blends with 4 of the same berry
+    {
+        // Black pokeblocks get their flavors randomly reassigned
+        sPokeblockFlavors[FLAVOR_SPICY]  = 0;
+        sPokeblockFlavors[FLAVOR_DRY]    = 0;
+        sPokeblockFlavors[FLAVOR_SWEET]  = 0;
+        sPokeblockFlavors[FLAVOR_SOUR]   = 0;
+        sPokeblockFlavors[FLAVOR_BITTER] = 0;
+        NoFlavor = FALSE;
+    }
+
+    if (pokeblock->color == PBLOCK_CLR_CLEAR)
+    {// MOD CONTEST Clear pokeblocks turn all of their flavor values (positive AND negative) to the value of the feel. If the feel is higher than 32 before the calculation, it caps it at 32
+        //and if it's higher than 99 after , it caps it at 99.
+            if(sPokeblockFlavors[FLAVOR_COUNT] >= 32 || sPokeblockFlavors[FLAVOR_COUNT] <= -32){
+                sPokeblockFlavors[FLAVOR_COUNT] = 32;
+            }
+            else if(sPokeblockFlavors[FLAVOR_COUNT] < 0){
+                sPokeblockFlavors[FLAVOR_COUNT] = -sPokeblockFlavors[FLAVOR_COUNT];
+            }
+
+            sPokeblockFlavors[FLAVOR_COUNT] += ((sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]) / 50) * sPokeblockFlavors[FLAVOR_COUNT];
+
+            if(sPokeblockFlavors[FLAVOR_COUNT] >= 99 || sPokeblockFlavors[FLAVOR_COUNT] <= -99){
+                sPokeblockFlavors[FLAVOR_COUNT] = 99;
+            }
+            else{
+            sPokeblockFlavors[FLAVOR_SPICY]  = sPokeblockFlavors[FLAVOR_COUNT];
+            sPokeblockFlavors[FLAVOR_DRY]    = sPokeblockFlavors[FLAVOR_COUNT];
+            sPokeblockFlavors[FLAVOR_SWEET]  = sPokeblockFlavors[FLAVOR_COUNT];
+            sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_COUNT];
+            sPokeblockFlavors[FLAVOR_BITTER] = sPokeblockFlavors[FLAVOR_COUNT];
+            }
+            
+    }
 
     for (i = 0; i < FLAVOR_COUNT + 1; i++)
     {
         if (sPokeblockFlavors[i] > 255)
             sPokeblockFlavors[i] = 255;
+        if (sPokeblockFlavors[i] < -255)
+            sPokeblockFlavors[i] = -255;
     }
 
     pokeblock->spicy  = sPokeblockFlavors[FLAVOR_SPICY];
@@ -2480,7 +2806,7 @@ static void UNUSED Debug_CalculatePokeblock(struct BlenderBerry *berries, struct
     CalculatePokeblock(berries, pokeblock, numPlayers, flavors, maxRPM);
 }
 
-static void Debug_SetStageVars(void)
+static void Debug_SetStageVars(void) //MOD CONTEST TODO try debug mode
 {
     u32 frames = (u16)(sBerryBlender->gameFrameTime);
     u16 maxRPM = sBerryBlender->maxRPM;
@@ -2636,7 +2962,7 @@ static void CB2_EndBlenderGame(void)
     case 6:
         if (PrintBlendingResults())
         {
-            if (gInGameOpponentsNo == 0)
+            if (gInGameOpponentsNo == 0 && gSpecialVar_0x8004 == 0)
                 IncrementGameStat(GAME_STAT_POKEBLOCKS_WITH_FRIENDS);
             else
                 IncrementGameStat(GAME_STAT_POKEBLOCKS);
@@ -2670,24 +2996,24 @@ static void CB2_EndBlenderGame(void)
             }
             break;
         case 0:
-            sBerryBlender->yesNoAnswer = 0;
-            sBerryBlender->gameEndState++;
-            for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
-            {
-                if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                sBerryBlender->yesNoAnswer = 0;
+                sBerryBlender->gameEndState++;
+                for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
                 {
-                    PutWindowTilemap(i);
-                    CopyWindowToVram(i, COPYWIN_FULL);
+                    if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                    {
+                        PutWindowTilemap(i);
+                        CopyWindowToVram(i, COPYWIN_FULL);
+                    }
                 }
-            }
-            break;
+                break;
         }
         break;
     case 11:
         SendContinuePromptResponse(&gSendCmd[BLENDER_COMM_INPUT_STATE]);
         if (sBerryBlender->yesNoAnswer == 0)
         {
-            if (IsBagPocketNonEmpty(POCKET_BERRIES) == FALSE)
+            if (PlayerHasBerries() == FALSE)
             {
                 // No berries
                 sBerryBlender->playAgainState = CANT_PLAY_NO_BERRIES;
@@ -2714,7 +3040,7 @@ static void CB2_EndBlenderGame(void)
         }
         break;
     case 12:
-        if (gInGameOpponentsNo)
+        if (gInGameOpponentsNo && gSpecialVar_0x8004 != 0)
         {
             SetMainCallback2(CB2_CheckPlayAgainLocal);
             sBerryBlender->gameEndState = 0;
@@ -2836,7 +3162,7 @@ static void CB2_CheckPlayAgainLink(void)
     case 2:
         sBerryBlender->gameEndState++;
         StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
-        StringAppend(gStringVar4, sText_HasNoBerriesToPut);
+            StringAppend(gStringVar4, sText_HasNoBerriesToPut);
         break;
     case 3:
         if (PrintMessage(&sBerryBlender->textState, gStringVar4, GetPlayerTextSpeedDelay()))
@@ -2943,7 +3269,12 @@ static void CB2_CheckPlayAgainLocal(void)
     case 2:
         sBerryBlender->gameEndState++;
         sBerryBlender->textState = 0;
+        if(gSpecialVar_0x8004 < 5 && IsBagPocketNonEmpty(POCKET_BERRIES) == FALSE){
         StringCopy(gStringVar4, sText_RunOutOfBerriesForBlending);
+        }
+        else if (IsBagPocketNonEmpty(POCKET_BERRIES) == FALSE){
+        StringCopy(gStringVar4, sText_NotEnoughBerriesForBlending);
+        }
         break;
     case 3:
         if (PrintMessage(&sBerryBlender->textState, gStringVar4, GetPlayerTextSpeedDelay()))
@@ -3490,10 +3821,17 @@ static bool8 PrintBlendingResults(void)
                 ConvertIntToDecimalStringN(sBerryBlender->stringVar, i + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
                 StringAppend(sBerryBlender->stringVar, sText_Dot);
                 StringAppend(sBerryBlender->stringVar, gText_Space);
-                StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
-                Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 8, yPos, TEXT_SKIP_DRAW, 3);
 
-                StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[place].name);
+                if(gSpecialVar_0x8004 > 3){ //MOD CONTEST Print player name in SOLO mode besides each berry
+                    StringAppend(sBerryBlender->stringVar, gSaveBlock2Ptr->playerName);
+                    Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 8, yPos, TEXT_SKIP_DRAW, 3);
+                    StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[i].name);
+                }
+                else{ // Normal name behabior
+                    StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
+                    Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 8, yPos, TEXT_SKIP_DRAW, 3);
+                    StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[place].name);
+                }
                 ConvertInternationalString(sBerryBlender->stringVar, gLinkPlayers[place].language);
                 StringAppend(sBerryBlender->stringVar, sText_SpaceBerry);
                 Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 0x54, yPos, TEXT_SKIP_DRAW, 3);
@@ -3558,6 +3896,20 @@ static bool8 PrintBlendingResults(void)
         RemoveBagItem(gSpecialVar_ItemId, 1);
         AddPokeblock(&pokeblock);
 
+        //MOD CONTEST Add an extra pokeblock and remove another berry for each berry used.
+        if(gSpecialVar_0x8004 > 4 && GetFirstFreePokeblockSlot() != -1)
+        {
+            AddPokeblock(&pokeblock);
+        }
+        if(gSpecialVar_0x8004 > 5 && GetFirstFreePokeblockSlot() != -1)
+        {
+            AddPokeblock(&pokeblock);
+        }
+        if(gSpecialVar_0x8004 > 6 && GetFirstFreePokeblockSlot() != -1)
+        {
+            AddPokeblock(&pokeblock);
+        }
+
         sBerryBlender->textState = 0;
         sBerryBlender->mainState++;
         break;
@@ -3580,7 +3932,12 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
 
     dst[0] = EOS;
     StringCopy(dst, gPokeblockNames[pokeblock->color]);
+    if(gSpecialVar_0x8004 < 5){
     StringAppend(dst, sText_WasMade);
+    }
+    else{ // MOD CONTEST Uses plural when making more than one pokeblock at a time.
+    StringAppend(dst, sText_WereMade);
+    }
     StringAppend(dst, sText_NewLine);
 
     flavorLvl = GetHighestPokeblocksFlavorLevel(pokeblock);
@@ -3622,27 +3979,39 @@ static void SortScores(void)
     u8 places[BLENDER_MAX_PLAYERS];
     u32 points[BLENDER_MAX_PLAYERS];
 
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
-        places[i] = i;
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
+    
+    if(gSpecialVar_0x8004 < 4) // Regular scores if not in SOLO mode.
     {
-        points[i] = 1000000 * sBerryBlender->scores[i][SCORE_BEST];
-        points[i] += 1000 * sBerryBlender->scores[i][SCORE_GOOD];
-        points[i] += 1000 - sBerryBlender->scores[i][SCORE_MISS];
+        for (i = 0; i < sBerryBlender->numPlayers; i++)
+            places[i] = i;
+        for (i = 0; i < sBerryBlender->numPlayers; i++)
+        {
+            points[i] = 1000000 * sBerryBlender->scores[i][SCORE_BEST];
+            points[i] += 1000 * sBerryBlender->scores[i][SCORE_GOOD];
+            points[i] += 1000 - sBerryBlender->scores[i][SCORE_MISS];
+        }
+        SortBasedOnPoints(places, sBerryBlender->numPlayers, points);
+        for (i = 0; i < sBerryBlender->numPlayers; i++)
+            sBerryBlender->playerPlaces[i] = places[i];
+
+        if (!gReceivedRemoteLinkPlayers)
+            playerId = 0;
+        else
+            playerId = GetMultiplayerId();
+    for (i = 0; i < sBerryBlender->numPlayers; i++)
+        {
+            if (sBerryBlender->playerPlaces[i] == playerId)
+                sBerryBlender->ownRanking = i;
+        }
     }
-    SortBasedOnPoints(places, sBerryBlender->numPlayers, points);
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
-        sBerryBlender->playerPlaces[i] = places[i];
-
-    if (!gReceivedRemoteLinkPlayers)
-        playerId = 0;
-    else
-        playerId = GetMultiplayerId();
-
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
+    else // MOD CONTEST SOLO score
     {
-        if (sBerryBlender->playerPlaces[i] == playerId)
-            sBerryBlender->ownRanking = i;
+        places[0] = 0;
+        points[0] = 1000000 * sBerryBlender->scores[0][SCORE_BEST];
+        points[0] += 1000 * sBerryBlender->scores[0][SCORE_GOOD];
+        points[0] += 1000 - sBerryBlender->scores[0][SCORE_MISS];
+        sBerryBlender->playerPlaces[0] = places[0];
+        sBerryBlender->ownRanking = 0;
     }
 }
 
@@ -3691,14 +4060,37 @@ static bool8 PrintBlendingRanking(void)
 
         SortScores();
 
-        for (yPos = 41, i = 0; i < sBerryBlender->numPlayers; yPos += 16, i++)
-        {
+        if (gSpecialVar_0x8004 < 4){ // Regular results
+            for (yPos = 41, i = 0; i < sBerryBlender->numPlayers; yPos += 16, i++)
+            {
+                u8 place = sBerryBlender->playerPlaces[i];
+
+                ConvertIntToDecimalStringN(sBerryBlender->stringVar, i + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
+                StringAppend(sBerryBlender->stringVar, sText_Dot);
+                StringAppend(sBerryBlender->stringVar, gText_Space);
+                StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
+                Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 0, yPos, TEXT_SKIP_DRAW, 3);
+
+                ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_BEST], STR_CONV_MODE_RIGHT_ALIGN, 3);
+                Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 78, yPos, TEXT_SKIP_DRAW, 3);
+
+                ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_GOOD], STR_CONV_MODE_RIGHT_ALIGN, 3);
+                Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 78 + 32, yPos, TEXT_SKIP_DRAW, 3);
+
+                ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_MISS], STR_CONV_MODE_RIGHT_ALIGN, 3);
+                Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 78 + 64, yPos, TEXT_SKIP_DRAW, 3);
+            }
+        }
+        else{ //MOD CONTEST Print SOLO results
+            yPos = 41;
+            i = 0;
+            
             u8 place = sBerryBlender->playerPlaces[i];
 
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, i + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
             StringAppend(sBerryBlender->stringVar, sText_Dot);
             StringAppend(sBerryBlender->stringVar, gText_Space);
-            StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
+            StringAppend(sBerryBlender->stringVar, gSaveBlock2Ptr->playerName);
             Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 0, yPos, TEXT_SKIP_DRAW, 3);
 
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_BEST], STR_CONV_MODE_RIGHT_ALIGN, 3);
@@ -3752,8 +4144,26 @@ void ShowBerryBlenderRecordWindow(void)
     AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, sText_BlenderMaxSpeedRecord, xPos, 1, 0, NULL);
     AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, sText_234Players, 4, 41, 0, NULL);
 
-    for (i = 0, yPos = 41; i < NUM_SCORE_TYPES; i++)
-    {
+    if (gSpecialVar_0x8004 < 4){ // Regular results
+        for (i = 0, yPos = 41; i < NUM_SCORE_TYPES; i++)
+        {
+            u8 *txtPtr;
+            u32 record;
+
+            record = gSaveBlock1Ptr->berryBlenderRecords[i];
+
+            txtPtr = ConvertIntToDecimalStringN(text, record / 100, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            txtPtr = StringAppend(txtPtr, sText_Dot);
+            txtPtr = ConvertIntToDecimalStringN(txtPtr, record % 100, STR_CONV_MODE_LEADING_ZEROS, 2);
+            txtPtr = StringAppend(txtPtr, sText_RPM);
+
+            xPos = GetStringRightAlignXOffset(FONT_NORMAL, text, 140);
+            AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, text, xPos, yPos + (i * 16), 0, NULL);
+        }
+    }
+    else{ //MOD CONTEST Print SOLO results
+        i = 0;
+        yPos = 41;
         u8 *txtPtr;
         u32 record;
 

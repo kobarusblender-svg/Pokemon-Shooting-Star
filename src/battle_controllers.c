@@ -1728,6 +1728,10 @@ static u32 GetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32 
         dst[0] = GetMonData(&party[monId], MON_DATA_SHEEN);
         size = 1;
         break;
+    case REQUEST_OVERFLOWSHEEN_BATTLE:
+        dst[0] = GetMonData(&party[monId], MON_DATA_SHEEN);
+        size = 1;
+        break;
     case REQUEST_COOL_RIBBON_BATTLE:
         dst[0] = GetMonData(&party[monId], MON_DATA_COOL_RIBBON);
         size = 1;
@@ -1949,6 +1953,9 @@ static void SetBattlerMonData(enum BattlerId battler, struct Pokemon *party, u32
         SetMonData(&party[monId], MON_DATA_TOUGH, &gBattleResources->bufferA[battler][3]);
         break;
     case REQUEST_SHEEN_BATTLE:
+        SetMonData(&party[monId], MON_DATA_SHEEN, &gBattleResources->bufferA[battler][3]);
+        break;
+    case REQUEST_OVERFLOWSHEEN_BATTLE:
         SetMonData(&party[monId], MON_DATA_SHEEN, &gBattleResources->bufferA[battler][3]);
         break;
     case REQUEST_COOL_RIBBON_BATTLE:

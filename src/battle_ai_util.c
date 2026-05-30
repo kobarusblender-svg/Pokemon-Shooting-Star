@@ -4654,8 +4654,8 @@ static const u16 sRecycleEncouragedItems[] =
     ITEM_LUM_BERRY,
     ITEM_STARF_BERRY,
     ITEM_SITRUS_BERRY,
-    ITEM_MICLE_BERRY,
-    ITEM_CUSTAP_BERRY,
+    //ITEM_MICLE_BERRY,
+    //ITEM_CUSTAP_BERRY,
     ITEM_MENTAL_HERB,
     ITEM_FOCUS_SASH,
     ITEM_SALAC_BERRY,
@@ -4670,8 +4670,8 @@ static const u16 sRecycleEncouragedItems[] =
     ITEM_BERRY_JUICE,
     ITEM_WEAKNESS_POLICY,
     ITEM_BLUNDER_POLICY,
-    ITEM_KEE_BERRY,
-    ITEM_MARANGA_BERRY,
+    //ITEM_KEE_BERRY,
+    //ITEM_MARANGA_BERRY,
     // TODO expand this
 };
 
@@ -4687,7 +4687,7 @@ bool32 IsStatBoostingBerry(enum Item item)
     case ITEM_APICOT_BERRY:
     //case ITEM_LANSAT_BERRY:
     case ITEM_STARF_BERRY:
-    case ITEM_MICLE_BERRY:
+    //case ITEM_MICLE_BERRY:
         return TRUE;
     default:
         return FALSE;
