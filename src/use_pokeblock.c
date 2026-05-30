@@ -161,6 +161,7 @@ static void SpriteCB_Condition(struct Sprite *);
 
 static const u8 sText_GetsAPokeBlockQuestion[] = _(" gets a {POKEBLOCK}?");
 static const u8 sText_WasEnhanced[] = _("was enhanced!");
+static const u8 sText_WasReduced[] = _("was reduced!");
 static const u8 sText_NothingChanged[] = _("Nothing changed!");
 static const u8 sText_WontEatAnymore[] = _("It won't eat anymore…");
 static const u8 sText_NatureSlash[] = _("NATURE/");
@@ -368,7 +369,6 @@ static const struct SpriteTemplate sSpriteTemplate_UpDown =
     .oam = &sOam_UpDown,
     .anims = sAnims_UpDown,
 };
-/* MOD CONTEST this was removed... I hope it can still be called.
 static const struct SpriteTemplate sSpriteTemplate_Down =
 {
     .tileTag = TAG_UP_DOWN,
@@ -378,7 +378,7 @@ static const struct SpriteTemplate sSpriteTemplate_Down =
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
-};*/
+};
 
 static const struct OamData sOam_Condition =
 {
@@ -998,7 +998,7 @@ static void BufferEnhancedText(u8 *dest, u8 condition, s16 enhancement, struct P
             if (enhancement)
                 dest[(u16)enhancement] += 0; // something you can't imagine
             StringCopy(dest, sConditionNames[condition]);
-            StringAppend(dest, sText_WasLowered);
+            StringAppend(dest, sText_WasReduced);
         }
         else{
             if (enhancement)

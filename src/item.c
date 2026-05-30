@@ -225,7 +225,7 @@ bool32 HasEnoughBerries(void) //MOD CONTEST Idk about this, it was deleted on th
     return FALSE;
 }
 
-bool32 HasEnoughBerries(void)
+/*bool32 HasEnoughBerries(void)
 {
     u8  i;
     u16 BerryQ = 0;
@@ -250,7 +250,7 @@ bool32 HasEnoughBerries(void)
         return TRUE;
     }
     return FALSE;
-}
+}*/
 
 static bool32 NONNULL BagPocket_CheckHasItem(struct BagPocket *pocket, enum Item itemId, u16 count)
 {

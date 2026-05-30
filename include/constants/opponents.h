@@ -858,8 +858,9 @@
 #define TRAINER_RED                         851
 #define TRAINER_LEAF                        852
 #define TRAINER_BRENDAN_PLACEHOLDER         853
-#define TRAINER_MAY_PLACEHOLDER             855
-#define TRAINER_JAIMITO                     856 //ContestBattleTest
+#define TRAINER_MAY_PLACEHOLDER             854
+#define TRAINER_JAIMITO                     855 //ContestBattleTest
+#define UNUSED0                             856
 #define UNUSED1                             857
 #define UNUSED2                             858
 #define UNUSED3                             859
@@ -872,7 +873,7 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD     855
+#define TRAINERS_COUNT_EMERALD     864
 #define MAX_TRAINERS_COUNT_EMERALD 864
 
 #if IS_FRLG
