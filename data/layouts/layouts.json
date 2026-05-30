@@ -9332,8 +9332,7 @@
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/QuietShore/border.bin",
-      "blockdata_filepath": "data/layouts/QuietShore/map.bin",
-      //"layout_version": "emerald"
+      "blockdata_filepath": "data/layouts/QuietShore/map.bin"
     },
     {
       "id": "LAYOUT_WATERFLOW_ISLAND",
@@ -9343,8 +9342,7 @@
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/WaterflowIsland/border.bin",
-      "blockdata_filepath": "data/layouts/WaterflowIsland/map.bin",
-      //"layout_version": "emerald"
+      "blockdata_filepath": "data/layouts/WaterflowIsland/map.bin"
     },
     {
       "id": "LAYOUT_TESTING_GROUNDS",
@@ -9354,8 +9352,7 @@
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Testing_Grounds/border.bin",
-      "blockdata_filepath": "data/layouts/Testing_Grounds/map.bin",
-      //"layout_version": "emerald"
+      "blockdata_filepath": "data/layouts/Testing_Grounds/map.bin"
     },
     {
       "id": "LAYOUT_WATERFLOW_FOREST",
@@ -9365,8 +9362,7 @@
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Waterflow_Forest/border.bin",
-      "blockdata_filepath": "data/layouts/Waterflow_Forest/map.bin",
-      //"layout_version": "emerald"
+      "blockdata_filepath": "data/layouts/Waterflow_Forest/map.bin"
     }
   ]
 }
