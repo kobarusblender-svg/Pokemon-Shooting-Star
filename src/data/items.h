@@ -12013,7 +12013,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_StarfBerry,
     },
 
-    [ITEM_ENIGMA_BERRY] =
+    /*[ITEM_ENIGMA_BERRY] =
     {
         .name = ITEM_NAME("Enigma Berry"),
         .pluralName = ITEM_PLURAL_NAME("Enigma Berries"),
@@ -12029,7 +12029,7 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_EnigmaBerry,
         .iconPalette = gItemIconPalette_EnigmaBerry,
-    },
+    },*/
 
     /*[ITEM_MICLE_BERRY] =
     {
