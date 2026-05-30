@@ -25,7 +25,7 @@ extern const u8 gText_OpenLevel[];
 extern const u8 gText_Mom[];
 extern const u8 gText_Dad[];
 
-//extern const u8 gText_GetsAPokeBlockQuestion[];
+//extern const u8 gText_GetsAPokeBlockQuestion[]; //MOD CONTEST IDK why do they keep removing the things that I modified!
 //extern const u8 gText_WontEatAnymore[];
 //extern const u8 gText_WasEnhanced[];
 //extern const u8 gText_WasLowered[];
