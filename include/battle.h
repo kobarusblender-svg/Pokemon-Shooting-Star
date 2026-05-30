@@ -561,7 +561,7 @@ struct BattlerState
     u32 storedLunarDance:1;
     u32 usedEjectItem:1;
     u32 sleepClauseEffectExempt:1; // Stores whether effect should be exempt from triggering Sleep Clause (Effect Spore)
-    u32 usedMicleBerry:1;
+   // u32 usedMicleBerry:1;
     u32 pursuitTarget:1;
     u32 stompingTantrumTimer:2;
     u32 canPickupItem:1;

@@ -559,6 +559,7 @@ TEST("BoxPokemon encryption works")
     EXPECT_EQ(GetMonData(&mon, MON_DATA_SMART), 40);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_TOUGH), 50);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_SHEEN), 150);
+    EXPECT_EQ(GetMonData(&mon, MON_DATA_OVERFLOWSHEEN), 164); //TODO fix this 
     EXPECT_EQ(GetMonData(&mon, MON_DATA_EXP), 12345);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_MET_LEVEL), 20);
     EXPECT_EQ(GetMonData(&mon, MON_DATA_HP_EV), 11);

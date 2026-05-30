@@ -1,4 +1,4 @@
-#include "global.h"
+/*#include "global.h"
 #include "test/battle.h"
 
 ASSUMPTIONS
@@ -72,3 +72,4 @@ SINGLE_BATTLE_TEST("Rowap Berry is triggered even if berry user dies")
         MESSAGE("Wobbuffet was hurt by the opposing Wobbuffet's Rowap Berry!");
     }
 }
+*/

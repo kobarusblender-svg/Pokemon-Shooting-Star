@@ -24,6 +24,7 @@
 #include "graphics.h"
 #include "pokemon_summary_screen.h"
 #include "item_menu.h"
+#include "pokeblock.h"
 
 /*
     This file handles the screen where the player chooses
@@ -86,7 +87,8 @@ struct UsePokeblockMenuPokemon
 
 struct UsePokeblockMenu
 {
-    u32 unused;
+    u8 unused1; //MOD CONTEST these both used to be u32unused;
+    u16 unused2; //
     u16 partyPalettes[PARTY_SIZE][0x40];
     u8 partySheets[NUM_SELECTIONS_LOADED][MON_PIC_SIZE * MAX_MON_PIC_FRAMES];
     u8 unusedBuffer[0x1000];
@@ -110,6 +112,7 @@ struct UsePokeblockMenu
     s8 toLoadId;
     struct UsePokeblockMenuPokemon party[PARTY_SIZE];
     struct UsePokeblockSession info;
+    u8 colorId;
 };
 
 static void SetUsePokeblockCallback(void (*func)(void));
@@ -131,18 +134,18 @@ static void UpdateSelection(bool8);
 static void CloseUsePokeblockMenu(void);
 static void AskUsePokeblock(void);
 static s8 HandleAskUsePokeblockInput(void);
-static bool8 IsSheenMaxed(void);
+static bool8 IsSheenMaxed(struct Pokeblock *pokeblock); //MOD CONTESTS NOw it checks the pokeblock data
 static void PrintWontEatAnymore(void);
 static void FeedPokeblockToMon(void);
 static void EraseMenuWindow(void);
 static u8 GetPartyIdFromSelectionId(u8);
 static void ShowPokeblockResults(void);
 static void CalculateConditionEnhancements(void);
-static void LoadAndCreateUpDownSprites(void);
+static void LoadAndCreateUpDownSprites(struct Pokeblock *pokeblock);
 static void CalculateNumAdditionalSparkles(u8);
 static void PrintFirstEnhancement(void);
 static bool8 TryPrintNextEnhancement(void);
-static void BufferEnhancedText(u8 *, u8, s16);
+static void BufferEnhancedText(u8 *, u8, s16, struct Pokeblock *pokeblock);
 static void PrintMenuWindowText(const u8 *);
 static void CalculatePokeblockEffectiveness(struct Pokeblock *, struct Pokemon *);
 static void SpriteCB_UpDown(struct Sprite *);
@@ -346,12 +349,29 @@ static const union AnimCmd *const sAnims_UpDown[] =
     sAnim_Down
 };
 
+static const union AnimCmd *const sAnims_Down[] =
+{
+    sAnim_Down,
+    sAnim_Down
+};
+
 static const struct SpriteTemplate sSpriteTemplate_UpDown =
 {
     .tileTag = TAG_UP_DOWN,
     .paletteTag = TAG_UP_DOWN,
     .oam = &sOam_UpDown,
     .anims = sAnims_UpDown,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy,
+};
+
+static const struct SpriteTemplate sSpriteTemplate_Down =
+{
+    .tileTag = TAG_UP_DOWN,
+    .paletteTag = TAG_UP_DOWN,
+    .oam = &sOam_UpDown,
+    .anims = sAnims_Down,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
@@ -665,8 +685,7 @@ static void UsePokeblockMenu(void)
             sInfo->mainState = STATE_HANDLE_INPUT;
             break;
         case 0: // YES
-            if (IsSheenMaxed())
-            {
+            if (IsSheenMaxed(sInfo->pokeblock)){ //Pokemon will eat if the PokeBlock is Clear MOD CONTESTS
                 PrintWontEatAnymore();
                 sInfo->mainState = STATE_WAIT_MSG;
             }
@@ -783,7 +802,7 @@ static void ShowPokeblockResults(void)
         CalculateConditionEnhancements();
         ConditionGraph_CalcPositions(sInfo->conditionsAfterBlock, sMenu->graph.savedPositions[CONDITION_GRAPH_LOAD_MAX - 1]);
         ConditionGraph_SetNewPositions(&sMenu->graph, sMenu->graph.savedPositions[sMenu->curLoadId], sMenu->graph.savedPositions[CONDITION_GRAPH_LOAD_MAX - 1]);
-        LoadAndCreateUpDownSprites();
+        LoadAndCreateUpDownSprites(sInfo->pokeblock);
         sInfo->mainState++;
         break;
     case 3:
@@ -910,9 +929,9 @@ static void PrintFirstEnhancement(void)
     }
 
     if (sInfo->condition < CONDITION_COUNT)
-        BufferEnhancedText(gStringVar4, sInfo->condition, sInfo->enhancements[sInfo->condition]);
+        BufferEnhancedText(gStringVar4, sInfo->condition, sInfo->enhancements[sInfo->condition], sInfo->pokeblock);
     else
-        BufferEnhancedText(gStringVar4, sInfo->condition, 0);
+        BufferEnhancedText(gStringVar4, sInfo->condition, 0, sInfo->pokeblock);
 
     PrintMenuWindowText(gStringVar4);
     PutWindowTilemap(WIN_TEXT);
@@ -938,7 +957,7 @@ static bool8 TryPrintNextEnhancement(void)
         }
     }
 
-    BufferEnhancedText(gStringVar4, sInfo->condition, sInfo->enhancements[sInfo->condition]);
+    BufferEnhancedText(gStringVar4, sInfo->condition, sInfo->enhancements[sInfo->condition], sInfo->pokeblock);
     PrintMenuWindowText(gStringVar4);
     CopyWindowToVram(WIN_TEXT, COPYWIN_GFX);
 
@@ -966,7 +985,7 @@ static void PrintMenuWindowText(const u8 *message)
     AddTextPrinterParameterized(WIN_TEXT, FONT_NORMAL, gStringVar4, 0, 1, 0, NULL);
 }
 
-static void BufferEnhancedText(u8 *dest, u8 condition, s16 enhancement)
+static void BufferEnhancedText(u8 *dest, u8 condition, s16 enhancement, struct Pokeblock *pokeblock)
 {
     switch (enhancement)
     {
@@ -974,10 +993,18 @@ static void BufferEnhancedText(u8 *dest, u8 condition, s16 enhancement)
         enhancement = 0;
         // fallthrough
     case -32768 ... -1: // if < 0
-        if (enhancement)
-            dest[(u16)enhancement] += 0; // something you can't imagine
-        StringCopy(dest, sConditionNames[condition]);
-        StringAppend(dest, gText_WasEnhanced);
+        if(pokeblock->color == PBLOCK_CLR_CLEAR){ //MOD CONTEST Now it checks for CLEAR pokeblocks when printing out the results
+            if (enhancement)
+                dest[(u16)enhancement] += 0; // something you can't imagine
+            StringCopy(dest, sConditionNames[condition]);
+            StringAppend(dest, gText_WasLowered);
+        }
+        else{
+            if (enhancement)
+                dest[(u16)enhancement] += 0; // something you can't imagine
+            StringCopy(dest, sConditionNames[condition]);
+            StringAppend(dest, gText_WasEnhanced);
+        }
         break;
     case 0:
         StringCopy(dest, gText_NothingChanged);
@@ -993,13 +1020,14 @@ static void GetMonConditions(struct Pokemon *mon, u8 *data)
         data[i] = GetMonData(mon, sConditionToMonData[i]);
 }
 
-static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon *mon)
+static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon *mon) 
 {
     u16 i;
     s16 stat;
+    u8 overflow;
     u8 data;
 
-    if (GetMonData(mon, MON_DATA_SHEEN) != MAX_SHEEN)
+    if (GetMonData(mon, MON_DATA_SHEEN) != MAX_SHEEN && pokeblock->color != PBLOCK_CLR_CLEAR) //MOD CONTEST  sheen has now a surplus value of 255 that is stored separately.
     {
         CalculatePokeblockEffectiveness(pokeblock, mon);
         for (i = 0; i < CONDITION_COUNT; i++)
@@ -1014,12 +1042,47 @@ static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon
             SetMonData(mon, sConditionToMonData[i], &data);
         }
 
-        stat = (u8)(GetMonData(mon, MON_DATA_SHEEN)) + pokeblock->feel;
-        if (stat > MAX_SHEEN)
+        stat = (u8)(GetMonData(mon, MON_DATA_SHEEN)) + pokeblock->feel; 
+        if (stat > MAX_SHEEN){
+            overflow = stat - MAX_SHEEN;
             stat = MAX_SHEEN;
-
+            SetMonData(mon, MON_DATA_OVERFLOWSHEEN, &overflow);
+        }
         data = stat;
         SetMonData(mon, MON_DATA_SHEEN, &data);
+    }
+    else if(pokeblock->color == PBLOCK_CLR_CLEAR){ //MOD CONTEST if a pokeblock color is clear, the feel and stats get lowered instead 
+        CalculatePokeblockEffectiveness(pokeblock, mon);
+        for (i = 0; i < CONDITION_COUNT; i++)
+        {
+            data = GetMonData(mon, sConditionToMonData[i]);
+            stat = data - pokeblock->feel;
+            if (stat < 0)
+                stat = 0;
+            if (stat > MAX_CONDITION)
+                stat = MAX_CONDITION;
+            data = stat;
+            SetMonData(mon, sConditionToMonData[i], &data);
+        }
+        
+        if (GetMonData(mon, MON_DATA_OVERFLOWSHEEN) < 1){//regular sheen is left as is until overflow sheen equals 0.
+            stat = (u8)(GetMonData(mon, MON_DATA_SHEEN)) - pokeblock->feel;
+            if (stat < 0)
+                stat = 0;
+            if (stat > MAX_SHEEN)
+                stat = MAX_SHEEN;
+            data = stat;
+            SetMonData(mon, MON_DATA_SHEEN, &data);
+        }
+        else{ //MOD CONTEST if the Pokemon has overflow sheen, lowers that one instead along with the rest of values.
+            stat = (u8)(GetMonData(mon, MON_DATA_OVERFLOWSHEEN)) - pokeblock->feel;
+            if (stat < 0)
+                stat = 0;
+            if (stat > 255)
+                stat = 255;
+            data = stat;
+            SetMonData(mon, MON_DATA_OVERFLOWSHEEN, &data);
+        }
     }
 }
 
@@ -1067,12 +1130,12 @@ static void CalculatePokeblockEffectiveness(struct Pokeblock *pokeblock, struct 
     }
 }
 
-static bool8 IsSheenMaxed(void)
+static bool8 IsSheenMaxed(struct Pokeblock *pokeblock)
 {
     if (GetBoxOrPartyMonData(sMenu->party[sMenu->info.curSelection].boxId,
                              sMenu->party[sMenu->info.curSelection].monId,
                              MON_DATA_SHEEN,
-                             NULL) == MAX_SHEEN)
+                             NULL) == MAX_SHEEN && pokeblock->color != PBLOCK_CLR_CLEAR) //MOD CONTEST checks if it's a Clear pokeblock
         return TRUE;
     else
         return FALSE;
@@ -1113,19 +1176,28 @@ static u8 UNUSED GetPartyIdFromSelectionId_(u8 selectionId)
     return GetPartyIdFromSelectionId(selectionId);
 }
 
-static void LoadAndCreateUpDownSprites(void)
+static void LoadAndCreateUpDownSprites(struct Pokeblock *pokeblock)
 {
     u16 i;
-
     LoadSpriteSheet(&sSpriteSheet_UpDown);
     LoadSpritePalette(&sSpritePalette_UpDown);
     sInfo->numEnhancements = 0;
 
     for (i = 0; i < CONDITION_COUNT; i++)
     {
-        if (sInfo->enhancements[i] != 0)
+        if (sInfo->enhancements[i] != 0 &&  pokeblock->color != PBLOCK_CLR_CLEAR)
         {
-            u16 spriteId = CreateSprite(&sSpriteTemplate_UpDown, sUpDownCoordsOnGraph[i][0], sUpDownCoordsOnGraph[i][1], 0);
+            u16 spriteId = CreateSprite(&sSpriteTemplate_UpDown, sUpDownCoordsOnGraph[i][0], sUpDownCoordsOnGraph[i][1], 1);
+            if (spriteId != MAX_SPRITES)
+            {
+                if (sInfo->enhancements[i] != 0) // Always true here
+                    gSprites[spriteId].callback = SpriteCB_UpDown;
+                sInfo->numEnhancements++;
+            }
+        }
+        else if (sInfo->enhancements[i] != 0)
+        {
+            u16 spriteId = CreateSprite(&sSpriteTemplate_Down, sUpDownCoordsOnGraph[i][0], sUpDownCoordsOnGraph[i][1], 1);
             if (spriteId != MAX_SPRITES)
             {
                 if (sInfo->enhancements[i] != 0) // Always true here

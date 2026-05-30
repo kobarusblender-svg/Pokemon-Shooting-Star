@@ -102,7 +102,7 @@ const struct TypeInfo gTypesInfo[NUMBER_OF_MON_TYPES] =
         //.teraShard = ITEM_FIGHTING_TERA_SHARD,
         //.arceusForm = SPECIES_ARCEUS_FIGHTING,
     },
-    [TYPE_FLYING] =
+    [TYPE_FLYING] =// Must change for E-reader Paprik berry (Japanese exclusive Touga berry)
     {
         .name = _("Flying"),
         .generic = _("a FLYING move"),

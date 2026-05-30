@@ -96,9 +96,10 @@ gSpecialVars::
 	.4byte gSpecialVar_ContestCategory
 	.4byte gSpecialVar_MonBoxId
 	.4byte gSpecialVar_MonBoxPos
-	.4byte gSpecialVar_Unused_0x8014
 	.4byte gTrainerBattleParameter + 2 // gTrainerBattleParameter.params.opponentA
-
+	.4byte gSpecialVar_ItemId1
+	.4byte gSpecialVar_ItemId2
+	.4byte gSpecialVar_ItemId3
 	.include "data/specials.inc"
 
 gStdScripts::
@@ -1161,5 +1162,13 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/dexnav.inc"
+
+	.include "data/maps/QuietShore/scripts.inc"
+
+	.include "data/maps/WaterflowIsland/scripts.inc"
+
+	.include "data/maps/Testing_Grounds/scripts.inc"
+
+	.include "data/maps/Waterflow_Forest/scripts.inc"
 	.include "data/scripts/battle_frontier.inc"
 	.include "data/scripts/apricorn_tree.inc"

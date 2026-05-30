@@ -87,6 +87,7 @@ extern const u16 gPokeblockOlive_Pal[];
 extern const u16 gPokeblockGray_Pal[];
 extern const u16 gPokeblockBlack_Pal[];
 extern const u16 gPokeblockWhite_Pal[];
+extern const u16 gPokeblockClear_Pal[];
 extern const u16 gPokeblockGold_Pal[];
 extern const u32 gPokeblock_Gfx[];
 
@@ -305,8 +306,50 @@ extern const u16 gPokedexSearchMenu_Pal[];
 // berry tag screen
 extern const u32 gBerryCheck_Gfx[];
 extern const u16 gBerryCheck_Pal[];
+extern const u32 gBerryTagFlip_Gfx[]; // MOD CONTEST Flip version of berry tag.
 extern const u32 gBerryTag_Gfx[];
-extern const u32 gBerryTag_Tilemap[];
+extern const u32 gBerryTag_Tilemap[]; 
+
+//MOD CONTEST Berry Season Table and Flavor Graf sprites
+extern const u32 gBerrySeasonPic[];
+extern const u32 gBerrySeasonQuestionPic[];
+extern const u32 gBerrySeasonXPic[];
+extern const u32 gBerryFlavorGrafPic[];
+extern const u16 gBerrySeasonPalette[];
+extern const u16 gBerryFlavorGrafPalette[]; //The Profile spritesheet contents are set in that order, one pre frame, following the order of each flavor(Spicy-Dry-Sweet-Bitter-Sour)
+extern const u32 gBerryFlavorProfileG1Pic[]; // Enigma Flavor Profile tiles
+extern const u32 gBerryFlavorProfileG2Pic[]; // + 40 x 3 flavors + 4-10 Spicy
+extern const u32 gBerryFlavorProfileG3Pic[]; // 30 x 3 flavors + Leppa
+extern const u32 gBerryFlavorProfileG4Pic[]; // 20-10 Spicy/Dry/Sweet/Bitter
+extern const u32 gBerryFlavorProfileG5Pic[]; // Remaining 40-10 Profiles
+extern const u32 gBerryFlavorProfileG6Pic[]; // 10-10 Sweet&Dry + 10-10 Spicy&Dry + 10 Dry + 10 Sweet
+extern const u32 gBerryFlavorProfileG7Pic[]; // 10 Spicy + 10-10 Sweet&Bitter + 20-10 Sour + 0 Flavors
+extern const u32 gBerryFlavorProfileG8Pic[]; // 10 In all Flavors + (?)Placeholder for unknown berry(?) + NULL + NULL. Free spaces!:D (If you don't value your sanity)
+extern const u16 gFlavorSpicyPalette[];
+extern const u16 gFlavorDryPalette[];
+extern const u16 gFlavorSweetPalette[];
+extern const u16 gFlavorBitterPalette[];
+extern const u16 gFlavorSourPalette[];
+extern const u16 gFlavorSpicyDryPalette[];
+extern const u16 gFlavorSpicySweetPalette[];
+extern const u16 gFlavorSpicyBitterPalette[];
+extern const u16 gFlavorSpicySourPalette[];
+extern const u16 gFlavorDrySweetPalette[];
+extern const u16 gFlavorDryBitterPalette[];
+extern const u16 gFlavorDrySourPalette[];
+extern const u16 gFlavorSweetBitterPalette[];
+extern const u16 gFlavorSweetSourPalette[];
+extern const u16 gFlavorBitterSourPalette[];
+extern const u16 gFlavorBalancedPalette[];
+
+//To the poor souls that want to add new berries to the game... Let me explain how this mess works:
+//
+// The code combines the profiles that don't overlap any flavors to create the more complex profiles, then it swaps the palletes based off of the strongest flavors.
+// I would reccomend trying to mix the pre-existing flavor profiles and compensate with FEEL value to have something aproximate to what you want to archieve.
+// Why is that? Well, the sprites look like they have transparency, but... Nope. I had to literally draw the details myself for it to look like that.
+// If you feel confident enough to make the actual grafic work, I would love to hear from you. (Although, I bet it won't look as cool as my version, kekeke)
+
+
 
 // rayquaza scene gfx
 extern const u32 gRaySceneDuoFight_Groudon_Gfx[];
@@ -1350,42 +1393,66 @@ extern const u32 gItemIcon_DurinBerry[];
 extern const u16 gItemIconPalette_DurinBerry[];
 extern const u32 gItemIcon_BelueBerry[];
 extern const u16 gItemIconPalette_BelueBerry[];
-extern const u32 gItemIcon_ChilanBerry[];
-extern const u16 gItemIconPalette_ChilanBerry[];
-extern const u32 gItemIcon_OccaBerry[];
-extern const u16 gItemIconPalette_OccaBerry[];
-extern const u32 gItemIcon_PasshoBerry[];
-extern const u16 gItemIconPalette_PasshoBerry[];
-extern const u32 gItemIcon_WacanBerry[];
-extern const u16 gItemIconPalette_WacanBerry[];
-extern const u32 gItemIcon_RindoBerry[];
-extern const u16 gItemIconPalette_RindoBerry[];
-extern const u32 gItemIcon_YacheBerry[];
-extern const u16 gItemIconPalette_YacheBerry[];
-extern const u32 gItemIcon_ChopleBerry[];
-extern const u16 gItemIconPalette_ChopleBerry[];
-extern const u32 gItemIcon_KebiaBerry[];
-extern const u16 gItemIconPalette_KebiaBerry[];
-extern const u32 gItemIcon_ShucaBerry[];
-extern const u16 gItemIconPalette_ShucaBerry[];
-extern const u32 gItemIcon_CobaBerry[];
-extern const u16 gItemIconPalette_CobaBerry[];
-extern const u32 gItemIcon_PayapaBerry[];
-extern const u16 gItemIconPalette_PayapaBerry[];
-extern const u32 gItemIcon_TangaBerry[];
-extern const u16 gItemIconPalette_TangaBerry[];
-extern const u32 gItemIcon_ChartiBerry[];
-extern const u16 gItemIconPalette_ChartiBerry[];
-extern const u32 gItemIcon_KasibBerry[];
-extern const u16 gItemIconPalette_KasibBerry[];
-extern const u32 gItemIcon_HabanBerry[];
-extern const u16 gItemIconPalette_HabanBerry[];
-extern const u32 gItemIcon_ColburBerry[];
-extern const u16 gItemIconPalette_ColburBerry[];
-extern const u32 gItemIcon_BabiriBerry[];
-extern const u16 gItemIconPalette_BabiriBerry[];
-extern const u32 gItemIcon_RoseliBerry[];
-extern const u16 gItemIconPalette_RoseliBerry[];
+//extern const u32 gItemIcon_ChilanBerry[];
+//extern const u16 gItemIconPalette_ChilanBerry[];
+extern const u32 gItemIcon_PumkinBerry[];           //MOD CONTEST Pumkin berry
+extern const u16 gItemIconPalette_PumkinBerry[];
+//extern const u32 gItemIcon_OccaBerry[];
+//extern const u16 gItemIconPalette_OccaBerry[];
+extern const u32 gItemIcon_DrashBerry[];            //MOD CONTEST Drash berry
+extern const u16 gItemIconPalette_DrashBerry[];
+//extern const u32 gItemIcon_PasshoBerry[];
+//extern const u16 gItemIconPalette_PasshoBerry[];
+extern const u32 gItemIcon_EggantBerry[];           // MOD CONTEST Eggant berry
+extern const u16 gItemIconPalette_EggantBerry[];
+//extern const u32 gItemIcon_WacanBerry[];
+//extern const u16 gItemIconPalette_WacanBerry[];
+extern const u32 gItemIcon_StribBerry[];            // MOD CONTEST Strib berry
+extern const u16 gItemIconPalette_StribBerry[]; 
+//extern const u32 gItemIcon_RindoBerry[];
+//extern const u16 gItemIconPalette_RindoBerry[];
+extern const u32 gItemIcon_ChilanERBerry[];         // MOD CONTEST ChilanER berry (Chilan E-Reader)
+extern const u16 gItemIconPalette_ChilanERBerry[];
+//extern const u32 gItemIcon_YacheBerry[];
+//extern const u16 gItemIconPalette_YacheBerry[];
+extern const u32 gItemIcon_NutpeaBerry[];           // MOD CONTEST Nutpea berry
+extern const u16 gItemIconPalette_NutpeaBerry[];
+//extern const u32 gItemIcon_ChopleBerry[];
+//extern const u16 gItemIconPalette_ChopleBerry[];
+extern const u32 gItemIcon_NoionBerry[];            // MOD CONTEST Noion berry (Japan exclusive Ginema berry)
+extern const u16 gItemIconPalette_NoionBerry[];
+//extern const u32 gItemIcon_KebiaBerry[];
+//extern const u16 gItemIconPalette_KebiaBerry[];
+extern const u32 gItemIcon_RokaBerry[];             // MOD CONTEST Roka berry (Japan exclusive Kuo berry)
+extern const u16 gItemIconPalette_RokaBerry[];
+//extern const u32 gItemIcon_ShucaBerry[];
+//extern const u16 gItemIconPalette_ShucaBerry[];
+extern const u32 gItemIcon_SkuashBerry[];        // MOD CONTEST Skuash berry (Japan exclusive Yago berry)
+extern const u16 gItemIconPalette_SkuashBerry[];
+//extern const u32 gItemIcon_CobaBerry[];
+//extern const u16 gItemIconPalette_CobaBerry[];
+extern const u32 gItemIcon_PaprikBerry[];           // MOD CONTEST Paprik berry (Japan exclusive Touga berry)
+extern const u16 gItemIconPalette_PaprikBerry[];
+//extern const u32 gItemIcon_PayapaBerry[];
+//extern const u16 gItemIconPalette_PayapaBerry[];
+extern const u32 gItemIcon_MaliumBerry[];          // MOD CONTEST Malium Berry (Japan exclusive Niniku berry)
+extern const u16 gItemIconPalette_MaliumBerry[];
+//extern const u32 gItemIcon_TangaBerry[];
+//extern const u16 gItemIconPalette_TangaBerry[];
+extern const u32 gItemIcon_TopoBerry[];             // MOD CONTEST Topo berry (Japan exclusive Topo berry)
+extern const u16 gItemIconPalette_TopoBerry[];
+//extern const u32 gItemIcon_ChartiBerry[];
+//extern const u16 gItemIconPalette_ChartiBerry[];
+//extern const u32 gItemIcon_KasibBerry[];
+//extern const u16 gItemIconPalette_KasibBerry[];
+//extern const u32 gItemIcon_HabanBerry[];
+//extern const u16 gItemIconPalette_HabanBerry[];
+//extern const u32 gItemIcon_ColburBerry[];
+//extern const u16 gItemIconPalette_ColburBerry[];
+//extern const u32 gItemIcon_BabiriBerry[];
+//extern const u16 gItemIconPalette_BabiriBerry[];
+//extern const u32 gItemIcon_RoseliBerry[];
+//extern const u16 gItemIconPalette_RoseliBerry[];
 extern const u32 gItemIcon_LiechiBerry[];
 extern const u16 gItemIconPalette_LiechiBerry[];
 extern const u32 gItemIcon_GanlonBerry[];
@@ -1402,18 +1469,18 @@ extern const u32 gItemIcon_StarfBerry[];
 extern const u16 gItemIconPalette_StarfBerry[];
 extern const u32 gItemIcon_EnigmaBerry[];
 extern const u16 gItemIconPalette_EnigmaBerry[];
-extern const u32 gItemIcon_MicleBerry[];
-extern const u16 gItemIconPalette_MicleBerry[];
-extern const u32 gItemIcon_CustapBerry[];
-extern const u16 gItemIconPalette_CustapBerry[];
-extern const u32 gItemIcon_JabocaBerry[];
-extern const u16 gItemIconPalette_JabocaBerry[];
-extern const u32 gItemIcon_RowapBerry[];
-extern const u16 gItemIconPalette_RowapBerry[];
-extern const u32 gItemIcon_KeeBerry[];
-extern const u16 gItemIconPalette_KeeBerry[];
-extern const u32 gItemIcon_MarangaBerry[];
-extern const u16 gItemIconPalette_MarangaBerry[];
+//extern const u32 gItemIcon_MicleBerry[];
+//extern const u16 gItemIconPalette_MicleBerry[];
+//extern const u32 gItemIcon_CustapBerry[];
+//extern const u16 gItemIconPalette_CustapBerry[];
+//extern const u32 gItemIcon_JabocaBerry[];
+//extern const u16 gItemIconPalette_JabocaBerry[];
+//extern const u32 gItemIcon_RowapBerry[];
+//extern const u16 gItemIconPalette_RowapBerry[];
+//extern const u32 gItemIcon_KeeBerry[];
+//extern const u16 gItemIconPalette_KeeBerry[];
+//extern const u32 gItemIcon_MarangaBerry[];
+//extern const u16 gItemIconPalette_MarangaBerry[];
 // TMs/HMs
 extern const u32 gItemIcon_TM[];
 extern const u32 gItemIcon_HM[];
@@ -1781,7 +1848,7 @@ extern const u32 gBerryPic_Spelon[];
 extern const u32 gBerryPic_Pamtre[];
 extern const u32 gBerryPic_Watmel[];
 extern const u32 gBerryPic_Durin[];
-extern const u32 gBerryPic_Belue[];
+extern const u32 gBerryPic_Belue[];/*
 extern const u32 gBerryPic_Chilan[];
 extern const u32 gBerryPic_Occa[];
 extern const u32 gBerryPic_Passho[];
@@ -1793,13 +1860,25 @@ extern const u32 gBerryPic_Kebia[];
 extern const u32 gBerryPic_Shuca[];
 extern const u32 gBerryPic_Coba[];
 extern const u32 gBerryPic_Payapa[];
-extern const u32 gBerryPic_Tanga[];
-extern const u32 gBerryPic_Charti[];
-extern const u32 gBerryPic_Kasib[];
-extern const u32 gBerryPic_Haban[];
-extern const u32 gBerryPic_Colbur[];
-extern const u32 gBerryPic_Babiri[];
-extern const u32 gBerryPic_Roseli[];
+extern const u32 gBerryPic_Tanga[];*/
+extern const u32 gBerryPic_Pumkin[];// MOD CONTEST E-reader berries:
+extern const u32 gBerryPic_Drash[];
+extern const u32 gBerryPic_Eggant[];
+extern const u32 gBerryPic_Strib[];
+extern const u32 gBerryPic_ChilanER[];
+extern const u32 gBerryPic_Nutpea[];
+extern const u32 gBerryPic_Noion[];//(Japanese exclusive Ginema berry)
+extern const u32 gBerryPic_Roka[];//(Japanese exclusive Kuo berry)
+extern const u32 gBerryPic_Skuash[];//(Japanese exclusive Yago berry)
+extern const u32 gBerryPic_Paprik[];//(Japanese exclusive Touga berry)
+extern const u32 gBerryPic_Malium[];//(Japanese exclusive Niniku berry)
+extern const u32 gBerryPic_Topo[];//(Japanese exclusive Topo berry)
+//extern const u32 gBerryPic_Charti[];
+//extern const u32 gBerryPic_Kasib[];
+//extern const u32 gBerryPic_Haban[];
+//extern const u32 gBerryPic_Colbur[];
+//extern const u32 gBerryPic_Babiri[];
+//extern const u32 gBerryPic_Roseli[];
 extern const u32 gBerryPic_Liechi[];
 extern const u32 gBerryPic_Ganlon[];
 extern const u32 gBerryPic_Salac[];
@@ -1808,12 +1887,12 @@ extern const u32 gBerryPic_Apicot[];
 extern const u32 gBerryPic_Lansat[];
 extern const u32 gBerryPic_Starf[];
 extern const u32 gBerryPic_Enigma[];
-extern const u32 gBerryPic_Micle[];
-extern const u32 gBerryPic_Custap[];
-extern const u32 gBerryPic_Jaboca[];
-extern const u32 gBerryPic_Rowap[];
-extern const u32 gBerryPic_Kee[];
-extern const u32 gBerryPic_Maranga[];
+//extern const u32 gBerryPic_Micle[];
+//extern const u32 gBerryPic_Custap[];
+//extern const u32 gBerryPic_Jaboca[];
+//extern const u32 gBerryPic_Rowap[];
+//extern const u32 gBerryPic_Kee[];
+//extern const u32 gBerryPic_Maranga[];
 extern const u16 gBerryPalette_Cheri[];
 extern const u16 gBerryPalette_Chesto[];
 extern const u16 gBerryPalette_Pecha[];
@@ -1849,24 +1928,36 @@ extern const u16 gBerryPalette_Pamtre[];
 extern const u16 gBerryPalette_Watmel[];
 extern const u16 gBerryPalette_Durin[];
 extern const u16 gBerryPalette_Belue[];
-extern const u16 gBerryPalette_Chilan[];
-extern const u16 gBerryPalette_Occa[];
-extern const u16 gBerryPalette_Passho[];
-extern const u16 gBerryPalette_Wacan[];
-extern const u16 gBerryPalette_Rindo[];
-extern const u16 gBerryPalette_Yache[];
-extern const u16 gBerryPalette_Chople[];
-extern const u16 gBerryPalette_Kebia[];
-extern const u16 gBerryPalette_Shuca[];
-extern const u16 gBerryPalette_Coba[];
-extern const u16 gBerryPalette_Payapa[];
-extern const u16 gBerryPalette_Tanga[];
-extern const u16 gBerryPalette_Charti[];
-extern const u16 gBerryPalette_Kasib[];
-extern const u16 gBerryPalette_Haban[];
-extern const u16 gBerryPalette_Colbur[];
-extern const u16 gBerryPalette_Babiri[];
-extern const u16 gBerryPalette_Roseli[];
+//extern const u16 gBerryPalette_Chilan[];
+//extern const u16 gBerryPalette_Occa[];
+//extern const u16 gBerryPalette_Passho[];
+//extern const u16 gBerryPalette_Wacan[];
+//extern const u16 gBerryPalette_Rindo[];
+//extern const u16 gBerryPalette_Yache[];
+//extern const u16 gBerryPalette_Chople[];
+//extern const u16 gBerryPalette_Kebia[];
+//extern const u16 gBerryPalette_Shuca[];
+//extern const u16 gBerryPalette_Coba[];
+//extern const u16 gBerryPalette_Payapa[];
+//extern const u16 gBerryPalette_Tanga[];
+extern const u16 gBerryPalette_Pumkin[];//MOD CONTEST E-Reader berries:
+extern const u16 gBerryPalette_Drash[];
+extern const u16 gBerryPalette_Eggant[];
+extern const u16 gBerryPalette_Strib[]; 
+extern const u16 gBerryPalette_ChilanER[];
+extern const u16 gBerryPalette_Nutpea[];
+extern const u16 gBerryPalette_Noion[];//(Japanese exclusive Ginema berry)
+extern const u16 gBerryPalette_Roka[];//(Japanese exclusive Kuo berry)
+extern const u16 gBerryPalette_Skuash[];//(Japanese exclusive Yago berry)
+extern const u16 gBerryPalette_Paprik[];//(Japanese exclusive Touga berry)
+extern const u16 gBerryPalette_Malium[];//(Japanese exclusive Niniku berry)
+extern const u16 gBerryPalette_Topo[];// (Japanese exclusive Topo berry)
+//extern const u16 gBerryPalette_Charti[];
+//extern const u16 gBerryPalette_Kasib[];
+//extern const u16 gBerryPalette_Haban[];
+//extern const u16 gBerryPalette_Colbur[];
+//extern const u16 gBerryPalette_Babiri[];
+//extern const u16 gBerryPalette_Roseli[];
 extern const u16 gBerryPalette_Liechi[];
 extern const u16 gBerryPalette_Ganlon[];
 extern const u16 gBerryPalette_Salac[];
@@ -1875,12 +1966,175 @@ extern const u16 gBerryPalette_Apicot[];
 extern const u16 gBerryPalette_Lansat[];
 extern const u16 gBerryPalette_Starf[];
 extern const u16 gBerryPalette_Enigma[];
-extern const u16 gBerryPalette_Micle[];
-extern const u16 gBerryPalette_Custap[];
-extern const u16 gBerryPalette_Jaboca[];
-extern const u16 gBerryPalette_Rowap[];
-extern const u16 gBerryPalette_Kee[];
-extern const u16 gBerryPalette_Maranga[];
+//extern const u16 gBerryPalette_Micle[];
+//extern const u16 gBerryPalette_Custap[];
+//extern const u16 gBerryPalette_Jaboca[];
+//extern const u16 gBerryPalette_Rowap[];
+//extern const u16 gBerryPalette_Kee[];
+//extern const u16 gBerryPalette_Maranga[];
+
+
+// berry flower pics
+extern const u32 gFlowerPic_Cheri[];
+extern const u32 gFlowerPic_Chesto[];
+extern const u32 gFlowerPic_Pecha[];
+extern const u32 gFlowerPic_Rawst[];
+extern const u32 gFlowerPic_Aspear[];
+extern const u32 gFlowerPic_Leppa[];
+extern const u32 gFlowerPic_Oran[];
+extern const u32 gFlowerPic_Persim[];
+extern const u32 gFlowerPic_Lum[];
+extern const u32 gFlowerPic_Sitrus[];
+extern const u32 gFlowerPic_Figy[];
+extern const u32 gFlowerPic_Wiki[];
+extern const u32 gFlowerPic_Mago[];
+extern const u32 gFlowerPic_Aguav[];
+extern const u32 gFlowerPic_Iapapa[];
+extern const u32 gFlowerPic_Razz[];
+extern const u32 gFlowerPic_Bluk[];
+extern const u32 gFlowerPic_Nanab[];
+extern const u32 gFlowerPic_Wepear[];
+extern const u32 gFlowerPic_Pinap[];
+extern const u32 gFlowerPic_Pomeg[];
+extern const u32 gFlowerPic_Kelpsy[];
+extern const u32 gFlowerPic_Qualot[];
+extern const u32 gFlowerPic_Hondew[];
+extern const u32 gFlowerPic_Grepa[];
+extern const u32 gFlowerPic_Tamato[];
+extern const u32 gFlowerPic_Cornn[];
+extern const u32 gFlowerPic_Magost[];
+extern const u32 gFlowerPic_Rabuta[];
+extern const u32 gFlowerPic_Nomel[];
+extern const u32 gFlowerPic_Spelon[];
+extern const u32 gFlowerPic_Pamtre[];
+extern const u32 gFlowerPic_Watmel[];
+extern const u32 gFlowerPic_Durin[];
+extern const u32 gFlowerPic_Belue[];/*
+extern const u32 gFlowerPic_Chilan[];
+extern const u32 gFlowerPic_Occa[];
+extern const u32 gFlowerPic_Passho[];
+extern const u32 gFlowerPic_Wacan[];
+extern const u32 gFlowerPic_Rindo[];
+extern const u32 gFlowerPic_Yache[];
+extern const u32 gFlowerPic_Chople[];
+extern const u32 gFlowerPic_Kebia[];
+extern const u32 gFlowerPic_Shuca[];
+extern const u32 gFlowerPic_Coba[];
+extern const u32 gFlowerPic_Payapa[];
+extern const u32 gFlowerPic_Tanga[];*/
+extern const u32 gFlowerPic_Pumkin[];// MOD CONTEST E-reader berries:
+extern const u32 gFlowerPic_Drash[];
+extern const u32 gFlowerPic_Eggant[];
+extern const u32 gFlowerPic_Strib[];
+extern const u32 gFlowerPic_ChilanER[];
+extern const u32 gFlowerPic_Nutpea[];
+extern const u32 gFlowerPic_Noion[];//(Japanese exclusive Ginema berry)
+extern const u32 gFlowerPic_Roka[];//(Japanese exclusive Kuo berry)
+extern const u32 gFlowerPic_Skuash[];//(Japanese exclusive Yago berry)
+extern const u32 gFlowerPic_Paprik[];//(Japanese exclusive Touga berry)
+extern const u32 gFlowerPic_Malium[];//(Japanese exclusive Niniku berry)
+extern const u32 gFlowerPic_Topo[];//(Japanese exclusive Topo berry)
+//extern const u32 gFlowerPic_Charti[];
+//extern const u32 gFlowerPic_Kasib[];
+//extern const u32 gFlowerPic_Haban[];
+//extern const u32 gFlowerPic_Colbur[];
+//extern const u32 gFlowerPic_Babiri[];
+//extern const u32 gFlowerPic_Roseli[];
+extern const u32 gFlowerPic_Liechi[];
+extern const u32 gFlowerPic_Ganlon[];
+extern const u32 gFlowerPic_Salac[];
+extern const u32 gFlowerPic_Petaya[];
+extern const u32 gFlowerPic_Apicot[];
+extern const u32 gFlowerPic_Lansat[];
+extern const u32 gFlowerPic_Starf[];
+extern const u32 gFlowerPic_Enigma[];
+//extern const u32 gFlowerPic_Micle[];
+//extern const u32 gFlowerPic_Custap[];
+//extern const u32 gFlowerPic_Jaboca[];
+//extern const u32 gFlowerPic_Rowap[];
+//extern const u32 gFlowerPic_Kee[];
+//extern const u32 gFlowerPic_Maranga[];
+extern const u16 gFlowerPalette_Cheri[];
+extern const u16 gFlowerPalette_Chesto[];
+extern const u16 gFlowerPalette_Pecha[];
+extern const u16 gFlowerPalette_Rawst[];
+extern const u16 gFlowerPalette_Aspear[];
+extern const u16 gFlowerPalette_Leppa[];
+extern const u16 gFlowerPalette_Oran[];
+extern const u16 gFlowerPalette_Persim[];
+extern const u16 gFlowerPalette_Lum[];
+extern const u16 gFlowerPalette_Sitrus[];
+extern const u16 gFlowerPalette_Figy[];
+extern const u16 gFlowerPalette_Wiki[];
+extern const u16 gFlowerPalette_Mago[];
+extern const u16 gFlowerPalette_Aguav[];
+extern const u16 gFlowerPalette_Iapapa[];
+extern const u16 gFlowerPalette_Razz[];
+extern const u16 gFlowerPalette_Bluk[];
+extern const u16 gFlowerPalette_Nanab[];
+extern const u16 gFlowerPalette_Wepear[];
+extern const u16 gFlowerPalette_Pinap[];
+extern const u16 gFlowerPalette_Pomeg[];
+extern const u16 gFlowerPalette_Kelpsy[];
+extern const u16 gFlowerPalette_Qualot[];
+extern const u16 gFlowerPalette_Hondew[];
+extern const u16 gFlowerPalette_Grepa[];
+extern const u16 gFlowerPalette_Tamato[];
+extern const u16 gFlowerPalette_Cornn[];
+extern const u16 gFlowerPalette_Magost[];
+extern const u16 gFlowerPalette_Rabuta[];
+extern const u16 gFlowerPalette_Nomel[];
+extern const u16 gFlowerPalette_Spelon[];
+extern const u16 gFlowerPalette_Pamtre[];
+extern const u16 gFlowerPalette_Watmel[];
+extern const u16 gFlowerPalette_Durin[];
+extern const u16 gFlowerPalette_Belue[];
+//extern const u16 gFlowerPalette_Chilan[];
+//extern const u16 gFlowerPalette_Occa[];
+//extern const u16 gFlowerPalette_Passho[];
+//extern const u16 gFlowerPalette_Wacan[];
+//extern const u16 gFlowerPalette_Rindo[];
+//extern const u16 gFlowerPalette_Yache[];
+//extern const u16 gFlowerPalette_Chople[];
+//extern const u16 gFlowerPalette_Kebia[];
+//extern const u16 gFlowerPalette_Shuca[];
+//extern const u16 gFlowerPalette_Coba[];
+//extern const u16 gFlowerPalette_Payapa[];
+//extern const u16 gFlowerPalette_Tanga[];
+extern const u16 gFlowerPalette_Pumkin[];//MOD CONTEST E-Reader berries:
+extern const u16 gFlowerPalette_Drash[];
+extern const u16 gFlowerPalette_Eggant[];
+extern const u16 gFlowerPalette_Strib[]; 
+extern const u16 gFlowerPalette_ChilanER[];
+extern const u16 gFlowerPalette_Nutpea[];
+extern const u16 gFlowerPalette_Noion[];//(Japanese exclusive Ginema berry)
+extern const u16 gFlowerPalette_Roka[];//(Japanese exclusive Kuo berry)
+extern const u16 gFlowerPalette_Skuash[];//(Japanese exclusive Yago berry)
+extern const u16 gFlowerPalette_Paprik[];//(Japanese exclusive Touga berry)
+extern const u16 gFlowerPalette_Malium[];//(Japanese exclusive Niniku berry)
+extern const u16 gFlowerPalette_Topo[];// (Japanese exclusive Topo berry)
+//extern const u16 gFlowerPalette_Charti[];
+//extern const u16 gFlowerPalette_Kasib[];
+//extern const u16 gFlowerPalette_Haban[];
+//extern const u16 gFlowerPalette_Colbur[];
+//extern const u16 gFlowerPalette_Babiri[];
+//extern const u16 gFlowerPalette_Roseli[];
+extern const u16 gFlowerPalette_Liechi[];
+extern const u16 gFlowerPalette_Ganlon[];
+extern const u16 gFlowerPalette_Salac[];
+extern const u16 gFlowerPalette_Petaya[];
+extern const u16 gFlowerPalette_Apicot[];
+extern const u16 gFlowerPalette_Lansat[];
+extern const u16 gFlowerPalette_Starf[];
+extern const u16 gFlowerPalette_Enigma[];
+//extern const u16 gFlowerPalette_Micle[];
+//extern const u16 gFlowerPalette_Custap[];
+//extern const u16 gFlowerPalette_Jaboca[];
+//extern const u16 gFlowerPalette_Rowap[];
+//extern const u16 gFlowerPalette_Kee[];
+//extern const u16 gFlowerPalette_Maranga[];
+
+
 
 //PokéNav
 extern const u16 gPokenavCondition_Pal[];
@@ -1966,11 +2220,12 @@ extern const u32 gPokeblockFeedBg_Tilemap[];
 extern const u32 gConfetti_Gfx[];
 extern const u16 gConfetti_Pal[];
 
+//MOD CONTEST// Have to add some parameters here for the performance bar... I think.
 extern const u32 gBattleInterfaceGfx_BattleBar[];
 extern const u32 gBattleAnimSpriteGfx_Substitute[];
 extern const u32 gBattleAnimSpriteGfx_SubstituteBack[];
 extern const u16 gBattleAnimSpritePal_Substitute[];
-extern const u32 gHealthboxSinglesPlayerGfx[];
+extern const u32 gHealthboxSinglesPlayerGfx[]; 
 extern const u32 gHealthboxSinglesOpponentGfx[];
 extern const u32 gHealthboxDoublesPlayerGfx[];
 extern const u32 gHealthboxDoublesOpponentGfx[];

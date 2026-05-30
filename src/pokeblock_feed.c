@@ -414,7 +414,8 @@ static const u16 *const sPokeblocksPals[] =
     [PBLOCK_CLR_GRAY - 1]      = gPokeblockGray_Pal,
     [PBLOCK_CLR_BLACK - 1]     = gPokeblockBlack_Pal,
     [PBLOCK_CLR_WHITE - 1]     = gPokeblockWhite_Pal,
-    [PBLOCK_CLR_GOLD - 1]      = gPokeblockGold_Pal
+    [PBLOCK_CLR_GOLD - 1]      = gPokeblockGold_Pal,
+    [PBLOCK_CLR_CLEAR - 1]     = gPokeblockClear_Pal //
 };
 
 static const union AffineAnimCmd sAffineAnim_Still[] =

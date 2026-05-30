@@ -75,6 +75,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_A, //Growth season type, 1/10, defined on berry tag
+        .graficGroup = 7,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX] =
@@ -98,6 +102,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_C,
+        .graficGroup = 6,
+        .tileNumber1 = 3,
+        .tileNumber2 = 0,
     },
 
     [ITEM_PECHA_BERRY - FIRST_BERRY_INDEX] =
@@ -121,6 +129,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 4,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 6,
+        .tileNumber1 = 4,
+        .tileNumber2 = 0,
     },
 
     [ITEM_RAWST_BERRY - FIRST_BERRY_INDEX] =
@@ -144,6 +156,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_A,
+        .graficGroup = 6,
+        .tileNumber1 = 8, //Flip tiles are multiplied by 2
+        .tileNumber2 = 0,
     },
 
     [ITEM_ASPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -167,6 +183,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_D,
+        .graficGroup = 6,
+        .tileNumber1 = 6,
+        .tileNumber2 = 0,
     },
 
     [ITEM_LEPPA_BERRY - FIRST_BERRY_INDEX] =
@@ -190,6 +210,10 @@ const struct Berry gBerries[] =
         .waterBonus = 15,
         .weedsBonus = 3,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 3,
+        .tileNumber1 = 4,
+        .tileNumber2 = 0,
     },
 
     [ITEM_ORAN_BERRY - FIRST_BERRY_INDEX] =
@@ -213,6 +237,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 4,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_F,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_PERSIM_BERRY - FIRST_BERRY_INDEX] =
@@ -236,6 +264,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_F,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_LUM_BERRY - FIRST_BERRY_INDEX] =
@@ -259,6 +291,10 @@ const struct Berry gBerries[] =
         .waterBonus = 12,
         .weedsBonus = 1,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_H,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_SITRUS_BERRY - FIRST_BERRY_INDEX] =
@@ -282,6 +318,10 @@ const struct Berry gBerries[] =
         .waterBonus = 12,
         .weedsBonus = 1,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_F,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_FIGY_BERRY - FIRST_BERRY_INDEX] =
@@ -305,6 +345,10 @@ const struct Berry gBerries[] =
         .waterBonus = 15,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 7,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_WIKI_BERRY - FIRST_BERRY_INDEX] =
@@ -328,6 +372,10 @@ const struct Berry gBerries[] =
         .waterBonus = 15,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 6,
+        .tileNumber1 = 3,
+        .tileNumber2 = 0,
     },
 
     [ITEM_MAGO_BERRY - FIRST_BERRY_INDEX] =
@@ -351,6 +399,10 @@ const struct Berry gBerries[] =
         .waterBonus = 15,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_H,
+        .graficGroup = 6,
+        .tileNumber1 = 4,
+        .tileNumber2 = 0,
     },
 
     [ITEM_AGUAV_BERRY - FIRST_BERRY_INDEX] =
@@ -374,6 +426,10 @@ const struct Berry gBerries[] =
         .waterBonus = 15,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_F,
+        .graficGroup = 6,
+        .tileNumber1 = 8,
+        .tileNumber2 = 0,
     },
 
     [ITEM_IAPAPA_BERRY - FIRST_BERRY_INDEX] =
@@ -397,6 +453,10 @@ const struct Berry gBerries[] =
         .waterBonus = 15,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 6,
+        .tileNumber1 = 6,
+        .tileNumber2 = 0,
     },
 
     [ITEM_RAZZ_BERRY - FIRST_BERRY_INDEX] =
@@ -420,6 +480,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 6,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_BLUK_BERRY - FIRST_BERRY_INDEX] =
@@ -443,6 +507,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 6,
+        .tileNumber1 = 2,
+        .tileNumber2 = 0,
     },
 
     [ITEM_NANAB_BERRY - FIRST_BERRY_INDEX] =
@@ -466,6 +534,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 7,
+        .tileNumber1 = 2,
+        .tileNumber2 = 0,
     },
 
     [ITEM_WEPEAR_BERRY - FIRST_BERRY_INDEX] =
@@ -489,6 +561,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_F,
+        .graficGroup = 6,
+        .tileNumber1 = 7, //Flip Tile number 4 already exists so, we use the second free odd
+        .tileNumber2 = 0,
     },
 
     [ITEM_PINAP_BERRY - FIRST_BERRY_INDEX] =
@@ -512,6 +588,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 6,
+        .tileNumber1 = 5, //Flip Tile number 2 already exists so, we use the first free odd
+        .tileNumber2 = 0,
     },
 
     [ITEM_POMEG_BERRY - FIRST_BERRY_INDEX] =
@@ -535,6 +615,10 @@ const struct Berry gBerries[] =
         .waterBonus = 5,
         .weedsBonus = 3,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_H,
+        .graficGroup = 7,
+        .tileNumber1 = 1,
+        .tileNumber2 = 2,
     },
 
     [ITEM_KELPSY_BERRY - FIRST_BERRY_INDEX] =
@@ -558,6 +642,10 @@ const struct Berry gBerries[] =
         .waterBonus = 5,
         .weedsBonus = 3,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 6,
+        .tileNumber1 = 3,
+        .tileNumber2 = 7,
     },
 
     [ITEM_QUALOT_BERRY - FIRST_BERRY_INDEX] =
@@ -581,6 +669,10 @@ const struct Berry gBerries[] =
         .waterBonus = 5,
         .weedsBonus = 3,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_H,
+        .graficGroup = 6,
+        .tileNumber1 = 4,
+        .tileNumber2 = 5,
     },
 
     [ITEM_HONDEW_BERRY - FIRST_BERRY_INDEX] =
@@ -604,6 +696,10 @@ const struct Berry gBerries[] =
         .waterBonus = 5,
         .weedsBonus = 3,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 6,
+        .tileNumber1 = 8,
+        .tileNumber2 = 1,
     },
 
     [ITEM_GREPA_BERRY - FIRST_BERRY_INDEX] =
@@ -627,6 +723,10 @@ const struct Berry gBerries[] =
         .waterBonus = 5,
         .weedsBonus = 3,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 6,
+        .tileNumber1 = 6,
+        .tileNumber2 = 2,
     },
 
     [ITEM_TAMATO_BERRY - FIRST_BERRY_INDEX] =
@@ -650,6 +750,10 @@ const struct Berry gBerries[] =
         .waterBonus = 5,
         .weedsBonus = 3,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 4,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_CORNN_BERRY - FIRST_BERRY_INDEX] =
@@ -673,6 +777,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 4,
+        .tileNumber1 = 2,
+        .tileNumber2 = 0,
     },
 
     [ITEM_MAGOST_BERRY - FIRST_BERRY_INDEX] =
@@ -696,6 +804,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 4,
+        .tileNumber1 = 3,
+        .tileNumber2 = 0,
     },
 
     [ITEM_RABUTA_BERRY - FIRST_BERRY_INDEX] =
@@ -719,6 +831,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_H,
+        .graficGroup = 4,
+        .tileNumber1 = 4,
+        .tileNumber2 = 0,
     },
 
     [ITEM_NOMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -742,6 +858,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 7,
+        .tileNumber1 = 3,
+        .tileNumber2 = 0,
     },
 
     [ITEM_SPELON_BERRY - FIRST_BERRY_INDEX] =
@@ -765,6 +885,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_H,
+        .graficGroup = 2,
+        .tileNumber1 = 4,
+        .tileNumber2 = 0,
     },
 
     [ITEM_PAMTRE_BERRY - FIRST_BERRY_INDEX] =
@@ -788,6 +912,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_I,
+        .graficGroup = 5,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX] =
@@ -811,6 +939,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 5,
+        .tileNumber1 = 2,
+        .tileNumber2 = 0,
     },
 
     [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX] =
@@ -834,6 +966,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_C,
+        .graficGroup = 5,
+        .tileNumber1 = 3,
+        .tileNumber2 = 0,
     },
 
     [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX] =
@@ -857,9 +993,13 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 2,
         .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 5,
+        .tileNumber1 = 4,
+        .tileNumber2 = 0,
     },
 
-    [ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Chilan"),
         .firmness = BERRY_FIRMNESS_VERY_SOFT,
@@ -880,6 +1020,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_OCCA_BERRY - FIRST_BERRY_INDEX] =
@@ -903,6 +1044,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_PASSHO_BERRY - FIRST_BERRY_INDEX] =
@@ -926,6 +1068,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_WACAN_BERRY - FIRST_BERRY_INDEX] =
@@ -949,6 +1092,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_RINDO_BERRY - FIRST_BERRY_INDEX] =
@@ -972,6 +1116,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_YACHE_BERRY - FIRST_BERRY_INDEX] =
@@ -995,6 +1140,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_CHOPLE_BERRY - FIRST_BERRY_INDEX] =
@@ -1018,6 +1164,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_KEBIA_BERRY - FIRST_BERRY_INDEX] =
@@ -1041,6 +1188,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_SHUCA_BERRY - FIRST_BERRY_INDEX] =
@@ -1064,6 +1212,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_COBA_BERRY - FIRST_BERRY_INDEX] =
@@ -1087,6 +1236,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_PAYAPA_BERRY - FIRST_BERRY_INDEX] =
@@ -1110,6 +1260,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_TANGA_BERRY - FIRST_BERRY_INDEX] =
@@ -1133,9 +1284,336 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
+    },*/
+
+    //MOD CONTEST E-reader berries:
+
+    [ITEM_PAPRIK_BERRY - FIRST_BERRY_INDEX] =// E-reader Paprik berry (Japanese exclusive Touga berry)
+    {
+        .name = _("Paprik"),
+        .firmness = BERRY_FIRMNESS_SUPER_HARD,
+        .color = BERRY_COLOR_RED,
+        .size = 153,
+        .maxYield = YIELD_RATE(5, 5, 20, 10),
+        .minYield = YIELD_RATE(2, 1, 3, 2),
+        .description1 = COMPOUND_STRING("It's extemely spicy. Nobody dares"),
+        .description2 = COMPOUND_STRING("to try it, let alone eat one whole."),
+        .growthDuration = GROWTH_DURATION(84, 72, 108, 48, 32, 48),
+        .spicy = 40,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 0,
+        .smoothness = 30,
+        .drainRate = 6,
+        .waterBonus = 10,
+        .weedsBonus = 1,
+        .pestsBonus = 4,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 2,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
-    [ITEM_CHARTI_BERRY - FIRST_BERRY_INDEX] =
+    [ITEM_EGGANT_BERRY - FIRST_BERRY_INDEX] =//E-reader Eggant berry
+    {
+        .name = _("Eggant"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .color = BERRY_COLOR_PURPLE,
+        .size = 41,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("Very dry tasting, especially the"),
+        .description2 = COMPOUND_STRING("parts not exposed to the sun."),
+        .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 34),
+        .spicy = 0,
+        .dry = 40,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 0,
+        .smoothness = 65,
+        .drainRate = 8,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_G,
+        .graficGroup = 2,
+        .tileNumber1 = 2,
+        .tileNumber2 = 0,
+    },
+
+    [ITEM_DRASH_BERRY - FIRST_BERRY_INDEX] =//E-reader Drash berry
+    {
+        .name = _("Drash"),
+        .firmness = BERRY_FIRMNESS_VERY_HARD,
+        .color = BERRY_COLOR_PINK,
+        .size = 134,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("When it ripens, this sweet Berry"),
+        .description2 = COMPOUND_STRING("falls and sticks into the ground."),
+        .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 24),
+        .spicy = 0,
+        .dry = 0,
+        .sweet = 40,
+        .bitter = 0,
+        .sour = 0,
+        .smoothness = 65,
+        .drainRate = 8,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_C,
+        .graficGroup = 2,
+        .tileNumber1 = 3,
+        .tileNumber2 = 0,
+    },
+
+    [ITEM_SKUASH_BERRY - FIRST_BERRY_INDEX] =// E-reader Skuash berry (Japanese exclusive Yago berry)
+    {
+        .name = _("Skuash"), //had to change the name to fit 6 char. Bitsquash sounds better still.
+        .firmness = BERRY_FIRMNESS_VERY_HARD,
+        .color = BERRY_COLOR_GREEN,
+        .size = 42,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("This Berry tastes awfully bitter."),
+        .description2 = COMPOUND_STRING("It's so light it feels weightless."),
+        .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 34),
+        .spicy = 0,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 40,
+        .sour = 0,
+        .smoothness = 65,
+        .drainRate = 8,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_C,
+        .graficGroup = 2,
+        .tileNumber1 = 6,
+        .tileNumber2 = 0,
+    },
+
+    [ITEM_PUMKIN_BERRY - FIRST_BERRY_INDEX] =//E-reader Pumkin Berry
+    {
+        .name = _("Pumkin"),
+        .firmness = BERRY_FIRMNESS_SUPER_HARD,
+        .color = BERRY_COLOR_YELLOW,
+        .size = 48,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(2, 1, 3, 3),
+        .description1 = COMPOUND_STRING("This Berry is amazingly sour."),
+        .description2 = COMPOUND_STRING("It's heavy due to its dense filling."),
+        .growthDuration = GROWTH_DURATION(84, 72, 108, 48, 32, 48), 
+        .spicy = 0,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 40,
+        .smoothness = 65,
+        .drainRate = 8,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_C,
+        .graficGroup = 2,
+        .tileNumber1 = 7,
+        .tileNumber2 = 0,
+    },
+
+    [ITEM_CHILANER_BERRY - FIRST_BERRY_INDEX] =// E-reader Chilan berry
+    {
+        .name = _("Chilan"),
+        .firmness = BERRY_FIRMNESS_SOFT,
+        .color = BERRY_COLOR_RED,
+        .size = 272,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("This sparse Berry grows quickly."),
+        .description2 = COMPOUND_STRING("Its skin is quite tough."),
+        .growthDuration = GROWTH_DURATION(4, 8, 12, 24, 16, 24),
+        .spicy = 30,
+        .dry = 0,
+        .sweet = 30,
+        .bitter = 0,
+        .sour = 0,
+        .smoothness = 85,
+        .drainRate = 35,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_F,
+        .graficGroup = 3,
+        .tileNumber1 = 1,
+        .tileNumber2 = 3,
+    },
+
+    [ITEM_MALIUM_BERRY - FIRST_BERRY_INDEX] =// E-reader Malium Berry (Japanese exclusive Niniku berry)
+    {
+        .name = _("Malium"), //had to remove an l to fit in 6 char.
+        .firmness = BERRY_FIRMNESS_HARD,
+        .color = BERRY_COLOR_PURPLE,
+        .size = 249,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("This sparse Berry grows quickly."),
+        .description2 = COMPOUND_STRING("The stem leaks an enticing scent."),
+        .growthDuration = GROWTH_DURATION(4, 8, 12, 24, 16, 24),
+        .spicy = 0,
+        .dry = 30,
+        .sweet = 0,
+        .bitter = 30,
+        .sour = 0,
+        .smoothness = 85,
+        .drainRate = 35,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_F,
+        .graficGroup = 3,
+        .tileNumber1 = 2,
+        .tileNumber2 = 6,
+    },
+
+    [ITEM_TOPO_BERRY - FIRST_BERRY_INDEX] =// E-reader Topo berry (Japanese exclusive Topo berry)
+    {
+        .name = _("Topo"),
+        .firmness = BERRY_FIRMNESS_VERY_HARD,
+        .color = BERRY_COLOR_PINK,
+        .size = 88,
+        .maxYield = YIELD_RATE(12, 30, 40, 50),
+        .minYield = YIELD_RATE(4, 2, 4, 6),
+        .description1 = COMPOUND_STRING("It grows slowly, but abundantly."),
+        .description2 = COMPOUND_STRING("Full of sweet and sour juices."),
+        .growthDuration = GROWTH_DURATION(96, 96, 144, 72, 48, 72),
+        .spicy = 0,
+        .dry = 0,
+        .sweet = 30,
+        .bitter = 0,
+        .sour = 30,
+        .smoothness = 85,
+        .drainRate = 7,
+        .waterBonus = 2,
+        .weedsBonus = 0,
+        .pestsBonus = 0,
+        .growthSeasons = SEASON_I,
+        .graficGroup = 3,
+        .tileNumber1 = 3,
+        .tileNumber2 = 7,
+    },
+
+    [ITEM_STRIB_BERRY - FIRST_BERRY_INDEX] = //E-reader Strib Berry
+    {
+        .name = _("Strib"),
+        .firmness = BERRY_FIRMNESS_HARD,
+        .color = BERRY_COLOR_GREEN,
+        .size = 122,
+        .maxYield = YIELD_RATE(12, 30, 40, 50),
+        .minYield = YIELD_RATE(4, 2, 4, 6),
+        .description1 = COMPOUND_STRING("It grows slowly, but abundantly."),
+        .description2 = COMPOUND_STRING("Makes a soothing sound when shaken."),
+        .growthDuration = GROWTH_DURATION(96, 96, 144, 72, 48, 72),
+        .spicy = 30,
+        .dry = 0,
+        .sweet = 0,
+        .bitter = 30,
+        .sour = 0,
+        .smoothness = 85,
+        .drainRate = 7,
+        .waterBonus = 2,
+        .weedsBonus = 0,
+        .pestsBonus = 0,
+        .growthSeasons = SEASON_I,
+        .graficGroup = 3,
+        .tileNumber1 = 1,
+        .tileNumber2 = 6,
+    },
+
+    [ITEM_NOION_BERRY - FIRST_BERRY_INDEX] =// E-reader Noion berry (Japan exclusive Ginema berry)
+    {
+        .name = _("Noion"),
+        .firmness = BERRY_FIRMNESS_VERY_HARD,
+        .color = BERRY_COLOR_YELLOW,
+        .size = 35,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("Peel off it's skin to reveal a"),
+        .description2 = COMPOUND_STRING("very dry and sour, round Berry."),
+        .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 34),
+        .spicy = 0,
+        .dry = 30,
+        .sweet = 0,
+        .bitter = 0,
+        .sour = 30,
+        .smoothness = 70,
+        .drainRate = 8,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_A,
+        .graficGroup = 3,
+        .tileNumber1 = 2,
+        .tileNumber2 = 7,
+    },
+    
+    [ITEM_NUTPEA_BERRY - FIRST_BERRY_INDEX] =// E-reader Nutpea berry
+    {
+        .name = _("Nutpea"),
+        .firmness = BERRY_FIRMNESS_SUPER_HARD,
+        .color = BERRY_COLOR_YELLOW,
+        .size = 135,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("This Berry is rigid and cracks open"),
+        .description2 = COMPOUND_STRING("when the center is squeezed."),
+        .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 34),
+        .spicy = 10,
+        .dry = 10,
+        .sweet = 10,
+        .bitter = 10,
+        .sour = 10,
+        .smoothness = 5,
+        .drainRate = 8,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_E,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
+    },
+
+    [ITEM_ROKA_BERRY - FIRST_BERRY_INDEX] =// E-reader Roka berry (Japanese exclusive Kuo berry)
+    {
+        .name = _("Roka"),
+        .firmness = BERRY_FIRMNESS_HARD,
+        .color = BERRY_COLOR_GREEN,
+        .size = 220,
+        .maxYield = YIELD_RATE(2, 15, 15, 15),
+        .minYield = YIELD_RATE(1, 2, 3, 3),
+        .description1 = COMPOUND_STRING("It's flavor mix is quite tasty."),
+        .description2 = COMPOUND_STRING("The pulp has a faint, gritty feel."),
+        .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 34),
+        .spicy = 10,
+        .dry = 10,
+        .sweet = 10,
+        .bitter = 10,
+        .sour = 10,
+        .smoothness = 5,
+        .drainRate = 8,
+        .waterBonus = 10,
+        .weedsBonus = 2,
+        .pestsBonus = 6,
+        .growthSeasons = SEASON_B,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
+    },
+
+    /*[ITEM_CHARTI_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Charti"),
         .firmness = BERRY_FIRMNESS_VERY_SOFT,
@@ -1156,9 +1634,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_KASIB_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_KASIB_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Kasib"),
         .firmness = BERRY_FIRMNESS_HARD,
@@ -1179,9 +1658,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_HABAN_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_HABAN_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Haban"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -1202,9 +1682,10 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_COLBUR_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_COLBUR_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Colbur"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -1225,8 +1706,9 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
-    },
-
+        .growthSeasons = SEASON_A,
+    },*/
+/*
     [ITEM_BABIRI_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Babiri"),
@@ -1248,6 +1730,7 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
 
     [ITEM_ROSELI_BERRY - FIRST_BERRY_INDEX] =
@@ -1271,8 +1754,9 @@ const struct Berry gBerries[] =
         .waterBonus = 10,
         .weedsBonus = 1,
         .pestsBonus = 4,
+        .growthSeasons = SEASON_A,
     },
-
+*/
     [ITEM_LIECHI_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Liechi"),
@@ -1294,6 +1778,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 2,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 2,
+        .tileNumber1 = 8,
+        .tileNumber2 = 3,
     },
 
     [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX] =
@@ -1317,6 +1805,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 2,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 2,
+        .tileNumber1 = 2,
+        .tileNumber2 = 6,
     },
 
     [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX] =
@@ -1340,6 +1832,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 2,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 2,
+        .tileNumber1 = 3,
+        .tileNumber2 = 7,
     },
 
     [ITEM_PETAYA_BERRY - FIRST_BERRY_INDEX] =
@@ -1363,6 +1859,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 2,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 2,
+        .tileNumber1 = 1,
+        .tileNumber2 = 6,
     },
 
     [ITEM_APICOT_BERRY - FIRST_BERRY_INDEX] =
@@ -1386,6 +1886,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 2,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 2,
+        .tileNumber1 = 2,
+        .tileNumber2 = 7,
     },
 
     [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX] =
@@ -1409,6 +1913,10 @@ const struct Berry gBerries[] =
         .waterBonus = 1,
         .weedsBonus = 0,
         .pestsBonus = 1,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_STARF_BERRY - FIRST_BERRY_INDEX] =
@@ -1432,6 +1940,10 @@ const struct Berry gBerries[] =
         .waterBonus = 1,
         .weedsBonus = 0,
         .pestsBonus = 1,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 8,
+        .tileNumber1 = 1,
+        .tileNumber2 = 0,
     },
 
     [ITEM_ENIGMA_BERRY - FIRST_BERRY_INDEX] =
@@ -1446,18 +1958,22 @@ const struct Berry gBerries[] =
         .description2 = COMPOUND_STRING("Appears to have the power of stars."),
         .growthDuration = GROWTH_DURATION(96, 96, 144, 72, 48, 72),
         .spicy = 40,
-        .dry = 10,
-        .sweet = 0,
-        .bitter = 0,
-        .sour = 0,
-        .smoothness = 60,
+        .dry = 40, //previously 0
+        .sweet = 40, //previously 10
+        .bitter = 40, //previously 0
+        .sour = 40, //previously 0
+        .smoothness = 40, //previously 60
         .drainRate = 7,
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 0,
+        .growthSeasons = SEASON_J,
+        .graficGroup = 1,
+        .tileNumber1 = 9,
+        .tileNumber2 = 9,
     },
 
-    [ITEM_MICLE_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_MICLE_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Micle"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -1478,9 +1994,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 0,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_CUSTAP_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_CUSTAP_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Custap"),
         .firmness = BERRY_FIRMNESS_SUPER_HARD,
@@ -1501,9 +2018,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 0,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_JABOCA_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_JABOCA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Jaboca"),
         .firmness = BERRY_FIRMNESS_SOFT,
@@ -1524,9 +2042,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 0,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_ROWAP_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_ROWAP_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Rowap"),
         .firmness = BERRY_FIRMNESS_VERY_SOFT,
@@ -1547,9 +2066,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 0,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_KEE_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_KEE_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Kee"),
         .firmness = BERRY_FIRMNESS_UNKNOWN,
@@ -1570,9 +2090,10 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 2,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
-    [ITEM_MARANGA_BERRY - FIRST_BERRY_INDEX] =
+    /*[ITEM_MARANGA_BERRY - FIRST_BERRY_INDEX] =
     {
         .name = _("Marnga"), // "Maranga" is too long
         .firmness = BERRY_FIRMNESS_UNKNOWN,
@@ -1593,7 +2114,8 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 2,
-    },
+        .growthSeasons = SEASON_A,
+    },*/
 
     [ITEM_ENIGMA_BERRY_E_READER - FIRST_BERRY_INDEX] =
     {
@@ -1616,6 +2138,7 @@ const struct Berry gBerries[] =
         .waterBonus = 2,
         .weedsBonus = 0,
         .pestsBonus = 0,
+        .growthSeasons = SEASON_J,
     },
 };
 
@@ -1655,24 +2178,36 @@ const struct BerryCrushBerryData gBerryCrush_BerryData[] = {
     [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 160, .powder = 250},
     [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 160, .powder = 250},
     [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 160, .powder = 250},
-    [ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  80, .powder =  70},
-    [ITEM_OCCA_BERRY - FIRST_BERRY_INDEX]            = {.difficulty = 100, .powder = 100},
-    [ITEM_PASSHO_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  60, .powder =  30},
-    [ITEM_WACAN_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_RINDO_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_YACHE_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_CHOPLE_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
-    [ITEM_KEBIA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_SHUCA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  20},
-    [ITEM_COBA_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  50, .powder =  30},
-    [ITEM_PAYAPA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
-    [ITEM_TANGA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_CHARTI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
-    [ITEM_KASIB_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_HABAN_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
-    [ITEM_COLBUR_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  60, .powder =  50},
-    [ITEM_BABIRI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  80, .powder =  50},
-    [ITEM_ROSELI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  60, .powder =  50},
+    //[ITEM_CHILAN_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  80, .powder =  70},
+    //[ITEM_OCCA_BERRY - FIRST_BERRY_INDEX]            = {.difficulty = 100, .powder = 100},
+    //[ITEM_PASSHO_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  60, .powder =  30},
+    //[ITEM_WACAN_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
+    //[ITEM_RINDO_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
+    //[ITEM_YACHE_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
+    //[ITEM_CHOPLE_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
+    //[ITEM_KEBIA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
+    //[ITEM_SHUCA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  20},
+    //[ITEM_COBA_BERRY - FIRST_BERRY_INDEX]            = {.difficulty =  50, .powder =  30},
+    //[ITEM_PAYAPA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
+    //[ITEM_TANGA_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
+    [ITEM_PUMKIN_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 150, .powder = 200},// MOD CONTEST Berry Crush values for E-Reader berries:
+    [ITEM_DRASH_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 150, .powder = 200},
+    [ITEM_EGGANT_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 150, .powder = 200},
+    [ITEM_STRIB_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 150, .powder = 200},
+    [ITEM_CHILANER_BERRY - FIRST_BERRY_INDEX]        = {.difficulty = 150, .powder = 200},
+    [ITEM_NUTPEA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 150, .powder = 200},
+    [ITEM_NOION_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 150, .powder = 200},
+    [ITEM_ROKA_BERRY - FIRST_BERRY_INDEX]            = {.difficulty = 150, .powder = 200},
+    [ITEM_SKUASH_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 150, .powder = 200},
+    [ITEM_PAPRIK_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 150, .powder = 200},
+    [ITEM_MALIUM_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 150, .powder = 200},
+    [ITEM_TOPO_BERRY - FIRST_BERRY_INDEX]            = {.difficulty = 150, .powder = 200},
+    //[ITEM_CHARTI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  50, .powder =  30},
+    //[ITEM_KASIB_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
+    //[ITEM_HABAN_BERRY - FIRST_BERRY_INDEX]           = {.difficulty =  50, .powder =  30},
+    //[ITEM_COLBUR_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  60, .powder =  50},
+    //[ITEM_BABIRI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  80, .powder =  50},
+    //[ITEM_ROSELI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty =  60, .powder =  50},
     [ITEM_LIECHI_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 180, .powder = 500},
     [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 180, .powder = 500},
     [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 180, .powder = 500},
@@ -1681,12 +2216,12 @@ const struct BerryCrushBerryData gBerryCrush_BerryData[] = {
     [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 200, .powder = 750},
     [ITEM_STARF_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 200, .powder = 750},
     [ITEM_ENIGMA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 150, .powder = 200},
-    [ITEM_MICLE_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 130, .powder = 250},
-    [ITEM_CUSTAP_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 200, .powder = 750},
-    [ITEM_JABOCA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 130, .powder = 250},
-    [ITEM_ROWAP_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 130, .powder = 250},
-    [ITEM_KEE_BERRY - FIRST_BERRY_INDEX]             = {.difficulty = 160, .powder = 500},
-    [ITEM_MARANGA_BERRY - FIRST_BERRY_INDEX]         = {.difficulty = 160, .powder = 500},
+    //[ITEM_MICLE_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 130, .powder = 250},
+    //[ITEM_CUSTAP_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 200, .powder = 750},
+    //[ITEM_JABOCA_BERRY - FIRST_BERRY_INDEX]          = {.difficulty = 130, .powder = 250},
+    //[ITEM_ROWAP_BERRY - FIRST_BERRY_INDEX]           = {.difficulty = 130, .powder = 250},
+    //[ITEM_KEE_BERRY - FIRST_BERRY_INDEX]             = {.difficulty = 160, .powder = 500},
+    //[ITEM_MARANGA_BERRY - FIRST_BERRY_INDEX]         = {.difficulty = 160, .powder = 500},
     [ITEM_ENIGMA_BERRY_E_READER - FIRST_BERRY_INDEX] = {.difficulty = 150, .powder = 200}
 };
 
@@ -2271,8 +2806,14 @@ void ObjectEventInteractionClearBerryPests(void)
 }
 
 bool8 PlayerHasBerries(void)
-{
-    return IsBagPocketNonEmpty(POCKET_BERRIES);
+{   if(gSpecialVar_0x8004 < 5)
+    {
+        return IsBagPocketNonEmpty(POCKET_BERRIES);
+    }
+    else
+    {
+        return HasEnoughBerries();
+    }
 }
 
 bool8 ObjectEventInteractionBerryHasWeed(void)
@@ -2347,19 +2888,19 @@ bool8 PlayerHasMulch(void)
 
 #if OW_BERRY_MUTATIONS == TRUE
 static const u8 sBerryMutations[][3] = {
-    {ITEM_TO_BERRY(ITEM_IAPAPA_BERRY), ITEM_TO_BERRY(ITEM_MAGO_BERRY),   ITEM_TO_BERRY(ITEM_POMEG_BERRY)},
-    {ITEM_TO_BERRY(ITEM_CHESTO_BERRY), ITEM_TO_BERRY(ITEM_PERSIM_BERRY), ITEM_TO_BERRY(ITEM_KELPSY_BERRY)},
-    {ITEM_TO_BERRY(ITEM_ORAN_BERRY),   ITEM_TO_BERRY(ITEM_PECHA_BERRY),  ITEM_TO_BERRY(ITEM_QUALOT_BERRY)},
-    {ITEM_TO_BERRY(ITEM_ASPEAR_BERRY), ITEM_TO_BERRY(ITEM_LEPPA_BERRY),  ITEM_TO_BERRY(ITEM_HONDEW_BERRY)},
-    {ITEM_TO_BERRY(ITEM_AGUAV_BERRY),  ITEM_TO_BERRY(ITEM_FIGY_BERRY),   ITEM_TO_BERRY(ITEM_GREPA_BERRY)},
-    {ITEM_TO_BERRY(ITEM_LUM_BERRY),    ITEM_TO_BERRY(ITEM_SITRUS_BERRY), ITEM_TO_BERRY(ITEM_TAMATO_BERRY)},
-    {ITEM_TO_BERRY(ITEM_HONDEW_BERRY), ITEM_TO_BERRY(ITEM_YACHE_BERRY),  ITEM_TO_BERRY(ITEM_LIECHI_BERRY)},
-    {ITEM_TO_BERRY(ITEM_QUALOT_BERRY), ITEM_TO_BERRY(ITEM_TANGA_BERRY),  ITEM_TO_BERRY(ITEM_GANLON_BERRY)},
-    {ITEM_TO_BERRY(ITEM_GREPA_BERRY),  ITEM_TO_BERRY(ITEM_ROSELI_BERRY), ITEM_TO_BERRY(ITEM_SALAC_BERRY)},
-    {ITEM_TO_BERRY(ITEM_POMEG_BERRY),  ITEM_TO_BERRY(ITEM_KASIB_BERRY),  ITEM_TO_BERRY(ITEM_PETAYA_BERRY)},
-    {ITEM_TO_BERRY(ITEM_KELPSY_BERRY), ITEM_TO_BERRY(ITEM_WACAN_BERRY),  ITEM_TO_BERRY(ITEM_APICOT_BERRY)},
-    {ITEM_TO_BERRY(ITEM_GANLON_BERRY), ITEM_TO_BERRY(ITEM_LIECHI_BERRY), ITEM_TO_BERRY(ITEM_KEE_BERRY)},
-    {ITEM_TO_BERRY(ITEM_SALAC_BERRY),  ITEM_TO_BERRY(ITEM_PETAYA_BERRY), ITEM_TO_BERRY(ITEM_MARANGA_BERRY)},
+    {ITEM_TO_BERRY(ITEM_IAPAPA_BERRY), ITEM_TO_BERRY(ITEM_MAGO_BERRY),     ITEM_TO_BERRY(ITEM_POMEG_BERRY)},
+    {ITEM_TO_BERRY(ITEM_CHESTO_BERRY), ITEM_TO_BERRY(ITEM_PERSIM_BERRY),   ITEM_TO_BERRY(ITEM_KELPSY_BERRY)},
+    {ITEM_TO_BERRY(ITEM_ORAN_BERRY),   ITEM_TO_BERRY(ITEM_PECHA_BERRY),    ITEM_TO_BERRY(ITEM_QUALOT_BERRY)},
+    {ITEM_TO_BERRY(ITEM_ASPEAR_BERRY), ITEM_TO_BERRY(ITEM_LEPPA_BERRY),    ITEM_TO_BERRY(ITEM_HONDEW_BERRY)},
+    {ITEM_TO_BERRY(ITEM_AGUAV_BERRY),  ITEM_TO_BERRY(ITEM_FIGY_BERRY),     ITEM_TO_BERRY(ITEM_GREPA_BERRY)},
+    {ITEM_TO_BERRY(ITEM_LUM_BERRY),    ITEM_TO_BERRY(ITEM_SITRUS_BERRY),   ITEM_TO_BERRY(ITEM_TAMATO_BERRY)},
+    {ITEM_TO_BERRY(ITEM_HONDEW_BERRY), ITEM_TO_BERRY(ITEM_NUTPEA_BERRY),   ITEM_TO_BERRY(ITEM_LIECHI_BERRY)},
+    {ITEM_TO_BERRY(ITEM_QUALOT_BERRY), ITEM_TO_BERRY(ITEM_TOPO_BERRY),     ITEM_TO_BERRY(ITEM_GANLON_BERRY)},
+    {ITEM_TO_BERRY(ITEM_GREPA_BERRY),  ITEM_TO_BERRY(ITEM_ROSELI_BERRY),   ITEM_TO_BERRY(ITEM_SALAC_BERRY)},
+    {ITEM_TO_BERRY(ITEM_POMEG_BERRY),  ITEM_TO_BERRY(ITEM_CHILANER_BERRY), ITEM_TO_BERRY(ITEM_PETAYA_BERRY)},
+    {ITEM_TO_BERRY(ITEM_KELPSY_BERRY), ITEM_TO_BERRY(ITEM_STRIB_BERRY),    ITEM_TO_BERRY(ITEM_APICOT_BERRY)},
+    {ITEM_TO_BERRY(ITEM_GANLON_BERRY), ITEM_TO_BERRY(ITEM_LIECHI_BERRY),   ITEM_TO_BERRY(ITEM_MALIUM_BERRY)},
+    {ITEM_TO_BERRY(ITEM_SALAC_BERRY),  ITEM_TO_BERRY(ITEM_PETAYA_BERRY),   ITEM_TO_BERRY(ITEM_SKUASH_BERRY)},
     // Up to one more Mutation can be added here for a total of 15 (only 4 bits are allocated)
 };
 

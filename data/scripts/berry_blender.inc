@@ -4,6 +4,12 @@ BerryBlender_Text_WantToMakePokeblocks:
 	.string "Oh? Did you want to make some {POKEBLOCK}S\n"
 	.string "with this old-timer?$"
 
+BerryBlender_Text_HowManyBerries:
+	.string "How many berries will you use?$"
+	
+BerryBlender_Text_WantToMakePokeblocksSoloOrLink:
+	.string "Do you want to make some {POKEBLOCK}S?$"
+
 BerryBlender_Text_Excellent:
 	.string "Excellent!$"
 
@@ -31,6 +37,10 @@ BerryBlender_Text_DontHaveAnyBerries:
 	.string "You don't have any BERRIES?\p"
 	.string "If you don't have any BERRIES,\n"
 	.string "you can't make any {POKEBLOCK}S.$"
+    
+BerryBlender_Text_DontHaveAnyBerriesSOLO:
+	.string "You can't make any {POKEBLOCK}S\n"
+	.string "if you don't have any BERRIES.$"
 
 BerryBlender_Text_CanHaveOneOfMyBerries:
 	.string "Well, that won't do at all now, will it?\p"
@@ -195,7 +205,7 @@ BerryBlender_Text_AllPlayersArrived:
 	.string "{STR_VAR_3} arrived.$"
 
 BerryBlender_Text_NoBerriesLink:
-	.string "You have no BERRIES.\n"
+	.string "You don't have enough BERRIES.\n"
 	.string "The BERRY BLENDER can't be used.$"
 
 BerryBlender_Text_PokeblockCaseIsFullLink:
@@ -288,8 +298,6 @@ BerryBlender_EventScript_ExplainBlending1:
 BerryBlender_EventScript_TryUseBerryBlender1:
 	checkitem ITEM_POKEBLOCK_CASE
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoCase
-	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
-	goto_if_eq VAR_RESULT, 65535, BerryBlender_EventScript_Blender1CaseFull
 	specialvar VAR_RESULT, PlayerHasBerries
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoBerries
 	msgbox BerryBlender_Text_Excellent, MSGBOX_DEFAULT
@@ -311,6 +319,96 @@ BerryBlender_EventScript_Blender1CaseFull:
 
 BerryBlender_EventScript_Blender1NoCase:
 	msgbox BerryBlender_Text_DontHavePokeblockCase, MSGBOX_DEFAULT
+	releaseall
+	end
+
+@ MOD CONTEST Berry blender Link now also gives the option to make pokeblocks alone with up to 4 berries.
+@ A multichoice option is used both when asked if you want to link or go solo and for the berry quantity to be used.
+BerryBlender_EventScript_BerryBlenderSoloOrLink::
+	lockall
+	msgbox BerryBlender_Text_WantToMakePokeblocksSoloOrLink 
+	waitmessage
+	multichoice 0, 0, MULTI_SOLO_OR_LINK, FALSE
+	switch VAR_RESULT
+	case 0, BerryBlender_EventScript_StartBlenderSOLO
+	case 1, BerryBlender_EventScript_BerryBlenderLink
+	case MULTI_B_PRESSED, BerryBlender_EventScript_DeclineBlenderSOLO
+    goto BerryBlender_EventScript_DeclineBlenderSOLO
+	releaseall
+	end
+
+BerryBlender_EventScript_BlenderSOLONoBerries:
+	msgbox BerryBlender_Text_DontHaveAnyBerriesSOLO, MSGBOX_DEFAULT
+	releaseall
+	end
+
+@ Each selection bigger than 3 means SOLO blending with that number of berries - 3.
+BerryBlender_EventScript_StartBlenderSOLO:
+	msgbox BerryBlender_Text_HowManyBerries
+	waitmessage
+	multichoice 0, 0, MULTI_BERRY_BLENDER, FALSE
+	switch VAR_RESULT
+	case 0, BerryBlender_EventScript_SoloTwoBerries
+	case 1, BerryBlender_EventScript_SoloThreeBerries
+	case 2, BerryBlender_EventScript_SoloFourBerries
+	case 3, BerryBlender_EventScript_DeclineBlenderSOLO
+	case MULTI_B_PRESSED, BerryBlender_EventScript_DeclineBlenderSOLO
+	goto BerryBlender_EventScript_TryUseBerryBlenderSOLO
+	end
+
+@ Never used, extremely broken
+BerryBlender_EventScript_SoloOneBerry:
+	setvar NUM_OPPONENTS, 4
+	goto BerryBlender_EventScript_TryUseBerryBlenderSOLO
+	end
+
+BerryBlender_EventScript_SoloTwoBerries:
+	setvar NUM_OPPONENTS, 5
+	copyvar VAR_0x8004, NUM_OPPONENTS
+	goto BerryBlender_EventScript_TryUseBerryBlenderSOLO
+	end
+
+BerryBlender_EventScript_SoloThreeBerries:
+	setvar NUM_OPPONENTS, 6
+	copyvar VAR_0x8004, NUM_OPPONENTS
+	goto BerryBlender_EventScript_TryUseBerryBlenderSOLO
+	end
+
+BerryBlender_EventScript_SoloFourBerries:
+	setvar NUM_OPPONENTS, 7
+	copyvar VAR_0x8004, NUM_OPPONENTS
+	goto BerryBlender_EventScript_TryUseBerryBlenderSOLO
+	end
+
+BerryBlender_EventScript_DeclineBlenderSOLO:
+	releaseall
+	end
+
+BerryBlender_EventScript_TryUseBerryBlenderSOLO:
+	checkitem ITEM_POKEBLOCK_CASE
+	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_LinkBlenderNoCase
+	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
+	goto_if_eq VAR_RESULT, 65535, BerryBlender_EventScript_LinkBlenderCaseFull
+	specialvar VAR_RESULT, PlayerHasBerries
+	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_LinkBlenderNoBerries
+	goto BerryBlender_EventScript_DoBerryBlendingSOLO
+	end
+
+BerryBlender_EventScript_DoBerryBlendingSOLO:
+	copyvar VAR_0x8004, NUM_OPPONENTS
+	fadescreen FADE_TO_BLACK
+	special DoBerryBlending
+	waitstate
+	releaseall
+	end
+
+BerryBlender_EventScript_BlenderSOLOCaseFull:
+	msgbox BerryBlender_Text_PokeblockCaseIsFullLink, MSGBOX_DEFAULT
+	releaseall
+	end
+
+BerryBlender_EventScript_BlenderSOLONoCase:
+	msgbox BerryBlender_Text_DontHavePokeblockCaseLink, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -554,6 +652,7 @@ BerryBlender_EventScript_LinkBlenderSaveGame:
 
 BerryBlender_EventScript_LinkBlenderNoBerries:
 	msgbox BerryBlender_Text_NoBerriesLink, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 0
 	releaseall
 	end
 
