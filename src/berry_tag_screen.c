@@ -1048,7 +1048,7 @@ static void DestroyFlavorProfileSprite(void) //
 
 static void DestroyFlavorGraficSprite(void) //
 {
-    DestroySpriteAndFreeResources(&gSprites[sBerryTag->flavorGrafSpriteId]);
+    DestroySprite(&gSprites[sBerryTag->flavorGrafSpriteId]);
 }
 
 static void DestroySeasonsSprite(void)
@@ -1191,7 +1191,7 @@ static void DestroyFlavorCircleSprites(void)
     u16 i;
 
     for (i = 0; i < FLAVOR_COUNT; i++)
-        DestroySpriteAndFreeResources(&gSprites[sBerryTag->flavorCircleIds[i]]);
+        DestroySprite(&gSprites[sBerryTag->flavorCircleIds[i]]);
 }
 
 static void DestroyFlavorXSprites(void)
@@ -1199,9 +1199,9 @@ static void DestroyFlavorXSprites(void)
     u16 i;
 
     for (i = 0; i < 8; i++)
-        DestroySpriteAndFreeResources(&gSprites[sBerryTag->flavorXIds[i]]);
+        DestroySprite(&gSprites[sBerryTag->flavorXIds[i]]);
     
-    DestroySpriteAndFreeResources(&gSprites[sBerryTag->seasonQuestionSpriteId]);
+    DestroySprite(&gSprites[sBerryTag->seasonQuestionSpriteId]);
 }
 
 static void PrepareToCloseBerryTagScreen(u8 taskId)
