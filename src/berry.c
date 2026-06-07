@@ -1954,8 +1954,9 @@ const struct Berry gBerries[] =
     {
         .name = _("Enigma"),
         .firmness = BERRY_FIRMNESS_HARD,
-        .color = OW_BERRY_COLORS == GEN_6_XY ? BERRY_COLOR_PURPLE : BERRY_COLOR_YELLOW,
-        .size = 155,
+        .color = BERRY_COLOR_PURPLE,
+        //.color = OW_BERRY_COLORS == GEN_6_XY ? BERRY_COLOR_PURPLE : BERRY_COLOR_YELLOW,
+        .size = 0,
         .maxYield = YIELD_RATE(2, 5, 5, 13),
         .minYield = YIELD_RATE(1, 1, 1, 1),
         .description1 = COMPOUND_STRING("A completely enigmatic Berry."),

@@ -719,8 +719,8 @@ enum __attribute__((packed)) Item
     ITEM_ROWAP_BERRY = 578,
     ITEM_KEE_BERRY = 579,
     ITEM_MARANGA_BERRY = 580,*/
-    //ITEM_ENIGMA_BERRY_E_READER = 568,
-    LAST_BERRY_INDEX =  ITEM_ENIGMA_BERRY,
+    ITEM_ENIGMA_BERRY_E_READER = 568,
+    LAST_BERRY_INDEX =  ITEM_ENIGMA_BERRY_E_READER,
 
     // TMs/HMs
     ITEM_TM00 = 581, // MOD CONTEST New TM Item that allows you to forget and remember moves on the go OR that teaches a random compatible move OR that teaches an egg move, etc...
