@@ -1037,11 +1037,11 @@ static void CreateNewFlavorProfileSprite(void) //
 static void DestroyFlavorProfileSprite(void) //
 {
     if(sBerryTag->flavorProfileSpriteIds[1])
-        DestroySprite(&gSprites[sBerryTag->flavorProfileSpriteIds[1]]);
+        DestroySpriteAndFreeResources(&gSprites[sBerryTag->flavorProfileSpriteIds[1]]);
     if(sBerryTag->flavorProfileSpriteIds[2])
-        DestroySprite(&gSprites[sBerryTag->flavorProfileSpriteIds[2]]);
+        DestroySpriteAndFreeResources(&gSprites[sBerryTag->flavorProfileSpriteIds[2]]);
     if(sBerryTag->flavorProfileSpriteIds[3])
-        DestroySprite(&gSprites[sBerryTag->flavorProfileSpriteIds[3]]);
+        DestroySpriteAndFreeResources(&gSprites[sBerryTag->flavorProfileSpriteIds[3]]);
 
     DestroySpriteAndFreeResources(&gSprites[sBerryTag->flavorProfileSpriteIds[0]]);
 }
