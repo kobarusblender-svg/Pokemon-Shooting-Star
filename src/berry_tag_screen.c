@@ -973,7 +973,7 @@ static void CreateNewFlavorProfileSprite(void) //
     CalculateAndloadProfilePalette(sBerryTag->berryId);
     LoadFlavorProfileSpriteData(sBerryTag->berryId);
 
-    if(sBerryTag->berryId == ItemIdToBerryType(ITEM_ENIGMA_BERRY))
+    if(sBerryTag->berryId+1 == ItemIdToBerryType(ITEM_ENIGMA_BERRY))
     {
         sBerryTag->flavorProfileSpriteIds[0] = CreateFlavorProfileSprite1(sBerryTag->berryId, 177, 66);
         sBerryTag->flavorProfileSpriteIds[1] = CreateFlavorProfileSprite2(sBerryTag->berryId, 177, 66);
@@ -982,7 +982,7 @@ static void CreateNewFlavorProfileSprite(void) //
         gSprites[sBerryTag->flavorProfileSpriteIds[2]].invisible = FALSE;
         gSprites[sBerryTag->flavorProfileSpriteIds[3]].invisible = FALSE;
     }
-    else if(sBerryTag->berryId >= ItemIdToBerryType(FIRST_BERRY_INDEX) && sBerryTag->berryId < ItemIdToBerryType(ITEM_ENIGMA_BERRY))
+    else if(sBerryTag->berryId+1 >= ItemIdToBerryType(FIRST_BERRY_INDEX) && sBerryTag->berryId < ItemIdToBerryType(ITEM_ENIGMA_BERRY))
     {
         u8 x1 = 176;
         u8 x2 = 176;
@@ -1011,10 +1011,10 @@ static void CreateNewFlavorProfileSprite(void) //
             x2--;
         }
 
-        sBerryTag->flavorProfileSpriteIds[0] = CreateFlavorProfileSprite1(sBerryTag->berryId, x1, y1);
-        sBerryTag->flavorProfileSpriteIds[1] = CreateFlavorProfileSprite2(sBerryTag->berryId, x2, y2);
-        sBerryTag->flavorProfileSpriteIds[2] = CreateFlavorProfileSprite3(sBerryTag->berryId, 0, 0);
-        sBerryTag->flavorProfileSpriteIds[3] = CreateFlavorProfileSprite4(sBerryTag->berryId, 0, 66);
+        sBerryTag->flavorProfileSpriteIds[0] = CreateFlavorProfileSprite1(sBerryTag->berryId+1, x1, y1);
+        sBerryTag->flavorProfileSpriteIds[1] = CreateFlavorProfileSprite2(sBerryTag->berryId+1, x2, y2);
+        sBerryTag->flavorProfileSpriteIds[2] = CreateFlavorProfileSprite3(sBerryTag->berryId+1, 0, 0);
+        sBerryTag->flavorProfileSpriteIds[3] = CreateFlavorProfileSprite4(sBerryTag->berryId+1, 0, 66);
         gSprites[sBerryTag->flavorProfileSpriteIds[2]].invisible = TRUE;
         gSprites[sBerryTag->flavorProfileSpriteIds[3]].invisible = TRUE;
     }
