@@ -907,85 +907,76 @@ static const union AnimCmd sSpriteAnim_BerryFlavorGraf4[] = //
 
 static const union AnimCmd sSpriteAnim_FlavorProfile1[] =//
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(0, 0),
+    ANIMCMD_FRAME(0, 0),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile2[] =//
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(64, 0),
+    ANIMCMD_FRAME(64, 0),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile3[] =//
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(128, 0),
+    ANIMCMD_FRAME(128, 0),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile4[] =//
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(192, 0),
+    ANIMCMD_FRAME(192, 0),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile5[] =//
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(0, -1, .hFlip = TRUE),
+    ANIMCMD_FRAME(0, -1, .hFlip = TRUE),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile7[] =//
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(64, -1, .hFlip = TRUE),
+    ANIMCMD_FRAME(64, -1, .hFlip = TRUE),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile6[] =//
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(128, -1, .hFlip = TRUE),
+    ANIMCMD_FRAME(128, -1, .hFlip = TRUE),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile8[] =//
 {
     ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_FlavorProfile0[] =// This one will always load an empty sprite, so the flavors don't load RAM junk (Why can't them just unload??)
 {
-    ANIMCMD_FRAME(192, -1, .hFlip = TRUE),
-    //ANIMCMD_FRAME(256, 0),
+    ANIMCMD_FRAME(256, 0),
     ANIMCMD_END
 };
 
 static const union AnimCmd sSpriteAnim_BerryFlavorProfileE1[] = // these are for the enigma profile tiles
 {
-    //ANIMCMD_FRAME( 0, 0),
+    ANIMCMD_FRAME( 0, 0),
     ANIMCMD_END
 };
 static const union AnimCmd sSpriteAnim_BerryFlavorProfileE2[] =//
 {
-    //ANIMCMD_FRAME(64, 0),
+    ANIMCMD_FRAME(64, 0),
     ANIMCMD_END
 };
 static const union AnimCmd sSpriteAnim_BerryFlavorProfileE3[] = //
 {
-    //ANIMCMD_FRAME(128, 0),
+    ANIMCMD_FRAME(128, 0),
     ANIMCMD_END
 };
 static const union AnimCmd sSpriteAnim_BerryFlavorProfileE4[] = //
 {
-    //ANIMCMD_FRAME(192, 0),
+    ANIMCMD_FRAME(192, 0),
     ANIMCMD_END
 };
 
