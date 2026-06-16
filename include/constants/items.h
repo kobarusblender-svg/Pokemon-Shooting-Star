@@ -638,6 +638,7 @@ enum __attribute__((packed)) Item
     ITEM_ROOM_SERVICE = 512,
     ITEM_UTILITY_UMBRELLA = 513,
 
+    
     // Berries
     FIRST_BERRY_INDEX = 514,
     ITEM_CHERI_BERRY = FIRST_BERRY_INDEX,
@@ -674,64 +675,56 @@ enum __attribute__((packed)) Item
     ITEM_PAMTRE_BERRY = 545,
     ITEM_WATMEL_BERRY = 546,
     ITEM_DURIN_BERRY = 547,
-    ITEM_BELUE_BERRY = 548, //New berry index start here.
-    ITEM_PAPRIK_BERRY 549, //(Japan exclusive Touga berry)
-    ITEM_EGGANT_BERRY 550,
-    ITEM_DRASH_BERRY 551,
-    ITEM_SKUASH_BERRY 552, //(Japan exclusive Yago berry)
-    ITEM_PUMKIN_BERRY  553, //New berry index start here.
-    ITEM_CHILANER_BERRY 554,
-    ITEM_MALIUM_BERRY 555, //(Japan exclusive Niniku berry)
-    ITEM_TOPO_BERRY 556, //(Japan exclusive Topo berry)
-    ITEM_STRIB_BERRY 557,
-    ITEM_NOION_BERRY 558, //(Japan exclusive Ginema berry)
-    ITEM_NUTPEA_BERRY 559,
-    ITEM_ROKA_BERRY 560, //(Japan exclusive Kuo berry)
-    ITEM_LIECHI_BERRY 561, 
-    ITEM_GANLON_BERRY 562, 
-    ITEM_SALAC_BERRY 563, 
-    ITEM_PETAYA_BERRY 564, 
-    ITEM_APICOT_BERRY 565, 
-    ITEM_LANSAT_BERRY 566, 
-    ITEM_STARF_BERRY 567, 
-    ITEM_ENIGMA_BERRY 569, //(The one the game actually uses)
-    ITEM_ENIGMA_BERRY_E_READER 568, // MOD CONTEST (leaving this one here... What's the worst that can happen?)
-//ITEM_CHILAN_BERRY 549
-//ITEM_OCCA_BERRY 550 
-//ITEM_PASSHO_BERRY 551 
-//ITEM_WACAN_BERRY 552 
-//ITEM_RINDO_BERRY 553 
-//ITEM_YACHE_BERRY 554 
-//ITEM_CHOPLE_BERRY 555 
-//ITEM_KEBIA_BERRY 556 
-//ITEM_SHUCA_BERRY 557 
-//ITEM_COBA_BERRY 558 
-//ITEM_PAYAPA_BERRY 559 
-//ITEM_TANGA_BERRY 560 
-//ITEM_CHARTI_BERRY 561 
-//ITEM_KASIB_BERRY 562 
-//ITEM_HABAN_BERRY 563 
-//ITEM_COLBUR_BERRY 564 
-//ITEM_BABIRI_BERRY 565 
-//ITEM_ROSELI_BERRY 566 
-//ITEM_LIECHI_BERRY 567 //Old index for legendary Berries:
-//ITEM_GANLON_BERRY 568 
-//ITEM_SALAC_BERRY 569 
-//ITEM_PETAYA_BERRY 570 
-//ITEM_APICOT_BERRY 571 
-//ITEM_LANSAT_BERRY 572 
-//ITEM_STARF_BERRY 573 
-//ITEM_ENIGMA_BERRY 574 
-//ITEM_MICLE_BERRY 575 
-//ITEM_CUSTAP_BERRY 576 
-//ITEM_JABOCA_BERRY 577 
-//ITEM_ROWAP_BERRY 578 
-//ITEM_KEE_BERRY 579 
-//ITEM_MARANGA_BERRY 580 
-//ITEM_ENIGMA_BERRY_E_READER 581 // Old index for original Enigma Berry
+    ITEM_BELUE_BERRY = 548,//New berry index start here.
+    ITEM_PAPRIK_BERRY = 549, //(Japan exclusive Touga berry)
+    ITEM_EGGANT_BERRY = 550,
+    ITEM_DRASH_BERRY = 551,
+    ITEM_SKUASH_BERRY = 552, //(Japan exclusive Yago berry)
+    ITEM_PUMKIN_BERRY =  553, //New berry index start here.
+    ITEM_CHILANER_BERRY = 554,
+    ITEM_MALIUM_BERRY = 555, //(Japan exclusive Niniku berry)
+    ITEM_TOPO_BERRY = 556, //(Japan exclusive Topo berry)
+    ITEM_STRIB_BERRY = 557,
+    ITEM_NOION_BERRY = 558, //(Japan exclusive Ginema berry)
+    ITEM_NUTPEA_BERRY = 559,
+    ITEM_ROKA_BERRY = 560, //(Japan exclusive Kuo berry)
+    /*ITEM_CHILAN_BERRY = 549,
+    ITEM_OCCA_BERRY = 550,
+    ITEM_PASSHO_BERRY = 551,
+    ITEM_WACAN_BERRY = 552,
+    ITEM_RINDO_BERRY = 553,
+    ITEM_YACHE_BERRY = 554,
+    ITEM_CHOPLE_BERRY = 555,
+    ITEM_KEBIA_BERRY = 556,
+    ITEM_SHUCA_BERRY = 557,
+    ITEM_COBA_BERRY = 558,
+    ITEM_PAYAPA_BERRY = 559,
+    ITEM_TANGA_BERRY = 560,
+    ITEM_CHARTI_BERRY = 561,
+    ITEM_KASIB_BERRY = 562,
+    ITEM_HABAN_BERRY = 563,
+    ITEM_COLBUR_BERRY = 564,
+    ITEM_BABIRI_BERRY = 565,
+    ITEM_ROSELI_BERRY = 566,*/
+    ITEM_LIECHI_BERRY = 561,
+    ITEM_GANLON_BERRY = 562,
+    ITEM_SALAC_BERRY = 563,
+    ITEM_PETAYA_BERRY = 564,
+    ITEM_APICOT_BERRY = 565,
+    ITEM_LANSAT_BERRY = 566,
+    ITEM_STARF_BERRY = 567,
+    ITEM_ENIGMA_BERRY = 574,
+    /*ITEM_MICLE_BERRY = 575,
+    ITEM_CUSTAP_BERRY = 576,
+    ITEM_JABOCA_BERRY = 577,
+    ITEM_ROWAP_BERRY = 578,
+    ITEM_KEE_BERRY = 579,
+    ITEM_MARANGA_BERRY = 580,*/
+    ITEM_ENIGMA_BERRY_E_READER = 568,
     LAST_BERRY_INDEX =  ITEM_ENIGMA_BERRY_E_READER,
 
     // TMs/HMs
+    ITEM_TM00 = 581, // MOD CONTEST New TM Item that allows you to forget and remember moves on the go OR that teaches a random compatible move OR that teaches an egg move, etc...
     ITEM_TM01 = 582,
     ITEM_TM02 = 583,
     ITEM_TM03 = 584,
