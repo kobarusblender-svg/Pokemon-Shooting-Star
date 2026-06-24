@@ -437,6 +437,8 @@ static void AnimBite_Step2(struct Sprite *sprite)
 // Launches a tear drop away from the battler. Used by Fake Tears
 void AnimTearDrop(struct Sprite *sprite)
 {
+    CMD_ARGS(relativeTo, type);
+
     u8 battler;
     s8 xOffset;
 

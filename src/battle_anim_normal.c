@@ -1154,6 +1154,7 @@ void AnimHitSplatOnMonEdge(struct Sprite *sprite)
     StartSpriteAffineAnim(sprite, cmd->animation);
     StoreSpriteCallbackInData6(sprite, DestroySpriteAndMatrix);
     sprite->callback = RunStoredCallbackWhenAffineAnimEnds;
+}
 
 void AnimCrossImpact(struct Sprite *sprite)
 {
