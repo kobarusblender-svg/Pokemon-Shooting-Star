@@ -113,6 +113,7 @@ void CB2_GoToSellMenu(void);
 void GoToBagMenu(u8 location, u8 pocket, MainCallback exitCallback);
 void GoToBagMenu1(u8 location, u8 pocket);
 void DoWallyTutorialBagMenu(void);
+void InitOldManBag(void);
 void ResetBagScrollPositions(void);
 void ChooseBerryForMachine(MainCallback exitCallback);
 void ChooseBerryForMachine1(void);
