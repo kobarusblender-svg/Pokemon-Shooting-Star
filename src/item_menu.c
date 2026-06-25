@@ -740,7 +740,7 @@ void VBlankCB_BagMenuRun(void)
 
 static void CB2_Bag(void)
 {
-    while(MenuHelpers_ShouldWaitForLinkRecv() != TRUE && SetupBagMenu() != TRUE && MenuHelpers_IsLinkActive() != TRUE)
+    while (MenuHelpers_ShouldWaitForLinkRecv() != TRUE && SetupBagMenu() != TRUE && MenuHelpers_IsLinkActive() != TRUE)
         {};
 }
 

@@ -439,7 +439,7 @@ void AnimTearDrop(struct Sprite *sprite)
 {
     CMD_ARGS(relativeTo, type);
 
-    u8 battler;
+    enum BattlerId battler;
     s8 xOffset;
 
     if (cmd->relativeTo == ANIM_ATTACKER)
@@ -1021,15 +1021,15 @@ void AnimTask_SetGrayscaleOrOriginalPal(u8 taskId)
     enum BattlerId battler;
     bool8 calcSpriteId = FALSE;
     u8 position = B_POSITION_PLAYER_LEFT;
-    enum AnimBattler animBattler = gBattleAnimArgs[0];
+    enum AnimBattler animBattler = cmd->battler;
 
-    switch (gBattleAnimArgs[0])
+    switch (animBattler)
     {
     case ANIM_ATTACKER:
     case ANIM_TARGET:
     case ANIM_ATK_PARTNER:
     case ANIM_DEF_PARTNER:
-        spriteId = GetAnimBattlerSpriteId(gBattleAnimArgs[0]);
+        spriteId = GetAnimBattlerSpriteId(animBattler);
         break;
     case ANIM_PLAYER_LEFT:
         position = B_POSITION_PLAYER_LEFT;

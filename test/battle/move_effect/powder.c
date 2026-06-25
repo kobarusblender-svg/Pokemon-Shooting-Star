@@ -83,7 +83,7 @@ SINGLE_BATTLE_TEST("Powder doesn't damage target if it has Magic Guard")
 SINGLE_BATTLE_TEST("Powder damages the target under heavy rain (Gen 6)")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_POWDER_STATUS_HEAVY_RAIN, GEN_6);
+        WITH_CONFIG(B_POWDER_STATUS_HEAVY_RAIN, GEN_6);
         PLAYER(SPECIES_KYOGRE_PRIMAL) { Ability(ABILITY_PRIMORDIAL_SEA); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("Powder damages the target under heavy rain (Gen 6)")
 SINGLE_BATTLE_TEST("Powder doesn't damage target under heavy rain (Gen 7+)")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_POWDER_STATUS_HEAVY_RAIN, GEN_7);
+        WITH_CONFIG(B_POWDER_STATUS_HEAVY_RAIN, GEN_7);
         PLAYER(SPECIES_KYOGRE_PRIMAL) { Ability(ABILITY_PRIMORDIAL_SEA); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
@@ -153,7 +153,7 @@ SINGLE_BATTLE_TEST("Powder fails if the target is Grass type (Gen6+)")
 SINGLE_BATTLE_TEST("Powder fails if the target is Grass type (Gen6+)")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_POWDER_GRASS, GEN_6);
+        WITH_CONFIG(B_POWDER_GRASS, GEN_6);
         ASSUME(GetSpeciesType(SPECIES_VENUSAUR, 0) == TYPE_GRASS || GetSpeciesType(SPECIES_VENUSAUR, 1) == TYPE_GRASS);
         PLAYER(SPECIES_VENUSAUR);
         OPPONENT(SPECIES_VIVILLON);
@@ -170,7 +170,7 @@ SINGLE_BATTLE_TEST("Powder fails if the target has Overcoat (Gen6+)")
 SINGLE_BATTLE_TEST("Powder fails if the target has Overcoat (Gen6+)")
 {
     GIVEN {
-        WITH_CONFIG(CONFIG_POWDER_OVERCOAT, GEN_6);
+        WITH_CONFIG(B_POWDER_OVERCOAT, GEN_6);
         PLAYER(SPECIES_FORRETRESS) { Ability(ABILITY_OVERCOAT); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
