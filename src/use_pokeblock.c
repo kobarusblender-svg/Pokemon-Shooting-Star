@@ -159,6 +159,13 @@ static void SpriteCB_SelectionIconCancel(struct Sprite *);
 static void SpriteCB_MonPic(struct Sprite *);
 static void SpriteCB_Condition(struct Sprite *);
 
+static const u8 sText_GetsAPokeBlockQuestion[] = _(" gets a {POKEBLOCK}?");
+static const u8 sText_WasEnhanced[] = _("was enhanced!");
+static const u8 sText_WasWeakened[] = _("was weakened!");
+static const u8 sText_NothingChanged[] = _("Nothing changed!");
+static const u8 sText_WontEatAnymore[] = _("It won't eat anymore…");
+static const u8 sText_NatureSlash[] = _("NATURE/");
+
 extern const u16 gConditionGraphData_Pal[];
 extern const u16 gConditionText_Pal[];
 
@@ -361,9 +368,6 @@ static const struct SpriteTemplate sSpriteTemplate_UpDown =
     .paletteTag = TAG_UP_DOWN,
     .oam = &sOam_UpDown,
     .anims = sAnims_UpDown,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCallbackDummy,
 };
 
 static const struct SpriteTemplate sSpriteTemplate_Down =
@@ -422,8 +426,6 @@ static const struct SpriteTemplate sSpriteTemplate_Condition =
     .paletteTag = TAG_CONDITION,
     .oam = &sOam_Condition,
     .anims = sAnims_Condition,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCB_Condition,
 };
 
@@ -888,7 +890,7 @@ static void AskUsePokeblock(void)
 
     GetMonData(&gPlayerParty[GetPartyIdFromSelectionId(sMenu->info.curSelection)], MON_DATA_NICKNAME, stringBuffer);
     StringGet_Nickname(stringBuffer);
-    StringAppend(stringBuffer, gText_GetsAPokeBlockQuestion);
+    StringAppend(stringBuffer, sText_GetsAPokeBlockQuestion);
     StringCopy(gStringVar4, stringBuffer);
     FillWindowPixelBuffer(WIN_TEXT, 17);
     DrawTextBorderOuter(WIN_TEXT, 151, 14);
@@ -968,7 +970,7 @@ static void PrintWontEatAnymore(void)
 {
     FillWindowPixelBuffer(WIN_TEXT, 17);
     DrawTextBorderOuter(WIN_TEXT, 151, 14);
-    AddTextPrinterParameterized(WIN_TEXT, FONT_NORMAL, gText_WontEatAnymore, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(WIN_TEXT, FONT_NORMAL, sText_WontEatAnymore, 0, 1, 0, NULL);
     PutWindowTilemap(WIN_TEXT);
     CopyWindowToVram(WIN_TEXT, COPYWIN_FULL);
 }
@@ -997,17 +999,17 @@ static void BufferEnhancedText(u8 *dest, u8 condition, s16 enhancement, struct P
             if (enhancement)
                 dest[(u16)enhancement] += 0; // something you can't imagine
             StringCopy(dest, sConditionNames[condition]);
-            StringAppend(dest, gText_WasLowered);
+            StringAppend(dest, sText_WasWeakened);
         }
         else{
             if (enhancement)
                 dest[(u16)enhancement] += 0; // something you can't imagine
             StringCopy(dest, sConditionNames[condition]);
-            StringAppend(dest, gText_WasEnhanced);
+            StringAppend(dest, sText_WasEnhanced);
         }
         break;
     case 0:
-        StringCopy(dest, gText_NothingChanged);
+        StringCopy(dest, sText_NothingChanged);
         break;
     }
 }
@@ -1464,7 +1466,7 @@ static void UpdateMonInfoText(u16 loadId, bool8 firstPrint)
         AddTextPrinterParameterized(WIN_NAME, FONT_NORMAL, sMenu->monNameStrings[loadId], 0, 1, 0, NULL);
         partyIndex = GetPartyIdFromSelectionId(sMenu->info.curSelection);
         nature = GetNature(&gPlayerParty[partyIndex]);
-        str = StringCopy(sMenu->info.natureText, gText_NatureSlash);
+        str = StringCopy(sMenu->info.natureText, sText_NatureSlash);
         str = StringCopy(str, gNaturesInfo[nature].name);
         AddTextPrinterParameterized3(WIN_NATURE, FONT_NORMAL, 2, 1, sNatureTextColors, 0, sMenu->info.natureText);
     }
