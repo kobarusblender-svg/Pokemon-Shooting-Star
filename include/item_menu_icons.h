@@ -43,7 +43,7 @@ u8 CreateBerryFlavorCircleSprite(s16 x);
 u8 CreateBerrySeasonsSprite(void);// MOD CONTEST
 u8 CreateSeasonXSprite(s16 x, s16 y); //
 u8 CreateSeasonQuestionMSprite(); //
-u8 CreateFlavorGrafSprite(s16 x, s16 y); //
+u8 CreateFlavorGrafSprite(s16 x, s16 y, s16 tile); //
 void LoadFlavorProfileSpriteData(s16 BerryNumber); //
 u8 CreateFlavorProfileSprite1(s16 BerryNumber, s16 x, s16 y); //
 u8 CreateFlavorProfileSprite2(s16 BerryNumber, s16 x, s16 y); //

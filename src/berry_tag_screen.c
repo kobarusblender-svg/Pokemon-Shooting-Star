@@ -55,7 +55,7 @@ struct BerryTagScreenStruct //MOD CONTEST
     u8 mainState;//
     u8 printState;//
     u8 seasonSpriteId;//
-    u8 flavorGrafSpriteId;//
+    u8 flavorGrafSpriteId[4];//
     u8 flipping;//
     u8 flavorXIds[8]; //
     u8 seasonQuestionSpriteId;//
@@ -352,7 +352,10 @@ static void SetBerrySpriteVisibility(void){ //MOD CONTEST this one sets the visi
         {
             gSprites[sBerryTag->berrySpriteId].invisible = FALSE;
             gSprites[sBerryTag->seasonSpriteId].invisible = FALSE; //Modify this to make it dependent on flags for each berry
-            gSprites[sBerryTag->flavorGrafSpriteId].invisible = TRUE;
+            gSprites[sBerryTag->flavorGrafSpriteId[0]].invisible = TRUE;
+            gSprites[sBerryTag->flavorGrafSpriteId[1]].invisible = TRUE;
+            gSprites[sBerryTag->flavorGrafSpriteId[2]].invisible = TRUE;
+            gSprites[sBerryTag->flavorGrafSpriteId[3]].invisible = TRUE;
             gSprites[sBerryTag->flavorProfileSpriteIds[0]].invisible = TRUE;
             gSprites[sBerryTag->flavorProfileSpriteIds[1]].invisible = TRUE;
             gSprites[sBerryTag->flavorProfileSpriteIds[2]].invisible = TRUE;
@@ -362,7 +365,10 @@ static void SetBerrySpriteVisibility(void){ //MOD CONTEST this one sets the visi
         {
             gSprites[sBerryTag->berrySpriteId].invisible = TRUE;
             gSprites[sBerryTag->seasonSpriteId].invisible = FALSE;
-            gSprites[sBerryTag->flavorGrafSpriteId].invisible = FALSE;
+            gSprites[sBerryTag->flavorGrafSpriteId[0]].invisible = FALSE;
+            gSprites[sBerryTag->flavorGrafSpriteId[1]].invisible = FALSE;
+            gSprites[sBerryTag->flavorGrafSpriteId[2]].invisible = FALSE;
+            gSprites[sBerryTag->flavorGrafSpriteId[3]].invisible = FALSE;
             gSprites[sBerryTag->flavorProfileSpriteIds[0]].invisible = FALSE;
             gSprites[sBerryTag->flavorProfileSpriteIds[1]].invisible = FALSE;
             if (sBerryTag->berryId == (ItemIdToBerryType(ITEM_ENIGMA_BERRY))){
@@ -380,7 +386,10 @@ static void SetBerrySpriteVisibility(void){ //MOD CONTEST this one sets the visi
         SetFlavorCirclesVisiblity();
         gSprites[sBerryTag->berrySpriteId].invisible = TRUE;
         gSprites[sBerryTag->seasonSpriteId].invisible = TRUE;
-        gSprites[sBerryTag->flavorGrafSpriteId].invisible = TRUE;
+        gSprites[sBerryTag->flavorGrafSpriteId[0]].invisible = TRUE;
+        gSprites[sBerryTag->flavorGrafSpriteId[1]].invisible = TRUE;
+        gSprites[sBerryTag->flavorGrafSpriteId[2]].invisible = TRUE;
+        gSprites[sBerryTag->flavorGrafSpriteId[3]].invisible = TRUE;
         gSprites[sBerryTag->flavorProfileSpriteIds[0]].invisible = TRUE;
         gSprites[sBerryTag->flavorProfileSpriteIds[1]].invisible = TRUE;
         gSprites[sBerryTag->flavorProfileSpriteIds[2]].invisible = TRUE;
@@ -789,6 +798,8 @@ static bool8 Task_EndTagFlip(struct Task *task) //
     }
 
     ClearSideRelevantWindows();
+    DestroyFlavorXSprites();
+    CreateFlavorXSprites();
     SetBerrySpriteVisibility();
     ShowBg(1);
     
@@ -962,8 +973,14 @@ static void CreateSeasonsSprite(void) // if the berry tag is on the back, it loa
 
 static void CreateFlavorGraficSprite(void) //
 {
-    sBerryTag->flavorGrafSpriteId = CreateFlavorGrafSprite(177, 66);
-    gSprites[sBerryTag->flavorGrafSpriteId].invisible = TRUE;
+        sBerryTag->flavorGrafSpriteId[0] = CreateFlavorGrafSprite(177, 66, 0); //MOD CONTEST I tried using a for loop here but the builder got scared and wouldn't allow it.
+        sBerryTag->flavorGrafSpriteId[1] = CreateFlavorGrafSprite(177, 66, 1);
+        sBerryTag->flavorGrafSpriteId[2] = CreateFlavorGrafSprite(177, 66, 2);
+        sBerryTag->flavorGrafSpriteId[3] = CreateFlavorGrafSprite(177, 66, 3);
+        gSprites[sBerryTag->flavorGrafSpriteId[0]].invisible = TRUE;
+        gSprites[sBerryTag->flavorGrafSpriteId[1]].invisible = TRUE;
+        gSprites[sBerryTag->flavorGrafSpriteId[2]].invisible = TRUE;
+        gSprites[sBerryTag->flavorGrafSpriteId[3]].invisible = TRUE;
 }
 
 static void CreateNewFlavorProfileSprite(void) //
@@ -1048,7 +1065,11 @@ static void DestroyFlavorProfileSprite(void) //
 
 static void DestroyFlavorGraficSprite(void) //
 {
-    DestroySprite(&gSprites[sBerryTag->flavorGrafSpriteId]);
+        DestroySprite(&gSprites[sBerryTag->flavorGrafSpriteId[0]]);
+        DestroySprite(&gSprites[sBerryTag->flavorGrafSpriteId[1]]);
+        DestroySprite(&gSprites[sBerryTag->flavorGrafSpriteId[2]]);
+        DestroySprite(&gSprites[sBerryTag->flavorGrafSpriteId[3]]);
+    
 }
 
 static void DestroySeasonsSprite(void)
@@ -1419,11 +1440,13 @@ static void Task_DisplayAnotherBerry(u8 taskId) //MOD CONTEST had to dupe this o
     else
         y = tBerryY;
 
-    gSprites[sBerryTag->berrySpriteId].y2 = y;
-    gSprites[sBerryTag->flavorGrafSpriteId].y2 = y; //MOD CONTEST these move the sprites along with the Berry Tag.
+    gSprites[sBerryTag->berrySpriteId].y2 = y; //MOD CONTEST these move the sprites along with the Berry Tag.
     gSprites[sBerryTag->seasonSpriteId].y2 = y; //
     gSprites[sBerryTag->seasonQuestionSpriteId].y2 = y;//
 
+    for (i = 0; i < 4; i++)//
+        gSprites[sBerryTag->flavorGrafSpriteId[i]].y2 = y;
+    
     for (i = 0; i < FLAVOR_COUNT; i++)//
         gSprites[sBerryTag->flavorCircleIds[i]].y2 = y;
     

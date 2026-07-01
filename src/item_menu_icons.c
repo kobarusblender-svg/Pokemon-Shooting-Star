@@ -1404,9 +1404,35 @@ static void SpriteCB_BerryFlavorGrafDOWNright(struct Sprite *sprite)//
     sprite->y2 = gSprites[sprite->sUPLeftSpriteId].y2;
 }
 
-u8 CreateFlavorGrafSprite(s16 x, s16 y) // MOD CONTEST this one creates the berry flavor grafic sprite. It's too big, so it's loaded with four different pieces.
-{
-    u8 UPleftSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y, 1); //added 1 to each subpriority to make it work with the Enigma profile sprite
+u8 CreateFlavorGrafSprite(s16 x, s16 y, s16 tile) // MOD CONTEST this one creates the berry flavor grafic sprite. It's too big, so it's loaded with four different pieces.
+{   
+    u8 CurrentTile;
+
+    switch(tile)
+    {
+        case 0:
+            CurrentTile = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y, 1);
+            StartSpriteAnim(&gSprites[CurrentTile], 0);
+            break;
+        case 1:
+            CurrentTile = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x + 32, y, 1);
+            StartSpriteAnim(&gSprites[CurrentTile], 1);
+            break;
+        case 2:
+            CurrentTile = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y + 64, 1);
+            StartSpriteAnim(&gSprites[CurrentTile], 2);
+            break;
+        case 3:
+            CurrentTile = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x + 32, y + 64, 1);
+            StartSpriteAnim(&gSprites[CurrentTile], 3);
+            break;
+        default:
+            CurrentTile = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y, 1);
+            StartSpriteAnim(&gSprites[CurrentTile], 0);
+            break;
+    }
+
+    /*u8 UPleftSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y, 1); //added 1 to each subpriority to make it work with the Enigma profile sprite
     u8 UPrightSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x + 32, y, 1);
     u8 DOWNleftSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y + 64, 1);
     u8 DOWNrightSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x + 32, y + 64, 1);
@@ -1419,7 +1445,8 @@ u8 CreateFlavorGrafSprite(s16 x, s16 y) // MOD CONTEST this one creates the berr
     gSprites[UPrightSpriteId].callback = &SpriteCB_BerryFlavorGrafUPright;
     gSprites[DOWNleftSpriteId].callback = &SpriteCB_BerryFlavorGrafDOWNleft;
     gSprites[DOWNrightSpriteId].callback = &SpriteCB_BerryFlavorGrafDOWNright;
-    return UPleftSpriteId;
+    return UPleftSpriteId;*/ //MOD CONTEST OLD CODE
+    return CurrentTile;
 }
 
 void CalculateAndloadProfilePalette(s16 BerryNumber)
