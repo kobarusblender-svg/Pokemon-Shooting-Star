@@ -35,12 +35,6 @@ enum { //MOD CONTEST This one lists every berry season sprite (Yes, it was bette
 #define TAG_BERRY_CHECK_CIRCLE_GFX 10000
 #define TAG_BERRY_PIC_PAL 30020
 
-struct TilesPal
-{
-    const u32 *tiles;
-    const u16 *pal;
-};
-
 // this file's functions
 static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite);
 static void SpriteCB_ShakeBagSprite(struct Sprite *sprite);
@@ -1299,11 +1293,11 @@ static struct BerryDynamicGfx *LoadBerryGfx(u8 berryId)
 {
     struct SpritePalette pal;
 
-    pal.data = sBerryPicTable[berryId].pal;
+    pal.data = gBerries[berryId].berryPal;
     pal.tag = TAG_BERRY_PIC_PAL + berryId;
     LoadSpritePalette(&pal);
     struct BerryDynamicGfx *gfxAlloced = Alloc(sizeof(struct BerryDynamicGfx));
-    void *buffer = malloc_and_decompress(sBerryPicTable[berryId].tiles, NULL);
+    void *buffer = malloc_and_decompress(gBerries[berryId].berryPic, NULL);
     ArrangeBerryGfx(buffer, gfxAlloced->gfx);
     Free(buffer);
 
