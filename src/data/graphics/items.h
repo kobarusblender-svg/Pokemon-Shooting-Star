@@ -1620,41 +1620,41 @@ const u16 gItemIconPalette_DurinBerry[] = INCGFX_U16("graphics/items/icon_palett
 const u32 gItemIcon_BelueBerry[] = INCGFX_U32("graphics/items/icons/belue_berry.png", ".4bpp.smol");
 const u16 gItemIconPalette_BelueBerry[] = INCGFX_U16("graphics/items/icon_palettes/belue_berry.pal", ".gbapal");
                                                                                                 //MOD CONTEST more E-Reader berry graphics:
-const u32 gItemIcon_PumkinBerry[] = INCBIN_U32("graphics/items/icons/pumkin_berry.png", ".4bpp.smol");
-const u16 gItemIconPalette_PumkinBerry[] = INCBIN_U16("graphics/items/icon_palettes/pumkin_berry.pal", ".gbapal");
+const u32 gItemIcon_PumkinBerry[] = INCGFX_U32("graphics/items/icons/pumkin_berry.png", ".4bpp.smol");
+const u16 gItemIconPalette_PumkinBerry[] = INCGFX_U16("graphics/items/icon_palettes/pumkin_berry.pal", ".gbapal");
 
-const u32 gItemIcon_DrashBerry[] = INCBIN_U32("graphics/items/icons/drash_berry.png", ".4bpp.smol");
-const u16 gItemIconPalette_DrashBerry[] = INCBIN_U16("graphics/items/icon_palettes/drash_berry.pal", ".gbapal");
+const u32 gItemIcon_DrashBerry[] = INCGFX_U32("graphics/items/icons/drash_berry.png", ".4bpp.smol");
+const u16 gItemIconPalette_DrashBerry[] = INCGFX_U16("graphics/items/icon_palettes/drash_berry.pal", ".gbapal");
 
-const u32 gItemIcon_EggantBerry[] = INCBIN_U32("graphics/items/icons/eggant_berry.png", ".4bpp.smol");
-const u16 gItemIconPalette_EggantBerry[] = INCBIN_U16("graphics/items/icon_palettes/eggant_berry.pal", ".gbapal");
+const u32 gItemIcon_EggantBerry[] = INCGFX_U32("graphics/items/icons/eggant_berry.png", ".4bpp.smol");
+const u16 gItemIconPalette_EggantBerry[] = INCGFX_U16("graphics/items/icon_palettes/eggant_berry.pal", ".gbapal");
 
-const u32 gItemIcon_StribBerry[] = INCBIN_U32("graphics/items/icons/strib_berry.png", ".4bpp.smol");
-const u16 gItemIconPalette_StribBerry[] = INCBIN_U16("graphics/items/icon_palettes/strib_berry.pal", ".gbapal");
+const u32 gItemIcon_StribBerry[] = INCGFX_U32("graphics/items/icons/strib_berry.png", ".4bpp.smol");
+const u16 gItemIconPalette_StribBerry[] = INCGFX_U16("graphics/items/icon_palettes/strib_berry.pal", ".gbapal");
 
-const u32 gItemIcon_ChilanERBerry[] = INCBIN_U32("graphics/items/icons/chilanER_berry.png", ".4bpp.smol");
-const u16 gItemIconPalette_ChilanERBerry[] = INCBIN_U16("graphics/items/icon_palettes/chilanER_berry.pal", ".gbapal");
+const u32 gItemIcon_ChilanERBerry[] = INCGFX_U32("graphics/items/icons/chilanER_berry.png", ".4bpp.smol");
+const u16 gItemIconPalette_ChilanERBerry[] = INCGFX_U16("graphics/items/icon_palettes/chilanER_berry.pal", ".gbapal");
 
-const u32 gItemIcon_NutpeaBerry[] = INCBIN_U32("graphics/items/icons/nutpea_berry.png", ".4bpp.smol");
-const u16 gItemIconPalette_NutpeaBerry[] = INCBIN_U16("graphics/items/icon_palettes/nutpea_berry.pal", ".gbapal");
+const u32 gItemIcon_NutpeaBerry[] = INCGFX_U32("graphics/items/icons/nutpea_berry.png", ".4bpp.smol");
+const u16 gItemIconPalette_NutpeaBerry[] = INCGFX_U16("graphics/items/icon_palettes/nutpea_berry.pal", ".gbapal");
 
-const u32 gItemIcon_NoionBerry[] = INCBIN_U32("graphics/items/icons/noion_berry.png", ".4bpp.smol");//(Japanese exclusive Ginema berry)
-const u16 gItemIconPalette_NoionBerry[] = INCBIN_U16("graphics/items/icon_palettes/noion_berry.pal", ".gbapal");//(Japanese exclusive Ginema berry)
+const u32 gItemIcon_NoionBerry[] = INCGFX_U32("graphics/items/icons/noion_berry.png", ".4bpp.smol");//(Japanese exclusive Ginema berry)
+const u16 gItemIconPalette_NoionBerry[] = INCGFX_U16("graphics/items/icon_palettes/noion_berry.pal", ".gbapal");//(Japanese exclusive Ginema berry)
 
-const u32 gItemIcon_RokaBerry[] = INCBIN_U32("graphics/items/icons/roka_berry.png", ".4bpp.smol");//(Japanese exclusive Kuo berry)
-const u16 gItemIconPalette_RokaBerry[] = INCBIN_U16("graphics/items/icon_palettes/roka_berry.pal", ".gbapal");//(Japanese exclusive Kuo berry)
+const u32 gItemIcon_RokaBerry[] = INCGFX_U32("graphics/items/icons/roka_berry.png", ".4bpp.smol");//(Japanese exclusive Kuo berry)
+const u16 gItemIconPalette_RokaBerry[] = INCGFX_U16("graphics/items/icon_palettes/roka_berry.pal", ".gbapal");//(Japanese exclusive Kuo berry)
 
-const u32 gItemIcon_SkuashBerry[] = INCBIN_U32("graphics/items/icons/bitsquash_berry.png", ".4bpp.smol");//(Japanese exclusive Yago berry)
-const u16 gItemIconPalette_SkuashBerry[] = INCBIN_U16("graphics/items/icon_palettes/bitsquash_berry.pal", ".gbapal");//(Japanese exclusive Yago berry)
+const u32 gItemIcon_SkuashBerry[] = INCGFX_U32("graphics/items/icons/bitsquash_berry.png", ".4bpp.smol");//(Japanese exclusive Yago berry)
+const u16 gItemIconPalette_SkuashBerry[] = INCGFX_U16("graphics/items/icon_palettes/bitsquash_berry.pal", ".gbapal");//(Japanese exclusive Yago berry)
 
-const u32 gItemIcon_PaprikBerry[] = INCBIN_U32("graphics/items/icons/paprik_berry.png", ".4bpp.smol");//(Japanese exclusive Touga berry)
-const u16 gItemIconPalette_PaprikBerry[] = INCBIN_U16("graphics/items/icon_palettes/paprik_berry.pal", ".gbapal");//(Japanese exclusive Touga berry)
+const u32 gItemIcon_PaprikBerry[] = INCGFX_U32("graphics/items/icons/paprik_berry.png", ".4bpp.smol");//(Japanese exclusive Touga berry)
+const u16 gItemIconPalette_PaprikBerry[] = INCGFX_U16("graphics/items/icon_palettes/paprik_berry.pal", ".gbapal");//(Japanese exclusive Touga berry)
 
-const u32 gItemIcon_MaliumBerry[] = INCBIN_U32("graphics/items/icons/mallium_berry.png", ".4bpp.smol");// Must change for E-reader Malium Berry (Japanese exclusive Niniku berry)
-const u16 gItemIconPalette_MaliumBerry[] = INCBIN_U16("graphics/items/icon_palettes/mallium_berry.pal", ".gbapal");//(Japanese exclusive Niniku berry)
+const u32 gItemIcon_MaliumBerry[] = INCGFX_U32("graphics/items/icons/mallium_berry.png", ".4bpp.smol");// Must change for E-reader Malium Berry (Japanese exclusive Niniku berry)
+const u16 gItemIconPalette_MaliumBerry[] = INCGFX_U16("graphics/items/icon_palettes/mallium_berry.pal", ".gbapal");//(Japanese exclusive Niniku berry)
 
-const u32 gItemIcon_TopoBerry[] = INCBIN_U32("graphics/items/icons/topo_berry.png", ".4bpp.smol");//(Japanese exclusive Topo berry)
-const u16 gItemIconPalette_TopoBerry[] = INCBIN_U16("graphics/items/icon_palettes/topo_berry.pal", ".gbapal");//(Japanese exclusive Topo berry)
+const u32 gItemIcon_TopoBerry[] = INCGFX_U32("graphics/items/icons/topo_berry.png", ".4bpp.smol");//(Japanese exclusive Topo berry)
+const u16 gItemIconPalette_TopoBerry[] = INCGFX_U16("graphics/items/icon_palettes/topo_berry.pal", ".gbapal");//(Japanese exclusive Topo berry)
 /*
 const u32 gItemIcon_ChilanBerry[] = INCGFX_U32("graphics/items/icons/chilan_berry.png", ".4bpp.smol");
 const u16 gItemIconPalette_ChilanBerry[] = INCGFX_U16("graphics/items/icon_palettes/chilan_berry.pal", ".gbapal");
