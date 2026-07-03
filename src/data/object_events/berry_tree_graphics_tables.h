@@ -630,7 +630,7 @@ const u8 gBerryTreePaletteSlotTable_Rowap[] = {3, 4, 5, 5, 5, 5, 5};
 
 //MOD CONTEST Custom graphics for berry trees (hope this works)
 
-static const struct SpriteFrameImage sPicTable_PumkinBerryTree[] = {
+const struct SpriteFrameImage gPicTable_PumkinBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -644,7 +644,7 @@ static const struct SpriteFrameImage sPicTable_PumkinBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Pumkin[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_DrashBerryTree[] = {
+const struct SpriteFrameImage gPicTable_DrashBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -658,7 +658,7 @@ static const struct SpriteFrameImage sPicTable_DrashBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Drash[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_EggantBerryTree[] = {
+const struct SpriteFrameImage gPicTable_EggantBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -672,7 +672,7 @@ static const struct SpriteFrameImage sPicTable_EggantBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Eggant[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_StribBerryTree[] = {
+const struct SpriteFrameImage gPicTable_StribBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -686,7 +686,7 @@ static const struct SpriteFrameImage sPicTable_StribBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Strib[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_ChilanERBerryTree[] = {
+const struct SpriteFrameImage gPicTable_ChilanERBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -700,7 +700,7 @@ static const struct SpriteFrameImage sPicTable_ChilanERBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_ChilanER[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_NutpeaBerryTree[] = {
+const struct SpriteFrameImage gPicTable_NutpeaBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -714,7 +714,7 @@ static const struct SpriteFrameImage sPicTable_NutpeaBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Nutpea[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_NoionBerryTree[] = {
+const struct SpriteFrameImage gPicTable_NoionBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -728,7 +728,7 @@ static const struct SpriteFrameImage sPicTable_NoionBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Noion[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_RokaBerryTree[] = {
+const struct SpriteFrameImage gPicTable_RokaBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -742,7 +742,7 @@ static const struct SpriteFrameImage sPicTable_RokaBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Roka[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_SkuashBerryTree[] = {
+const struct SpriteFrameImage gPicTable_SkuashBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -756,7 +756,7 @@ static const struct SpriteFrameImage sPicTable_SkuashBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Skuash[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_PaprikBerryTree[] = {
+const struct SpriteFrameImage gPicTable_PaprikBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -770,7 +770,7 @@ static const struct SpriteFrameImage sPicTable_PaprikBerryTree[] = {
 
 const u8 gBerryTreePaletteSlotTable_Paprik[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_MaliumBerryTree[] = { //MOD CONTEST
+const struct SpriteFrameImage gPicTable_MaliumBerryTree[] = { //MOD CONTEST
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -784,7 +784,7 @@ static const struct SpriteFrameImage sPicTable_MaliumBerryTree[] = { //MOD CONTE
 
 const u8 gBerryTreePaletteSlotTable_Malium[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_TopoBerryTree[] = {
+const struct SpriteFrameImage gPicTable_TopoBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -800,7 +800,7 @@ const u8 gBerryTreePaletteSlotTable_Topo[] = {3, 4, 4, 4, 4, 4, 4};
 
 //MOD CONTEST New berry tree graphics for old berries:
 
-static const struct SpriteFrameImage sPicTable_BlukBerryTree[] = {
+const struct SpriteFrameImage gPicTable_BlukBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -813,7 +813,7 @@ static const struct SpriteFrameImage sPicTable_BlukBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Bluk[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_NanabBerryTree[] = {
+const struct SpriteFrameImage gPicTable_NanabBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -826,7 +826,7 @@ static const struct SpriteFrameImage sPicTable_NanabBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Nanab[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_PinapBerryTree[] = {
+const struct SpriteFrameImage gPicTable_PinapBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -839,7 +839,7 @@ static const struct SpriteFrameImage sPicTable_PinapBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Pinap[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_QualotBerryTree[] = {
+const struct SpriteFrameImage gPicTable_QualotBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -852,7 +852,7 @@ static const struct SpriteFrameImage sPicTable_QualotBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Qualot[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_MagostBerryTree[] = {
+const struct SpriteFrameImage gPicTable_MagostBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -865,7 +865,7 @@ static const struct SpriteFrameImage sPicTable_MagostBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Magost[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_WatmelBerryTree[] = {
+const struct SpriteFrameImage gPicTable_WatmelBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -878,7 +878,7 @@ static const struct SpriteFrameImage sPicTable_WatmelBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Watmel[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_BelueBerryTree[] = {
+const struct SpriteFrameImage gPicTable_BelueBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -891,7 +891,7 @@ static const struct SpriteFrameImage sPicTable_BelueBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Belue[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_GanlonBerryTree[] = {
+const struct SpriteFrameImage gPicTable_GanlonBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -904,7 +904,7 @@ static const struct SpriteFrameImage sPicTable_GanlonBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Ganlon[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_PetayaBerryTree[] = {
+const struct SpriteFrameImage gPicTable_PetayaBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -917,7 +917,7 @@ static const struct SpriteFrameImage sPicTable_PetayaBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Petaya[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_ApicotBerryTree[] = {
+const struct SpriteFrameImage gPicTable_ApicotBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -930,7 +930,7 @@ static const struct SpriteFrameImage sPicTable_ApicotBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Apicot[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_SalacBerryTree[] = {
+const struct SpriteFrameImage gPicTable_SalacBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -943,7 +943,7 @@ static const struct SpriteFrameImage sPicTable_SalacBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Salac[] = {3, 4, 2, 2, 2, 2, 2};
 
-static const struct SpriteFrameImage sPicTable_StarfBerryTree[] = {
+const struct SpriteFrameImage gPicTable_StarfBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),
@@ -956,7 +956,7 @@ static const struct SpriteFrameImage sPicTable_StarfBerryTree[] = {
 };
 const u8 gBerryTreePaletteSlotTable_Starf[] = {3, 4, 4, 4, 4, 4, 4};
 
-static const struct SpriteFrameImage sPicTable_EnigmaBerryTree[] = {
+ const struct SpriteFrameImage gPicTable_EnigmaBerryTree[] = {
     overworld_frame(gObjectEventPic_BerryTreeDirtPile, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 0),
     overworld_frame(gObjectEventPic_BerryTreeSprout, 2, 2, 1),

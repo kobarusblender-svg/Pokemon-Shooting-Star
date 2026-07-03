@@ -1666,10 +1666,10 @@ static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct B
             if (opponentSetId >= NUM_NPC_BERRIES)
                 opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
         }
-        else if (playerBerryItemId == BERRY_ID_LIECHI || playerBerryItemId == BERRY_ID_GANLON_BERRY
+        else if (playerBerryItemId == BERRY_ID_LIECHI || playerBerryItemId == BERRY_ID_GANLON
                                                         || playerBerryItemId == BERRY_ID_SALAC || playerBerryItemId == BERRY_ID_PETAYA // MOD CONTEST This function makes NPCs choose the correct berries for the
                                                         || playerBerryItemId == BERRY_ID_APICOT || playerBerryItemId == BERRY_ID_LANSAT // player berries listed after the E-Reader ones, as the numbers don't match anymore.
-                                                        || playerBerryItemId == BERRY_ID_STARF || playerBerryItemId == BERRY_ID_ENIGMA_BERRY)
+                                                        || playerBerryItemId == BERRY_ID_STARF || playerBerryItemId == BERRY_ID_ENIGMA)
         {
             opponentSetId = ItemIdToBerryType(playerBerryItemId) - 3;
             if (opponentSetId >= NUM_NPC_BERRIES)

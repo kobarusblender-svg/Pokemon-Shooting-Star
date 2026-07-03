@@ -56,30 +56,6 @@
     F(APICOT) \
     F(LANSAT) \
     F(STARF) \
-    F(ENIGMA) \
-#endif
+    F(ENIGMA) 
 
-    /*F(OCCA) \
-    F(PASSHO) \
-    F(WACAN) \
-    F(RINDO) \
-    F(YACHE) \
-    F(CHOPLE) \
-    F(KEBIA) \
-    F(SHUCA) \
-    F(COBA) \
-    F(PAYAPA) \
-    F(TANGA) \
-    F(CHARTI) \
-    F(KASIB) \
-    F(HABAN) \
-    F(COLBUR) \
-    F(BABIRI) \
-    F(CHILAN) \*/
-    /*F(MICLE) \
-    F(CUSTAP) \
-    F(JABOCA) \
-    F(ROWAP) \
-    F(ROSELI) \
-    F(KEE) \
-    F(MARANGA)*/
+#endif

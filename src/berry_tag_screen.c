@@ -866,7 +866,7 @@ static void PrintBerryDescription2(void)
 
 static void PrintBerryFeel(void) //
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
     u8 HandleString;
     if(berryInfo->smoothness < 20){ // E-Reader Berries with 5 feel
         HandleString = BERRY_FEEL_SILKY;
@@ -897,7 +897,7 @@ static void PrintBerryFeel(void) //
 
 static void PrintBerryGrowth(void) //
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
 
     u8 HandleString;
     if(berryInfo->growthDuration < 12){ // Berries that grow in 4-8 hours
@@ -925,92 +925,7 @@ static void PrintBerryYield(void) //
 {   
     //Some of these are never seen unless "Galactic Berries" is obtained and enabled (Gen 4 Style berries)
 
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-
-    u8 HandleString;
-    if(berryInfo->maxYield < 3){ // Yields of 2-1 Berries
-        HandleString = BERRY_YIELD_A_PAIR;
-    }
-    else if(berryInfo->maxYield < 6){ // Yields of 3-5 Berries
-        HandleString = BERRY_YIELD_A_FEW;
-    }
-    else if(berryInfo->maxYield < 12){ // Yields of 6-11 Berries
-        HandleString = BERRY_YIELD_SOME;
-    }
-    else if(berryInfo->maxYield < 24){ // Yields of 12-23 Berries
-        HandleString = BERRY_YIELD_LOTS;
-    }
-    else if(berryInfo->maxYield <= 24){ // Yields of 24+ Berries
-        HandleString = BERRY_YIELD_PLENTY;
-    }
-    else{ // Out of bounds & special Cases
-        HandleString = BERRY_YIELD_UNKNOWN;
-    }
-    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryYieldStrings[HandleString], 5, 40, 0, NULL);
-}
-
-static void PrintBerryFeel(void) //
-{
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    u8 HandleString;
-    if(berryInfo->smoothness < 20){ // E-Reader Berries with 5 feel
-        HandleString = BERRY_FEEL_SILKY;
-    }
-    else if(berryInfo->smoothness < 25){ // Berries with 20 feel
-        HandleString = BERRY_FEEL_SMOOTH;
-    }
-    else if(berryInfo->smoothness < 30){ // Berries with 25 feel
-        HandleString = BERRY_FEEL_TENDER;
-    }
-    else if(berryInfo->fo->smoothness < 65){ // Berries with 30 feel
-        HandleString = BERRY_FEEL_CHEWY;
-    }
-    else if(berryInfo->fo->fo->smoothness < 70){ // E-Reader Berries with 65 feel
-        HandleString = BERRY_FEEL_GRITTY;
-    }
-    else if(berryInfo->fo->fo->fo->smoothness < 80){ // Berries with 70 feel
-        HandleString = BERRY_FEEL_CRUMBLY;
-    }
-    else if(berryInfo->fo->fo->fo->fo->smoothness < 85){ // Berries with 80 feel
-        HandleString = BERRY_FEEL_DENSE;
-    }
-    else{ // Out of bounds, special Cases & E-Reader Berries with 85 feel
-        HandleString = BERRY_FEEL_UNKNOWN;
-    }
-    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryFeelStrings[HandleString], 5, 10, 0, NULL);
-}
-
-static void PrintBerryGrowth(void) //
-{
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-
-    u8 HandleString;
-    if(berryInfo->growthDuration < 12){ // Berries that grow in 4-8 hours
-        HandleString = BERRY_GROWTH_FAST;
-    }
-    else if(berryInfo->growthDuration < 20){ // Berries that grow in 4-12-16 hours
-        HandleString = BERRY_GROWTH_QUICK;
-    }
-    else if(berryInfo->growthDuration < 32){ // Berries that grow in 20-24 hours
-        HandleString = BERRY_GROWTH_EVEN;
-    }
-    else if(berryInfo->growthDuration < 60){ // Berries that grow in 32-48 hours
-        HandleString = BERRY_GROWTH_SLOW;
-    }
-    else if(berryInfo->growthDuration < 96){ // Berries that grow in 60-72 hours
-        HandleString = BERRY_GROWTH_LATE;
-    }
-    else{ // Out of bounds, special Cases & Berries that grow in 96+ hours
-        HandleString = BERRY_GROWTH_UNKNOWN;
-    }
-    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryGrowthStrings[HandleString], 5, 25, 0, NULL);
-}
-
-static void PrintBerryYield(void) //
-{   
-    //Some of these are never seen unless "Galactic Berries" is obtained and enabled (Gen 4 Style berries)
-
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
 
     u8 HandleString;
     if(berryInfo->maxYield < 3){ // Yields of 2-1 Berries
@@ -1048,12 +963,12 @@ static void DestroyBerrySprite(void)
 
 static void CreateSeasonsSprite(void) // if the berry tag is on the back, it loads the season grid, if it's on the front, it loads the berry flower sprite. It was the only way that didn't implode the GBA
 {
-    if(sBerryTag->onBack){
+    //if(sBerryTag->onBack){
         sBerryTag->seasonSpriteId = CreateBerrySeasonsSprite();
-    }
-    else{
-        sBerryTag->seasonSpriteId = CreateBerryFlowerSprite(sBerryTag->berryId);//
-    }
+    //}
+    //else{
+       // sBerryTag->seasonSpriteId = CreateBerryFlowerSprite(sBerryTag->berryId);//
+    //}
 }
 
 static void CreateFlavorGraficSprite(void) //
@@ -1070,7 +985,7 @@ static void CreateFlavorGraficSprite(void) //
 
 static void CreateNewFlavorProfileSprite(void) //
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
 
     CalculateAndloadProfilePalette(sBerryTag->berryId);
     LoadFlavorProfileSpriteData(sBerryTag->berryId);
@@ -1228,7 +1143,7 @@ static void SetFlavorXVisiblity(void) //MOD CONTEST this one sets the X sprites 
     
         This is all flavor text BTW lol.
     */
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
 
     if ((berryInfo->growthSeasons == SEASON_A || berryInfo->growthSeasons == SEASON_B || 
           berryInfo->growthSeasons == SEASON_E || berryInfo->growthSeasons == SEASON_I) 

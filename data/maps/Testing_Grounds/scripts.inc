@@ -11,9 +11,9 @@ Testing_Grounds_Text_WAYHereSign:
 	.string "Why are you here?$"
 	end
 
-	
+	@used to be trainerbattle_contestsingle but now it's broken.
 Testing_Grounds_EventScript_Jaimito::
-	trainerbattle_contestsingle TRAINER_JAIMITO, Testing_Grounds_Text_JaimitoIntro, Testing_Grounds_Text_JaimitoDefeated
+	trainerbattle_single TRAINER_JAIMITO, Testing_Grounds_Text_JaimitoIntro, Testing_Grounds_Text_JaimitoDefeated
 	msgbox Testing_Grounds_Text_JaimitoPostBattle, MSGBOX_AUTOCLOSE
 	end
 

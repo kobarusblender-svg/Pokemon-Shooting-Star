@@ -1985,6 +1985,8 @@ extern const u32 gBerryPic_Enigma[];
 //extern const u32 gBerryPic_Rowap[];
 //extern const u32 gBerryPic_Kee[];
 //extern const u32 gBerryPic_Maranga[];
+
+//Berry Flower Palettes
 extern const u16 gBerryPalette_Cheri[];
 extern const u16 gBerryPalette_Chesto[];
 extern const u16 gBerryPalette_Pecha[];

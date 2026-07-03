@@ -328,6 +328,168 @@ extern const u16 gBerryPalette_Rowap[];
 extern const u16 gBerryPalette_Kee[];
 extern const u16 gBerryPalette_Maranga[];*/
 
+// berry flower pics
+extern const u32 gFlowerPic_Cheri[];
+extern const u32 gFlowerPic_Chesto[];
+extern const u32 gFlowerPic_Pecha[];
+extern const u32 gFlowerPic_Rawst[];
+extern const u32 gFlowerPic_Aspear[];
+extern const u32 gFlowerPic_Leppa[];
+extern const u32 gFlowerPic_Oran[];
+extern const u32 gFlowerPic_Persim[];
+extern const u32 gFlowerPic_Lum[];
+extern const u32 gFlowerPic_Sitrus[];
+extern const u32 gFlowerPic_Figy[];
+extern const u32 gFlowerPic_Wiki[];
+extern const u32 gFlowerPic_Mago[];
+extern const u32 gFlowerPic_Aguav[];
+extern const u32 gFlowerPic_Iapapa[];
+extern const u32 gFlowerPic_Razz[];
+extern const u32 gFlowerPic_Bluk[];
+extern const u32 gFlowerPic_Nanab[];
+extern const u32 gFlowerPic_Wepear[];
+extern const u32 gFlowerPic_Pinap[];
+extern const u32 gFlowerPic_Pomeg[];
+extern const u32 gFlowerPic_Kelpsy[];
+extern const u32 gFlowerPic_Qualot[];
+extern const u32 gFlowerPic_Hondew[];
+extern const u32 gFlowerPic_Grepa[];
+extern const u32 gFlowerPic_Tamato[];
+extern const u32 gFlowerPic_Cornn[];
+extern const u32 gFlowerPic_Magost[];
+extern const u32 gFlowerPic_Rabuta[];
+extern const u32 gFlowerPic_Nomel[];
+extern const u32 gFlowerPic_Spelon[];
+extern const u32 gFlowerPic_Pamtre[];
+extern const u32 gFlowerPic_Watmel[];
+extern const u32 gFlowerPic_Durin[];
+extern const u32 gFlowerPic_Belue[];/*
+extern const u32 gFlowerPic_Chilan[];
+extern const u32 gFlowerPic_Occa[];
+extern const u32 gFlowerPic_Passho[];
+extern const u32 gFlowerPic_Wacan[];
+extern const u32 gFlowerPic_Rindo[];
+extern const u32 gFlowerPic_Yache[];
+extern const u32 gFlowerPic_Chople[];
+extern const u32 gFlowerPic_Kebia[];
+extern const u32 gFlowerPic_Shuca[];
+extern const u32 gFlowerPic_Coba[];
+extern const u32 gFlowerPic_Payapa[];
+extern const u32 gFlowerPic_Tanga[];*/
+extern const u32 gFlowerPic_Pumkin[];// MOD CONTEST E-reader berries:
+extern const u32 gFlowerPic_Drash[];
+extern const u32 gFlowerPic_Eggant[];
+extern const u32 gFlowerPic_Strib[];
+extern const u32 gFlowerPic_ChilanER[];
+extern const u32 gFlowerPic_Nutpea[];
+extern const u32 gFlowerPic_Noion[];//(Japanese exclusive Ginema berry)
+extern const u32 gFlowerPic_Roka[];//(Japanese exclusive Kuo berry)
+extern const u32 gFlowerPic_Skuash[];//(Japanese exclusive Yago berry)
+extern const u32 gFlowerPic_Paprik[];//(Japanese exclusive Touga berry)
+extern const u32 gFlowerPic_Malium[];//(Japanese exclusive Niniku berry)
+extern const u32 gFlowerPic_Topo[];//(Japanese exclusive Topo berry)
+//extern const u32 gFlowerPic_Charti[];
+//extern const u32 gFlowerPic_Kasib[];
+//extern const u32 gFlowerPic_Haban[];
+//extern const u32 gFlowerPic_Colbur[];
+//extern const u32 gFlowerPic_Babiri[];
+//extern const u32 gFlowerPic_Roseli[];
+extern const u32 gFlowerPic_Liechi[];
+extern const u32 gFlowerPic_Ganlon[];
+extern const u32 gFlowerPic_Salac[];
+extern const u32 gFlowerPic_Petaya[];
+extern const u32 gFlowerPic_Apicot[];
+extern const u32 gFlowerPic_Lansat[];
+extern const u32 gFlowerPic_Starf[];
+extern const u32 gFlowerPic_Enigma[];
+//extern const u32 gFlowerPic_Micle[];
+//extern const u32 gFlowerPic_Custap[];
+//extern const u32 gFlowerPic_Jaboca[];
+//extern const u32 gFlowerPic_Rowap[];
+//extern const u32 gFlowerPic_Kee[];
+//extern const u32 gFlowerPic_Maranga[];
+
+//Berry Flower Palettes
+extern const u16 gFlowerPalette_Cheri[];
+extern const u16 gFlowerPalette_Chesto[];
+extern const u16 gFlowerPalette_Pecha[];
+extern const u16 gFlowerPalette_Rawst[];
+extern const u16 gFlowerPalette_Aspear[];
+extern const u16 gFlowerPalette_Leppa[];
+extern const u16 gFlowerPalette_Oran[];
+extern const u16 gFlowerPalette_Persim[];
+extern const u16 gFlowerPalette_Lum[];
+extern const u16 gFlowerPalette_Sitrus[];
+extern const u16 gFlowerPalette_Figy[];
+extern const u16 gFlowerPalette_Wiki[];
+extern const u16 gFlowerPalette_Mago[];
+extern const u16 gFlowerPalette_Aguav[];
+extern const u16 gFlowerPalette_Iapapa[];
+extern const u16 gFlowerPalette_Razz[];
+extern const u16 gFlowerPalette_Bluk[];
+extern const u16 gFlowerPalette_Nanab[];
+extern const u16 gFlowerPalette_Wepear[];
+extern const u16 gFlowerPalette_Pinap[];
+extern const u16 gFlowerPalette_Pomeg[];
+extern const u16 gFlowerPalette_Kelpsy[];
+extern const u16 gFlowerPalette_Qualot[];
+extern const u16 gFlowerPalette_Hondew[];
+extern const u16 gFlowerPalette_Grepa[];
+extern const u16 gFlowerPalette_Tamato[];
+extern const u16 gFlowerPalette_Cornn[];
+extern const u16 gFlowerPalette_Magost[];
+extern const u16 gFlowerPalette_Rabuta[];
+extern const u16 gFlowerPalette_Nomel[];
+extern const u16 gFlowerPalette_Spelon[];
+extern const u16 gFlowerPalette_Pamtre[];
+extern const u16 gFlowerPalette_Watmel[];
+extern const u16 gFlowerPalette_Durin[];
+extern const u16 gFlowerPalette_Belue[];
+//extern const u16 gFlowerPalette_Chilan[];
+//extern const u16 gFlowerPalette_Occa[];
+//extern const u16 gFlowerPalette_Passho[];
+//extern const u16 gFlowerPalette_Wacan[];
+//extern const u16 gFlowerPalette_Rindo[];
+//extern const u16 gFlowerPalette_Yache[];
+//extern const u16 gFlowerPalette_Chople[];
+//extern const u16 gFlowerPalette_Kebia[];
+//extern const u16 gFlowerPalette_Shuca[];
+//extern const u16 gFlowerPalette_Coba[];
+//extern const u16 gFlowerPalette_Payapa[];
+//extern const u16 gFlowerPalette_Tanga[];
+extern const u16 gFlowerPalette_Pumkin[];//MOD CONTEST E-Reader berries:
+extern const u16 gFlowerPalette_Drash[];
+extern const u16 gFlowerPalette_Eggant[];
+extern const u16 gFlowerPalette_Strib[]; 
+extern const u16 gFlowerPalette_ChilanER[];
+extern const u16 gFlowerPalette_Nutpea[];
+extern const u16 gFlowerPalette_Noion[];//(Japanese exclusive Ginema berry)
+extern const u16 gFlowerPalette_Roka[];//(Japanese exclusive Kuo berry)
+extern const u16 gFlowerPalette_Skuash[];//(Japanese exclusive Yago berry)
+extern const u16 gFlowerPalette_Paprik[];//(Japanese exclusive Touga berry)
+extern const u16 gFlowerPalette_Malium[];//(Japanese exclusive Niniku berry)
+extern const u16 gFlowerPalette_Topo[];// (Japanese exclusive Topo berry)
+//extern const u16 gFlowerPalette_Charti[];
+//extern const u16 gFlowerPalette_Kasib[];
+//extern const u16 gFlowerPalette_Haban[];
+//extern const u16 gFlowerPalette_Colbur[];
+//extern const u16 gFlowerPalette_Babiri[];
+//extern const u16 gFlowerPalette_Roseli[];
+extern const u16 gFlowerPalette_Liechi[];
+extern const u16 gFlowerPalette_Ganlon[];
+extern const u16 gFlowerPalette_Salac[];
+extern const u16 gFlowerPalette_Petaya[];
+extern const u16 gFlowerPalette_Apicot[];
+extern const u16 gFlowerPalette_Lansat[];
+extern const u16 gFlowerPalette_Starf[];
+extern const u16 gFlowerPalette_Enigma[];
+//extern const u16 gFlowerPalette_Micle[];
+//extern const u16 gFlowerPalette_Custap[];
+//extern const u16 gFlowerPalette_Jaboca[];
+//extern const u16 gFlowerPalette_Rowap[];
+//extern const u16 gFlowerPalette_Kee[];
+//extern const u16 gFlowerPalette_Maranga[];
+
 extern const struct Berry gBerries[];
 
 #endif // GUARD_BERRY_H

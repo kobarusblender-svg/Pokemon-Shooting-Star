@@ -694,8 +694,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder =  70,
         .berryPic = gBerryPic_Bluk,
         .berryPal =   gBerryPalette_Bluk,
-        .berryTreePicTable = gPicTable_RazzBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Razz,
+        .berryTreePicTable = gPicTable_BlukBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Bluk,
     },
 
     [BERRY_ID_NANAB] =
@@ -731,8 +731,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder =  70,
         .berryPic = gBerryPic_Nanab,
         .berryPal =  gBerryPalette_Nanab,
-        .berryTreePicTable = gPicTable_MagoBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Mago,
+        .berryTreePicTable = gPicTable_NanabBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Nanab,
     },
 
     [BERRY_ID_WEPEAR] =
@@ -805,8 +805,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder =  70,
         .berryPic = gBerryPic_Pinap,
         .berryPal =  gBerryPalette_Pinap,
-        .berryTreePicTable = gPicTable_IapapaBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Iapapa,
+        .berryTreePicTable = gPicTable_PinapBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Pinap,
     },
 
     [BERRY_ID_POMEG] =
@@ -916,8 +916,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 100,
         .berryPic = gBerryPic_Qualot,
         .berryPal = gBerryPalette_Qualot,
-        .berryTreePicTable = gPicTable_WepearBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Wepear,
+        .berryTreePicTable = gPicTable_QualotBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Qualot,
     },
 
     [BERRY_ID_HONDEW] =
@@ -1101,8 +1101,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 150,
         .berryPic = gBerryPic_Magost,
         .berryPal = gBerryPalette_Magost,
-        .berryTreePicTable = gPicTable_PomegBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Pomeg,
+        .berryTreePicTable = gPicTable_MagostBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Magost,
     },
 
     [BERRY_ID_RABUTA] =
@@ -1286,8 +1286,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 250,
         .berryPic = gBerryPic_Watmel,
         .berryPal = gBerryPalette_Watmel,
-        .berryTreePicTable = gPicTable_RabutaBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Rabuta,
+        .berryTreePicTable = gPicTable_WatmelBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Watmel,
     },
 
     [BERRY_ID_DURIN] =
@@ -1360,8 +1360,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 250,
         .berryPic = gBerryPic_Belue,
         .berryPal =  gBerryPalette_Belue,
-        .berryTreePicTable = gPicTable_HondewBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Hondew,
+        .berryTreePicTable = gPicTable_BelueBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Belue,
     },
 
     /*[BERRY_ID_OCCA] =
@@ -1731,7 +1731,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
 
     //MOD CONTEST E-reader berries:
 
-    [ITEM_PAPRIK_BERRY - FIRST_BERRY_INDEX] =// E-reader Paprik berry (Japanese exclusive Touga berry)
+    [BERRY_ID_PAPRIK] =// E-reader Paprik berry (Japanese exclusive Touga berry)
     {
     .info = {
         .name = _("Paprik"),
@@ -1768,7 +1768,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Paprik,
     },
 
-    [ITEM_EGGANT_BERRY - FIRST_BERRY_INDEX] =//E-reader Eggant berry
+    [BERRY_ID_EGGANT] =//E-reader Eggant berry
     {
     .info = {
         .name = _("Eggant"),
@@ -1805,7 +1805,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Eggant,
     },
 
-    [ITEM_DRASH_BERRY - FIRST_BERRY_INDEX] =//E-reader Drash berry
+    [BERRY_ID_DRASH] =//E-reader Drash berry
     {
     .info = {
         .name = _("Drash"),
@@ -1842,7 +1842,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Drash,
     },
 
-    [ITEM_SKUASH_BERRY - FIRST_BERRY_INDEX] =// E-reader Skuash berry (Japanese exclusive Yago berry)
+    [BERRY_ID_SKUASH] =// E-reader Skuash berry (Japanese exclusive Yago berry)
     {
     .info = {
         .name = _("Skuash"), //had to change the name to fit 6 char. Bitsquash sounds better still.
@@ -1879,7 +1879,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Skuash,
     },
 
-    [ITEM_PUMKIN_BERRY - FIRST_BERRY_INDEX] =//E-reader Pumkin Berry
+    [BERRY_ID_PUMKIN] =//E-reader Pumkin Berry
     {
     .info = {
         .name = _("Pumkin"),
@@ -1916,7 +1916,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Pumkin,
     },
 
-    [ITEM_CHILANER_BERRY - FIRST_BERRY_INDEX] =// E-reader Chilan berry
+    [BERRY_ID_CHILANER] =// E-reader Chilan berry
     {
     .info = {
         .name = _("Chilan"),
@@ -1947,13 +1947,13 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .naturalGiftPower = 80,
         .berryCrushDifficulty =  150,
         .berryCrushPowder =  300,
-        .berryPic = gBerryPic_Chilan,
-        .berryPal = gBerryPalette_Chilan,
-        .berryTreePicTable = gPicTable_ChilanBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Chilan,
+        .berryPic = gBerryPic_ChilanER,
+        .berryPal = gBerryPalette_ChilanER,
+        .berryTreePicTable = gPicTable_ChilanERBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_ChilanER,
     },
 
-    [ITEM_MALIUM_BERRY - FIRST_BERRY_INDEX] =// E-reader Malium Berry (Japanese exclusive Niniku berry)
+    [BERRY_ID_MALIUM] =// E-reader Malium Berry (Japanese exclusive Niniku berry)
     {
     .info = {
         .name = _("Malium"), //had to remove an l to fit in 6 char.
@@ -1990,7 +1990,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Malium,
     },
 
-    [ITEM_TOPO_BERRY - FIRST_BERRY_INDEX] =// E-reader Topo berry (Japanese exclusive Topo berry)
+    [BERRY_ID_TOPO] =// E-reader Topo berry (Japanese exclusive Topo berry)
     {
     .info = {
         .name = _("Topo"),
@@ -2027,7 +2027,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Topo,
     },
 
-    [ITEM_STRIB_BERRY - FIRST_BERRY_INDEX] = //E-reader Strib Berry
+    [BERRY_ID_STRIB] = //E-reader Strib Berry
     {
     .info = {
         .name = _("Strib"),
@@ -2064,7 +2064,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Strib,
     },
 
-    [ITEM_NOION_BERRY - FIRST_BERRY_INDEX] =// E-reader Noion berry (Japan exclusive Ginema berry)
+    [BERRY_ID_NOION] =// E-reader Noion berry (Japan exclusive Ginema berry)
     {
     .info = {
         .name = _("Noion"),
@@ -2101,7 +2101,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Noion,
     },
     
-    [ITEM_NUTPEA_BERRY - FIRST_BERRY_INDEX] =// E-reader Nutpea berry
+    [BERRY_ID_NUTPEA] =// E-reader Nutpea berry
     {
     .info = {
         .name = _("Nutpea"),
@@ -2138,33 +2138,33 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Nutpea,
     },
 
-    [ITEM_ROKA_BERRY - FIRST_BERRY_INDEX] =// E-reader Roka berry (Japanese exclusive Kuo berry)
+    [BERRY_ID_ROKA] =// E-reader Roka berry (Japanese exclusive Kuo berry)
     {
-    .info = {
-        .name = _("Roka"),
-        .firmness = BERRY_FIRMNESS_HARD,
-        .color = BERRY_COLOR_GREEN,
-        .size = 220,
-        .maxYield = YIELD_RATE(2, 15, 15, 15),
-        .minYield = YIELD_RATE(1, 2, 3, 3),
-        .description1 = COMPOUND_STRING("It's flavor mix is quite tasty."),
-        .description2 = COMPOUND_STRING("The pulp has a faint, gritty feel."),
-        .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 34),
-        .spicy = 10,
-        .dry = 10,
-        .sweet = 10,
-        .bitter = 10,
-        .sour = 10,
-        .smoothness = 5,
-        .drainRate = 8,
-        .waterBonus = 10,
-        .weedsBonus = 2,
-        .pestsBonus = 6,
-        .growthSeasons = SEASON_B,
-        .graficGroup = 8,
-        .tileNumber1 = 1,
-        .tileNumber2 = 0,
-    },
+        .info = {
+            .name = _("Roka"),
+            .firmness = BERRY_FIRMNESS_HARD,
+            .color = BERRY_COLOR_GREEN,
+            .size = 220,
+            .maxYield = YIELD_RATE(2, 15, 15, 15),
+            .minYield = YIELD_RATE(1, 2, 3, 3),
+            .description1 = COMPOUND_STRING("It's flavor mix is quite tasty."),//
+            .description2 = COMPOUND_STRING("The pulp has a faint, gritty feel."),//
+            .growthDuration = GROWTH_DURATION(72, 60, 90, 24, 16, 34),//
+            .spicy = 10,
+            .dry = 10,
+            .sweet = 10,
+            .bitter = 10,
+            .sour = 10,
+            .smoothness = 5,
+            .drainRate = 8,
+            .waterBonus = 10,
+            .weedsBonus = 2,
+            .pestsBonus = 6,
+            .growthSeasons = SEASON_B,
+            .graficGroup = 8,
+            .tileNumber1 = 1,
+            .tileNumber2 = 0,
+        },
         .naturalGiftType = TYPE_MYSTERY,
         .naturalGiftPower = 80,
         .berryCrushDifficulty =  150,
@@ -2433,10 +2433,10 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
             .waterBonus = 2,
             .weedsBonus = 0,
             .pestsBonus = 2,
-        .growthSeasons = SEASON_J,
-        .graficGroup = 2,
-        .tileNumber1 = 8,
-        .tileNumber2 = 3,
+            .growthSeasons = SEASON_J,
+            .graficGroup = 2,
+            .tileNumber1 = 8,
+            .tileNumber2 = 3,
         },
         .naturalGiftType = TYPE_GRASS,
         .naturalGiftPower = 100,
@@ -2481,8 +2481,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 500,
         .berryPic = gBerryPic_Ganlon,
         .berryPal = gBerryPalette_Ganlon,
-        .berryTreePicTable = gPicTable_HondewBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Hondew,
+        .berryTreePicTable = gPicTable_GanlonBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Ganlon,
     },
 
     [BERRY_ID_SALAC] =
@@ -2518,8 +2518,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 500,
         .berryPic = gBerryPic_Salac,
         .berryPal =  gBerryPalette_Salac,
-        .berryTreePicTable = gPicTable_AguavBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Aguav,
+        .berryTreePicTable = gPicTable_SalacBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Salac,
     },
 
     [BERRY_ID_PETAYA] =
@@ -2555,8 +2555,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 500,
         .berryPic = gBerryPic_Petaya,
         .berryPal = gBerryPalette_Petaya,
-        .berryTreePicTable = gPicTable_PomegBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Pomeg,
+        .berryTreePicTable = gPicTable_PetayaBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Petaya,
     },
 
     [BERRY_ID_APICOT] =
@@ -2592,8 +2592,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 500,
         .berryPic = gBerryPic_Apicot,
         .berryPal = gBerryPalette_Apicot,
-        .berryTreePicTable = gPicTable_GrepaBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Grepa,
+        .berryTreePicTable = gPicTable_ApicotBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Apicot,
     },
 
     [BERRY_ID_LANSAT] =
@@ -2666,8 +2666,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 750,
         .berryPic = gBerryPic_Starf,
         .berryPal =  gBerryPalette_Starf,
-        .berryTreePicTable = gPicTable_CornnBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Cornn,
+        .berryTreePicTable = gPicTable_StarfBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Starf,
     },
 
     [BERRY_ID_ENIGMA] =
@@ -2703,8 +2703,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 200,
         .berryPic = gBerryPic_Enigma,
         .berryPal = gBerryPalette_Enigma,
-        .berryTreePicTable = gPicTable_DurinBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Durin,
+        .berryTreePicTable = gPicTable_EnigmaBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Enigma,
     },
 
     /*[BERRY_ID_MICLE] =
@@ -2961,8 +2961,8 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder = 200,
         .berryPic = gBerryPic_Enigma,
         .berryPal = gBerryPalette_Enigma,
-        .berryTreePicTable = gPicTable_DurinBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Durin,
+        .berryTreePicTable = gPicTable_EnigmaBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Enigma,
     },
 };
 

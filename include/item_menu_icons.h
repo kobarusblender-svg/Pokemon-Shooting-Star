@@ -49,7 +49,7 @@ u8 CreateFlavorProfileSprite1(s16 BerryNumber, s16 x, s16 y); //
 u8 CreateFlavorProfileSprite2(s16 BerryNumber, s16 x, s16 y); //
 u8 CreateFlavorProfileSprite3(s16 BerryNumber, s16 x, s16 y); //
 u8 CreateFlavorProfileSprite4(s16 BerryNumber, s16 x, s16 y); //
-u8 CreateBerryFlowerSprite(u32 BerryNumber);//
+u8 CreateBerryFlowerSprite(s16 BerryNumber);//
 void CalculateAndloadProfilePalette(s16 BerryNumber); //
 
 #endif // GUARD_ITEM_MENU_ICONS_H
