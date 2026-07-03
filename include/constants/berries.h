@@ -37,7 +37,29 @@
     F(WATMEL) \
     F(DURIN) \
     F(BELUE) \
-    F(OCCA) \
+    F(PAPRIK) \
+    F(EGGANT) \
+    F(DRASH) \
+    F(SKUASH) \
+    F(PUMKIN) \
+    F(CHILANER) \
+    F(MALIUM) \
+    F(TOPO) \
+    F(STRIB) \
+    F(NOION) \
+    F(NUTPEA) \
+    F(ROKA) \
+    F(LIECHI) \
+    F(GANLON) \
+    F(SALAC) \
+    F(PETAYA) \
+    F(APICOT) \
+    F(LANSAT) \
+    F(STARF) \
+    F(ENIGMA) \
+#endif
+
+    /*F(OCCA) \
     F(PASSHO) \
     F(WACAN) \
     F(RINDO) \
@@ -53,21 +75,11 @@
     F(HABAN) \
     F(COLBUR) \
     F(BABIRI) \
-    F(CHILAN) \
-    F(LIECHI) \
-    F(GANLON) \
-    F(SALAC) \
-    F(PETAYA) \
-    F(APICOT) \
-    F(LANSAT) \
-    F(STARF) \
-    F(ENIGMA) \
-    F(MICLE) \
+    F(CHILAN) \*/
+    /*F(MICLE) \
     F(CUSTAP) \
     F(JABOCA) \
     F(ROWAP) \
     F(ROSELI) \
     F(KEE) \
-    F(MARANGA)
-
-#endif
+    F(MARANGA)*/
