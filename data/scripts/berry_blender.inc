@@ -297,11 +297,11 @@ BerryBlender_EventScript_ExplainBlending1:
 
 @MOD CONTEST FIXINGIT No space left fix for 1npc
 BerryBlender_EventScript_TryUseBerryBlender1:
-	checkitem ITEM_POKEBLOCK_CASE
-	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoCase
 	specialvar VAR_RESULT, PlayerHasBerries
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoBerries
-	msgbox BerryBlender_Text_Excellent, MSGBOX_DEFAULT
+	checkitem ITEM_POKEBLOCK_CASE
+	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoCase
+	msgbox BerryBlender_Text_Okay, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	goto_if_ne VAR_RESULT, 65535, BerryBlender_EventScript_UseBerryBlender1
 	goto_if_eq VAR_RESULT, 65535, BerryBlender_EventScript_Blender1CaseFull
