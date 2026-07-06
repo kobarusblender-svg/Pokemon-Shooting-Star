@@ -295,13 +295,12 @@ BerryBlender_EventScript_ExplainBlending1:
 	goto BerryBlender_EventScript_StartBlender1
 	end
 
-@MOD CONTEST FIXINGIT No space left fix for 1npc
 BerryBlender_EventScript_TryUseBerryBlender1:
 	specialvar VAR_RESULT, PlayerHasBerries
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoBerries
 	checkitem ITEM_POKEBLOCK_CASE
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoCase
-	msgbox BerryBlender_Text_Okay, MSGBOX_DEFAULT
+	msgbox BerryBlender_Text_Excellent, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	goto_if_ne VAR_RESULT, 65535, BerryBlender_EventScript_UseBerryBlender1
 	goto_if_eq VAR_RESULT, 65535, BerryBlender_EventScript_Blender1CaseFull
@@ -451,7 +450,6 @@ BerryBlender_EventScript_ExplainBlending2:
 	goto BerryBlender_EventScript_StartBlender2
 	end
 
-@MOD CONTEST FIXINGIT No space left fix for 1npc
 BerryBlender_EventScript_TryUseBerryBlender2: 
 	specialvar VAR_RESULT, PlayerHasBerries
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender2NoBerries
