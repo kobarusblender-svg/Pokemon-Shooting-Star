@@ -1519,9 +1519,9 @@
 #define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag Might use it for contest ribbon N10
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag Might use it for contest ribbon N11
 #define FLAG_UNUSED_0x8F0                           (SYSTEM_FLAGS + 0x90) // Unused Flag Might use it for contest ribbon N12
-#define FLAG_UNUSED_0x8F1                           (SYSTEM_FLAGS + 0x91) // Unused Flag Might use it for contest ribbon NO
-#define FLAG_UNUSED_0x8F2                           (SYSTEM_FLAGS + 0x92) // Unused Flag Might use it for contest ribbon NO
-#define FLAG_UNUSED_0x8F3                           (SYSTEM_FLAGS + 0x93) // Unused Flag Might use it for contest ribbon NO1
+#define FLAG_UNUSED_0x8F1                           (SYSTEM_FLAGS + 0x91) // Unused Flag Might use it for contest ribbon NO13
+#define FLAG_UNUSED_0x8F2                           (SYSTEM_FLAGS + 0x92) // Unused Flag Might use it for contest ribbon NO14
+#define FLAG_UNUSED_0x8F3                           (SYSTEM_FLAGS + 0x93) // Unused Flag Might use it for contest ribbon NO15
 #define FLAG_UNUSED_0x8F4                           (SYSTEM_FLAGS + 0x94) // Unused Flag Might use it for contest ribbon count  (Gotta figure out how to make the game know where to display them, maybe with a value from 0-15 where 0 is not gotten yet to display them in order of obtention)
 #define FLAG_UNUSED_0x8F5                           (SYSTEM_FLAGS + 0x95) // Unused Flag Might also use it for where the last contest has taken place for control//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #define FLAG_UNUSED_0x8F6                           (SYSTEM_FLAGS + 0x96) // Unused Flag
