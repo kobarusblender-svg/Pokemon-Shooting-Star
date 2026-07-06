@@ -2,11 +2,7 @@
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Powder moves are blocked by Grass-type Pokémon (Gen6+)")
-SINGLE_BATTLE_TEST("Powder moves are blocked by Grass-type Pokémon (Gen6+)")
 {
-    u32 gen = 0;
-    PARAMETRIZE { gen = GEN_5; }
-    PARAMETRIZE { gen = GEN_6; }
     u32 gen = 0;
     PARAMETRIZE { gen = GEN_5; }
     PARAMETRIZE { gen = GEN_6; }
@@ -19,13 +15,6 @@ SINGLE_BATTLE_TEST("Powder moves are blocked by Grass-type Pokémon (Gen6+)")
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }
     } SCENE {
-        if (gen == GEN_6) {
-            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
-            MESSAGE("It doesn't affect the opposing Oddish…");
-        } else {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
-            NOT MESSAGE("It doesn't affect the opposing Oddish…");
-        }
         if (gen == GEN_6) {
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
             MESSAGE("It doesn't affect the opposing Oddish…");

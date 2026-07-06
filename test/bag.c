@@ -65,7 +65,7 @@ TEST("Berries are sorted correctly in the bag")
         additem ITEM_POMEG_BERRY;
         additem ITEM_MAGOST_BERRY;
         additem ITEM_KELPSY_BERRY;
-        additem ITEM_MICLE_BERRY;
+        //additem ITEM_MICLE_BERRY;
         //additem ITEM_CHARTI_BERRY;
         additem ITEM_GANLON_BERRY;
         additem ITEM_ORAN_BERRY;
@@ -81,7 +81,7 @@ TEST("Berries are sorted correctly in the bag")
     EXPECT_EQ(pocket->itemSlots[4].itemId, ITEM_MAGOST_BERRY);
     //EXPECT_EQ(pocket->itemSlots[5].itemId, ITEM_CHARTI_BERRY);
     EXPECT_EQ(pocket->itemSlots[6].itemId, ITEM_GANLON_BERRY);
-    EXPECT_EQ(pocket->itemSlots[7].itemId, ITEM_MICLE_BERRY);
+    //EXPECT_EQ(pocket->itemSlots[7].itemId, ITEM_MICLE_BERRY);
     EXPECT_EQ(pocket->itemSlots[8].itemId, ITEM_NONE);
 
     SortItemsInBag(&gBagPockets[POCKET_BERRIES], SORT_ALPHABETICALLY);

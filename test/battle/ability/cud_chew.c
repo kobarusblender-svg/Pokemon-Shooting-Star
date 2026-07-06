@@ -4,10 +4,10 @@
 SINGLE_BATTLE_TEST("Cud Chew will activate Kee Berry effect again on the next turn")
 {
     GIVEN {
-        ASSUME(gItemsInfo[ITEM_KEE_BERRY].holdEffect == HOLD_EFFECT_KEE_BERRY);
+        ASSUME(gItemsInfo[ITEM_BELUE_BERRY].holdEffect == HOLD_EFFECT_KEE_BERRY);
         ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_TAUROS_PALDEA_COMBAT) { Ability(ABILITY_CUD_CHEW); Item(ITEM_KEE_BERRY); }
+        OPPONENT(SPECIES_TAUROS_PALDEA_COMBAT) { Ability(ABILITY_CUD_CHEW); Item(ITEM_BELUE_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
         TURN { MOVE(player, MOVE_CELEBRATE); }

@@ -24,7 +24,7 @@ AI_SINGLE_BATTLE_TEST("TESTING: forced illegal bench abilities are honored durin
             Level(74);
             Moves(MOVE_KNOCK_OFF, MOVE_PROTECT, MOVE_LIQUIDATION);
             Nature(NATURE_CAREFUL);
-            Item(ITEM_RINDO_BERRY);
+            Item(ITEM_TOPO_BERRY);
             Speed(116);
         }
         OPPONENT(SPECIES_CHANDELURE) {

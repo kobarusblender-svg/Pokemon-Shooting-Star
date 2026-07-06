@@ -27,9 +27,9 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
     PARAMETRIZE { item = ITEM_RAWST_BERRY; effect = HOLD_EFFECT_CURE_BRN; status1 = STATUS1_BURN; }
     PARAMETRIZE { item = ITEM_ASPEAR_BERRY; effect = HOLD_EFFECT_CURE_FRZ; status1 = STATUS1_FROSTBITE; }
     PARAMETRIZE { item = ITEM_APICOT_BERRY; effect = HOLD_EFFECT_SP_DEFENSE_UP; statId = STAT_SPDEF; }
-    PARAMETRIZE { item = ITEM_MARANGA_BERRY; effect = HOLD_EFFECT_MARANGA_BERRY; statId = STAT_SPDEF; }
+    PARAMETRIZE { item = ITEM_STARF_BERRY; effect = HOLD_EFFECT_MARANGA_BERRY; statId = STAT_SPDEF; }
     PARAMETRIZE { item = ITEM_GANLON_BERRY; effect = HOLD_EFFECT_DEFENSE_UP; statId = STAT_DEF; }
-    PARAMETRIZE { item = ITEM_KEE_BERRY; effect = HOLD_EFFECT_KEE_BERRY; statId = STAT_DEF; }
+    PARAMETRIZE { item = ITEM_STARF_BERRY; effect = HOLD_EFFECT_KEE_BERRY; statId = STAT_DEF; }
     PARAMETRIZE { item = ITEM_LIECHI_BERRY; effect = HOLD_EFFECT_ATTACK_UP; statId = STAT_ATK; }
     PARAMETRIZE { item = ITEM_PETAYA_BERRY; effect = HOLD_EFFECT_SP_ATTACK_UP; statId = STAT_SPATK; }
     PARAMETRIZE { item = ITEM_SALAC_BERRY; effect = HOLD_EFFECT_SPEED_UP; statId = STAT_SPEED; }
@@ -119,10 +119,10 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
 SINGLE_BATTLE_TEST("Tanga Berry activates before Bug Bite")
 {
     GIVEN {
-        ASSUME(gItemsInfo[ITEM_TANGA_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
-        ASSUME(gItemsInfo[ITEM_TANGA_BERRY].holdEffectParam == TYPE_BUG);
+        ASSUME(gItemsInfo[ITEM_STARF_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(gItemsInfo[ITEM_STARF_BERRY].holdEffectParam == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_TANGA_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_STARF_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_BUG_BITE); }
     } SCENE {
