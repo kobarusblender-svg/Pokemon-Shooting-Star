@@ -295,20 +295,22 @@ BerryBlender_EventScript_ExplainBlending1:
 	goto BerryBlender_EventScript_StartBlender1
 	end
 
+@MOD CONTEST FIXINGIT No space left fix for 1npc
 BerryBlender_EventScript_TryUseBerryBlender1:
 	checkitem ITEM_POKEBLOCK_CASE
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoCase
 	specialvar VAR_RESULT, PlayerHasBerries
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoBerries
 	msgbox BerryBlender_Text_Excellent, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	goto BerryBlender_EventScript_UseBerryBlender1
+	goto_if_eq VAR_RESULT, 65535, BerryBlender_EventScript_Blender1CaseFull
 	end
 
 BerryBlender_EventScript_DoBerryBlending:
 	copyvar VAR_0x8004, NUM_OPPONENTS
 	fadescreen FADE_TO_BLACK
 	special DoBerryBlending
-	waitstate
 	releaseall
 	end
 
@@ -449,7 +451,8 @@ BerryBlender_EventScript_ExplainBlending2:
 	goto BerryBlender_EventScript_StartBlender2
 	end
 
-BerryBlender_EventScript_TryUseBerryBlender2:
+@MOD CONTEST FIXINGIT No space left fix for 1npc
+BerryBlender_EventScript_TryUseBerryBlender2: 
 	specialvar VAR_RESULT, PlayerHasBerries
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender2NoBerries
 	checkitem ITEM_POKEBLOCK_CASE
@@ -664,7 +667,6 @@ BerryBlender_EventScript_TryDoLinkBlender:
 	message BerryBlender_Text_SearchingForFriends
 	waitmessage
 	special TryBerryBlenderLinkup
-	waitstate
 	goto_if_eq VAR_RESULT, LINKUP_SUCCESS, BerryBlender_EventScript_SpawnLinkPartners
 	goto_if_eq VAR_RESULT, LINKUP_SOMEONE_NOT_READY, BerryBlender_EventScript_CloseLinkNotReady
 	goto_if_eq VAR_RESULT, LINKUP_DIFF_SELECTIONS, BerryBlender_EventScript_CloseLinkDifferentSelections
@@ -695,7 +697,6 @@ BerryBlender_EventScript_DoLinkBerryBlending:
 	removeobject 238
 	removeobject 237
 	special DoBerryBlending
-	waitstate
 	releaseall
 	end
 
@@ -788,12 +789,10 @@ BerryBlender_EventScript_TryJoinGroup:
 
 BerryBlender_EventScript_TryBecomeLinkLeader:
 	special TryBecomeLinkLeader
-	waitstate
 	return
 
 BerryBlender_EventScript_TryJoinLinkGroup:
 	special TryJoinLinkGroup
-	waitstate
 	return
 
 BerryBlender_EventScript_LinkLeaderDecided:
