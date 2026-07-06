@@ -303,7 +303,7 @@ BerryBlender_EventScript_TryUseBerryBlender1:
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_Blender1NoBerries
 	msgbox BerryBlender_Text_Excellent, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
-	goto BerryBlender_EventScript_UseBerryBlender1
+	goto_if_ne VAR_RESULT, 65535, BerryBlender_EventScript_UseBerryBlender1
 	goto_if_eq VAR_RESULT, 65535, BerryBlender_EventScript_Blender1CaseFull
 	end
 
