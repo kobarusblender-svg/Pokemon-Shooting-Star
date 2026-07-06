@@ -161,7 +161,7 @@ SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Electrif
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
         PLAYER(SPECIES_SKITTY) { Ability(ABILITY_NORMALIZE); }
-        OPPONENT(SPECIES_ROOKIDEE) { Item(ITEM_WACAN_BERRY); }
+        OPPONENT(SPECIES_ROOKIDEE) { Item(ITEM_TOPO_BERRY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_ELECTRIFY); MOVE(player, MOVE_WATER_GUN); }
     } SCENE {
@@ -174,7 +174,7 @@ SINGLE_BATTLE_TEST("Normalize-affected moves become Electric-type under Ion Delu
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ION_DELUGE) == EFFECT_ION_DELUGE);
         PLAYER(SPECIES_SKITTY) { Ability(ABILITY_NORMALIZE); Moves(MOVE_WATER_GUN); }
-        OPPONENT(SPECIES_ROOKIDEE) { Item(ITEM_WACAN_BERRY); }
+        OPPONENT(SPECIES_ROOKIDEE) { Item(ITEM_TOPO_BERRY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_ION_DELUGE); MOVE(player, MOVE_WATER_GUN); }
     } SCENE {

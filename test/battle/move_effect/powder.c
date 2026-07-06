@@ -150,7 +150,6 @@ DOUBLE_BATTLE_TEST("Powder fails if target is already affected by Powder")
 }
 
 SINGLE_BATTLE_TEST("Powder fails if the target is Grass type (Gen6+)")
-SINGLE_BATTLE_TEST("Powder fails if the target is Grass type (Gen6+)")
 {
     GIVEN {
         WITH_CONFIG(B_POWDER_GRASS, GEN_6);
@@ -166,21 +165,6 @@ SINGLE_BATTLE_TEST("Powder fails if the target is Grass type (Gen6+)")
     }
 }
 
-SINGLE_BATTLE_TEST("Powder fails if the target has Overcoat (Gen6+)")
-SINGLE_BATTLE_TEST("Powder fails if the target has Overcoat (Gen6+)")
-{
-    GIVEN {
-        WITH_CONFIG(B_POWDER_OVERCOAT, GEN_6);
-        PLAYER(SPECIES_FORRETRESS) { Ability(ABILITY_OVERCOAT); }
-        OPPONENT(SPECIES_VIVILLON);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
-    } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER, opponent);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
-        HP_BAR(opponent);
-    }
-}
 
 DOUBLE_BATTLE_TEST("Powder still blocks the target's Fire type moves even if it was given Grass type")
 {

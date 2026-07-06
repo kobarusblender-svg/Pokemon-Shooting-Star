@@ -60,12 +60,12 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will activate both resist
     s16 opponentRightDmg[2];
 
     GIVEN {
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffectParam == TYPE_NORMAL);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffectParam == TYPE_NORMAL);
         PLAYER(SPECIES_GARDEVOIR);
         PLAYER(SPECIES_RALTS);
-        OPPONENT(SPECIES_RAICHU) { Item(ITEM_CHILAN_BERRY); }
-        OPPONENT(SPECIES_SANDSLASH) { Item(ITEM_CHILAN_BERRY); }
+        OPPONENT(SPECIES_RAICHU) { Item(ITEM_CHILANER_BERRY); }
+        OPPONENT(SPECIES_SANDSLASH) { Item(ITEM_CHILANER_BERRY); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
@@ -94,12 +94,12 @@ DOUBLE_BATTLE_TEST("Spread Moves: If a spread move attack will activate a resist
     s16 opponentRightDmg[2];
 
     GIVEN {
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffectParam == TYPE_NORMAL);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffectParam == TYPE_NORMAL);
         PLAYER(SPECIES_GARDEVOIR);
         PLAYER(SPECIES_RALTS);
         OPPONENT(SPECIES_RAICHU)
-        OPPONENT(SPECIES_SANDSLASH) { Item(ITEM_CHILAN_BERRY); }
+        OPPONENT(SPECIES_SANDSLASH) { Item(ITEM_CHILANER_BERRY); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
@@ -252,12 +252,12 @@ DOUBLE_BATTLE_TEST("Spread Moves: Spread move, Gem Boosted, vs Resist Berries")
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_HYPER_VOICE) == TARGET_BOTH);
         ASSUME(gItemsInfo[ITEM_NORMAL_GEM].holdEffect == HOLD_EFFECT_GEMS);
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffectParam == TYPE_NORMAL);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffectParam == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { Speed(40); Item(ITEM_NORMAL_GEM); }
         PLAYER(SPECIES_WYNAUT) { Speed(30); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); Item(ITEM_CHILAN_BERRY); }
-        OPPONENT(SPECIES_WYNAUT) { Speed(10); Item(ITEM_CHILAN_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); Item(ITEM_CHILANER_BERRY); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(10); Item(ITEM_CHILANER_BERRY); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_HYPER_VOICE); }
     } SCENE {
@@ -275,12 +275,12 @@ DOUBLE_BATTLE_TEST("Spread Moves: Explosion, Gem Boosted, vs Resist Berries")
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_EXPLOSION) == TARGET_FOES_AND_ALLY);
         ASSUME(gItemsInfo[ITEM_NORMAL_GEM].holdEffect == HOLD_EFFECT_GEMS);
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffectParam == TYPE_NORMAL);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffectParam == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET) { Speed(40); Item(ITEM_NORMAL_GEM); }
         PLAYER(SPECIES_MISDREAVUS) { Speed(30); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); Item(ITEM_CHILAN_BERRY); }
-        OPPONENT(SPECIES_WYNAUT) { Speed(10); Item(ITEM_CHILAN_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); Item(ITEM_CHILANER_BERRY); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(10); Item(ITEM_CHILANER_BERRY); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EXPLOSION); }
     } SCENE {

@@ -2,11 +2,7 @@
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Overcoat blocks powder and spore moves (Gen6+)")
-SINGLE_BATTLE_TEST("Overcoat blocks powder and spore moves (Gen6+)")
 {
-    u32 gen = 0;
-    PARAMETRIZE { gen = GEN_5; }
-    PARAMETRIZE { gen = GEN_6; }
     u32 gen = 0;
     PARAMETRIZE { gen = GEN_5; }
     PARAMETRIZE { gen = GEN_6; }

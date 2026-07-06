@@ -115,8 +115,8 @@ DOUBLE_BATTLE_TEST("Symbiosis triggers after partner flings its item")
 DOUBLE_BATTLE_TEST("Symbiosis transfers its item to an ally after it consumes a weakness berry")
 {
     GIVEN {
-        ASSUME(gItemsInfo[ITEM_CHILAN_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_CHILAN_BERRY); }
+        ASSUME(gItemsInfo[ITEM_CHILANER_BERRY].holdEffect == HOLD_EFFECT_RESIST_BERRY);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_CHILANER_BERRY); }
         PLAYER(SPECIES_ORANGURU) { Ability(ABILITY_SYMBIOSIS); Item(ITEM_TOXIC_ORB); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);

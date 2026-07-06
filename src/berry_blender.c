@@ -432,8 +432,8 @@ static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS][BLENDER_MAX_PLAYERS] =
 {
     {NO_PLAYER,         0, 1, NO_PLAYER}, // 2 Players
     {NO_PLAYER,         0, 1,         2}, // 3 Players
-    {        0,         1, 2,         3},  // 4 Players
-    {NO_PLAYER, NO_PLAYER, 0, NO_PLAYER} // MOD CONTEST 1 Player (Never used)
+    {        0,         1, 2,         3}/*,*/  // 4 Players
+    //{NO_PLAYER, NO_PLAYER, 0, NO_PLAYER} // MOD CONTEST 1 Player (Never used)
 };
 
 
@@ -867,7 +867,7 @@ static const s16 sBerrySpriteData[][5] =
 // There are only 5 different berries the NPCs will ever use
 // Each of these sets represents 3 berries chosen to be used by the NPCs
 // If the player's berry is one of the 5 possible berries, a set is chosen that excludes it
-//MOD CONTEST TODO make new berries work with these and the blend master
+//MOD CONTEST new berries now work with these and the blend master
 static const u8 sOpponentBerrySets[NUM_NPC_BERRIES * 2][3] =
 {
     // These sets are used if the player chose one of the 5 NPC berries
@@ -1127,10 +1127,10 @@ static void CB2_LoadBerryBlender(void)
             UnsetBgTilemapBuffer(2);
             UnsetBgTilemapBuffer(1);
             SetVBlankCallback(NULL);
-            if(gSpecialVar_0x8004 < 5){ //MOD CONTEST Multiple choice for SOLO blending
+            if(gSpecialVar_0x8004 < 5){ // Vanilla behabior
                 ChooseBerryForMachine(StartBlender);
             }
-            else{ // Vanilla behabior
+            else{ //MOD CONTEST Multiple choice for SOLO blending
                 ChooseBerryForMachine(SettingUpBerry2);
             }
             sBerryBlender->mainState = 0;
@@ -2259,7 +2259,7 @@ static void UpdateOpponentScores(void)
         { //MOD CONTEST TODO make it so if other buttons ar pressed in solo play, the sprites appear above their respective arrows.
             u32 arrowId = sBerryBlender->playerIdToArrowId[i];
 
-            if (gSpecialVar_0x8004 != 7){
+            if (gSpecialVar_0x8004 < 7 && gSpecialVar_0x8004 > 3){
                 if(pressedB == TRUE){
                     arrowId = sBerryBlender->playerIdToArrowId[1]; 
                 }
@@ -2454,7 +2454,7 @@ static void HandlePlayerInput(void) //MOD CONTEST the new extra buttons for the 
         sBerryBlender->slowdownTimer = 0;
     }
 
-    if (gEnableContestDebugging && JOY_NEW(L_BUTTON))
+    if (gEnableContestDebugging && JOY_NEW(L_BUTTON) && gSpecialVar_0x8004 < 4)
         sBerryBlender->perfectOpponents ^= 1;
 }
 
@@ -2472,7 +2472,7 @@ static void CB2_PlayBlender(void) //MOD CONTEST Added more buttons for solo play
     UpdateRPM(sBerryBlender->speed);
     RestoreBgCoords();
     ProcessLinkPlayerCmds(); //MOD CONTEST TODO seems like the problem starts here, after finishing the blend.
-    if (sBerryBlender->gameEndState == 0 && sBerryBlender->maxProgressBarValue >= MAX_PROGRESS_BAR)
+    if (sBerryBlender->gameEndState == 0 && sBerryBlender->maxProgressBarValue >= MAX_PROGRESS_BAR) //This IF somehow breaks it. I'm sure of it.
     {
         sBerryBlender->progressBarValue = MAX_PROGRESS_BAR;
         sBerryBlender->gameEndState = 1;
@@ -2514,7 +2514,6 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     s16 flavors[FLAVOR_COUNT + 1];
     s32 i, j;
     u8 numFlavors;
-    
 
     for (i = 0; i < FLAVOR_COUNT + 1; i++)
         flavors[i] = _flavors[i];
@@ -2526,11 +2525,10 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
             j++;
     }
 
-
     // If 4 flavors were negative,
     // or if players used the same berry, color is black
     // MOD CONTEST If 4 of the same berry are used, The flavors are null
-    if (/*j == FLAVOR_COUNT ||*/ negativeFlavors == 4) //MOD CONTEST FIXINGIT
+    if (negativeFlavors == 4) //MOD CONTEST FIXINGIT
         return PBLOCK_CLR_BLACK;
 
     for (i = 0; i < numPlayers; i++)
@@ -2562,13 +2560,17 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     if (numFlavors == 3)
         return PBLOCK_CLR_GRAY;
 
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    if (numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
     {
-        if (flavors[i] > 50)
-            return PBLOCK_CLR_GOLD;
+            return PBLOCK_CLR_CLEAR; //No need to check values, as 5 flavor Pokeblocks outside of clear are impossible.
     }
-    if (numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5)    // MOD CONTEST If all 5 flavors are equal, color is clear
-        return PBLOCK_CLR_CLEAR;
+    else{ // Golden Block loop moved here so no Clear POKEBLOCK can turn Gold
+        for (i = 0; i < FLAVOR_COUNT; i++)
+        {
+            if (flavors[i] > 50)
+                return PBLOCK_CLR_GOLD;
+        }
+    }
 
     // Only 1 flavor present, return corresponding color
     if (numFlavors == 1 && flavors[FLAVOR_SPICY] > 0)
@@ -2665,8 +2667,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     // Bad way to do it though (order matters here)
 
     // MOD CONTEST Made it so if all flavors are equal, 
-    // they are lowered by half of every flavour combined.
-    // It allows the player to make some neat combinations.
+    // their flavor values are 1/4 of their starting values instead.
 
     multiuseVar = sPokeblockFlavors[0];
     ClearSubstract = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]) / 10 ;
@@ -2674,12 +2675,11 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     if(sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_DRY] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SWEET]
         && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SOUR] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_BITTER])
     {
-
         sPokeblockFlavors[FLAVOR_SPICY]  -= ClearSubstract;
-        sPokeblockFlavors[FLAVOR_DRY]    -= ClearSubstract;
-        sPokeblockFlavors[FLAVOR_SWEET]  -= ClearSubstract;
-        sPokeblockFlavors[FLAVOR_BITTER] -= ClearSubstract;
-        sPokeblockFlavors[FLAVOR_SOUR]   -= ClearSubstract;
+        sPokeblockFlavors[FLAVOR_DRY]    = sPokeblockFlavors[FLAVOR_SPICY];
+        sPokeblockFlavors[FLAVOR_SWEET]  = sPokeblockFlavors[FLAVOR_SPICY];
+        sPokeblockFlavors[FLAVOR_BITTER] = sPokeblockFlavors[FLAVOR_SPICY];
+        sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_SPICY];
     }
     else{
         sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
@@ -2746,9 +2746,8 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
                 sPokeblockFlavors[i] = 0;
         }
     }
-    if (NoFlavor) //MOD CONTEST Here, void flavors are asigned and the color is changed back to black for blends with 4 of the same berry
+    if (NoFlavor) //MOD CONTEST Here, null flavors are asigned for blends with 4 of the same berry
     {
-        // Black pokeblocks get their flavors randomly reassigned
         sPokeblockFlavors[FLAVOR_SPICY]  = 0;
         sPokeblockFlavors[FLAVOR_DRY]    = 0;
         sPokeblockFlavors[FLAVOR_SWEET]  = 0;
@@ -3309,7 +3308,7 @@ static void CB2_CheckPlayAgainLocal(void)
     UpdatePaletteFade();
 }
 
-static void ProcessLinkPlayerCmds(void)
+static void ProcessLinkPlayerCmds(void) //MOD CONTEST I doubt this is crashing it... Right?
 {
     if (gReceivedRemoteLinkPlayers)
     {
@@ -3625,7 +3624,7 @@ static void TryUpdateProgressBar(u16 current, u16 limit)
     }
 }
 
-static void UpdateProgressBar(u16 value, u16 limit)
+static void UpdateProgressBar(u16 value, u16 limit) //MOD CONTEST IDEA Should i make it so each fail lowers the progress bar on SOLO mode?
 {
     s32 amountFilled, maxFilledSegment, subSegmentsFilled, i;
     u16 *vram;
@@ -3896,7 +3895,7 @@ static bool8 PrintBlendingResults(void)
         RemoveBagItem(gSpecialVar_ItemId, 1);
         AddPokeblock(&pokeblock);
 
-        //MOD CONTEST Add an extra pokeblock and remove another berry for each berry used.
+        //MOD CONTEST Add an extra pokeblock for each berry used.
         if(gSpecialVar_0x8004 > 4 && GetFirstFreePokeblockSlot() != -1)
         {
             AddPokeblock(&pokeblock);
@@ -3998,6 +3997,7 @@ static void SortScores(void)
             playerId = 0;
         else
             playerId = GetMultiplayerId();
+
     for (i = 0; i < sBerryBlender->numPlayers; i++)
         {
             if (sBerryBlender->playerPlaces[i] == playerId)
@@ -4134,6 +4134,8 @@ void ShowBerryBlenderRecordWindow(void)
     s32 xPos, yPos;
     struct WindowTemplate winTemplate;
     u8 text[32];
+    u8 *txtPtr;
+    u32 record;
 
     winTemplate = sBlenderRecordWindowTemplate;
     gRecordsWindowId = AddWindow(&winTemplate);
@@ -4147,8 +4149,6 @@ void ShowBerryBlenderRecordWindow(void)
     if (gSpecialVar_0x8004 < 4){ // Regular results
         for (i = 0, yPos = 41; i < NUM_SCORE_TYPES; i++)
         {
-            u8 *txtPtr;
-            u32 record;
 
             record = gSaveBlock1Ptr->berryBlenderRecords[i];
 
@@ -4164,8 +4164,6 @@ void ShowBerryBlenderRecordWindow(void)
     else{ //MOD CONTEST Print SOLO results
         i = 0;
         yPos = 41;
-        u8 *txtPtr;
-        u32 record;
 
         record = gSaveBlock1Ptr->berryBlenderRecords[i];
 
@@ -4196,8 +4194,9 @@ static void Task_PlayPokeblockFanfare(u8 taskId)
     }
 }
 
-static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlenderStruct *tvBlender)
+static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlenderStruct *tvBlender) //MOD CONTEST FIXINGIT maybe this crashes it?
 {
+    if(gSpecialVar_0x8004 < 4){
     u8 flavorLevel = GetHighestPokeblocksFlavorLevel(pokeblock);
     u16 sheen = (flavorLevel * 10) / GetPokeblocksFeel(pokeblock);
 
@@ -4235,6 +4234,7 @@ static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlen
 
             return FALSE;
         }
+    }
     }
 
     return FALSE;

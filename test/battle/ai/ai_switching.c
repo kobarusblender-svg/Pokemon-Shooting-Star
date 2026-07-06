@@ -1747,7 +1747,7 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_SWITCHING: AI won't send out defensive mon 
         OPPONENT(SPECIES_RHYHORN) {
             Level(14);
             Moves(MOVE_ROCK_TOMB, MOVE_HORN_ATTACK, MOVE_BULLDOZE, MOVE_ROCK_SMASH);
-            Item(ITEM_RINDO_BERRY);
+            Item(ITEM_TOPO_BERRY);
             Ability(ABILITY_LIGHTNING_ROD);
             Nature(NATURE_ADAMANT);
             HPIV(31);

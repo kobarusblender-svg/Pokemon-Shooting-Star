@@ -32,11 +32,7 @@ SINGLE_BATTLE_TEST("Oblivious prevents Captivate")
 }
 
 SINGLE_BATTLE_TEST("Oblivious prevents Taunt (Gen6+)")
-SINGLE_BATTLE_TEST("Oblivious prevents Taunt (Gen6+)")
 {
-    u32 gen = 0;
-    PARAMETRIZE { gen = GEN_5; }
-    PARAMETRIZE { gen = GEN_6; }
     u32 gen = 0;
     PARAMETRIZE { gen = GEN_5; }
     PARAMETRIZE { gen = GEN_6; }
