@@ -2750,22 +2750,25 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
 
     multiuseVar = sPokeblockFlavors[0];
     ClearSubstract = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]) / 10 ;
-
-    if(sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_DRY] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SWEET]
-        && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SOUR] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_BITTER])
+    
+    if(!Starf) //Avoids lowering the values in STARF mode.
     {
-        sPokeblockFlavors[FLAVOR_SPICY]  -= ClearSubstract;
-        sPokeblockFlavors[FLAVOR_DRY]    = sPokeblockFlavors[FLAVOR_SPICY];
-        sPokeblockFlavors[FLAVOR_SWEET]  = sPokeblockFlavors[FLAVOR_SPICY];
-        sPokeblockFlavors[FLAVOR_BITTER] = sPokeblockFlavors[FLAVOR_SPICY];
-        sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_SPICY];
-    }
-    else if(!Starf){
-        sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
-        sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
-        sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
-        sPokeblockFlavors[FLAVOR_BITTER] -= sPokeblockFlavors[FLAVOR_SOUR];
-        sPokeblockFlavors[FLAVOR_SOUR]   -= multiuseVar;
+        if(sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_DRY] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SWEET]
+            && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SOUR] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_BITTER])
+        {
+            sPokeblockFlavors[FLAVOR_SPICY]  -= ClearSubstract;
+            sPokeblockFlavors[FLAVOR_DRY]    = sPokeblockFlavors[FLAVOR_SPICY];
+            sPokeblockFlavors[FLAVOR_SWEET]  = sPokeblockFlavors[FLAVOR_SPICY];
+            sPokeblockFlavors[FLAVOR_BITTER] = sPokeblockFlavors[FLAVOR_SPICY];
+            sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_SPICY];
+        }
+        else{
+            sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
+            sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
+            sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
+            sPokeblockFlavors[FLAVOR_BITTER] -= sPokeblockFlavors[FLAVOR_SOUR];
+            sPokeblockFlavors[FLAVOR_SOUR]   -= multiuseVar;
+        }
     }
 
     // Count (and reset) the resulting negative flavors
@@ -2795,7 +2798,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     // Factor in max RPM and round
     multiuseVar = maxRPM / 333 + 100;
     for (i = 0; i < FLAVOR_COUNT; i++)
-    {/*
+    {
         s32 remainder;
         s32 flavor = sPokeblockFlavors[i];
         flavor = (flavor * multiuseVar) / 10;
@@ -2803,7 +2806,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         flavor /= 10;
         if (remainder > 4)
             flavor++;
-        sPokeblockFlavors[i] = flavor;*/
+        sPokeblockFlavors[i] = flavor;
     }
 
     // Calculate color and feel of pokeblock
