@@ -247,6 +247,9 @@ static bool8 pressedB = FALSE;
 static bool8 pressedL = FALSE;
 static bool8 pressedR = FALSE;
 static bool8 NoFlavor = FALSE;
+static bool8 Enigma = FALSE;
+static bool8 Starf = FALSE;
+static bool8 Lansat = FALSE;
 
 EWRAM_DATA static struct BerryBlender *sBerryBlender = NULL;
 
@@ -2569,19 +2572,21 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     // MOD CONTEST If 4 of the same berry are used, The flavors are null
     if (negativeFlavors == 4)
         return PBLOCK_CLR_BLACK;
-
+    
     for (i = 0; i < numPlayers; i++)
     {
         for (j = 0; j < numPlayers; j++)
         {
             if (berries[i].itemId == berries[j].itemId && i != j
-                && (berries[i].itemId != ITEM_ENIGMA_BERRY_E_READER || AreBlenderBerriesSame(berries, i, j))){
-                    if(berries[0].itemId == berries[1].itemId && berries[0].itemId == berries[2].itemId && berries[0].itemId == berries[3].itemId){
-                        // MOD CONTEST If all 4 berries are the same, Instead of giving random flavors, it loses all of them.
-                        NoFlavor = TRUE;
-                    }
-                        return PBLOCK_CLR_BLACK;
+                && (berries[i].itemId != ITEM_ENIGMA_BERRY_E_READER || AreBlenderBerriesSame(berries, i, j)))
+            {
+                if(berries[0].itemId == berries[1].itemId && berries[0].itemId == berries[2].itemId && berries[0].itemId == berries[3].itemId)
+                {
+                    // MOD CONTEST If all 4 berries are the same, Instead of giving random flavors, it loses all of them.
+                    NoFlavor = TRUE;
                 }
+                    return PBLOCK_CLR_BLACK;
+            }
         }
     }
 
@@ -2599,7 +2604,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     if (numFlavors == 3)
         return PBLOCK_CLR_GRAY;
 
-    if (numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
+    if ((numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5) && !Starf)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
     {
             return PBLOCK_CLR_CLEAR; //No need to check values, as 5 flavor Pokeblocks outside of clear are impossible.
     }
@@ -2696,6 +2701,35 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     u8 numNegatives;
     u8 ClearSubstract;
 
+    //MOD CONTEST Legendary berry behabior.
+
+    for (i = 0; i < numPlayers; i++)
+    {
+        if (berries[i].itemId == ITEM_ENIGMA_BERRY)
+        { // MOD CONTEST Chooses randomly between the other two legendary effects (or none) as long as there are no other legend berries.
+            Enigma = TRUE;
+        }
+        if (berries[i].itemId == ITEM_STARF_BERRY)
+        { // MOD CONTEST Adds every flavor and sheen of the blend without lowering any values.
+            Starf = TRUE;
+        }
+        if (berries[i].itemId == ITEM_LANSAT_BERRY)
+        { // MOD CONTEST Adds every positive value and groups it into a single flavor, with a 1/6 possibilities of it being sheen (it conserves it's sheen value if not)
+            Lansat = TRUE;
+        }
+    }
+
+    if((Enigma && Starf) || (Enigma && Lansat) || (Lansat && Starf)) //MOD CONTEST If any two legends are used together, their effects dissapear.
+    {
+        Enigma = FALSE;
+        Starf = FALSE;
+        Lansat = FALSE;
+    }
+
+    if(Enigma){//MOD CONTEST TODO Has a 2/3 probabilities of choosing starf or lansat effects, and 1/3 of none at all
+
+    }
+
     for (i = 0; i < FLAVOR_COUNT + 1; i++)
         sPokeblockFlavors[i] = 0;
 
@@ -2725,7 +2759,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[FLAVOR_BITTER] = sPokeblockFlavors[FLAVOR_SPICY];
         sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_SPICY];
     }
-    else{
+    else if(!Starf){
         sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
         sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
         sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
@@ -2772,6 +2806,12 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     }
 
     // Calculate color and feel of pokeblock
+    
+    if (Lansat) //MOD CONTEST TODO Here, A random flavor is chosen and then every flavor adds to it and resets
+    {
+        Lansat = FALSE;
+    }
+
     pokeblock->color = CalculatePokeblockColor(berries, &sPokeblockFlavors[0], numPlayers, numNegatives);
     sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers;
 
@@ -2790,6 +2830,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
                 sPokeblockFlavors[i] = 0;
         }
     }
+
     if (NoFlavor) //MOD CONTEST Here, null flavors are asigned for blends with 4 of the same berry
     {
         sPokeblockFlavors[FLAVOR_SPICY]  = 0;
@@ -2798,6 +2839,12 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[FLAVOR_SOUR]   = 0;
         sPokeblockFlavors[FLAVOR_BITTER] = 0;
         NoFlavor = FALSE;
+    }
+
+    if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode
+    {
+        sPokeblockFlavors[FLAVOR_COUNT] = sPokeblockFlavors[FLAVOR_COUNT]*numPlayers;
+        Starf = FALSE;
     }
 
     if (pokeblock->color == PBLOCK_CLR_CLEAR)
@@ -4314,7 +4361,6 @@ static void Task_PlayPokeblockFanfare(u8 taskId)
 
 static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlenderStruct *tvBlender) //MOD CONTEST FIXINGIT maybe this crashes it?
 {
-    //DebugPrintf("TryAddContestLinkTvShow");
     u8 flavorLevel = GetHighestPokeblocksFlavorLevel(pokeblock);
     u16 sheen = (flavorLevel * 10) / GetPokeblocksFeel(pokeblock);
 
