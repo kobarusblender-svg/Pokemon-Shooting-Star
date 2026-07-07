@@ -2291,7 +2291,7 @@ static void UpdateOpponentScores(void)
         { //MOD CONTEST TODO make it so if other buttons ar pressed in solo play, the sprites appear above their respective arrows.
             u32 arrowId = sBerryBlender->playerIdToArrowId[i];
 
-            if (gSpecialVar_0x8004 < 7 && gSpecialVar_0x8004 > 3){
+            if (gSpecialVar_0x8004 !7){
                 if(pressedB == TRUE){
                     arrowId = sBerryBlender->playerIdToArrowId[1]; 
                 }
@@ -2808,14 +2808,13 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
             flavor++;
         sPokeblockFlavors[i] = flavor;
     }
-
-    // Calculate color and feel of pokeblock
     
     if (Lansat) //MOD CONTEST TODO Here, A random flavor is chosen and then every flavor adds to it and resets
     {
         Lansat = FALSE;
     }
 
+    // Calculate color and feel of pokeblock
     pokeblock->color = CalculatePokeblockColor(berries, &sPokeblockFlavors[0], numPlayers, numNegatives);
     sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers;
 
@@ -3394,58 +3393,58 @@ static void CB2_CheckPlayAgainLocal(void)
     case 9:
         BeginFastPaletteFade(3);//MOD CONTEST FIXING IT, it now crashes after this no matter what...
         sBerryBlender->gameEndState++;
-        DebugPrintf("BeginFastPaletteFade");
+        //DebugPrintf("BeginFastPaletteFade");
         break;
     case 10:
-            DebugPrintf("case 10:");
+            //DebugPrintf("case 10:");
         if (!gPaletteFade.active)
         {
-            DebugPrintf("if (!gPaletteFade.active)");
+            //DebugPrintf("if (!gPaletteFade.active)");
             if (sBerryBlender->playAgainState == PLAY_AGAIN_YES)
             {
-                DebugPrintf("(sBerryBlender->playAgainState == PLAY_AGAIN_YES)");
+                //DebugPrintf("(sBerryBlender->playAgainState == PLAY_AGAIN_YES)");
                 SetMainCallback2(DoBerryBlending);
-                DebugPrintf("SetMainCallback2(DoBerryBlending);");
+                //DebugPrintf("SetMainCallback2(DoBerryBlending);");
             }
             else
             {
-                DebugPrintf("else");
+                //DebugPrintf("else");
                 SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-                DebugPrintf("SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);");
+                //DebugPrintf("SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);");
             }
 
             FreeAllWindowBuffers();
-            DebugPrintf("FreeAllWindowBuffers();");
+            //DebugPrintf("FreeAllWindowBuffers();");
             UnsetBgTilemapBuffer(2);
-            DebugPrintf("UnsetBgTilemapBuffer(2);");
+            //DebugPrintf("UnsetBgTilemapBuffer(2);");
             UnsetBgTilemapBuffer(1);
-            DebugPrintf("UnsetBgTilemapBuffer(1);");
+            //DebugPrintf("UnsetBgTilemapBuffer(1);");
             FREE_AND_SET_NULL(sBerryBlender);
-            DebugPrintf("FREE_AND_SET_NULL(sBerryBlender);");
+            //DebugPrintf("FREE_AND_SET_NULL(sBerryBlender);");
         }
-            DebugPrintf("break");
+            //DebugPrintf("break");
         break;
     }
 
     if(gSpecialVar_0x8004 == 0)
     {
-        DebugPrintf("if(gSpecialVar_0x8004 == 0)");
+        //DebugPrintf("if(gSpecialVar_0x8004 == 0)");
         ProcessLinkPlayerCmds(); //MOD CONTEST TODO seems like the problem starts here, after finishing the blend.
-        DebugPrintf("ProcessLinkPlayerCmds();");
+        //DebugPrintf("ProcessLinkPlayerCmds();");
     }
     Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);
-    DebugPrintf("Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);");
+    //DebugPrintf("Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);");
     RunTasks();
-    DebugPrintf("RunTasks();");
+    //DebugPrintf("RunTasks();");
     AnimateSprites();
-    DebugPrintf("AnimateSprites();");
+    //DebugPrintf("AnimateSprites();");
     BuildOamBuffer();
-    DebugPrintf("BuildOamBuffer();");
+    //DebugPrintf("BuildOamBuffer();");
     RunTextPrinters();
-    DebugPrintf("RunTextPrinters();");
+    //DebugPrintf("RunTextPrinters();");
     UpdatePaletteFade();
-    DebugPrintf("UpdatePaletteFade();");
-    DebugPrintf("EndOfFunction");
+    //DebugPrintf("UpdatePaletteFade();");
+    //DebugPrintf("EndOfFunction");
 }
 
 static void ProcessLinkPlayerCmds(void) //MOD CONTEST I doubt this is crashing it... Right?
