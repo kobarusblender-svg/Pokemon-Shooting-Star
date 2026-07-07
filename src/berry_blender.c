@@ -2291,7 +2291,7 @@ static void UpdateOpponentScores(void)
         { //MOD CONTEST TODO make it so if other buttons ar pressed in solo play, the sprites appear above their respective arrows.
             u32 arrowId = sBerryBlender->playerIdToArrowId[i];
 
-            if (gSpecialVar_0x8004 !7){
+            if (gSpecialVar_0x8004 != 7){
                 if(pressedB == TRUE){
                     arrowId = sBerryBlender->playerIdToArrowId[1]; 
                 }
