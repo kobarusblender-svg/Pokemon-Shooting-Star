@@ -2729,14 +2729,15 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
 
     if(Enigma)
     { // MOD CONTEST TODO Has a 2/3 probabilities of choosing starf or lansat effects, and 1/3 of none at all
-        if(LocalRandom(9) > 6)
+        i = 9;
+        if(LocalRandom(&i) > 6)
         {
-            DebugPrintf("Enigma random Starf");
+            DebugPrintf("Enigma random Starf:" + i);
             Starf = TRUE;
         }
-        else if(LocalRandom(6) > 3)
+        else if(LocalRandom(&i) > 3)
         {
-            DebugPrintf("Enigma random Lansat");
+            DebugPrintf("Enigma random Lansat:" + i);
             Lansat = TRUE;
         }
 
@@ -2821,8 +2822,9 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     }
     
     if (Lansat) //MOD CONTEST TODO Here, every flavor joins in a single value and then it's assigned randomly to a flavor/sheen
-    {    
-        i = LocalRandom(5);
+    {   
+        i = 5;
+        i = LocalRandom(&i);
             DebugPrintf("Lansat random:" + i);
         multiuseVar = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]);
 
