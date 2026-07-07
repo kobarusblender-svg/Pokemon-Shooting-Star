@@ -2598,9 +2598,6 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     }
 
     // Check for special colors (White/Gray/Gold/Clear)
-    if (numFlavors == 4)
-        return PBLOCK_CLR_WHITE;
-
     if (numFlavors == 3)
         return PBLOCK_CLR_GRAY;
 
@@ -2615,6 +2612,10 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
                 return PBLOCK_CLR_GOLD;
         }
     }
+
+    if (numFlavors >= 4) //MOD CONTEST Moved here to function with the STARF modifier.
+        return PBLOCK_CLR_WHITE;
+
 
     // Only 1 flavor present, return corresponding color
     if (numFlavors == 1 && flavors[FLAVOR_SPICY] > 0)
@@ -2843,7 +2844,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         NoFlavor = FALSE;
     }
 
-    if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode
+    if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode it just dies because there are so many high balues
     {
         DebugPrintf("if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode");
         sPokeblockFlavors[FLAVOR_COUNT] = sPokeblockFlavors[FLAVOR_COUNT]*numPlayers;
