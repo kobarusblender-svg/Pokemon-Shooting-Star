@@ -2727,8 +2727,20 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         Lansat = FALSE;
     }
 
-    if(Enigma){//MOD CONTEST TODO Has a 2/3 probabilities of choosing starf or lansat effects, and 1/3 of none at all
+    if(Enigma)
+    { // MOD CONTEST TODO Has a 2/3 probabilities of choosing starf or lansat effects, and 1/3 of none at all
+        if(LocalRandom(9) > 6)
+        {
+            DebugPrintf("Enigma random Starf");
+            Starf = TRUE;
+        }
+        else if(LocalRandom(6) > 3)
+        {
+            DebugPrintf("Enigma random Lansat");
+            Lansat = TRUE;
+        }
 
+        Enigma = FALSE;
     }
 
     for (i = 0; i < FLAVOR_COUNT + 1; i++)
@@ -2745,9 +2757,6 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     // The idea is to focus on only the flavors with the highest totals
     // Bad way to do it though (order matters here)
 
-    // MOD CONTEST Made it so if all flavors are equal, 
-    // their flavor values are 1/4 of their starting values instead.
-
     multiuseVar = sPokeblockFlavors[0];
     ClearSubstract = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]) / 10 ;
     
@@ -2755,14 +2764,16 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     {
         if(sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_DRY] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SWEET]
             && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_SOUR] && sPokeblockFlavors[FLAVOR_SPICY] == sPokeblockFlavors[FLAVOR_BITTER])
-        {
+        { 
+            // MOD CONTEST Made it so if all flavors are equal, 
+            // their flavor values are 1/4 of their starting values instead.
             sPokeblockFlavors[FLAVOR_SPICY]  -= ClearSubstract;
             sPokeblockFlavors[FLAVOR_DRY]    = sPokeblockFlavors[FLAVOR_SPICY];
             sPokeblockFlavors[FLAVOR_SWEET]  = sPokeblockFlavors[FLAVOR_SPICY];
             sPokeblockFlavors[FLAVOR_BITTER] = sPokeblockFlavors[FLAVOR_SPICY];
             sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_SPICY];
         }
-        else{
+        else{ //Vanilla behavior
             sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
             sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
             sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
@@ -2809,8 +2820,43 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[i] = flavor;
     }
     
-    if (Lansat) //MOD CONTEST TODO Here, A random flavor is chosen and then every flavor adds to it and resets
-    {
+    if (Lansat) //MOD CONTEST TODO Here, every flavor joins in a single value and then it's assigned randomly to a flavor/sheen
+    {    
+        i = LocalRandom(5);
+            DebugPrintf("Lansat random:" + i);
+        multiuseVar = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]);
+
+        //Reset of every value after the addition.
+        sPokeblockFlavors[FLAVOR_SPICY] = 0;
+        sPokeblockFlavors[FLAVOR_DRY] = 0;
+        sPokeblockFlavors[FLAVOR_SWEET] = 0;
+        sPokeblockFlavors[FLAVOR_BITTER] = 0;
+        sPokeblockFlavors[FLAVOR_SOUR] = 0;
+
+        if(i == 0) //SPICY Lansat Pokéblock 
+        {
+            sPokeblockFlavors[FLAVOR_SPICY] = multiuseVar;
+        }
+        else if(i == 1) //DRY Lansat Pokéblock 
+        {
+            sPokeblockFlavors[FLAVOR_DRY] = multiuseVar;
+        }
+        else if(i == 2) //SWEET Lansat Pokéblock 
+        {
+            sPokeblockFlavors[FLAVOR_SWEET] = multiuseVar;
+        }
+        else if(i == 3) //BITTER Lansat Pokéblock 
+        {
+            sPokeblockFlavors[FLAVOR_BITTER] = multiuseVar;
+        }
+        else if(i == 4) //SOUR Lansat Pokéblock 
+        {
+            sPokeblockFlavors[FLAVOR_SOUR] = multiuseVar;
+        }
+        else //SHEEN Lansat Pokéblock 
+        {
+            sPokeblockFlavors[FLAVOR_COUNT] += multiuseVar;
+        }
         Lansat = FALSE;
     }
 
@@ -2846,7 +2892,6 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
 
     if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode it just dies because there are so many high balues
     {
-        DebugPrintf("if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode");
         sPokeblockFlavors[FLAVOR_COUNT] = sPokeblockFlavors[FLAVOR_COUNT]*numPlayers;
         Starf = FALSE;
     }
