@@ -2760,6 +2760,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_SPICY];
     }
     else if(!Starf){
+        DebugPrintf("else if(!Starf)");
         sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
         sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
         sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
@@ -2813,6 +2814,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     }
 
     pokeblock->color = CalculatePokeblockColor(berries, &sPokeblockFlavors[0], numPlayers, numNegatives);
+        DebugPrintf("pokeblock->color = CalculatePokeblockColor()");
     sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers;
 
     if (sPokeblockFlavors[FLAVOR_COUNT] < 0)
@@ -2843,6 +2845,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
 
     if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode
     {
+        DebugPrintf("if (Starf) //MOD CONTEST Here, Sheen is multiplied by the number of berries used in STARF mode");
         sPokeblockFlavors[FLAVOR_COUNT] = sPokeblockFlavors[FLAVOR_COUNT]*numPlayers;
         Starf = FALSE;
     }
