@@ -2761,7 +2761,6 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[FLAVOR_SOUR]   = sPokeblockFlavors[FLAVOR_SPICY];
     }
     else if(!Starf){
-        DebugPrintf("else if(!Starf)");
         sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
         sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
         sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
@@ -2796,7 +2795,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     // Factor in max RPM and round
     multiuseVar = maxRPM / 333 + 100;
     for (i = 0; i < FLAVOR_COUNT; i++)
-    {
+    {/*
         s32 remainder;
         s32 flavor = sPokeblockFlavors[i];
         flavor = (flavor * multiuseVar) / 10;
@@ -2804,7 +2803,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         flavor /= 10;
         if (remainder > 4)
             flavor++;
-        sPokeblockFlavors[i] = flavor;
+        sPokeblockFlavors[i] = flavor;*/
     }
 
     // Calculate color and feel of pokeblock
@@ -2815,7 +2814,6 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     }
 
     pokeblock->color = CalculatePokeblockColor(berries, &sPokeblockFlavors[0], numPlayers, numNegatives);
-        DebugPrintf("pokeblock->color = CalculatePokeblockColor()");
     sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers;
 
     if (sPokeblockFlavors[FLAVOR_COUNT] < 0)
