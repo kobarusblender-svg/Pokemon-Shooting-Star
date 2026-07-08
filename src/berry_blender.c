@@ -2844,26 +2844,32 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
 
         if(i <= 15) //SPICY Lansat Pokéblock 
         {
+        DebugPrintf("SPICY Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_SPICY] = multiuseVar;
         }
         else if(i <= 30) //DRY Lansat Pokéblock 
         {
+        DebugPrintf("DRY Lansat Pokéblock ");
             sPokeblockFlavors[FLAVOR_DRY] = multiuseVar;
         }
         else if(i <= 45) //SWEET Lansat Pokéblock 
         {
+        DebugPrintf("SWEET Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_SWEET] = multiuseVar;
         }
         else if(i <= 60) //BITTER Lansat Pokéblock 
         {
+        DebugPrintf("BITTER Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_BITTER] = multiuseVar;
         }
         else if(i <= 75) //SOUR Lansat Pokéblock 
         {
+        DebugPrintf("SOUR Lansat Pokéblock ");
             sPokeblockFlavors[FLAVOR_SOUR] = multiuseVar;
         }
         else //SHEEN Lansat Pokéblock 
         {
+        DebugPrintf("SHEEN Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_COUNT] += multiuseVar;
             NoFlavor = TRUE;
         }
