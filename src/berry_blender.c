@@ -2601,7 +2601,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     if (numFlavors == 3)
         return PBLOCK_CLR_GRAY;
 
-    if ((numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5) && !Starf)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
+    if ((numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5) && !Starf && !Lansat)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
     {
             return PBLOCK_CLR_CLEAR; //No need to check values, as 5 flavor Pokeblocks outside of clear are impossible.
     }
