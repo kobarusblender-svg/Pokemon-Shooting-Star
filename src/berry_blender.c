@@ -2570,7 +2570,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     // If 4 flavors were negative,
     // or if players used the same berry, color is black
     // MOD CONTEST If 4 of the same berry are used, The flavors are null
-    if (negativeFlavors == 4 || NoFlavor)
+    if (negativeFlavors == 4)
         return PBLOCK_CLR_BLACK;
     
     for (i = 0; i < numPlayers; i++)
@@ -2603,7 +2603,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
 
     if ((numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5) && !Starf && !NoFlavor)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
     {
-            return PBLOCK_CLR_CLEAR; //No need to check values, as 5 flavor Pokeblocks outside of clear are impossible.
+            return PBLOCK_CLR_CLEAR; 
     }
     else{ // Golden Block loop moved here so no Clear POKEBLOCK can turn Gold
         for (i = 0; i < FLAVOR_COUNT; i++)
@@ -2881,11 +2881,13 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
                 sPokeblockFlavors[FLAVOR_COUNT] += multiuseVar;
             }
             NoFlavor = TRUE;
+            pokeblock->color = PBLOCK_CLR_BLACK;
         }
         Lansat = FALSE;
     }
 
     // Calculate color and feel of pokeblock
+    if()
     pokeblock->color = CalculatePokeblockColor(berries, &sPokeblockFlavors[0], numPlayers, numNegatives);
     sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers;
 
