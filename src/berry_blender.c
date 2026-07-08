@@ -2874,10 +2874,10 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
             sPokeblockFlavors[FLAVOR_SOUR] = multiuseVar;
             Lansat = FALSE;
         }*/
-        else //FEEL Lansat Pokéblock
-        {
+        //else //FEEL Lansat Pokéblock
+        //{
             NoFlavor = TRUE;
-        }
+        //}
     }
 
     // Calculate color and feel of pokeblock
