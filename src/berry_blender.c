@@ -2872,9 +2872,9 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         else //SHEEN Lansat Pokéblock 
         {
             DebugPrintf("SHEEN Lansat Pokéblock");
-            if((multiuseVar + sPokeblockFlavors[FLAVOR_COUNT]) > 255)
+            if((multiuseVar + sPokeblockFlavors[FLAVOR_COUNT]) > 99)
             {
-                sPokeblockFlavors[FLAVOR_COUNT] = 255;
+                sPokeblockFlavors[FLAVOR_COUNT] = 99;
             }
             else
             {
