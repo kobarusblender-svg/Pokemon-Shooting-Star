@@ -2863,6 +2863,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         else //SHEEN Lansat Pokéblock 
         {
             sPokeblockFlavors[FLAVOR_COUNT] += multiuseVar;
+            NoFlavor = TRUE;
         }
         Lansat = FALSE;
     }
