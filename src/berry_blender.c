@@ -2887,7 +2887,6 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     }
 
     // Calculate color and feel of pokeblock
-    if()
     pokeblock->color = CalculatePokeblockColor(berries, &sPokeblockFlavors[0], numPlayers, numNegatives);
     sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers;
 
