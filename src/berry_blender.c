@@ -2827,8 +2827,10 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[i] = flavor;
     }
     
+        DebugPrintf("before if(Lansat)");
     if(Lansat) //MOD CONTEST TODO Here, every flavor joins in a single value and then it's assigned randomly to a flavor/sheen
     {   
+        DebugPrintf("if(Lansat)");
         i = (Random() / 655);
         DebugPrintf("Lansat random:");
         multiuseVar = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]);
