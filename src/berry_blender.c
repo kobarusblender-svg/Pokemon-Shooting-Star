@@ -2844,7 +2844,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[FLAVOR_BITTER] = 0;
         sPokeblockFlavors[FLAVOR_SOUR] = 0;
 
-        if(i <= 15) //SPICY Lansat Pokéblock 
+        /*if(i <= 15) //SPICY Lansat Pokéblock 
         {
             DebugPrintf("SPICY Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_SPICY] = multiuseVar;
@@ -2873,7 +2873,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
             DebugPrintf("SOUR Lansat Pokéblock ");
             sPokeblockFlavors[FLAVOR_SOUR] = multiuseVar;
             Lansat = FALSE;
-        }
+        }*/
         else //FEEL Lansat Pokéblock
         {
             NoFlavor = TRUE;
@@ -2887,7 +2887,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     if(Lansat) //MOD CONTEST Here, sheen is handled for Lansat blend. I know it's bad, shut up.
     {  
         DebugPrintf("FEEL Lansat Pokéblock");
-        sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers + multiuseVar;
+        sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers/* + multiuseVar*/;
         if((multiuseVar + sPokeblockFlavors[FLAVOR_COUNT]) > 255)
         {
             sPokeblockFlavors[FLAVOR_COUNT] = 255;
