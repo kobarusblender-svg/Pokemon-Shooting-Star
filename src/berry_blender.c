@@ -2570,7 +2570,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     // If 4 flavors were negative,
     // or if players used the same berry, color is black
     // MOD CONTEST If 4 of the same berry are used, The flavors are null
-    if (j == FLAVOR_COUNT || negativeFlavors == 4)
+    if (j == FLAVOR_COUNT || negativeFlavors == 4) //MOD CONTEST FIXING IT
         return PBLOCK_CLR_BLACK;
     
     for (i = 0; i < numPlayers; i++)
@@ -2601,7 +2601,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     if (numFlavors == 3)
         return PBLOCK_CLR_GRAY;
 
-    if ((numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5) && !Starf && !NoFlavor)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
+    if ((numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5) && !Starf)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
     {
             return PBLOCK_CLR_CLEAR; 
     }
@@ -2871,7 +2871,11 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         }
         else //SHEEN Lansat Pokéblock 
         {
-            DebugPrintf("SHEEN Lansat Pokéblock");/*
+            DebugPrintf("SHEEN Lansat Pokéblock");
+            sPokeblockFlavors[FLAVOR_SPICY] = -1;
+            sPokeblockFlavors[FLAVOR_DRY] = -1;
+            sPokeblockFlavors[FLAVOR_SWEET] = -1;
+            sPokeblockFlavors[FLAVOR_BITTER] = -1;/*
             if((multiuseVar + sPokeblockFlavors[FLAVOR_COUNT]) > 255)
             {
                 sPokeblockFlavors[FLAVOR_COUNT] = 255;
