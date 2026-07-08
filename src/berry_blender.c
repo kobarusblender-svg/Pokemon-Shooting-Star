@@ -2871,7 +2871,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         }
         else //SHEEN Lansat Pokéblock 
         {
-            DebugPrintf("SHEEN Lansat Pokéblock");
+            DebugPrintf("SHEEN Lansat Pokéblock");/*
             if((multiuseVar + sPokeblockFlavors[FLAVOR_COUNT]) > 255)
             {
                 sPokeblockFlavors[FLAVOR_COUNT] = 255;
@@ -2881,7 +2881,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
                 sPokeblockFlavors[FLAVOR_COUNT] += multiuseVar;
             }
             NoFlavor = TRUE;
-            pokeblock->color = PBLOCK_CLR_BLACK;
+            pokeblock->color = PBLOCK_CLR_BLACK;*/
         }
         Lansat = FALSE;
     }
