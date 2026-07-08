@@ -2833,6 +2833,10 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         DebugPrintf("if(Lansat)");
         i = (Random() / 655);
         DebugPrintf("Lansat random:");
+        DebugPrintf("Lansat random:");
+        DebugPrintf("Lansat random:");
+        DebugPrintf("Lansat random:");
+        DebugPrintf("Lansat random:");
         multiuseVar = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]);
 
         //Reset of every value after the addition.
