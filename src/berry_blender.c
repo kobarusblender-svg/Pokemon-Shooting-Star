@@ -2834,6 +2834,9 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         i = (Random() / 655);
         multiuseVar = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]);
 
+        if(multiuseVar > 255)
+            multiuseVar = 255;
+
         //Reset of every value after the addition.
         sPokeblockFlavors[FLAVOR_SPICY] = 0;
         sPokeblockFlavors[FLAVOR_DRY] = 0;
@@ -2843,33 +2846,40 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
 
         if(i <= 15) //SPICY Lansat Pokéblock 
         {
-        DebugPrintf("SPICY Lansat Pokéblock");
+            DebugPrintf("SPICY Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_SPICY] = multiuseVar;
         }
         else if(i <= 30) //DRY Lansat Pokéblock 
         {
-        DebugPrintf("DRY Lansat Pokéblock ");
+            DebugPrintf("DRY Lansat Pokéblock ");
             sPokeblockFlavors[FLAVOR_DRY] = multiuseVar;
         }
         else if(i <= 45) //SWEET Lansat Pokéblock 
         {
-        DebugPrintf("SWEET Lansat Pokéblock");
+            DebugPrintf("SWEET Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_SWEET] = multiuseVar;
         }
         else if(i <= 60) //BITTER Lansat Pokéblock 
         {
-        DebugPrintf("BITTER Lansat Pokéblock");
+            DebugPrintf("BITTER Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_BITTER] = multiuseVar;
         }
         else if(i <= 75) //SOUR Lansat Pokéblock 
         {
-        DebugPrintf("SOUR Lansat Pokéblock ");
+            DebugPrintf("SOUR Lansat Pokéblock ");
             sPokeblockFlavors[FLAVOR_SOUR] = multiuseVar;
         }
         else //SHEEN Lansat Pokéblock 
         {
-        DebugPrintf("SHEEN Lansat Pokéblock");
-            sPokeblockFlavors[FLAVOR_COUNT] += multiuseVar;
+            DebugPrintf("SHEEN Lansat Pokéblock");
+            if((multiuseVar + sPokeblockFlavors[FLAVOR_COUNT]) > 255)
+            {
+                sPokeblockFlavors[FLAVOR_COUNT] = 255;
+            }
+            else
+            {
+                sPokeblockFlavors[FLAVOR_COUNT] += multiuseVar;
+            }
             NoFlavor = TRUE;
         }
         Lansat = FALSE;
