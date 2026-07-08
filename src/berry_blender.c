@@ -2736,12 +2736,12 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     if(Enigma)
     { // MOD CONTEST TODO Has a 2/3 probabilities of choosing starf or lansat effects, and 1/3 of none at all
         
-        if((Random() / 9) > 6)
+        if((Random()  / 655) > 70)
         {
             DebugPrintf("Enigma random Starf:");
             Starf = TRUE;
         }
-        else if((Random() / 9) > 3)
+        else if((Random()  / 655) > 50)
         {
             DebugPrintf("Enigma random Lansat:");
             Lansat = TRUE;
@@ -2829,7 +2829,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
     
     if(Lansat) //MOD CONTEST TODO Here, every flavor joins in a single value and then it's assigned randomly to a flavor/sheen
     {   
-        i = (Random() / 5);
+        i = (Random() / 655);
             DebugPrintf("Lansat random:" + i);
         multiuseVar = (sPokeblockFlavors[FLAVOR_DRY] + sPokeblockFlavors[FLAVOR_SPICY] + sPokeblockFlavors[FLAVOR_SWEET] + sPokeblockFlavors[FLAVOR_SOUR] + sPokeblockFlavors[FLAVOR_BITTER]);
 
@@ -2840,23 +2840,23 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[FLAVOR_BITTER] = 0;
         sPokeblockFlavors[FLAVOR_SOUR] = 0;
 
-        if(i == 0) //SPICY Lansat Pokéblock 
+        if(i <= 15) //SPICY Lansat Pokéblock 
         {
             sPokeblockFlavors[FLAVOR_SPICY] = multiuseVar;
         }
-        else if(i == 1) //DRY Lansat Pokéblock 
+        else if(i <= 30) //DRY Lansat Pokéblock 
         {
             sPokeblockFlavors[FLAVOR_DRY] = multiuseVar;
         }
-        else if(i == 2) //SWEET Lansat Pokéblock 
+        else if(i <= 45) //SWEET Lansat Pokéblock 
         {
             sPokeblockFlavors[FLAVOR_SWEET] = multiuseVar;
         }
-        else if(i == 3) //BITTER Lansat Pokéblock 
+        else if(i <= 60) //BITTER Lansat Pokéblock 
         {
             sPokeblockFlavors[FLAVOR_BITTER] = multiuseVar;
         }
-        else if(i == 4) //SOUR Lansat Pokéblock 
+        else if(i <= 75) //SOUR Lansat Pokéblock 
         {
             sPokeblockFlavors[FLAVOR_SOUR] = multiuseVar;
         }
