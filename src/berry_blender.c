@@ -2844,7 +2844,7 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
         sPokeblockFlavors[FLAVOR_BITTER] = 0;
         sPokeblockFlavors[FLAVOR_SOUR] = 0;
 
-        /*if(i <= 15) //SPICY Lansat Pokéblock 
+        if(i <= 15) //SPICY Lansat Pokéblock 
         {
             DebugPrintf("SPICY Lansat Pokéblock");
             sPokeblockFlavors[FLAVOR_SPICY] = multiuseVar;
@@ -2873,11 +2873,11 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
             DebugPrintf("SOUR Lansat Pokéblock ");
             sPokeblockFlavors[FLAVOR_SOUR] = multiuseVar;
             Lansat = FALSE;
-        }*/
-        //else //FEEL Lansat Pokéblock
-        //{
+        }
+        else //FEEL Lansat Pokéblock
+        {
             NoFlavor = TRUE;
-        //}
+        }
     }
 
     // Calculate color and feel of pokeblock
