@@ -2706,15 +2706,19 @@ static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *p
 
     for (i = 0; i < numPlayers; i++)
     {
+            DebugPrintf("for (i = 0; i < numPlayers; i++)");
         if (berries[i].itemId == ITEM_ENIGMA_BERRY)
+            DebugPrintf("if (berries[i].itemId == ITEM_ENIGMA_BERRY)");
         { // MOD CONTEST Chooses randomly between the other two legendary effects (or none) as long as there are no other legend berries.
             Enigma = TRUE;
         }
         if (berries[i].itemId == ITEM_STARF_BERRY)
+            DebugPrintf("if (berries[i].itemId == ITEM_STARF_BERRY)");
         { // MOD CONTEST Adds every flavor and sheen of the blend without lowering any values.
             Starf = TRUE;
         }
         if (berries[i].itemId == ITEM_LANSAT_BERRY)
+            DebugPrintf("if (berries[i].itemId == ITEM_LANSAT_BERRY)");
         { // MOD CONTEST Adds every positive value and groups it into a single flavor, with a 1/6 possibilities of it being sheen (it conserves it's sheen value if not)
             Lansat = TRUE;
         }
