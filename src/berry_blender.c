@@ -2570,7 +2570,7 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     // If 4 flavors were negative,
     // or if players used the same berry, color is black
     // MOD CONTEST If 4 of the same berry are used, The flavors are null
-    if (negativeFlavors == 4)
+    if (j == FLAVOR_COUNT || negativeFlavors == 4)
         return PBLOCK_CLR_BLACK;
     
     for (i = 0; i < numPlayers; i++)
