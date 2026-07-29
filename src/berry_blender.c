@@ -3017,9 +3017,7 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
     {
         case 0: //Writing text
             if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
-            {
             sBerryBlender->Progress++;
-            DebugPrintf("printed it" +Progress);}
             break;
         case 1: //Menu pop up
             CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, (gSpecialVar_0x8004 - 5), 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
