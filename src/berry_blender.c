@@ -195,6 +195,7 @@ struct BerryBlender
     s16 textState;
     void *tilesBuffer;
     struct BlenderGameBlock gameBlock;
+    u8 Progress = 0;
 };
 
 static void SetBgPos(void);
@@ -250,7 +251,6 @@ static bool8 NoFlavor = FALSE;
 static bool8 Enigma = FALSE;
 static bool8 Starf = FALSE;
 static bool8 Lansat = FALSE;
-static u8 Progress = 0;
 
 EWRAM_DATA static struct BerryBlender *sBerryBlender = NULL;
 
@@ -3011,7 +3011,7 @@ static void SendContinuePromptResponse(u16 *cmd)
 }
 
 
-static void HandleReplayoptionsSoloMode(u8 i, u8 Progress) //MOD CONTEST
+static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
 {
 
     switch(Progress) //Why did they do it like this???? 
@@ -3019,12 +3019,12 @@ static void HandleReplayoptionsSoloMode(u8 i, u8 Progress) //MOD CONTEST
         case 0: //Writing text
             if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
             {
-            Progress = 1;
+            sBerryBlender->Progress++;
             DebugPrintf("printed it" +Progress);}
             break;
         case 1: //Menu pop up
             CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, (gSpecialVar_0x8004 - 5), 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
-            Progress = 2;
+            sBerryBlender->Progress++;
             break;
         case 2: 
             switch (Menu_ProcessInputNoWrapClearOnChoose())
@@ -3227,7 +3227,7 @@ static void CB2_EndBlenderGame(void)
             }
             break;
         case 0:
-                Progress = 0;
+                sBerryBlender->Progress = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
                 {   
                     sBerryBlender->gameEndState = 15;
@@ -3302,7 +3302,7 @@ static void CB2_EndBlenderGame(void)
         }
         break;
     case 15: //MOD CONTEST so it just doesn't end before choosing something
-        HandleReplayoptionsSoloMode(i, Progress);
+        HandleReplayoptionsSoloMode(i);
         break;
     }
 
