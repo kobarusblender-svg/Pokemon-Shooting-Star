@@ -284,10 +284,10 @@ static const u8 *const sBlenderOpponentsNames[] =
     [BLENDER_MASTER] = COMPOUND_STRING("MASTER"),
     [BLENDER_DUDE]   = COMPOUND_STRING("DUDE"),
     [BLENDER_MISS]   = COMPOUND_STRING("MISS"),
-    [BLENDER_A]      = COMPOUND_STRING("{CHAR_A_BUTTON} Button"),
-    [BLENDER_B]      = COMPOUND_STRING("{CHAR_B_BUTTON} Button"),
-    [BLENDER_L]      = COMPOUND_STRING("{CHAR_L_BUTTON} Button"),
-    [BLENDER_R]      = COMPOUND_STRING("{CHAR_R_BUTTON} Button"),
+    [BLENDER_A]      = COMPOUND_STRING("{A_BUTTON} Button"),
+    [BLENDER_B]      = COMPOUND_STRING("{B_BUTTON} Button"),
+    [BLENDER_L]      = COMPOUND_STRING("{L_BUTTON} Button"),
+    [BLENDER_R]      = COMPOUND_STRING("{R_BUTTON} Button"),
 };
 
 static const u8 sText_CommunicationStandby[] = _("Communication standby…");
