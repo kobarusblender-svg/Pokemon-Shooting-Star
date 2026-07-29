@@ -3021,6 +3021,7 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
     {
         case 0:
             //two berries
+            sBerryBlender->yesNoAnswer = 0;
             gSpecialVar_0x8004 = 5;
             sBerryBlender->gameEndState = 11;
             for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
@@ -3034,6 +3035,7 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
             break;
         case 1:
             //three berries
+            sBerryBlender->yesNoAnswer = 0;
             gSpecialVar_0x8004 = 6;
             sBerryBlender->gameEndState = 11;
             for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
@@ -3047,6 +3049,7 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
             break;
         case 2:
             //four berries
+            sBerryBlender->yesNoAnswer = 0;
             gSpecialVar_0x8004 = 7;
             sBerryBlender->gameEndState = 11;
             for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
@@ -3212,13 +3215,13 @@ static void CB2_EndBlenderGame(void)
             }
             break;
         case 0:///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                sBerryBlender->yesNoAnswer = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
                 {   
                     sBerryBlender->gameEndState = 15;
                 }
                 else
                 {
+                    sBerryBlender->yesNoAnswer = 0;
                     sBerryBlender->gameEndState++;
                     for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
                     {
