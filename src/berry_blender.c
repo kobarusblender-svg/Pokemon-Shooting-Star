@@ -3224,9 +3224,9 @@ static void CB2_EndBlenderGame(void)
             }
             break;
         case 0:
+                Progress = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
                 {   
-                    Progress = 0;
                     sBerryBlender->gameEndState = 15;
                 }
                 else
