@@ -3020,7 +3020,7 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
             sBerryBlender->Progress++;
             break;
         case 1: //Menu pop up
-            CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, (gSpecialVar_0x8004 - 5), 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
+            CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, 0, 0xD, (gSpecialVar_0x8004 - 5)); //MOD CONTEST TODO Modify this to berry quantity selection dialog
             sBerryBlender->Progress++;
             break;
         case 2: 
@@ -3204,8 +3204,7 @@ static void CB2_EndBlenderGame(void)
         break;
     case 9:
         sBerryBlender->yesNoAnswer = 0;
-        CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, (gSpecialVar_0x8004 - 5), 0xD, 0);
-        //CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
+        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
         sBerryBlender->gameEndState++;
         break;
     case 10:
