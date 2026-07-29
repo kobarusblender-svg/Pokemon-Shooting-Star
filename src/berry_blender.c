@@ -3022,22 +3022,54 @@ static void HandleReplayoptionsSoloMode(void) //MOD CONTEST
         case 0:
             //two berries
             gSpecialVar_0x8004 = 5;
-            sBerryBlender->gameEndState++;
+            sBerryBlender->gameEndState = 11;
+            for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
+            {
+                if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                {
+                    PutWindowTilemap(i);
+                            CopyWindowToVram(i, COPYWIN_FULL);
+                }
+            }
             break;
         case 1:
             //three berries
             gSpecialVar_0x8004 = 6;
-            sBerryBlender->gameEndState++;
+            sBerryBlender->gameEndState = 11;
+            for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
+            {
+                if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                {
+                    PutWindowTilemap(i);
+                            CopyWindowToVram(i, COPYWIN_FULL);
+                }
+            }
             break;
         case 2:
             //four berries
             gSpecialVar_0x8004 = 7;
-            sBerryBlender->gameEndState++;
+            sBerryBlender->gameEndState = 11;
+            for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
+            {
+                if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                {
+                    PutWindowTilemap(i);
+                            CopyWindowToVram(i, COPYWIN_FULL);
+                }
+            }
             break;
         case 3:
         case MENU_B_PRESSED:
             sBerryBlender->yesNoAnswer = 1;
-            sBerryBlender->gameEndState++;
+            sBerryBlender->gameEndState = 11;
+            for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
+            {
+                if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                {
+                    PutWindowTilemap(i);
+                            CopyWindowToVram(i, COPYWIN_FULL);
+                }
+            }
             break;
     }
 }
@@ -3182,19 +3214,19 @@ static void CB2_EndBlenderGame(void)
         case 0:///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 sBerryBlender->yesNoAnswer = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
-                {   sBerryBlender->gameEndState = 10;
+                {   sBerryBlender->gameEndState = 15;
                     HandleReplayoptionsSoloMode();
                 }
                 else
                 {
                     sBerryBlender->gameEndState++;
-                }
-                for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
-                {
-                    if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                    for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
                     {
-                        PutWindowTilemap(i);
-                        CopyWindowToVram(i, COPYWIN_FULL);
+                        if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                        {
+                            PutWindowTilemap(i);
+                            CopyWindowToVram(i, COPYWIN_FULL);
+                        }
                     }
                 }
                 break;
@@ -3252,6 +3284,9 @@ static void CB2_EndBlenderGame(void)
             sBerryBlender->gameEndState = 0;
             sBerryBlender->mainState = 0;
         }
+        break;
+    case 15: //MOD CONTEST so it just doesn't end before choosing something
+        HandleReplayoptionsSoloMode();
         break;
     }
 
