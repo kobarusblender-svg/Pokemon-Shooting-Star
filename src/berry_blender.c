@@ -3148,28 +3148,28 @@ static void CB2_EndBlenderGame(void)
                         case 0:
                             //two berries
                             gSpecialVar_0x8004 = 5;
-                            //sBerryBlender->gameEndState++;
+                            sBerryBlender->gameEndState++;
                             break;
                         case 1:
                             //three berries
                             gSpecialVar_0x8004 = 6;
-                            //sBerryBlender->gameEndState++;
+                            sBerryBlender->gameEndState++;
                             break;
                         case 2:
                             //four berries
                             gSpecialVar_0x8004 = 7;
-                            //sBerryBlender->gameEndState++;
+                            sBerryBlender->gameEndState++;
                             break;
                         case 3:
                         case MENU_B_PRESSED:
                             sBerryBlender->yesNoAnswer = 1;
-                            //sBerryBlender->gameEndState++;
+                            sBerryBlender->gameEndState++;
                             break;
                     }
                 }
                 else
                 {
-                    //sBerryBlender->gameEndState++;
+                    sBerryBlender->gameEndState++;
                 }
                 for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
                 {
