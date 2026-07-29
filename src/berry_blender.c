@@ -3018,6 +3018,7 @@ static void HandleReplayoptionsSoloMode(u8 i, u8 Progress) //MOD CONTEST
     {
         case 0: //Writing text
             if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
+            {}
             Progress++;
             break;
         case 1: //Menu pop up
