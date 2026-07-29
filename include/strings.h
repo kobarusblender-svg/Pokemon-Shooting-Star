@@ -2136,6 +2136,7 @@ extern const u8 gText_NeatnessRankings[];
 extern const u8 gText_CoopRankings[];
 extern const u8 gText_PressingPowerRankings[];
 
+extern const u8 gText_HowManyBerries[]; //MOD CONTEST Berry number selection for Blender solo mode.
 extern const u8 gText_CoolnessContest[];
 extern const u8 gText_BeautyContest[];
 extern const u8 gText_CutenessContest[];

@@ -952,6 +952,7 @@ const u8 gText_FrontierFacilityIncluding[] = _(".\pThese include ");
 const u8 gText_FrontierFacilityAreInelegible[] = _(" are inelegible");
 
 const u8 gText_YesNo[] = _("YES\nNO");
+const u8 gText_HowManyBerries[] = _("TWO\nTHREE\nFOUR\nCANCEL"); //MOD CONTEST Berry number selection for Blender solo mode.
 const u8 gText_SelectorArrow3[] = _("▶");
 const u8 gText_Peekaboo[] = _("PEEKABOO!");
 const u8 gText_CommErrorCheckConnections[] = _("Communication error…\nPlease check all connections,\nthen turn the power OFF and ON.");

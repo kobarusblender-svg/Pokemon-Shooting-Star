@@ -778,7 +778,7 @@ static const struct MenuAction MultichoiceList_BerryPlot[] =
     {gText_Exit},
 };
 
-static const struct MenuAction MultichoiceList_BerryBlender[] =
+static const struct MenuAction MultichoiceList_BerryBlender[] = //MOD CONTEST Solo Blender berry quantity
 {
     //{COMPOUND_STRING("ONE BERRY")}, (Never used, so very broken)
     {COMPOUND_STRING("TWO BERRIES")},

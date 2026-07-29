@@ -291,6 +291,7 @@ static const u8 *const sBlenderOpponentsNames[] =
 
 static const u8 sText_CommunicationStandby[] = _("Communication standby…");
 static const u8 sText_WouldLikeToBlendAnotherBerry[] = _("Would you like to blend another BERRY?");
+static const u8 sText_HowManyBerriesWillYouUse[] = _("How many berries will you use?");
 static const u8 sText_RunOutOfBerriesForBlending[] = _("You've run out of BERRIES for\nblending in the BERRY BLENDER.\p");
 static const u8 sText_NotEnoughBerriesForBlending[] = _("You don't have enough BERRIES\nfor this BERRY BLENDER mode.\p");
 static const u8 sText_YourPokeblockCaseIsFull[] = _("Your {POKEBLOCK} CASE is full.\p");
@@ -3010,7 +3011,7 @@ static void CB2_EndBlenderGame(void)
     {
     case 1:
         m4aMPlayTempoControl(&gMPlayInfo_BGM, 256);
-        if(gSpecialVar_0x8004 < 4) //MOD CONTEST FIXING IT maybe this was what crashed the game...?
+        if(gSpecialVar_0x8004 < 4) 
         {
             for (i = 0; i < gSpecialVar_0x8004; i++)
             {
@@ -3136,6 +3137,30 @@ static void CB2_EndBlenderGame(void)
             break;
         case 0:
                 sBerryBlender->yesNoAnswer = 0;
+                if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
+                {(
+                    PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
+                    CreateBerryMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
+                    switch (Menu_ProcessInputNoWrapClearOnChoose())
+                    {
+                        case 0:
+                            //two berries
+                            gSpecialVar_0x8004 = 5;
+                            break;
+                        case 1:
+                            //three berries
+                            gSpecialVar_0x8004 = 6;
+                            break;
+                        case 2:
+                            //four berries
+                            gSpecialVar_0x8004 = 7;
+                            break;
+                        case 3:
+                        case MENU_B_PRESSED:
+                            sBerryBlender->yesNoAnswer = 1;
+                            break;
+                    }
+                }
                 sBerryBlender->gameEndState++;
                 for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
                 {
@@ -4445,4 +4470,30 @@ static bool32 PrintMessage(s16 *textState, const u8 *string, s32 textSpeed)
     }
 
     return FALSE;
+}
+
+void CreateBerryMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos) //MOD CONTEST New berry quantity selection meny for solo mode (Copied from CreateYesNoMenu)
+{
+    struct TextPrinterTemplate printer;
+
+    sBerryWindowId = AddWindow(window);
+    DrawStdFrameWithCustomTileAndPalette(sBerryWindowId, TRUE, baseTileNum, paletteNum);
+
+    printer.currentChar = gText_HowManyBerries;
+    printer.type = WINDOW_TEXT_PRINTER;
+    printer.windowId = sBerryWindowId;
+    printer.fontId = FONT_NORMAL;
+    printer.x = 8;
+    printer.y = 1;
+    printer.currentX = printer.x;
+    printer.currentY = printer.y;
+    printer.color.foreground = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_FOREGROUND);
+    printer.color.background = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_BACKGROUND);
+    printer.color.shadow = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_SHADOW);
+    printer.color.accent = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_ACCENT);
+    printer.letterSpacing = 0;
+    printer.lineSpacing = 0;
+
+    AddTextPrinter(&printer, TEXT_SKIP_DRAW, NULL);
+    InitMenuInUpperLeftCornerNormal(sYesNoWindowId, 2, initialCursorPos);
 }
