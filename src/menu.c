@@ -1429,7 +1429,7 @@ void CreateBerryMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 pa
     printer.lineSpacing = 0;
 
     AddTextPrinter(&printer, TEXT_SKIP_DRAW, NULL);
-    InitMenuInUpperLeftCornerNormal(sYesNoWindowId, 2, initialCursorPos);
+    InitMenuInUpperLeftCornerNormal(sYesNoWindowId, 4, initialCursorPos);
 }
 
 void PrintMenuGridTable(u8 windowId, u8 optionWidth, u8 columns, u8 rows, const struct MenuAction *menuActions)
