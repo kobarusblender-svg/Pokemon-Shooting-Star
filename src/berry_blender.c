@@ -3010,22 +3010,20 @@ static void SendContinuePromptResponse(u16 *cmd)
 }
 
 
-static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
+static void HandleReplayoptionsSoloMode(u8 i, u8 Progress) //MOD CONTEST
 {
-    u8 Progress = 0;
 
     switch(Progress) //Why did they do it like this???? 
     {
         case 0: //Writing text
             if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
-            {}
             Progress++;
             break;
         case 1: //Menu pop up
             CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, (gSpecialVar_0x8004 - 5), 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
             Progress++;
             break;
-        case 2: //Selection handling loopswitch (Menu_ProcessInputNoWrapClearOnChoose()) //Maybe, move this to case 15? IDK but here it doesn't work.
+        case 2: 
             switch (Menu_ProcessInputNoWrapClearOnChoose())
             {
                 case 0:
@@ -3090,7 +3088,7 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
 
 static void CB2_EndBlenderGame(void)
 {
-    u8 i, j;
+    u8 i, j, Progress;
 
     if (sBerryBlender->gameEndState < 3)
         UpdateBlenderCenter();
@@ -3225,9 +3223,10 @@ static void CB2_EndBlenderGame(void)
                 }
             }
             break;
-        case 0:///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        case 0:
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
                 {   
+                    Progress = 0;
                     sBerryBlender->gameEndState = 15;
                 }
                 else
@@ -3245,7 +3244,7 @@ static void CB2_EndBlenderGame(void)
                 }
                 break;
         }
-        break;//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        break;
     case 11:
         SendContinuePromptResponse(&gSendCmd[BLENDER_COMM_INPUT_STATE]);
         if (sBerryBlender->yesNoAnswer == 0)
@@ -3300,7 +3299,7 @@ static void CB2_EndBlenderGame(void)
         }
         break;
     case 15: //MOD CONTEST so it just doesn't end before choosing something
-        HandleReplayoptionsSoloMode(i);
+        HandleReplayoptionsSoloMode(i, Progress);
         break;
     }
 
