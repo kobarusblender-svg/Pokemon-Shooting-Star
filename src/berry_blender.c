@@ -3010,7 +3010,7 @@ static void SendContinuePromptResponse(u16 *cmd)
 }
 
 
-static void HandleReplayoptionsSoloMode(void) //MOD CONTEST
+static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
 {
     if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
     {
@@ -3214,8 +3214,8 @@ static void CB2_EndBlenderGame(void)
         case 0:///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 sBerryBlender->yesNoAnswer = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
-                {   sBerryBlender->gameEndState = 15;
-                    HandleReplayoptionsSoloMode();
+                {   
+                    sBerryBlender->gameEndState = 15;
                 }
                 else
                 {
@@ -3286,7 +3286,7 @@ static void CB2_EndBlenderGame(void)
         }
         break;
     case 15: //MOD CONTEST so it just doesn't end before choosing something
-        HandleReplayoptionsSoloMode();
+        HandleReplayoptionsSoloMode(i);
         break;
     }
 
