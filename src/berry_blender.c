@@ -284,10 +284,10 @@ static const u8 *const sBlenderOpponentsNames[] =
     [BLENDER_MASTER] = COMPOUND_STRING("MASTER"),
     [BLENDER_DUDE]   = COMPOUND_STRING("DUDE"),
     [BLENDER_MISS]   = COMPOUND_STRING("MISS"),
-    [BLENDER_A]      = COMPOUND_STRING("A Button"),
-    [BLENDER_B]      = COMPOUND_STRING("B Button"),
-    [BLENDER_L]      = COMPOUND_STRING("L Button"),
-    [BLENDER_R]      = COMPOUND_STRING("R Button"),
+    [BLENDER_A]      = COMPOUND_STRING("{CHAR_A_BUTTON} Button"),
+    [BLENDER_B]      = COMPOUND_STRING("{CHAR_B_BUTTON} Button"),
+    [BLENDER_L]      = COMPOUND_STRING("{CHAR_L_BUTTON} Button"),
+    [BLENDER_R]      = COMPOUND_STRING("{CHAR_R_BUTTON} Button"),
 };
 
 static const u8 sText_CommunicationStandby[] = _("Communication standby…");
@@ -444,12 +444,12 @@ static const u8 sPlayerArrowPos[BLENDER_MAX_PLAYERS][2] =
     {168, 128}
 };
 
-static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS][BLENDER_MAX_PLAYERS] =
+static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS][BLENDER_MAX_PLAYERS] = //MOD CONTEST FIXING IT Making 3 player mode use L instead of R (Nobody likes R)
 {
     {NO_PLAYER,         0, 1, NO_PLAYER}, // 2 Players
     {NO_PLAYER,         0, 1,         2}, // 3 Players
     {        0,         1, 2,         3}/*,*/  // 4 Players
-    //{NO_PLAYER, NO_PLAYER, 0, NO_PLAYER} // MOD CONTEST 1 Player (Never used)
+    //{NO_PLAYER, NO_PLAYER, 0, NO_PLAYER} // MOD CONTEST 1 Player (Never used, so very broken)
 };
 
 
