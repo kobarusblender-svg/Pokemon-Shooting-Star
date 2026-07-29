@@ -3181,7 +3181,7 @@ static void CB2_EndBlenderGame(void)
                 }
                 break;*/
         }
-        break;
+        //break;
     case 11:
         SendContinuePromptResponse(&gSendCmd[BLENDER_COMM_INPUT_STATE]);
         if (sBerryBlender->yesNoAnswer == 0)
