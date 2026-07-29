@@ -3167,7 +3167,7 @@ static void CB2_EndBlenderGame(void)
                             break;
                     }
                 }
-                else
+                /*else
                 {
                     sBerryBlender->gameEndState++;
                 }
@@ -3179,7 +3179,7 @@ static void CB2_EndBlenderGame(void)
                         CopyWindowToVram(i, COPYWIN_FULL);
                     }
                 }
-                break;
+                break;*/
         }
         break;
     case 11:
