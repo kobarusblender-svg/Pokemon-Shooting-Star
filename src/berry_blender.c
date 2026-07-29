@@ -3138,9 +3138,11 @@ static void CB2_EndBlenderGame(void)
         case 0:
                 sBerryBlender->yesNoAnswer = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
-                {(
-                    PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
+                {   
+                    if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
+                    {
                     CreateBerryMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
+                    }
                     switch (Menu_ProcessInputNoWrapClearOnChoose())
                     {
                         case 0:
@@ -4472,28 +4474,3 @@ static bool32 PrintMessage(s16 *textState, const u8 *string, s32 textSpeed)
     return FALSE;
 }
 
-void CreateBerryMenu(const struct WindowTemplate *window, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos) //MOD CONTEST New berry quantity selection meny for solo mode (Copied from CreateYesNoMenu)
-{
-    struct TextPrinterTemplate printer;
-
-    sBerryWindowId = AddWindow(window);
-    DrawStdFrameWithCustomTileAndPalette(sBerryWindowId, TRUE, baseTileNum, paletteNum);
-
-    printer.currentChar = gText_HowManyBerries;
-    printer.type = WINDOW_TEXT_PRINTER;
-    printer.windowId = sBerryWindowId;
-    printer.fontId = FONT_NORMAL;
-    printer.x = 8;
-    printer.y = 1;
-    printer.currentX = printer.x;
-    printer.currentY = printer.y;
-    printer.color.foreground = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_FOREGROUND);
-    printer.color.background = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_BACKGROUND);
-    printer.color.shadow = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_SHADOW);
-    printer.color.accent = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_ACCENT);
-    printer.letterSpacing = 0;
-    printer.lineSpacing = 0;
-
-    AddTextPrinter(&printer, TEXT_SKIP_DRAW, NULL);
-    InitMenuInUpperLeftCornerNormal(sYesNoWindowId, 2, initialCursorPos);
-}
