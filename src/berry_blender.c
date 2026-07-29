@@ -3116,7 +3116,8 @@ static void CB2_EndBlenderGame(void)
         break;
     case 9:
         sBerryBlender->yesNoAnswer = 0;
-        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
+        //CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
+        CreateBerryMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
         sBerryBlender->gameEndState++;
         break;
     case 10:
@@ -3135,7 +3136,7 @@ static void CB2_EndBlenderGame(void)
                 }
             }
             break;
-        case 0:
+        case 0:///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 sBerryBlender->yesNoAnswer = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
                 {   sBerryBlender->gameEndState = 10;
@@ -3143,7 +3144,7 @@ static void CB2_EndBlenderGame(void)
                     {
                     CreateBerryMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
                     }
-                    switch (Menu_ProcessInputNoWrapClearOnChoose())
+                    switch (Menu_ProcessInputNoWrapClearOnChoose()) //Maybe, move this to case 15? IDK but here it doesn't work.
                     {
                         case 0:
                             //two berries
@@ -3181,7 +3182,7 @@ static void CB2_EndBlenderGame(void)
                 }
                 break;
         }
-        break;
+        break;//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     case 11:
         SendContinuePromptResponse(&gSendCmd[BLENDER_COMM_INPUT_STATE]);
         if (sBerryBlender->yesNoAnswer == 0)
