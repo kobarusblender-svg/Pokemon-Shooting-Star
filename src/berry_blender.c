@@ -416,6 +416,17 @@ static const struct WindowTemplate sYesNoWindowTemplate_ContinuePlaying =
     .baseBlock = 0xCC
 };
 
+static const struct WindowTemplate sChooseBerryWindowTemplate_BerryQuantity =
+{
+    .bg = 0,
+    .tilemapLeft = 21,
+    .tilemapTop = 9,
+    .width = 6,
+    .height = 8,
+    .paletteNum = 14,
+    .baseBlock = 0xCC
+};
+
 static const s8 sPlayerArrowQuadrant[BLENDER_MAX_PLAYERS][2] =
 {
     {-1, -1},
@@ -3117,7 +3128,7 @@ static void CB2_EndBlenderGame(void)
     case 9:
         sBerryBlender->yesNoAnswer = 0;
         //CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
-        CreateBerryMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
+        CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, 1, 0xD, 0);
         sBerryBlender->gameEndState++;
         break;
     case 10:
