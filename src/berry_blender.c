@@ -420,7 +420,7 @@ static const struct WindowTemplate sChooseBerryWindowTemplate_BerryQuantity =
 {
     .bg = 0,
     .tilemapLeft = 21,
-    .tilemapTop = 9,
+    .tilemapTop = 7,
     .width = 6,
     .height = 8,
     .paletteNum = 14,
