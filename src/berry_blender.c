@@ -3009,6 +3009,39 @@ static void SendContinuePromptResponse(u16 *cmd)
         *cmd = LINKCMD_SEND_PACKET;
 }
 
+
+static void HandleReplayoptionsSoloMode(void) //MOD CONTEST
+{
+    if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
+    {
+        CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, (gSpecialVar_0x8004 - 5), 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
+    }
+
+    switch (Menu_ProcessInputNoWrapClearOnChoose()) //Maybe, move this to case 15? IDK but here it doesn't work.
+    {
+        case 0:
+            //two berries
+            gSpecialVar_0x8004 = 5;
+            sBerryBlender->gameEndState++;
+            break;
+        case 1:
+            //three berries
+            gSpecialVar_0x8004 = 6;
+            sBerryBlender->gameEndState++;
+            break;
+        case 2:
+            //four berries
+            gSpecialVar_0x8004 = 7;
+            sBerryBlender->gameEndState++;
+            break;
+        case 3:
+        case MENU_B_PRESSED:
+            sBerryBlender->yesNoAnswer = 1;
+            sBerryBlender->gameEndState++;
+            break;
+    }
+}
+
 static void CB2_EndBlenderGame(void)
 {
     u8 i, j;
@@ -3127,8 +3160,7 @@ static void CB2_EndBlenderGame(void)
         break;
     case 9:
         sBerryBlender->yesNoAnswer = 0;
-        //CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
-        CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, 1, 0xD, 0);
+        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
         sBerryBlender->gameEndState++;
         break;
     case 10:
@@ -3151,33 +3183,7 @@ static void CB2_EndBlenderGame(void)
                 sBerryBlender->yesNoAnswer = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
                 {   sBerryBlender->gameEndState = 10;
-                    if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
-                    {
-                    CreateBerryMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
-                    }
-                    switch (Menu_ProcessInputNoWrapClearOnChoose()) //Maybe, move this to case 15? IDK but here it doesn't work.
-                    {
-                        case 0:
-                            //two berries
-                            gSpecialVar_0x8004 = 5;
-                            sBerryBlender->gameEndState++;
-                            break;
-                        case 1:
-                            //three berries
-                            gSpecialVar_0x8004 = 6;
-                            sBerryBlender->gameEndState++;
-                            break;
-                        case 2:
-                            //four berries
-                            gSpecialVar_0x8004 = 7;
-                            sBerryBlender->gameEndState++;
-                            break;
-                        case 3:
-                        case MENU_B_PRESSED:
-                            sBerryBlender->yesNoAnswer = 1;
-                            sBerryBlender->gameEndState++;
-                            break;
-                    }
+                    HandleReplayoptionsSoloMode();
                 }
                 else
                 {
