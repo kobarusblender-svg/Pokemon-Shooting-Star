@@ -195,7 +195,7 @@ struct BerryBlender
     s16 textState;
     void *tilesBuffer;
     struct BlenderGameBlock gameBlock;
-    u8 Progress = 0;
+    u8 Progress;
 };
 
 static void SetBgPos(void);
@@ -3013,8 +3013,7 @@ static void SendContinuePromptResponse(u16 *cmd)
 
 static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
 {
-
-    switch(Progress) //Why did they do it like this???? 
+    switch(sBerryBlender->Progress) //Why did they do it like this???? 
     {
         case 0: //Writing text
             if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
