@@ -3020,7 +3020,8 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
             sBerryBlender->Progress++;
             break;
         case 1: //Menu pop up
-            CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, 0, 0xD, (gSpecialVar_0x8004 - 5)); //MOD CONTEST TODO Modify this to berry quantity selection dialog
+            CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, 1, 0xD, (gSpecialVar_0x8004 - 5)); //MOD CONTEST TODO Modify this to berry quantity selection dialog
+            //CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
             sBerryBlender->Progress++;
             break;
         case 2: 
