@@ -3017,7 +3017,7 @@ static void HandleReplayoptionsSoloMode(u8 i, u8 Progress) //MOD CONTEST
     switch(Progress) //Why did they do it like this???? 
     {
         case 0: //Writing text
-            if (PrintMessage(0, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
+            if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
             Progress++;
             break;
         case 1: //Menu pop up
