@@ -3138,7 +3138,7 @@ static void CB2_EndBlenderGame(void)
         case 0:
                 sBerryBlender->yesNoAnswer = 0;
                 if (gSpecialVar_0x8004 > 3)//MOD CONTEST if solo mode and YES selected, select number of berries
-                {   
+                {   sBerryBlender->gameEndState = 10;
                     if (PrintMessage(&sBerryBlender->textState, sText_HowManyBerriesWillYouUse, GetPlayerTextSpeedDelay()))
                     {
                     CreateBerryMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0); //MOD CONTEST TODO Modify this to berry quantity selection dialog
@@ -3167,7 +3167,7 @@ static void CB2_EndBlenderGame(void)
                             break;
                     }
                 }
-                /*else
+                else
                 {
                     sBerryBlender->gameEndState++;
                 }
@@ -3179,9 +3179,9 @@ static void CB2_EndBlenderGame(void)
                         CopyWindowToVram(i, COPYWIN_FULL);
                     }
                 }
-                break;*/
+                break;
         }
-        //break;
+        break;
     case 11:
         SendContinuePromptResponse(&gSendCmd[BLENDER_COMM_INPUT_STATE]);
         if (sBerryBlender->yesNoAnswer == 0)
