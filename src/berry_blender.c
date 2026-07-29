@@ -250,6 +250,7 @@ static bool8 NoFlavor = FALSE;
 static bool8 Enigma = FALSE;
 static bool8 Starf = FALSE;
 static bool8 Lansat = FALSE;
+static u8 Progress = 0;
 
 EWRAM_DATA static struct BerryBlender *sBerryBlender = NULL;
 
@@ -3088,7 +3089,7 @@ static void HandleReplayoptionsSoloMode(u8 i, u8 Progress) //MOD CONTEST
 
 static void CB2_EndBlenderGame(void)
 {
-    u8 i, j, Progress;
+    u8 i, j;
 
     if (sBerryBlender->gameEndState < 3)
         UpdateBlenderCenter();
