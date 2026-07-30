@@ -285,8 +285,8 @@ static const u8 *const sBlenderOpponentsNames[] =
     [BLENDER_DUDE]   = COMPOUND_STRING("DUDE"),
     [BLENDER_MISS]   = COMPOUND_STRING("MISS"),
     [BLENDER_A]      = COMPOUND_STRING("{A_BUTTON} Button"),
-    [BLENDER_B]      = COMPOUND_STRING("{B_BUTTON} Button"),
-    [BLENDER_L]      = COMPOUND_STRING("{L_BUTTON} Button"),
+    [BLENDER_B]      = COMPOUND_STRING("Button {B_BUTTON}"), //MOD CONTEST Flipped for extra swag... Do people still use "swag"?
+    [BLENDER_L]      = COMPOUND_STRING("Button {L_BUTTON}"),
     [BLENDER_R]      = COMPOUND_STRING("{R_BUTTON} Button"),
 };
 
