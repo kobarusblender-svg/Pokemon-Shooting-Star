@@ -2577,8 +2577,6 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
     }
 
     // Check for special colors (White/Gray/Gold/Clear)
-    if (numFlavors == 3)
-        return PBLOCK_CLR_GRAY;
 
     if ((numFlavors == 0 || numFlavors == 5 || negativeFlavors == 5) && !Starf)    // MOD CONTEST If all 5 flavors are equal, color is clear. 
     {
@@ -2591,6 +2589,9 @@ static u32 CalculatePokeblockColor(struct BlenderBerry *berries, s16 *_flavors, 
                 return PBLOCK_CLR_GOLD;
         }
     }
+
+    if (numFlavors == 3) //MOD CONTEST moved here so Gold Pokeblocks with 3+ flavors can still be Gold
+        return PBLOCK_CLR_GRAY;
 
     if (numFlavors >= 4) //MOD CONTEST Moved here to function with the STARF modifier.
         return PBLOCK_CLR_WHITE;
