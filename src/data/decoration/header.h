@@ -1450,7 +1450,7 @@ const struct Decoration gDecorations[] =
         .price = 10000,
         .description = DecorDesc_REGISTEEL_DOLL,
         .tiles = DecorGfx_REGISTEEL_DOLL,
-    },
+    }/*,
     
     [DECOR_CHERI_FLOWER] =
     {
@@ -2110,5 +2110,5 @@ const struct Decoration gDecorations[] =
         .price = 7,
         .description = DecorDesc_ENIGMA_FLOWER,
         .tiles = DecorGfx_ENIGMA_FLOWER,
-    }
+    }*/
 };

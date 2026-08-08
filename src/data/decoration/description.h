@@ -572,7 +572,7 @@ const u8 DecorDesc_REGISTEEL_DOLL[] = _(
         "Place it on a mat\n"
         "or a desk.");
         
-const u8 DecorDesc_CHERI_FLOWER[] = _(
+/*const u8 DecorDesc_CHERI_FLOWER[] = _(
     "A flowering CHERI.\n"
         "It bears flowers\n"
         "all year round.");
@@ -845,5 +845,5 @@ const u8 DecorDesc_STARF_FLOWER[] = _(
 const u8 DecorDesc_ENIGMA_FLOWER[] = _(
     "A flowering ENIGMA.\n"
         "It bears flowers\n"
-        "all year round.");
+        "all year round.");*/
         
