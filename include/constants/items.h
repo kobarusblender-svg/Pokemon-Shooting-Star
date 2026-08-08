@@ -729,7 +729,7 @@ enum __attribute__((packed)) Item
     //ITEM_KEE_BERRY = 579,
     //ITEM_MARANGA_BERRY = 580,
     //ITEM_ENIGMA_BERRY_E_READER = 581, // Old index for original Enigma Berry
-    LAST_BERRY_INDEX =  ITEM_ENIGMA_BERRY_E_READER,
+    LAST_BERRY_INDEX =  ITEM_ENIGMA_BERRY_E_READER, //This berry must always remain as a last berry index
 
     // TMs/HMs
     ITEM_TM00 = 581, // MOD CONTEST New TM machine that erases any pokemon move and stores it for later use, with some limitations. Obtained once every other TM has been found

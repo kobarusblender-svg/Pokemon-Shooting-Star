@@ -571,3 +571,279 @@ const u8 DecorDesc_REGISTEEL_DOLL[] = _(
     "A large doll.\n"
         "Place it on a mat\n"
         "or a desk.");
+        
+const u8 DecorDesc_CHERI_FLOWER[] = _(
+    "A flowering CHERI.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_CHESTO_FLOWER[] = _(
+    "A flowering CHESTO.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_PECHA_FLOWER[] = _(
+    "A flowering PECHA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_RAWST_FLOWER[] = _(
+    "A flowering RAWST.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_ASPEAR_FLOWER[] = _(
+    "A flowering ASPEAR.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_LEPPA_FLOWER[] = _(
+    "A flowering LEPPA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_ORAN_FLOWER[] = _(
+    "A flowering ORAN.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_PERSIM_FLOWER[] = _(
+    "A flowering PERSIM.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_LUM_FLOWER[] = _(
+    "A flowering LUM.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_SITRUS_FLOWER[] = _(
+    "A flowering SITRUS.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_FIGY_FLOWER[] = _(
+    "A flowering FIGY.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_WIKI_FLOWER[] = _(
+    "A flowering WIKI.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_MAGO_FLOWER[] = _(
+    "A flowering MAGO.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_AGUAV_FLOWER[] = _(
+    "A flowering AGUAV.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_IAPAPA_FLOWER[] = _(
+    "A flowering IAPAPA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_RAZZ_FLOWER[] = _(
+    "A flowering RAZZ.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_BLUK_FLOWER[] = _(
+    "A flowering BLUK.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_NANAB_FLOWER[] = _(
+    "A flowering NANAB.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_WEPEAR_FLOWER[] = _(
+    "A flowering WEPEAR.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_PINAP_FLOWER[] = _(
+    "A flowering PINAP.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_POMEG_FLOWER[] = _(
+    "A flowering POMEG.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_KELPSY_FLOWER[] = _(
+    "A flowering KELPSY.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_QUALOT_FLOWER[] = _(
+    "A flowering QUALOT.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_HONDEW_FLOWER[] = _(
+    "A flowering HONDEW.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_GREPA_FLOWER[] = _(
+    "A flowering GREPA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_TAMATO_FLOWER[] = _(
+    "A flowering TAMATO.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_CORNN_FLOWER[] = _(
+    "A flowering CORNN.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_MAGOST_FLOWER[] = _(
+    "A flowering MAGOST.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_RABUTA_FLOWER[] = _(
+    "A flowering RABUTA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_NOMEL_FLOWER[] = _(
+    "A flowering NOMEL.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_SPELON_FLOWER[] = _(
+    "A flowering SPELON.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_PAMTRE_FLOWER[] = _(
+    "A flowering PAMTRE.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_WATMEL_FLOWER[] = _(
+    "A flowering WATMEL.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_DURIN_FLOWER[] = _(
+    "A flowering DURIN.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_BELUE_FLOWER[] = _(
+    "A flowering BELUE.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_PAPRIK_FLOWER[] = _(
+    "A flowering PAPRIK.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_EGGANT_FLOWER[] = _(
+    "A flowering EGGANT.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_DRASH_FLOWER[] = _(
+    "A flowering DRASH.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_SKUASH_FLOWER[] = _(
+    "A flowering SKUASH.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_PUMKIN_FLOWER[] = _(
+    "A flowering PUMKIN.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_CHILAN_FLOWER[] = _(
+    "A flowering CHILAN.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_MALIUM_FLOWER[] = _(
+    "A flowering MALIUM.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_TOPO_FLOWER[] = _(
+    "A flowering TOPO.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_STRIB_FLOWER[] = _(
+    "A flowering STRIB.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_NOION_FLOWER[] = _(
+    "A flowering NOION.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_NUTPEA_FLOWER[] = _(
+    "A flowering NUTPEA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_ROKA_FLOWER[] = _(
+    "A flowering ROKA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_LIECHI_FLOWER[] = _(
+    "A flowering LIECHI.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_GANLON_FLOWER[] = _(
+    "A flowering GANLON.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_SALAC_FLOWER[] = _(
+    "A flowering SALAC.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_PETAYA_FLOWER[] = _(
+    "A flowering PETAYA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_APICOT_FLOWER[] = _(
+    "A flowering APICOT.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_LANSAT_FLOWER[] = _(
+    "A flowering LANSAT.\n"
+        "It bears flowers\n"
+        "all year round.");
+        
+const u8 DecorDesc_STARF_FLOWER[] = _(
+    "A flowering STARF.\n"
+        "It bears flowers\n"
+        "all year round.");
+
+const u8 DecorDesc_ENIGMA_FLOWER[] = _(
+    "A flowering ENIGMA.\n"
+        "It bears flowers\n"
+        "all year round.");
+        

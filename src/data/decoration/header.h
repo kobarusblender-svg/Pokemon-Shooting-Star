@@ -1450,5 +1450,665 @@ const struct Decoration gDecorations[] =
         .price = 10000,
         .description = DecorDesc_REGISTEEL_DOLL,
         .tiles = DecorGfx_REGISTEEL_DOLL,
+    },
+    
+    [DECOR_CHERI_FLOWER] =
+    {
+        .id = DECOR_CHERI_FLOWER,
+        .name = _("CHERI FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25, // MOD CONTEST How to modify this to work like on DP? ALSO how to hide it until berry is first Acquired
+        .description = DecorDesc_CHERI_FLOWER,
+        .tiles = DecorGfx_CHERI_FLOWER,
+    },
+
+    [DECOR_CHESTO_FLOWER] =
+    {
+        .id = DECOR_CHESTO_FLOWER,
+        .name = _("CHESTO FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_CHESTO_FLOWER,
+        .tiles = DecorGfx_CHESTO_FLOWER,
+    },
+
+    [DECOR_PECHA_FLOWER] =
+    {
+        .id = DECOR_PECHA_FLOWER,
+        .name = _("PECHA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_PECHA_FLOWER,
+        .tiles = DecorGfx_PECHA_FLOWER,
+    },
+
+    [DECOR_RAWST_FLOWER] =
+    {
+        .id = DECOR_RAWST_FLOWER,
+        .name = _("RAWST FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_RAWST_FLOWER,
+        .tiles = DecorGfx_RAWST_FLOWER,
+    },
+
+    [DECOR_ASPEAR_FLOWER] =
+    {
+        .id = DECOR_ASPEAR_FLOWER,
+        .name = _("ASPEAR FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_ASPEAR_FLOWER,
+        .tiles = DecorGfx_ASPEAR_FLOWER,
+    },
+
+    [DECOR_LEPPA_FLOWER] =
+    {
+        .id = DECOR_LEPPA_FLOWER,
+        .name = _("LEPPA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_LEPPA_FLOWER,
+        .tiles = DecorGfx_LEPPA_FLOWER,
+    },
+
+    [DECOR_ORAN_FLOWER] =
+    {
+        .id = DECOR_ORAN_FLOWER,
+        .name = _("ORAN FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_ORAN_FLOWER,
+        .tiles = DecorGfx_ORAN_FLOWER,
+    },
+
+    [DECOR_PERSIM_FLOWER] =
+    {
+        .id = DECOR_PERSIM_FLOWER,
+        .name = _("PERSIM FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_PERSIM_FLOWER,
+        .tiles = DecorGfx_PERSIM_FLOWER,
+    },
+
+    [DECOR_LUM_FLOWER] =
+    {
+        .id = DECOR_LUM_FLOWER,
+        .name = _("LUM FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_LUM_FLOWER,
+        .tiles = DecorGfx_LUM_FLOWER,
+    },
+
+    [DECOR_SITRUS_FLOWER] =
+    {
+        .id = DECOR_SITRUS_FLOWER,
+        .name = _("SITRUS FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_SITRUS_FLOWER,
+        .tiles = DecorGfx_SITRUS_FLOWER,
+    },
+
+    [DECOR_FIGY_FLOWER] =
+    {
+        .id = DECOR_FIGY_FLOWER,
+        .name = _("FIGY FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_FIGY_FLOWER,
+        .tiles = DecorGfx_FIGY_FLOWER,
+    },
+
+    [DECOR_WIKI_FLOWER] =
+    {
+        .id = DECOR_WIKI_FLOWER,
+        .name = _("WIKI FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_WIKI_FLOWER,
+        .tiles = DecorGfx_WIKI_FLOWER,
+    },
+
+    [DECOR_MAGO_FLOWER] =
+    {
+        .id = DECOR_MAGO_FLOWER,
+        .name = _("MAGO FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_MAGO_FLOWER,
+        .tiles = DecorGfx_MAGO_FLOWER,
+    },
+
+    [DECOR_AGUAV_FLOWER] =
+    {
+        .id = DECOR_AGUAV_FLOWER,
+        .name = _("AGUAV FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_AGUAV_FLOWER,
+        .tiles = DecorGfx_AGUAV_FLOWER,
+    },
+
+    [DECOR_IAPAPA_FLOWER] =
+    {
+        .id = DECOR_IAPAPA_FLOWER,
+        .name = _("IAPAPA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_IAPAPA_FLOWER,
+        .tiles = DecorGfx_IAPAPA_FLOWER,
+    },
+
+    [DECOR_RAZZ_FLOWER] =
+    {
+        .id = DECOR_RAZZ_FLOWER,
+        .name = _("RAZZ FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 50,
+        .description = DecorDesc_RAZZ_FLOWER,
+        .tiles = DecorGfx_RAZZ_FLOWER,
+    },
+
+    [DECOR_BLUK_FLOWER] =
+    {
+        .id = DECOR_BLUK_FLOWER,
+        .name = _("BLUK FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 50,
+        .description = DecorDesc_BLUK_FLOWER,
+        .tiles = DecorGfx_BLUK_FLOWER,
+    },
+
+    [DECOR_NANAB_FLOWER] =
+    {
+        .id = DECOR_NANAB_FLOWER,
+        .name = _("NANAB FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 50,
+        .description = DecorDesc_NANAB_FLOWER,
+        .tiles = DecorGfx_NANAB_FLOWER,
+    },
+
+    [DECOR_WEPEAR_FLOWER] =
+    {
+        .id = DECOR_WEPEAR_FLOWER,
+        .name = _("WEPEAR FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_WEPEAR_FLOWER,
+        .tiles = DecorGfx_WEPEAR_FLOWER,
+    },
+
+    [DECOR_PINAP_FLOWER] =
+    {
+        .id = DECOR_PINAP_FLOWER,
+        .name = _("PINAP FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_PINAP_FLOWER,
+        .tiles = DecorGfx_PINAP_FLOWER,
+    },
+
+    [DECOR_POMEG_FLOWER] =
+    {
+        .id = DECOR_POMEG_FLOWER,
+        .name = _("POMEG FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_POMEG_FLOWER,
+        .tiles = DecorGfx_POMEG_FLOWER,
+    },
+
+    [DECOR_KELPSY_FLOWER] =
+    {
+        .id = DECOR_KELPSY_FLOWER,
+        .name = _("KELPSY FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_KELPSY_FLOWER,
+        .tiles = DecorGfx_KELPSY_FLOWER,
+    },
+
+    [DECOR_QUALOT_FLOWER] =
+    {
+        .id = DECOR_QUALOT_FLOWER,
+        .name = _("QUALOT FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_QUALOT_FLOWER,
+        .tiles = DecorGfx_QUALOT_FLOWER,
+    },
+
+    [DECOR_HONDEW_FLOWER] =
+    {
+        .id = DECOR_HONDEW_FLOWER,
+        .name = _("HONDEW FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_HONDEW_FLOWER,
+        .tiles = DecorGfx_HONDEW_FLOWER,
+    },
+
+    [DECOR_GREPA_FLOWER] =
+    {
+        .id = DECOR_GREPA_FLOWER,
+        .name = _("GREPA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_GREPA_FLOWER,
+        .tiles = DecorGfx_GREPA_FLOWER,
+    },
+
+    [DECOR_TAMATO_FLOWER] =
+    {
+        .id = DECOR_TAMATO_FLOWER,
+        .name = _("TAMATO FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_TAMATO_FLOWER,
+        .tiles = DecorGfx_TAMATO_FLOWER,
+    },
+
+    [DECOR_CORNN_FLOWER] =
+    {
+        .id = DECOR_CORNN_FLOWER,
+        .name = _("CORNN FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 50,
+        .description = DecorDesc_CORNN_FLOWER,
+        .tiles = DecorGfx_CORNN_FLOWER,
+    },
+
+    [DECOR_MAGOST_FLOWER] =
+    {
+        .id = DECOR_MAGOST_FLOWER,
+        .name = _("MAGOST FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 50,
+        .description = DecorDesc_MAGOST_FLOWER,
+        .tiles = DecorGfx_MAGOST_FLOWER,
+    },
+
+    [DECOR_RABUTA_FLOWER] =
+    {
+        .id = DECOR_RABUTA_FLOWER,
+        .name = _("RABUTA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 20,
+        .description = DecorDesc_RABUTA_FLOWER,
+        .tiles = DecorGfx_RABUTA_FLOWER,
+    },
+
+    [DECOR_NOMEL_FLOWER] =
+    {
+        .id = DECOR_NOMEL_FLOWER,
+        .name = _("NOMEL FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 50,
+        .description = DecorDesc_NOMEL_FLOWER,
+        .tiles = DecorGfx_NOMEL_FLOWER,
+    },
+
+    [DECOR_SPELON_FLOWER] =
+    {
+        .id = DECOR_SPELON_FLOWER,
+        .name = _("SPELON FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 75,
+        .description = DecorDesc_SPELON_FLOWER,
+        .tiles = DecorGfx_SPELON_FLOWER,
+    },
+
+    [DECOR_PAMTRE_FLOWER] =
+    {
+        .id = DECOR_PAMTRE_FLOWER,
+        .name = _("PAMTRE FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 75,
+        .description = DecorDesc_PAMTRE_FLOWER,
+        .tiles = DecorGfx_PAMTRE_FLOWER,
+    },
+
+    [DECOR_WATMEL_FLOWER] =
+    {
+        .id = DECOR_WATMEL_FLOWER,
+        .name = _("WATMEL FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 75,
+        .description = DecorDesc_WATMEL_FLOWER,
+        .tiles = DecorGfx_WATMEL_FLOWER,
+    },
+
+    [DECOR_DURIN_FLOWER] =
+    {
+        .id = DECOR_DURIN_FLOWER,
+        .name = _("DURIN FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 75,
+        .description = DecorDesc_DURIN_FLOWER,
+        .tiles = DecorGfx_DURIN_FLOWER,
+    },
+
+    [DECOR_BELUE_FLOWER] =
+    {
+        .id = DECOR_BELUE_FLOWER,
+        .name = _("BELUE FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 75,
+        .description = DecorDesc_BELUE_FLOWER,
+        .tiles = DecorGfx_BELUE_FLOWER,
+    },
+
+    [DECOR_PAPRIK_FLOWER] =
+    {
+        .id = DECOR_PAPRIK_FLOWER,
+        .name = _("PAPRIK FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_PAPRIK_FLOWER,
+        .tiles = DecorGfx_PAPRIK_FLOWER,
+    },
+
+    [DECOR_EGGANT_FLOWER] =
+    {
+        .id = DECOR_EGGANT_FLOWER,
+        .name = _("EGGANT FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_EGGANT_FLOWER,
+        .tiles = DecorGfx_EGGANT_FLOWER,
+    },
+
+    [DECOR_DRASH_FLOWER] =
+    {
+        .id = DECOR_DRASH_FLOWER,
+        .name = _("DRASH FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_DRASH_FLOWER,
+        .tiles = DecorGfx_DRASH_FLOWER,
+    },
+
+    [DECOR_SKUASH_FLOWER] =
+    {
+        .id = DECOR_SKUASH_FLOWER,
+        .name = _("SKUASH FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 30,
+        .description = DecorDesc_RSKUASH_FLOWER,
+        .tiles = DecorGfx_SKUASH_FLOWER,
+    },
+
+    [DECOR_PUMKIN_FLOWER] =
+    {
+        .id = DECOR_PUMKIN_FLOWER,
+        .name = _("PUMKIN FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 39,
+        .description = DecorDesc_PUMKIN_FLOWER,
+        .tiles = DecorGfx_PUMKIN_FLOWER,
+    },
+
+    [DECOR_CHILAN_FLOWER] =
+    {
+        .id = DECOR_CHILAN_FLOWER,
+        .name = _("CHILAN FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 20,
+        .description = DecorDesc_CHILAN_FLOWER,
+        .tiles = DecorGfx_CHILAN_FLOWER,
+    },
+
+    [DECOR_MALIUM_FLOWER] =
+    {
+        .id = DECOR_MALIUM_FLOWER,
+        .name = _("MALIUM FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 29,
+        .description = DecorDesc_MALIUM_FLOWER,
+        .tiles = DecorGfx_MALIUM_FLOWER,
+    },
+
+    [DECOR_TOPO_FLOWER] =
+    {
+        .id = DECOR_TOPO_FLOWER,
+        .name = _("TOPO FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 100,
+        .description = DecorDesc_TOPO_FLOWER,
+        .tiles = DecorGfx_TOPO_FLOWER,
+    },
+
+    [DECOR_STRIB_FLOWER] =
+    {
+        .id = DECOR_STRIB_FLOWER,
+        .name = _("STRIB FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 100,
+        .description = DecorDesc_STRIB_FLOWER,
+        .tiles = DecorGfx_STRIB_FLOWER,
+    },
+
+    [DECOR_NOION_FLOWER] =
+    {
+        .id = DECOR_NOION_FLOWER,
+        .name = _("NOION FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 16,
+        .description = DecorDesc_NOION_FLOWER,
+        .tiles = DecorGfx_NOION_FLOWER,
+    },
+
+    [DECOR_NUTPEA_FLOWER] =
+    {
+        .id = DECOR_NUTPEA_FLOWER,
+        .name = _("NUTPEA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_NUTPEA_FLOWER,
+        .tiles = DecorGfx_NUTPEA_FLOWER,
+    },
+
+    [DECOR_ROKA_FLOWER] =
+    {
+        .id = DECOR_ROKA_FLOWER,
+        .name = _("ROKA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_ROKA_FLOWER,
+        .tiles = DecorGfx_ROKA_FLOWER,
+    },
+
+    [DECOR_LIECHI_FLOWER] =
+    {
+        .id = DECOR_LIECHI_FLOWER,
+        .name = _("LIECHI FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_LIECHI_FLOWER,
+        .tiles = DecorGfx_LIECHI_FLOWER,
+    },
+
+    [DECOR_GANLON_FLOWER] =
+    {
+        .id = DECOR_GANLON_FLOWER,
+        .name = _("GANLON FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_GANLON_FLOWER,
+        .tiles = DecorGfx_GANLON_FLOWER,
+    },
+
+    [DECOR_SALAC_FLOWER] =
+    {
+        .id = DECOR_SALAC_FLOWER,
+        .name = _("SALAC FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_SALAC_FLOWER,
+        .tiles = DecorGfx_SALAC_FLOWER,
+    },
+
+    [DECOR_PETAYA_FLOWER] =
+    {
+        .id = DECOR_PETAYA_FLOWER,
+        .name = _("PETAYA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_PETAYA_FLOWER,
+        .tiles = DecorGfx_PETAYA_FLOWER,
+    },
+
+    [DECOR_APICOT_FLOWER] =
+    {
+        .id = DECOR_APICOT_FLOWER,
+        .name = _("APICOT FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 25,
+        .description = DecorDesc_APICOT_FLOWER,
+        .tiles = DecorGfx_APICOT_FLOWER,
+    },
+
+    [DECOR_LANSAT_FLOWER] =
+    {
+        .id = DECOR_LANSAT_FLOWER,
+        .name = _("LANSAT FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 7,
+        .description = DecorDesc_LANSAT_FLOWER,
+        .tiles = DecorGfx_LANSAT_FLOWER,
+    },
+    
+    [DECOR_STARF_FLOWER] =
+    {
+        .id = DECOR_STARF_FLOWER,
+        .name = _("STARF FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 7,
+        .description = DecorDesc_STARF_FLOWER,
+        .tiles = DecorGfx_STARF_FLOWER,
+    },
+
+    [DECOR_ENIGMA_FLOWER] =
+    {
+        .id = DECOR_ENIGMA_FLOWER,
+        .name = _("ENIGMA FLOWER"),
+        .permission = DECORPERM_SPRITE,
+        .shape = DECORSHAPE_1x2,
+        .category = DECORCAT_PLANT,
+        .price = 7,
+        .description = DecorDesc_ENIGMA_FLOWER,
+        .tiles = DecorGfx_ENIGMA_FLOWER,
     }
 };
