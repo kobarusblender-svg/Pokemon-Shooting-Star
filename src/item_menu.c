@@ -1750,7 +1750,7 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
                 break;
             case POCKET_BERRIES:
-                if(itemSlot.quantity == 0)
+                if(ItemSlot.quantity == 0)
                 {
                     gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocketEmpty;
                     gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocketEmpty);
