@@ -1710,9 +1710,9 @@ static void OpenContextMenu(u8 taskId)
         break;
     case ITEMMENULOCATION_PARTY:
     case ITEMMENULOCATION_SHOP:
-    case ITEMMENULOCATION_BERRY_TREE:
     case ITEMMENULOCATION_ITEMPC:
     case ITEMMENULOCATION_BERRY_TREE_MULCH:
+    case ITEMMENULOCATION_BERRY_TREE:
         if(gBagPosition.pocket == POCKET_BERRIES) 
         {//MOD CONTEST added the same dialog as for berry blender selection for other berry selection menus so you can always check the tag but never use an empty berry slot. Useful to know what you're planting, too.
             struct ItemSlot tempItem;
