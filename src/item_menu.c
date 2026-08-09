@@ -339,6 +339,10 @@ static const u8 sContextMenuItems_BerriesPocket[] = {
     ACTION_TOSS,        ACTION_CANCEL
 };
 
+static const u8 sContextMenuItems_BerriesPocketEmpty[] = {
+    ACTION_CHECK_TAG,   ACTION_CANCEL
+};
+
 static const u8 sContextMenuItems_BattleUse[] = {
     ACTION_BATTLE_USE,  ACTION_CANCEL
 };
@@ -1746,8 +1750,16 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
                 break;
             case POCKET_BERRIES:
-                gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
-                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
+                if(itemSlot.quantity == 0)
+                {
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocketEmpty;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocketEmpty);
+                }
+                else
+                {/////////////////////////////////////////////////////////////////////////////////////
+                    gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
+                    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
+                }
                 break;
             }
         }
