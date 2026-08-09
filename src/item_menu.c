@@ -1750,13 +1750,14 @@ static void OpenContextMenu(u8 taskId)
                 gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_TmHmPocket);
                 break;
             case POCKET_BERRIES:
-                if(ItemSlot.quantity == 0)
+                struct ItemSlot itemSlot = GetBagItemIdAndQuantity(gBagPosition.pocket, listPosition);
+                if(itemSlot.quantity == 0)
                 {
                     gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocketEmpty;
                     gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocketEmpty);
                 }
                 else
-                {/////////////////////////////////////////////////////////////////////////////////////
+                {
                     gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocket;
                     gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocket);
                 }
