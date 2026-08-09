@@ -1660,8 +1660,17 @@ static void OpenContextMenu(u8 taskId)
         }
         break;
     case ITEMMENULOCATION_BERRY_BLENDER_CRUSH:
-        gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerryBlenderCrush;
-        gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerryBlenderCrush);
+        struct ItemSlot tempItem;
+        tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket))); //MOD CONTEST checks if it has at least one to allow selection for berry blender
+        if(tempItem.quantity == 0)
+        {
+            gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocketEmpty;
+            gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocketEmpty);
+        }
+        else{
+            gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerryBlenderCrush;
+            gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerryBlenderCrush);
+        }
         break;
     case ITEMMENULOCATION_APPRENTICE:
         if (!GetItemImportance(gSpecialVar_ItemId) && gSpecialVar_ItemId != ITEM_ENIGMA_BERRY_E_READER)
@@ -1704,6 +1713,22 @@ static void OpenContextMenu(u8 taskId)
     case ITEMMENULOCATION_BERRY_TREE:
     case ITEMMENULOCATION_ITEMPC:
     case ITEMMENULOCATION_BERRY_TREE_MULCH:
+        if(gBagPosition.pocket == POCKET_BERRIES) 
+        {//MOD CONTEST added the same dialog as for berry blender selection for other berry selection menus so you can always check the tag but never use an empty berry slot. Useful to know what you're planting, too.
+            struct ItemSlot tempItem;
+            tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket)));
+            if(tempItem.quantity == 0)
+            {
+                gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocketEmpty;
+                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocketEmpty);
+            }
+            else{
+                gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerryBlenderCrush;
+                gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerryBlenderCrush);
+            }
+            break;
+        }
+        else{} //Regular behavior (outside POCKET_BERRIES) is blank.
     default:
         if (MenuHelpers_IsLinkActive() == TRUE || InUnionRoom() == TRUE)
         {
@@ -1752,7 +1777,7 @@ static void OpenContextMenu(u8 taskId)
             case POCKET_BERRIES:
                 struct ItemSlot tempItem;
                 tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket)));
-                if(tempItem.quantity == 0)
+                if(tempItem.quantity == 0)//MOD CONTEST checks if it has at least one to allow selection in regular bag pocket
                 {
                     gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocketEmpty;
                     gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_BerriesPocketEmpty);
