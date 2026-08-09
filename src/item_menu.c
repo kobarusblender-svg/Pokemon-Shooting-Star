@@ -2227,7 +2227,7 @@ static void Task_ItemContext_GiveToPC(u8 taskId)
     if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
         DisplayItemMessage(taskId, FONT_NORMAL, gText_CantWriteMail, HandleErrorMessage);
     else if (tempItem.quantity <= 0) //for empty slots once again
-        DisplayItemMessage(taskId, FONT_NORMAL, gText_NoBerriesLeft, HandleErrorMessage);
+        NoBerriesLeft(taskId);
     else if (gBagPosition.pocket != POCKET_KEY_ITEMS && !GetItemImportance(gSpecialVar_ItemId))
         gTasks[taskId].func = Task_FadeAndCloseBagMenu;
     else
@@ -2278,7 +2278,10 @@ static void Task_ItemContext_Sell(u8 taskId)
         StringExpandPlaceholders(gStringVar4, gText_CantBuyKeyItem);
         DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
     }
-    else if (tQuantity < 1){} //If it's an empty slot, do nothing.
+    else if (tQuantity < 1)
+    {
+        NoBerriesLeft(taskId);
+    }
     else
     {
         tItemCount = 1;
@@ -2405,14 +2408,16 @@ static void Task_ItemContext_Deposit(u8 taskId)
 
     struct ItemSlot tempItem;
     tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket)));
-    
+
     tItemCount = 1;
     if (tQuantity == 1)
     {
         TryDepositItem(taskId);
     }
     else if (tempItem.quantity <= 0) //for empty slots once again
-        DisplayItemMessage(taskId, FONT_NORMAL, gText_NoBerriesLeft, HandleErrorMessage);
+    {
+        NoBerriesLeft(taskId);
+    }
     else
     {
         u8 *end = CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, 2);
