@@ -257,6 +257,7 @@ extern const u8 gText_ThrewAwayVar2Var1s[];
 extern const u8 gText_CantWriteMail[];
 extern const u8 gText_NoPokemon[];
 extern const u8 gText_Var1CantBeHeld[];
+extern const u8 gText_NoBerriesLeft[];//MOD CONTEST displayed when trying to do something with an empty berry slot (x 0)
 extern const u8 gText_CantBuyKeyItem[];
 extern const u8 gText_HowManyToSell[];
 extern const u8 gText_ICanPayVar1[];

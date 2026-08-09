@@ -107,7 +107,7 @@ struct ItemSlot NONNULL BagPocket_GetSlotData(struct BagPocket *pocket, u32 pock
 
 void NONNULL BagPocket_SetSlotData(struct BagPocket *pocket, u32 pocketPos, struct ItemSlot newSlot)
 {
-    if (newSlot.quantity == 0 && (newSlot.itemId >= FIRST_BERRY_INDEX && newSlot.itemId <= ITEM_ENIGMA_BERRY_E_READER)) // Sets to zero if quantity or itemId is zero
+    if (newSlot.quantity == 0 && pocket->id == POCKET_BERRIES && (newSlot.itemId >= FIRST_BERRY_INDEX && newSlot.itemId <= ITEM_ENIGMA_BERRY_E_READER)) // // MOD CONTEST makes berries keep the slot when reaching 0
     {
         newSlot.quantity = 0;
     }

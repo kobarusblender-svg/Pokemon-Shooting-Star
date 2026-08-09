@@ -2134,6 +2134,13 @@ static void PrintItemCantBeHeld(u8 taskId)
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, HandleErrorMessage);
 }
 
+static void NoBerriesLeft(u8 taskId)
+{
+    CopyItemName(gSpecialVar_ItemId, gStringVar1);
+    StringExpandPlaceholders(gStringVar4, gText_NoBerriesLeft);
+    DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, HandleErrorMessage);
+}
+
 static void HandleErrorMessage(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON))
@@ -2201,6 +2208,10 @@ static void Task_ItemContext_GiveToParty(u8 taskId)
     {
         Task_FadeAndCloseBagMenu(taskId);
     }
+    else if (tempItem.quantity <= 0) //for empty slots once again
+    {
+        NoBerriesLeft(taskId);
+    }
     else
     {
         PrintItemCantBeHeld(taskId);
@@ -2215,6 +2226,8 @@ static void Task_ItemContext_GiveToPC(u8 taskId)
                 
     if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
         DisplayItemMessage(taskId, FONT_NORMAL, gText_CantWriteMail, HandleErrorMessage);
+    else if (tempItem.quantity <= 0) //for empty slots once again
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_NoBerriesLeft, HandleErrorMessage);
     else if (gBagPosition.pocket != POCKET_KEY_ITEMS && !GetItemImportance(gSpecialVar_ItemId) && tempItem.quantity >= 1)
         gTasks[taskId].func = Task_FadeAndCloseBagMenu;
     else
@@ -2265,10 +2278,7 @@ static void Task_ItemContext_Sell(u8 taskId)
         StringExpandPlaceholders(gStringVar4, gText_CantBuyKeyItem);
         DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
     }
-    else if (tQuantity < 1)
-    {
-        PlaySE(SE_FAILURE);
-    }
+    else if (tQuantity < 1){} //If it's an empty slot, do nothing.
     else
     {
         tItemCount = 1;
@@ -2398,6 +2408,8 @@ static void Task_ItemContext_Deposit(u8 taskId)
     {
         TryDepositItem(taskId);
     }
+    else if (tempItem.quantity <= 0) //for empty slots once again
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_NoBerriesLeft, HandleErrorMessage);
     else
     {
         u8 *end = CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1, 2);
