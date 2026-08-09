@@ -428,14 +428,14 @@ static bool32 NONNULL BagPocket_RemoveItem(struct BagPocket *pocket, enum Item i
 
 bool32 RemoveBagItem(enum Item itemId, u16 count)
 {
-    if ((GetItemPocket(itemId) >= POCKETS_COUNT || itemId == ITEM_NONE) && GetItemPocket(itemId) != POCKET_BERRIES)
+    //if (GetItemPocket(itemId) >= POCKETS_COUNT || itemId == ITEM_NONE)
         return FALSE; //MOD CONTEST Added a check so the bag never deletes empty berry spots in the bag.
 
     // check Battle Pyramid Bag
-    if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
-        return RemovePyramidBagItem(itemId, count);
+    //if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
+        //return RemovePyramidBagItem(itemId, count);
 
-    return BagPocket_RemoveItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
+    //return BagPocket_RemoveItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
 }
 
 // Unsafe function: Only use with functions that already check the slot and count are valid
