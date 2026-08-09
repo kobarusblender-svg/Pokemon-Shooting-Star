@@ -107,7 +107,11 @@ struct ItemSlot NONNULL BagPocket_GetSlotData(struct BagPocket *pocket, u32 pock
 
 void NONNULL BagPocket_SetSlotData(struct BagPocket *pocket, u32 pocketPos, struct ItemSlot newSlot)
 {
-    if (newSlot.itemId == ITEM_NONE || newSlot.quantity == 0) // Sets to zero if quantity or itemId is zero
+    if (newSlot.quantity == 0 && (newSlot.itemId >= FIRST_BERRY_INDEX && newSlot.itemId <= ITEM_ENIGMA_BERRY_E_READER)) // Sets to zero if quantity or itemId is zero
+    {
+        newSlot.quantity = 0;
+    }
+    else if (newSlot.itemId == ITEM_NONE || newSlot.quantity == 0) // Sets to zero if quantity or itemId is zero
     {
         newSlot.itemId = ITEM_NONE;
         newSlot.quantity = 0;
@@ -428,14 +432,14 @@ static bool32 NONNULL BagPocket_RemoveItem(struct BagPocket *pocket, enum Item i
 
 bool32 RemoveBagItem(enum Item itemId, u16 count)
 {
-    //if (GetItemPocket(itemId) >= POCKETS_COUNT || itemId == ITEM_NONE)
-        return FALSE; //MOD CONTEST Added a check so the bag never deletes empty berry spots in the bag.
+    if (GetItemPocket(itemId) >= POCKETS_COUNT || itemId == ITEM_NONE)
+        return FALSE;
 
-    // check Battle Pyramid Bag
-    //if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
-        //return RemovePyramidBagItem(itemId, count);
+     //check Battle Pyramid Bag
+    if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || FlagGet(FLAG_STORING_ITEMS_IN_PYRAMID_BAG) == TRUE)
+        return RemovePyramidBagItem(itemId, count);
 
-    //return BagPocket_RemoveItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
+    return BagPocket_RemoveItem(&gBagPockets[GetItemPocket(itemId)], itemId, count);
 }
 
 // Unsafe function: Only use with functions that already check the slot and count are valid
