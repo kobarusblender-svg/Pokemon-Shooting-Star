@@ -428,7 +428,7 @@ static bool32 NONNULL BagPocket_RemoveItem(struct BagPocket *pocket, enum Item i
 
 bool32 RemoveBagItem(enum Item itemId, u16 count)
 {
-    if (GetItemPocket(itemId) >= POCKETS_COUNT || itemId == ITEM_NONE || !(itemId >= FIRST_BERRY_INDEX && itemId <= ITEM_ENIGMA_BERRY_E_READER))
+    if ((GetItemPocket(itemId) >= POCKETS_COUNT || itemId == ITEM_NONE ||) && GetItemPocket(itemId) != POCKET_BERRIES)
         return FALSE; //MOD CONTEST Added a check so the bag never deletes empty berry spots in the bag.
 
     // check Battle Pyramid Bag
