@@ -2228,7 +2228,7 @@ static void Task_ItemContext_GiveToPC(u8 taskId)
         DisplayItemMessage(taskId, FONT_NORMAL, gText_CantWriteMail, HandleErrorMessage);
     else if (tempItem.quantity <= 0) //for empty slots once again
         DisplayItemMessage(taskId, FONT_NORMAL, gText_NoBerriesLeft, HandleErrorMessage);
-    else if (gBagPosition.pocket != POCKET_KEY_ITEMS && !GetItemImportance(gSpecialVar_ItemId) && tempItem.quantity >= 1)
+    else if (gBagPosition.pocket != POCKET_KEY_ITEMS && !GetItemImportance(gSpecialVar_ItemId))
         gTasks[taskId].func = Task_FadeAndCloseBagMenu;
     else
         PrintItemCantBeHeld(taskId);
@@ -2403,6 +2403,9 @@ static void Task_ItemContext_Deposit(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
+    struct ItemSlot tempItem;
+    tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket)));
+    
     tItemCount = 1;
     if (tQuantity == 1)
     {
