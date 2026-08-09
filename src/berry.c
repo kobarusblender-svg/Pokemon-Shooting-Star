@@ -2810,14 +2810,8 @@ void ObjectEventInteractionClearBerryPests(void)
 }
 
 bool8 PlayerHasBerries(void)
-{   if(gSpecialVar_0x8004 < 5)
-    {
-        return IsBagPocketNonEmpty(POCKET_BERRIES);
-    }
-    else
-    {
-        return HasEnoughBerries();
-    }
+{   
+    return HasEnoughBerries(); //Previously IsBagPocketNonEmpty(POCKET_BERRIES);
 }
 
 bool8 ObjectEventInteractionBerryHasWeed(void)

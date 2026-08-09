@@ -214,7 +214,11 @@ bool32 HasEnoughBerries(void)
            BerryQ += GetBagItemQuantity(POCKET_BERRIES, i);
         }
     }
-    if (BerryQ > 1 && gSpecialVar_0x8004 == 5)
+    if (BerryQ > 0 && gSpecialVar_0x8004 <= 4) //New addition that needs to be called for every berry minigame
+    { 
+        return TRUE;
+    }
+    else if (BerryQ > 1 && gSpecialVar_0x8004 == 5)
     { 
         return TRUE;
     }
