@@ -1751,9 +1751,7 @@ static void OpenContextMenu(u8 taskId)
                 break;
             case POCKET_BERRIES:
                 struct ItemSlot tempItem;
-                data[1] = GetItemListPosition(gBagPosition.pocket);
-                tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, data[1]);
-                data[2] = tempItem.quantity;
+                tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket)));
                 if(tempItem.quantity == 0)
                 {
                     gBagMenu->contextMenuItemsPtr = sContextMenuItems_BerriesPocketEmpty;
