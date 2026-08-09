@@ -2184,6 +2184,9 @@ void CB2_ReturnToBagMenuPocket(void)
 
 static void Task_ItemContext_GiveToParty(u8 taskId)
 {
+    struct ItemSlot tempItem;
+    tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket)));
+                
     if (!IsWritingMailAllowed(gSpecialVar_ItemId))
     {
         DisplayItemMessage(taskId, FONT_NORMAL, gText_CantWriteMail, HandleErrorMessage);
@@ -2207,6 +2210,9 @@ static void Task_ItemContext_GiveToParty(u8 taskId)
 // Selected item to give to a Pokémon in PC storage
 static void Task_ItemContext_GiveToPC(u8 taskId)
 {
+    struct ItemSlot tempItem;
+    tempItem = GetBagItemIdAndQuantity(gBagPosition.pocket, (GetItemListPosition(gBagPosition.pocket)));
+                
     if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
         DisplayItemMessage(taskId, FONT_NORMAL, gText_CantWriteMail, HandleErrorMessage);
     else if (gBagPosition.pocket != POCKET_KEY_ITEMS && !GetItemImportance(gSpecialVar_ItemId) && tQuantity >= 1)
