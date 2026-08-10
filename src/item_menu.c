@@ -2136,7 +2136,7 @@ static void PrintItemCantBeHeld(u8 taskId)
 
 static void NoBerriesLeft(u8 taskId)
 {
-    CopyItemName(gSpecialVar_ItemId, gStringVar1);
+    CopyItemNameHandlePlural(gSpecialVar_ItemId, gStringVar1);
     StringExpandPlaceholders(gStringVar4, gText_NoBerriesLeft);
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, HandleErrorMessage);
 }
