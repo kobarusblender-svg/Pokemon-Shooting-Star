@@ -641,3 +641,224 @@ const u16 DecorGfx_REGICE_DOLL[] = {
 const u16 DecorGfx_REGISTEEL_DOLL[] = {
     OBJ_EVENT_GFX_BIG_REGISTEEL_DOLL
 };
+/*
+const u16 DecorGfx_CHERI_FLOWER[] = {
+    DECOR_TILE(RedPlant_Top),
+    DECOR_TILE(RedPlant_Base1)
+};
+
+const u16 DecorGfx_CHESTO_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_PECHA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_RAWST_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_ASPEAR_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_LEPPA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_ORAN_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_PERSIM_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_LUM_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_SITRUS_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_FIGY_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_WIKI_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_MAGO_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_AGUAV_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_IAPAPA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_RAZZ_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_BLUK_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_NANAB_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_WEPEAR_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_PINAP_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_POMEG_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_KELPSY_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_QUALOT_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_HONDEW_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_GREPA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_TAMATO_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_CORNN_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_MAGOST_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_RABUTA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_NOMEL_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_SPELON_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_PAMTRE_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_WATMEL_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_DURIN_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_BELUE_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_PAPRIK_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_EGGANT_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_DRASH_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_SKUASH_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_PUMKIN_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_CHILAN_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_MALIUM_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_TOPO_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_STRIB_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_NOION_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_NUTPEA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_ROKA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_LIECHI_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_GANLON_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_SALAC_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_PETAYA_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_APICOT_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_LANSAT_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_STARF_FLOWER[] = {
+    
+};
+
+const u16 DecorGfx_ENIGMA_FLOWER[] = {
+    
+};*/

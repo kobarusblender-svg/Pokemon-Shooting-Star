@@ -1323,6 +1323,16 @@ static const s16 sConditionSparkleCoords[MAX_CONDITION_SPARKLES][2] =
     {-33,   10},
     {-33,  -10},
     {-20,  -28},
+    {  0,  -35}, //MOD CONTEST double sparkle sprites for overflow sheen
+    { 20,  -28},
+    { 33,  -10},
+    { 33,   10},
+    { 20,   28},
+    {  0,   35},
+    {-20,   28},
+    {-33,   10},
+    {-33,  -10},
+    {-20,  -28},
 };
 
 static void SetConditionSparklePosition(struct Sprite *sprite)

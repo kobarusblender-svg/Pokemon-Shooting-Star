@@ -190,7 +190,7 @@ u8 *CopyItemNameHandlePlural(enum Item itemId, u8 *dst, u32 quantity)
     }
 }
 
-bool32 IsBagPocketNonEmpty(enum Pocket pocketId)
+bool32 IsBagPocketNonEmpty(enum Pocket pocketId) //If used for berries, needs to be changed by the variation below, or it will softlock the game.
 {
     u8 i;
 
@@ -202,7 +202,7 @@ bool32 IsBagPocketNonEmpty(enum Pocket pocketId)
     return FALSE;
 }
 
-bool32 HasEnoughBerries(void)
+bool32 HasEnoughBerries(void) //MOD CONTEST New berry quantity check for things that need more than one berry.
 {
     u8  i;
     u16 BerryQ = 0;
