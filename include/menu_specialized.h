@@ -47,7 +47,7 @@ enum {
 
 //#define GET_NUM_CONDITION_SPARKLES(sheen) ((sheen) != MAX_SHEEN) ? (sheen) / ((u32)MAX_SHEEN / (MAX_CONDITION_SPARKLES - 1) + 1) : MAX_CONDITION_SPARKLES - 1; //MOD CONTEST OLD version
 
-#define GET_NUM_CONDITION_SPARKLES(sheen, OverflowSheen) ((sheen + OverflowSheen) != (MAX_SHEEN * 2)) ? (sheen) / (((u32)MAX_SHEEN * 2) / (MAX_CONDITION_SPARKLES - 1) + 1) : MAX_CONDITION_SPARKLES - 1; //MOD CONTESt includes OverflowSheen now
+#define GET_NUM_CONDITION_SPARKLES(sheen) ((sheen) != (MAX_SHEEN * 2)) ? (sheen) / (((u32)MAX_SHEEN * 2) / (MAX_CONDITION_SPARKLES - 1) + 1) : MAX_CONDITION_SPARKLES - 1; //MOD CONTESt includes OverflowSheen now
 
 #define CONDITION_GRAPH_TOP_Y  56
 #define CONDITION_GRAPH_BOTTOM_Y 121

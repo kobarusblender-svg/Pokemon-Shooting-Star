@@ -1054,7 +1054,7 @@ void GetConditionMenuMonConditions(struct ConditionGraph *graph, u8 *numSparkles
         graph->conditions[id][CONDITION_CUTE] = GetBoxOrPartyMonData(boxId, monId, MON_DATA_CUTE, NULL);
         graph->conditions[id][CONDITION_BEAUTY] = GetBoxOrPartyMonData(boxId, monId, MON_DATA_BEAUTY, NULL);
 
-        numSparkles[id] = GET_NUM_CONDITION_SPARKLES(GetBoxOrPartyMonData(boxId, monId, MON_DATA_SHEEN, MON_DATA_OVERFLOWSHEEN, NULL));
+        numSparkles[id] = GET_NUM_CONDITION_SPARKLES(GetBoxOrPartyMonData(boxId, monId, MON_DATA_SHEEN + MON_DATA_OVERFLOWSHEEN, NULL));
 
         ConditionGraph_CalcPositions(graph->conditions[id], graph->savedPositions[id]);
     }

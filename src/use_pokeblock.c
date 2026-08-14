@@ -1674,7 +1674,7 @@ static void CalculateNumAdditionalSparkles(u8 monIndex)
 {
     u8 sheen = GetMonData(&gPlayerParty[monIndex], MON_DATA_SHEEN);
     u8 OverflowSheen = GetMonData(&gPlayerParty[monIndex], MON_DATA_OVERFLOWSHEEN);
-    sMenu->numSparkles[sMenu->curLoadId] = GET_NUM_CONDITION_SPARKLES(sheen, OverflowSheen);
+    sMenu->numSparkles[sMenu->curLoadId] = GET_NUM_CONDITION_SPARKLES(sheen + OverflowSheen);
 }
 
 static void LoadConditionGfx(void)
