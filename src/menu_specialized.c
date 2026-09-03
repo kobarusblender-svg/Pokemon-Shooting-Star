@@ -1054,7 +1054,7 @@ void GetConditionMenuMonConditions(struct ConditionGraph *graph, u8 *numSparkles
         graph->conditions[id][CONDITION_CUTE] = GetBoxOrPartyMonData(boxId, monId, MON_DATA_CUTE, NULL);
         graph->conditions[id][CONDITION_BEAUTY] = GetBoxOrPartyMonData(boxId, monId, MON_DATA_BEAUTY, NULL);
 
-        numSparkles[id] = GET_NUM_CONDITION_SPARKLES(GetBoxOrPartyMonData(boxId, monId, MON_DATA_SHEEN, NULL));
+        numSparkles[id] = GET_NUM_CONDITION_SPARKLES(GetBoxOrPartyMonData(boxId, monId, MON_DATA_SHEEN + MON_DATA_OVERFLOWSHEEN, NULL));
 
         ConditionGraph_CalcPositions(graph->conditions[id], graph->savedPositions[id]);
     }
@@ -1314,6 +1314,16 @@ static const struct SpriteTemplate sSpriteTemplate_ConditionSparkle =
 static const s16 sConditionSparkleCoords[MAX_CONDITION_SPARKLES][2] =
 {
     {  0,  -35},
+    { 20,  -28},
+    { 33,  -10},
+    { 33,   10},
+    { 20,   28},
+    {  0,   35},
+    {-20,   28},
+    {-33,   10},
+    {-33,  -10},
+    {-20,  -28},
+    {  0,  -35}, //MOD CONTEST double sparkle sprites for overflow sheen
     { 20,  -28},
     { 33,  -10},
     { 33,   10},
