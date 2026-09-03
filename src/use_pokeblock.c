@@ -1672,7 +1672,7 @@ static void SpriteCB_SelectionIconCancel(struct Sprite *sprite)
 // is the total number of sparkles that appear
 static void CalculateNumAdditionalSparkles(u8 monIndex)
 {
-    u8 sheen = GetMonData(&gPlayerParty[monIndex], MON_DATA_SHEEN);
+    u8 sheen = (GetMonData(&gPlayerParty[monIndex], MON_DATA_SHEEN));
     u8 OverflowSheen = GetMonData(&gPlayerParty[monIndex], MON_DATA_OVERFLOWSHEEN);
     sMenu->numSparkles[sMenu->curLoadId] = GET_NUM_CONDITION_SPARKLES(sheen + OverflowSheen);
 }

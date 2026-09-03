@@ -1054,7 +1054,7 @@ void GetConditionMenuMonConditions(struct ConditionGraph *graph, u8 *numSparkles
         graph->conditions[id][CONDITION_CUTE] = GetBoxOrPartyMonData(boxId, monId, MON_DATA_CUTE, NULL);
         graph->conditions[id][CONDITION_BEAUTY] = GetBoxOrPartyMonData(boxId, monId, MON_DATA_BEAUTY, NULL);
 
-        numSparkles[id] = GET_NUM_CONDITION_SPARKLES(GetBoxOrPartyMonData(boxId, monId, MON_DATA_SHEEN + MON_DATA_OVERFLOWSHEEN, NULL));
+        numSparkles[id] = GET_NUM_CONDITION_SPARKLES(GetBoxOrPartyMonData(boxId, monId, MON_DATA_SHEEN, NULL) + GetBoxOrPartyMonData(boxId, monId, MON_DATA_OVERFLOWSHEEN, NULL));
 
         ConditionGraph_CalcPositions(graph->conditions[id], graph->savedPositions[id]);
     }
@@ -1332,7 +1332,6 @@ static const s16 sConditionSparkleCoords[MAX_CONDITION_SPARKLES][2] =
     {-20,   28},
     {-33,   10},
     {-33,  -10},
-    {-20,  -28},
 };
 
 static void SetConditionSparklePosition(struct Sprite *sprite)
@@ -1363,7 +1362,7 @@ static void InitConditionSparkles(u8 count, bool8 allowFirstShowAll, struct Spri
             sprites[i]->sDelayTimer = (i * 16) + 1;
             sprites[i]->sNumExtraSparkles = count;
             sprites[i]->sCurSparkleId = i;
-            if (!allowFirstShowAll || count != MAX_CONDITION_SPARKLES - 1)
+            if (!allowFirstShowAll || count < ((MAX_CONDITION_SPARKLES / 2) - 1))
             {
                 sprites[i]->callback = SpriteCB_ConditionSparkle;
             }
@@ -1471,7 +1470,8 @@ static void SpriteCB_ConditionSparkle(struct Sprite *sprite)
         sprite->invisible = TRUE;
         if (sprite->sCurSparkleId == sprite->sNumExtraSparkles)
         {
-            if (sprite->sCurSparkleId == MAX_CONDITION_SPARKLES - 1)
+            //if (sprite->sCurSparkleId == MAX_CONDITION_SPARKLES - 1) OLD VERSION
+            if (sprite->sCurSparkleId >= ((MAX_CONDITION_SPARKLES / 2) - 1))
             {
                 ShowAllConditionSparkles(sprite);
                 sprite->callback = SpriteCB_ConditionSparkle_WaitForAllAnim;
