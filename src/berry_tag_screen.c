@@ -158,7 +158,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .tilemapLeft = 4,
         .tilemapTop = 11,
         .width = 12,
-        .height = 7,
+        .height = 8,
         .paletteNum = 15,
         .baseBlock = 257,
     },
@@ -177,35 +177,37 @@ static const u8 *const sBerryFirmnessStrings[] =
 
 static const u8 *const sBerryFeelStrings[] = //MOD CONTEST
 {
-    [BERRY_FEEL_UNKNOWN]    = COMPOUND_STRING("FEEL / ???"),
-    [BERRY_FEEL_SILKY]      = COMPOUND_STRING("FEEL / Silky"),
-    [BERRY_FEEL_SMOOTH]     = COMPOUND_STRING("FEEL / Smooth"),
-    [BERRY_FEEL_TENDER]     = COMPOUND_STRING("FEEL / Tender"),
-    [BERRY_FEEL_CHEWY]      = COMPOUND_STRING("FEEL / Chewy"),
-    [BERRY_FEEL_GRITTY]     = COMPOUND_STRING("FEEL / Gritty"),
-    [BERRY_FEEL_CRUMBLY]    = COMPOUND_STRING("FEEL / Crumbly"),
-    [BERRY_FEEL_DENSE]      = COMPOUND_STRING("FEEL / Dense")
+    [BERRY_FEEL_UNKNOWN]    = COMPOUND_STRING("FEEL /   ???  "),
+    [BERRY_FEEL_1]          = COMPOUND_STRING("FEEL / {SPARKLE_VOID}{SPARKLE_VOID}{SPARKLE_VOID}{SPARKLE_VOID}{SPARKLE_VOID}"), //Make em change color
+    [BERRY_FEEL_2]          = COMPOUND_STRING("FEEL / {SPARKLE}{SPARKLE_VOID}{SPARKLE_VOID}{SPARKLE_VOID}{SPARKLE_VOID}"),
+    [BERRY_FEEL_3]          = COMPOUND_STRING("FEEL / {SPARKLE}{SPARKLE}{SPARKLE_VOID}{SPARKLE_VOID}{SPARKLE_VOID}"),
+    [BERRY_FEEL_4]          = COMPOUND_STRING("FEEL / {SPARKLE}{SPARKLE}{SPARKLE}{SPARKLE_VOID}{SPARKLE_VOID}"),
+    [BERRY_FEEL_5]          = COMPOUND_STRING("FEEL / {SPARKLE}{SPARKLE}{SPARKLE}{SPARKLE}{SPARKLE_VOID}"),
+    [BERRY_FEEL_6]          = COMPOUND_STRING("FEEL / {SPARKLE}{SPARKLE}{SPARKLE}{SPARKLE}{SPARKLE}")/*,
+    [BERRY_FEEL_7]          = COMPOUND_STRING("FEEL / {SPARKLE}{SPARKLE}{SPARKLE}{SPARKLE}{SPARKLE}")*/
 };
 
 
 static const u8 *const sBerryGrowthStrings[] = //MOD CONTEST
 {
-    [BERRY_GROWTH_UNKNOWN]      = COMPOUND_STRING("GROWTH / ???"),
-    [BERRY_GROWTH_FAST]         = COMPOUND_STRING("GROWTH / Fast"),
-    [BERRY_GROWTH_QUICK]        = COMPOUND_STRING("GROWTH / Quick"),
-    [BERRY_GROWTH_EVEN]         = COMPOUND_STRING("GROWTH / Even"),
-    [BERRY_GROWTH_SLOW]         = COMPOUND_STRING("GROWTH / Slow"),
-    [BERRY_GROWTH_LATE]         = COMPOUND_STRING("GROWTH / Late")
+    [BERRY_GROWTH_UNKNOWN]   = COMPOUND_STRING("GROWTH/  ???  "),
+    [BERRY_GROWTH_1]         = COMPOUND_STRING("GROWTH/ {TIME_SHORT} {TIME_VOID} {TIME_VOID}"),
+    [BERRY_GROWTH_2]         = COMPOUND_STRING("GROWTH/ {TIME_AVERAGE} {TIME_VOID} {TIME_VOID}"),
+    [BERRY_GROWTH_3]         = COMPOUND_STRING("GROWTH/ {TIME_LONG} {TIME_VOID} {TIME_VOID}"),
+    [BERRY_GROWTH_4]         = COMPOUND_STRING("GROWTH/ {TIME_LONG} {TIME_SHORT} {TIME_VOID}"),
+    [BERRY_GROWTH_5]         = COMPOUND_STRING("GROWTH/ {TIME_LONG} {TIME_LONG} {TIME_VOID}"),
+    [BERRY_GROWTH_6]         = COMPOUND_STRING("GROWTH/ {TIME_LONG} {TIME_LONG} {TIME_SHORT}"),
+    [BERRY_GROWTH_7]         = COMPOUND_STRING("GROWTH/ {TIME_LONG} {TIME_LONG} {TIME_LONG}")
 };
 
 static const u8 *const sBerryYieldStrings[] = //MOD CONTEST
 {
-    [BERRY_YIELD_UNKNOWN]       = COMPOUND_STRING("YIELD / ???"),
-    [BERRY_YIELD_A_PAIR]        = COMPOUND_STRING("YIELD / A pair"),
-    [BERRY_YIELD_A_FEW]         = COMPOUND_STRING("YIELD / A few"),
-    [BERRY_YIELD_SOME]          = COMPOUND_STRING("YIELD / Some"),
-    [BERRY_YIELD_LOTS]          = COMPOUND_STRING("YIELD / Lots"),
-    [BERRY_YIELD_PLENTY]        = COMPOUND_STRING("YIELD / Plenty")
+    [BERRY_YIELD_UNKNOWN]       = COMPOUND_STRING("YIELD/   ???  "),
+    [BERRY_YIELD_1]             = COMPOUND_STRING("YIELD/{BERRY}{BERRY_VOID}{BERRY_VOID}{BERRY_VOID}{BERRY_VOID}"),
+    [BERRY_YIELD_2]             = COMPOUND_STRING("YIELD/{BERRY}{BERRY}{BERRY_VOID}{BERRY_VOID}{BERRY_VOID}"),
+    [BERRY_YIELD_3]             = COMPOUND_STRING("YIELD/{BERRY}{BERRY}{BERRY}{BERRY_VOID}{BERRY_VOID}"),
+    [BERRY_YIELD_4]             = COMPOUND_STRING("YIELD/{BERRY}{BERRY}{BERRY}{BERRY}{BERRY_VOID}"),
+    [BERRY_YIELD_5]             = COMPOUND_STRING("YIELD/{BERRY}{BERRY}{BERRY}{BERRY}{BERRY}")
 };
 
 
@@ -868,28 +870,25 @@ static void PrintBerryFeel(void) //
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
     u8 HandleString;
-    if(berry->smoothness < 20){ // E-Reader Berries with 5 feel
-        HandleString = BERRY_FEEL_SILKY;
+    if(berry->smoothness < 20){ // E-Reader Berries with 5 feel        
+        HandleString = BERRY_FEEL_1;
     }
     else if(berry->smoothness < 25){ // Berries with 20 feel
-        HandleString = BERRY_FEEL_SMOOTH;
+        HandleString = BERRY_FEEL_2;
     }
     else if(berry->smoothness < 30){ // Berries with 25 feel
-        HandleString = BERRY_FEEL_TENDER;
+        HandleString = BERRY_FEEL_3;
     }
     else if(berry->smoothness < 65){ // Berries with 30 feel
-        HandleString = BERRY_FEEL_CHEWY;
+        HandleString = BERRY_FEEL_4;
     }
     else if(berry->smoothness < 70){ // E-Reader Berries with 65 feel
-        HandleString = BERRY_FEEL_GRITTY;
+        HandleString = BERRY_FEEL_5;
     }
     else if(berry->smoothness < 80){ // Berries with 70 feel
-        HandleString = BERRY_FEEL_CRUMBLY;
+        HandleString = BERRY_FEEL_6;
     }
-    else if(berry->smoothness < 85){ // Berries with 80 feel
-        HandleString = BERRY_FEEL_DENSE;
-    }
-    else{ // Out of bounds, special Cases & E-Reader Berries with 85 feel
+    else{ // Out of bounds, special Cases & E-Reader Berries with 80+ feel
         HandleString = BERRY_FEEL_UNKNOWN;
     }
     AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryFeelStrings[HandleString], 5, 10, 0, NULL);
@@ -901,24 +900,30 @@ static void PrintBerryGrowth(void) //
 
     u8 HandleString;
     if(berry->growthDuration < 12){ // Berries that grow in 4-8 hours
-        HandleString = BERRY_GROWTH_FAST;
+        HandleString = BERRY_GROWTH_1;
     }
-    else if(berry->growthDuration < 20){ // Berries that grow in 4-12-16 hours
-        HandleString = BERRY_GROWTH_QUICK;
+    else if(berry->growthDuration < 20){ // Berries that grow in 8-12-16 hours
+        HandleString = BERRY_GROWTH_2;
     }
     else if(berry->growthDuration < 32){ // Berries that grow in 20-24 hours
-        HandleString = BERRY_GROWTH_EVEN;
+        HandleString = BERRY_GROWTH_3;
     }
-    else if(berry->growthDuration < 60){ // Berries that grow in 32-48 hours
-        HandleString = BERRY_GROWTH_SLOW;
+    else if(berry->growthDuration < 48){ // Berries that grow in 32 hours
+        HandleString = BERRY_GROWTH_4;
+    }
+    else if(berry->growthDuration < 60){ // Berries that grow in 48 hours
+        HandleString = BERRY_GROWTH_5;
+    }
+    else if(berry->growthDuration < 72){ // Berries that grow in 60-72 hours
+        HandleString = BERRY_GROWTH_6;
     }
     else if(berry->growthDuration < 96){ // Berries that grow in 60-72 hours
-        HandleString = BERRY_GROWTH_LATE;
+        HandleString = BERRY_GROWTH_7;
     }
     else{ // Out of bounds, special Cases & Berries that grow in 96+ hours
         HandleString = BERRY_GROWTH_UNKNOWN;
     }
-    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryGrowthStrings[HandleString], 5, 25, 0, NULL);
+    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryGrowthStrings[HandleString], 5, 40, 0, NULL);
 }
 
 static void PrintBerryYield(void) //
@@ -929,24 +934,24 @@ static void PrintBerryYield(void) //
 
     u8 HandleString;
     if(berry->maxYield < 3){ // Yields of 2-1 Berries
-        HandleString = BERRY_YIELD_A_PAIR;
+        HandleString = BERRY_YIELD_1;
     }
     else if(berry->maxYield < 6){ // Yields of 3-5 Berries
-        HandleString = BERRY_YIELD_A_FEW;
+        HandleString = BERRY_YIELD_2;
     }
     else if(berry->maxYield < 12){ // Yields of 6-11 Berries
-        HandleString = BERRY_YIELD_SOME;
+        HandleString = BERRY_YIELD_3;
     }
     else if(berry->maxYield < 24){ // Yields of 12-23 Berries
-        HandleString = BERRY_YIELD_LOTS;
+        HandleString = BERRY_YIELD_4;
     }
     else if(berry->maxYield <= 24){ // Yields of 24+ Berries
-        HandleString = BERRY_YIELD_PLENTY;
+        HandleString = BERRY_YIELD_5;
     }
     else{ // Out of bounds & special Cases
         HandleString = BERRY_YIELD_UNKNOWN;
     }
-    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryYieldStrings[HandleString], 5, 40, 0, NULL);
+    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryYieldStrings[HandleString], 5, 25, 0, NULL);
 }
 
 static void CreateBerrySprite(void)
@@ -1357,6 +1362,7 @@ static void Task_DisplayAnotherBerry(u8 taskId) //MOD CONTEST had to dupe this o
             FillWindowPixelBuffer(WIN_SIZE_FIRM, PIXEL_FILL(0));
             break;
         case 7 * DISPLAY_SPEED:
+            FillWindowPixelBuffer(WIN_BERRY_DATA, PIXEL_FILL(0));
             PrintBerrySize();
             PrintBerryFeel();
             break;
@@ -1402,6 +1408,7 @@ static void Task_DisplayAnotherBerry(u8 taskId) //MOD CONTEST had to dupe this o
             DestroyFlavorXSprites();
             CreateFlavorXSprites();
             SetFlavorXVisiblity();
+            FillWindowPixelBuffer(WIN_BERRY_DATA, PIXEL_FILL(0));
             break;
         case 7 * DISPLAY_SPEED:
             PrintBerryYield();

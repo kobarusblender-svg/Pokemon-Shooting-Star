@@ -11592,7 +11592,6 @@ const struct ItemInfo gItemsInfo[] =
         .pluralName = ITEM_PLURAL_NAME("Eggant Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_STATUS,
-        .effect = gItemEffect_RedFlute,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11601,6 +11600,7 @@ const struct ItemInfo gItemsInfo[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_RedFlute,
         .flingPower = 10,
         .iconPic = gItemIcon_EggantBerry,
         .iconPalette = gItemIconPalette_EggantBerry,
@@ -11687,9 +11687,7 @@ const struct ItemInfo gItemsInfo[] =
             "battle."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = EFFECT_ITEM_CURE_STATUS,
-        .effect = gItemEffect_BurnHeal,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
         .iconPic = gItemIcon_RokaBerry,
         .iconPalette = gItemIconPalette_RokaBerry,
@@ -11706,7 +11704,9 @@ const struct ItemInfo gItemsInfo[] =
             "to grow Skuash."),
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = EFFECT_ITEM_CURE_STATUS,
+        .effect = gItemEffect_BurnHeal,
         .flingPower = 10,
         .iconPic = gItemIcon_SkuashBerry,
         .iconPalette = gItemIconPalette_SkuashBerry,

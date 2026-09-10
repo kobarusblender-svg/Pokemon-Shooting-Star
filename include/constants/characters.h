@@ -195,6 +195,15 @@
 #define CHAR_DPAD_UPDOWN    0x0A
 #define CHAR_DPAD_LEFTRIGHT 0x0B
 #define CHAR_DPAD_NONE      0x0C
+#define CHAR_E_READER       0x0D
+#define CHAR_SPARKLE_VOID   0x0E
+#define CHAR_BERRY_VOID     0x0F
+#define CHAR_SPARKLE        0x10
+#define CHAR_BERRY          0x11
+#define CHAR_TIME_SHORT     0x12
+#define CHAR_TIME_AVERAGE   0x13
+#define CHAR_TIME_LONG      0x14
+#define CHAR_TIME_VOID      0x15
 
 // CHAR_EXTRA_SYMBOL chars
 #define CHAR_UP_ARROW_2    0x00

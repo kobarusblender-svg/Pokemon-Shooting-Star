@@ -376,9 +376,9 @@ static const struct WindowTemplate sWindowTemplates[] =
     },
     [WIN_FEEL] = {
         .bg = 0,
-        .tilemapLeft = 11,
+        .tilemapLeft = 10,
         .tilemapTop = 17,
-        .width = 2,
+        .width = 3,
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 0x15E
@@ -780,7 +780,7 @@ static void DrawPokeblockInfo(s32 pkblId) //MOD CONTEST FIXING IT Pokeblock sele
         rectTilemapSrc[1] = 0x18;
         for (i = 0; i < FLAVOR_COUNT; i++)
         {
-            if (GetPokeblockData(pokeblock, PBLOCK_SPICY + i) > 0) //MOD CONTEST 
+            if (GetPokeblockData(pokeblock, PBLOCK_SPICY + i) > 0) //MOD CONTEST added new pokeblock sprite behabior so flavors are easier to know
             {
                 if(HighestValue == GetPokeblockData(pokeblock, PBLOCK_SPICY + i)){ //Registers first or new highest flavour
                     HighestValue = GetPokeblockData(pokeblock, PBLOCK_SPICY + i);
@@ -824,7 +824,7 @@ static void DrawPokeblockInfo(s32 pkblId) //MOD CONTEST FIXING IT Pokeblock sele
                 rectTilemapSrc[0] = 0xF;
                 rectTilemapSrc[1] = (6 << 12) + 0x0;
             }
-            else if(HighestFlavors & (1 << i)){ 
+            else if(HighestFlavors & (1 << i) || GetPokeblockData(pokeblock, PBLOCK_SPICY + i) >= 50){ 
                 // Big
                 rectTilemapSrc[0] = (i << 12) + 0x17;
                 rectTilemapSrc[1] = (i << 12) + 0x18;
@@ -844,8 +844,15 @@ static void DrawPokeblockInfo(s32 pkblId) //MOD CONTEST FIXING IT Pokeblock sele
         }
 
         // Print the Pokéblock's feel
-        ConvertIntToDecimalStringN(gStringVar1, GetPokeblocksFeel(pokeblock), STR_CONV_MODE_RIGHT_ALIGN, 2);
-        PrintOnPokeblockWindow(WIN_FEEL, gStringVar1, 4);
+        if(GetPokeblocksFeel(pokeblock) > 99) //MOD CONTEST If it's over 99 print "99+"
+        {
+            PrintOnPokeblockWindow(WIN_FEEL, COMPOUND_STRING("99+"), 8);
+        }
+        else
+        {
+            ConvertIntToDecimalStringN(gStringVar1, GetPokeblocksFeel(pokeblock), STR_CONV_MODE_RIGHT_ALIGN, 2);
+            PrintOnPokeblockWindow(WIN_FEEL, gStringVar1, 14);
+        }
     }
     else
     {
@@ -1394,7 +1401,7 @@ u8 GetPokeblocksFeel(const struct Pokeblock *pokeblock)
 {
     u8 feel = GetPokeblockData(pokeblock, PBLOCK_FEEL);
     if (feel > POKEBLOCK_MAX_FEEL)
-        feel = POKEBLOCK_MAX_FEEL;
+        feel = POKEBLOCK_MAX_FEEL + 1; //MOD CONTEST Added a +1 so the game knows it's 99+ and can add the "+"
     return feel;
 }
 

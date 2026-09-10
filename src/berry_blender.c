@@ -310,6 +310,7 @@ static const u8 sText_NewLine[] = _("\n");
 static const u8 sText_Ranking[] = _("RANKING");
 static const u8 sText_TheLevelIs[] = _("The level is ");
 static const u8 sText_TheFeelIs[] = _(", and the feel is ");
+static const u8 sOver99[] = _("99+");
 static const u8 sText_Dot2[] = _(".");
 
 static const u8 sText_SavingDontTurnOff2[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
@@ -4195,15 +4196,23 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
     StringAppend(dst, sText_NewLine);
 
     flavorLvl = GetHighestPokeblocksFlavorLevel(pokeblock);
-    feel = GetPokeblocksFeel(pokeblock);
 
     StringAppend(dst, sText_TheLevelIs);
     ConvertIntToDecimalStringN(text, flavorLvl, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringAppend(dst, text);
 
     StringAppend(dst, sText_TheFeelIs);
-    ConvertIntToDecimalStringN(text, feel, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringAppend(dst, text);
+
+    if(GetPokeblocksFeel(pokeblock) > 99) //MOD CONTEST If it's over 99 print "99+"
+    {
+        StringAppend(dst, sOver99);
+    }
+    else
+    {
+        feel = GetPokeblocksFeel(pokeblock);
+        ConvertIntToDecimalStringN(text, feel, STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringAppend(dst, text);
+    }
 
     StringAppend(dst, sText_Dot2);
     StringAppend(dst, sText_NewParagraph);

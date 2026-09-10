@@ -108,7 +108,16 @@ struct
     [CHAR_DPAD_RIGHT]     = { 0x0F,  8, 12 },
     [CHAR_DPAD_UPDOWN]    = { 0x20,  8, 12 },
     [CHAR_DPAD_LEFTRIGHT] = { 0x21,  8, 12 },
-    [CHAR_DPAD_NONE]      = { 0x22,  8, 12 }
+    [CHAR_DPAD_NONE]      = { 0x22,  8, 12 },
+    [CHAR_E_READER]       = { 0x23,  16, 12 },
+    [CHAR_SPARKLE_VOID]   = { 0x25,  8, 12 },
+    [CHAR_BERRY_VOID]     = { 0x26,  8, 12 },
+    [CHAR_SPARKLE]        = { 0x27,  8, 12 },
+    [CHAR_BERRY]          = { 0x28,  8, 12 },
+    [CHAR_TIME_SHORT]     = { 0x29,  8, 12 },
+    [CHAR_TIME_AVERAGE]   = { 0x2A,  8, 12 },
+    [CHAR_TIME_LONG]      = { 0x2B,  8, 12 },
+    [CHAR_TIME_VOID]      = { 0x2C,  8, 12 }
 };
 
 static const u8 sKeypadIconTiles[] = INCGFX_U8("graphics/fonts/keypad_icons.png", ".4bpp");
