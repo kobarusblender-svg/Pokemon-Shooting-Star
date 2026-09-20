@@ -846,12 +846,12 @@ static void DrawPokeblockInfo(s32 pkblId) //MOD CONTEST FIXING IT Pokeblock sele
         // Print the Pokéblock's feel
         if(GetPokeblocksFeel(pokeblock) > 99) //MOD CONTEST If it's over 99 print "99+"
         {
-            PrintOnPokeblockWindow(WIN_FEEL, COMPOUND_STRING("99+"), 8);
+            PrintOnPokeblockWindow(WIN_FEEL, COMPOUND_STRING("99+"), 6);
         }
         else
         {
             ConvertIntToDecimalStringN(gStringVar1, GetPokeblocksFeel(pokeblock), STR_CONV_MODE_RIGHT_ALIGN, 2);
-            PrintOnPokeblockWindow(WIN_FEEL, gStringVar1, 14);
+            PrintOnPokeblockWindow(WIN_FEEL, gStringVar1, 12);
         }
     }
     else
