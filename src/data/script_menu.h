@@ -787,6 +787,13 @@ static const struct MenuAction MultichoiceList_BerryBlender[] = //MOD CONTEST So
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_FlowerShop[] = //MOD CONTEST Solo Blender berry quantity
+{
+    {COMPOUND_STRING("BERRY FLOWERS")},
+    {COMPOUND_STRING("DECORATIONS")},
+    {gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_SoloOrLinkBerryBlender[] =
 {
     {COMPOUND_STRING("BLEND ALONE")},
@@ -1233,6 +1240,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
     [MULTI_BERRY_BLENDER]              = MULTICHOICE(MultichoiceList_BerryBlender),
+    [MULTI_FLOWER_SHOP]                = MULTICHOICE(MultichoiceList_FlowerShop),
     [MULTI_SOLO_OR_LINK]               = MULTICHOICE(MultichoiceList_SoloOrLinkBerryBlender),
     [MULTI_BIKE_SHOP]                  = MULTICHOICE(sMultichoiceList_BikeShop),
     [MULTI_EEVEELUTIONS]               = MULTICHOICE(sMultichoiceList_Eeveelutions),

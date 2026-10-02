@@ -212,11 +212,11 @@ static const union AffineAnimCmd *const sAffineAnim_BallRotate[] =
 
 const struct PokeBallSprite gPokeBalls[POKEBALL_COUNT] =
 {
-    [BALL_STRANGE] =
+    /*[BALL_STRANGE] =
     {
         POKE_BALL_SPRITE(GFX_TAG_STRANGE_BALL, gBallGfx_Strange, gBallPal_Strange),
         .itemId = ITEM_STRANGE_BALL,
-    },
+    },*/
 
     [BALL_POKE]    =
     {

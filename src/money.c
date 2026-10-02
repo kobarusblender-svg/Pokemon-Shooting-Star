@@ -59,6 +59,13 @@ static const struct CompressedSpriteSheet sSpriteSheet_MoneyLabel =
     .tag = MONEY_LABEL_TAG,
 };
 
+static const struct CompressedSpriteSheet sSpriteSheet_InBagLabel =
+{
+    .data = gShopMenuInBag_Gfx,
+    .size = 256,
+    .tag = MONEY_LABEL_TAG,
+};
+
 static const struct SpritePalette sSpritePalette_MoneyLabel =
 {
     .data = gShopMenu_Pal,
@@ -198,6 +205,13 @@ void HideMoneyBox(void)
 void AddMoneyLabelObject(u16 x, u16 y)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_MoneyLabel);
+    LoadSpritePalette(&sSpritePalette_MoneyLabel);
+    sMoneyLabelSpriteId = CreateSprite(&sSpriteTemplate_MoneyLabel, x, y, 0);
+}
+
+void AddInBagLabelObject(u16 x, u16 y)
+{
+    LoadCompressedSpriteSheet(&sSpriteSheet_InBagLabel);
     LoadSpritePalette(&sSpritePalette_MoneyLabel);
     sMoneyLabelSpriteId = CreateSprite(&sSpriteTemplate_MoneyLabel, x, y, 0);
 }

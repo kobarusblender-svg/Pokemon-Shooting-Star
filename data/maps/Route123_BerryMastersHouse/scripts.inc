@@ -10,7 +10,7 @@ Route123_BerryMastersHouse_EventScript_BerryMaster::
 	lock
 	faceplayer
 	dotimebasedevents
-	goto_if_set FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY, Route123_BerryMastersHouse_EventScript_ReceivedBerryToday
+	goto_if_set FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY, Route123_BerryMastersHouse_EventScript_ReceivedBerryToday2
 	msgbox Route123_BerryMastersHouse_Text_YoureDeservingOfBerry, MSGBOX_DEFAULT
 	random NUM_BERRY_MASTER_BERRIES
 	addvar VAR_RESULT, NUM_BERRY_MASTER_BERRIES_SKIPPED
@@ -24,10 +24,14 @@ Route123_BerryMastersHouse_EventScript_BerryMaster::
 	addvar VAR_RESULT, FIRST_BERRY_INDEX
 	giveitem VAR_RESULT
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+	goto_if_set FLAG_FLOWERS_COMMON, Route123_BerryMastersHouse_EventScript_HasFlower1
+	goto_if_set FLAG_FLOWERS_LEGEND, Route123_BerryMastersHouse_EventScript_HasFlower1
+	goto_if_set FLAG_FLOWER_ANY, Route123_BerryMastersHouse_EventScript_HasFlower1
 	msgbox Route123_BerryMastersHouse_Text_VisitPrettyPetalFlowerShop, MSGBOX_DEFAULT
 	release
 	end
 
+@MOD CONTEST Old version, not used anymore.
 Route123_BerryMastersHouse_EventScript_ReceivedBerryToday::
 	msgbox Route123_BerryMastersHouse_Text_DoneForToday, MSGBOX_DEFAULT
 	release
@@ -128,3 +132,101 @@ Route123_BerryMastersHouse_EventScript_GaveBerry::
 	release
 	end
 
+@ MOD CONTEST berry shop behabior
+Route123_BerryMastersHouse_EventScript_ReceivedBerryToday2::
+	goto_if_set FLAG_BERRY_SHOP, Route123_BerryMastersHouse_EventScript_BerryShop
+	goto_if_set FLAG_FLOWERS_COMMON, Route123_BerryMastersHouse_EventScript_HasFlower2
+	goto_if_set FLAG_FLOWERS_LEGEND, Route123_BerryMastersHouse_EventScript_HasFlower2
+	goto_if_set FLAG_FLOWER_ANY, Route123_BerryMastersHouse_EventScript_HasFlower2
+	msgbox Route123_BerryMastersHouse_Text_DoneForToday, MSGBOX_DEFAULT
+	release
+	end
+	
+Route123_BerryMastersHouse_EventScript_HasFlower1::
+	msgbox Route123_BerryMastersHouse_Text_WhatABeautifulFlower1, MSGBOX_DEFAULT
+	setflag FLAG_BERRY_SHOP
+	pokemartberry Route123_BerryMastersHouse_EventScript_Pokemart_Berries
+	goto Route123_BerryMastersHouse_EventScript_QuitShopping
+	release
+	end
+
+Route123_BerryMastersHouse_EventScript_HasFlower2::
+	msgbox Route123_BerryMastersHouse_Text_WhatABeautifulFlower2, MSGBOX_DEFAULT
+	setflag FLAG_BERRY_SHOP
+	pokemartberry Route123_BerryMastersHouse_EventScript_Pokemart_Berries
+	goto Route123_BerryMastersHouse_EventScript_QuitShopping
+	release
+	end
+	
+Route123_BerryMastersHouse_EventScript_BerryShop::
+	msgbox Route123_BerryMastersHouse_Text_DidYouNeedAnythingElse, MSGBOX_DEFAULT
+	pokemartberry Route123_BerryMastersHouse_EventScript_Pokemart_Berries
+	goto Route123_BerryMastersHouse_EventScript_QuitShopping
+	release
+	end
+
+Route123_BerryMastersHouse_EventScript_QuitShopping::
+	msgbox Route123_BerryMastersHouse_Text_ComeAgainAnotherDay, MSGBOX_DEFAULT
+	waitmessage
+	releaseall
+	end
+
+@ MOD CONTEST New flower items list
+	.align 2
+Route123_BerryMastersHouse_EventScript_Pokemart_Berries:
+	.2byte ITEM_CHERI_BERRY
+	.2byte ITEM_CHESTO_BERRY
+	.2byte ITEM_PECHA_BERRY
+	.2byte ITEM_RAWST_BERRY
+	.2byte ITEM_ASPEAR_BERRY
+	.2byte ITEM_LEPPA_BERRY
+	.2byte ITEM_ORAN_BERRY
+	.2byte ITEM_PERSIM_BERRY
+	.2byte ITEM_LUM_BERRY
+	.2byte ITEM_SITRUS_BERRY
+	.2byte ITEM_FIGY_BERRY
+	.2byte ITEM_WIKI_BERRY
+	.2byte ITEM_MAGO_BERRY
+	.2byte ITEM_AGUAV_BERRY
+	.2byte ITEM_IAPAPA_BERRY
+	.2byte ITEM_RAZZ_BERRY
+	.2byte ITEM_BLUK_BERRY
+	.2byte ITEM_NANAB_BERRY
+	.2byte ITEM_WEPEAR_BERRY
+	.2byte ITEM_PINAP_BERRY
+	.2byte ITEM_POMEG_BERRY
+	.2byte ITEM_KELPSY_BERRY
+	.2byte ITEM_QUALOT_BERRY
+	.2byte ITEM_HONDEW_BERRY
+	.2byte ITEM_GREPA_BERRY
+	.2byte ITEM_TAMATO_BERRY
+	.2byte ITEM_CORNN_BERRY
+	.2byte ITEM_MAGOST_BERRY
+	.2byte ITEM_RABUTA_BERRY
+	.2byte ITEM_NOMEL_BERRY
+	.2byte ITEM_SPELON_BERRY
+	.2byte ITEM_PAMTRE_BERRY
+	.2byte ITEM_WATMEL_BERRY
+	.2byte ITEM_DURIN_BERRY
+	.2byte ITEM_BELUE_BERRY
+	.2byte ITEM_PAPRIK_BERRY
+	.2byte ITEM_EGGANT_BERRY
+	.2byte ITEM_DRASH_BERRY
+	.2byte ITEM_SKUASH_BERRY
+	.2byte ITEM_PUMKIN_BERRY
+	.2byte ITEM_CHILANER_BERRY
+	.2byte ITEM_MALIUM_BERRY
+	.2byte ITEM_TOPO_BERRY
+	.2byte ITEM_STRIB_BERRY
+	.2byte ITEM_NOION_BERRY
+	.2byte ITEM_NUTPEA_BERRY
+	.2byte ITEM_ROKA_BERRY
+	.2byte ITEM_LIECHI_BERRY
+	.2byte ITEM_GANLON_BERRY
+	.2byte ITEM_SALAC_BERRY
+	.2byte ITEM_PETAYA_BERRY
+	.2byte ITEM_APICOT_BERRY
+	.2byte ITEM_LANSAT_BERRY
+	.2byte ITEM_STARF_BERRY
+	.2byte ITEM_ENIGMA_BERRY
+	pokemartlistend

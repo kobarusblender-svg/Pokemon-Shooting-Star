@@ -445,10 +445,17 @@ static const u8 sPlayerArrowPos[BLENDER_MAX_PLAYERS][2] =
     {168, 128}
 };
 
-static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS][BLENDER_MAX_PLAYERS] = //MOD CONTEST FIXING IT Making 3 player mode use L instead of R (Nobody likes R)
+static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS][BLENDER_MAX_PLAYERS] =
 {
     {NO_PLAYER,         0, 1, NO_PLAYER}, // 2 Players
     {NO_PLAYER,         0, 1,         2}, // 3 Players
+    {        0,         1, 2,         3}  // 4 Players
+};
+
+static const u8 sPlayerIdMapSOLO[BLENDER_MAX_PLAYERS][BLENDER_MAX_PLAYERS] = //MOD CONTEST FIXING IT Making 3 player mode use L instead of R (Nobody likes R)
+{
+    {NO_PLAYER,         0, 1, NO_PLAYER}, // 2 Players
+    {        2,         0, 1, NO_PLAYER}, // 3 Players
     {        0,         1, 2,         3}/*,*/  // 4 Players
     //{NO_PLAYER, NO_PLAYER, 0, NO_PLAYER} // MOD CONTEST 1 Player (Never used, so very broken)
 };
@@ -1057,7 +1064,7 @@ static void InitBerryBlenderWindows(void)
 
 // gSpecialVar_0x8004 is the number of NPC opponents
 // Set to 0 indicates it's a link blender
-// MOD CONTEST > 4 means is solo blender
+// MOD CONTEST > 4 means is solo blender (gSpecialVar_0x8004 - 3 = Num. Solo Buttons)
 void DoBerryBlending(void)
 {
     if (sBerryBlender == NULL)
@@ -1163,35 +1170,22 @@ static void CB2_LoadBerryBlender(void)
 
 static void SettingUpBerry2(void)
 {
+        gSpecialVar_0x8008 = gSpecialVar_ItemId;
+        RemoveBagItem(gSpecialVar_0x8008, 1);
     if(gSpecialVar_0x8004 > 5)
-    {
-        gSpecialVar_0x8008 = gSpecialVar_ItemId;
-        RemoveBagItem(gSpecialVar_0x8008, 1);
         ChooseBerryForMachine(SettingUpBerry3);
-    }
     else
-    {
-        gSpecialVar_0x8008 = gSpecialVar_ItemId;
-        RemoveBagItem(gSpecialVar_0x8008, 1);
         ChooseBerryForMachine(StartBlender);
-    }
 }
 
 static void SettingUpBerry3(void)
 {
-
+        gSpecialVar_0x8009 = gSpecialVar_ItemId;
+        RemoveBagItem(gSpecialVar_0x8009, 1);
     if(gSpecialVar_0x8004 > 6)
-    {
-        gSpecialVar_0x8009 = gSpecialVar_ItemId;
-        RemoveBagItem(gSpecialVar_0x8009, 1);
         ChooseBerryForMachine(SettingUpBerry4);
-    }
     else
-    {
-        gSpecialVar_0x8009 = gSpecialVar_ItemId;
-        RemoveBagItem(gSpecialVar_0x8009, 1);
         ChooseBerryForMachine(StartBlender);
-    }
 }
 
 static void SettingUpBerry4(void)
@@ -1356,24 +1350,18 @@ static void InitLocalPlayers(u8 opponentsNum)
         sBerryBlender->numPlayers = 2;
         StringCopy(gLinkPlayers[0].name, sBlenderOpponentsNames[BLENDER_A]);
         StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_B]);
-        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_R]);
-        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_L]);
         gLinkPlayers[0].language = GAME_LANGUAGE;
         gLinkPlayers[1].language = GAME_LANGUAGE;
-        gLinkPlayers[2].language = GAME_LANGUAGE;
-        gLinkPlayers[3].language = GAME_LANGUAGE;
         break;
     case 6: //Three berries SOLO blending
         gInGameOpponentsNo = 2;
         sBerryBlender->numPlayers = 3;
         StringCopy(gLinkPlayers[0].name, sBlenderOpponentsNames[BLENDER_A]);
         StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_B]);
-        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_R]);
-        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_L]);
+        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_L]);
         gLinkPlayers[0].language = GAME_LANGUAGE;
         gLinkPlayers[1].language = GAME_LANGUAGE;
         gLinkPlayers[2].language = GAME_LANGUAGE;
-        gLinkPlayers[3].language = GAME_LANGUAGE;
         break;
     case 7: //Four berries SOLO blending
         gInGameOpponentsNo = 3;
@@ -1513,10 +1501,20 @@ static void CB2_StartBlenderLink(void)
         // Throw 1 player's berry in
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            if (sBerryBlender->playerToThrowBerry == sPlayerIdMap[sBerryBlender->numPlayers - 2][i])
+            if(gSpecialVar_0x8004 >= 4) //MOD CONTEST New layout for SOLO mode
             {
-                CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry], i);
-                break;
+                if (sBerryBlender->playerToThrowBerry == sPlayerIdMapSOLO[sBerryBlender->numPlayers - 2][i])
+                {
+                    CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry], i);
+                    break;
+                }
+            }
+            else{
+                if (sBerryBlender->playerToThrowBerry == sPlayerIdMap[sBerryBlender->numPlayers - 2][i])
+                {
+                    CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry], i);
+                    break;
+                }
             }
         }
 
@@ -1723,7 +1721,10 @@ static void SetPlayerIdMaps(void)
     for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
     {
         sBerryBlender->playerIdToArrowId[i] = NO_PLAYER;
-        sBerryBlender->arrowIdToPlayerId[i] = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
+        if(gSpecialVar_0x8004 >= 4) //MOD CONTEST New layout for SOLO mode
+            sBerryBlender->arrowIdToPlayerId[i] = sPlayerIdMapSOLO[sBerryBlender->numPlayers - 2][i];
+        else
+            sBerryBlender->arrowIdToPlayerId[i] = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
     }
     for (j = 0; j < BLENDER_MAX_PLAYERS; j++)
     {
@@ -1843,10 +1844,12 @@ static void CB2_StartBlenderLocal(void)
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
             // Throw 1 player's berry in
-            u32 playerId = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
-            if( gSpecialVar_0x8004 == 4){ //This throws berry for SOLO mode with 1 berry. (never used)
-                playerId = sPlayerIdMap[3][i];
-            }
+            u32 playerId;
+            if(gSpecialVar_0x8004 >= 4) //MOD CONTEST New layout for SOLO mode
+                playerId = sPlayerIdMapSOLO[sBerryBlender->numPlayers - 2][i];
+            else
+                playerId = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
+
             if (sBerryBlender->playerToThrowBerry == playerId)
             {
                 CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry++], i);
@@ -2273,10 +2276,11 @@ static void UpdateOpponentScores(void)
     for (i = 0; i < sBerryBlender->numPlayers; i++)
     {
         if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_BLENDER_SEND_KEYS, RFUCMD_BLENDER_SEND_KEYS))
-        { //MOD CONTEST TODO make it so if other buttons ar pressed in solo play, the sprites appear above their respective arrows.
+        { 
             u32 arrowId = sBerryBlender->playerIdToArrowId[i];
 
-            if (gSpecialVar_0x8004 != 7){
+            if (gSpecialVar_0x8004 < 6)
+            {
                 if(pressedB == TRUE){
                     arrowId = sBerryBlender->playerIdToArrowId[1]; 
                 }
@@ -2284,6 +2288,18 @@ static void UpdateOpponentScores(void)
                     arrowId = sBerryBlender->playerIdToArrowId[3];
                 }
                 if(pressedR == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[2];
+                }
+            }
+            else if (gSpecialVar_0x8004 != 7)
+            {
+                if(pressedA == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[0]; 
+                }
+                if(pressedB == TRUE){
+                    arrowId = sBerryBlender->playerIdToArrowId[1]; 
+                }
+                if(pressedL == TRUE){
                     arrowId = sBerryBlender->playerIdToArrowId[2];
                 }
             }
@@ -2358,6 +2374,7 @@ static void UpdateOpponentScores(void)
 static void HandlePlayerInput(void) //MOD CONTEST the new extra buttons for the berry blender are (B) [L ] And [ R].
 {
     u8 arrowId;
+    u8 proximity;
     pressedA = FALSE;
     pressedB = FALSE;
     pressedL = FALSE;
@@ -2394,7 +2411,6 @@ static void HandlePlayerInput(void) //MOD CONTEST the new extra buttons for the 
 
         if (pressedA)
         {
-            u8 proximity;
             
             if(gSpecialVar_0x8004 == 7){
                 StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[1]]], 1 + 4);
@@ -2414,7 +2430,6 @@ static void HandlePlayerInput(void) //MOD CONTEST the new extra buttons for the 
         }
         if (pressedB && gSpecialVar_0x8004 > 4)
         {
-            u8 proximity;
             if(gSpecialVar_0x8004 == 7){
                 StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[2]]], 2 + 4);
                 proximity = GetArrowProximity(sBerryBlender->arrowPos, 2);
@@ -2431,17 +2446,10 @@ static void HandlePlayerInput(void) //MOD CONTEST the new extra buttons for the 
             else
                 gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_MISS;
         }
-        if (pressedR && gSpecialVar_0x8004 > 5 )
+        if (pressedR && gSpecialVar_0x8004 == 7)
         {
-            u8 proximity;
-            if(gSpecialVar_0x8004 == 7){
                 StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[3]]], 3 + 4);
                 proximity = GetArrowProximity(sBerryBlender->arrowPos, 3);
-            }
-            else{
-                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[3]]], 3 + 4);
-                proximity = GetArrowProximity(sBerryBlender->arrowPos, 2);
-            }
 
             if (proximity == PROXIMITY_BEST)
                 gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
@@ -2450,11 +2458,18 @@ static void HandlePlayerInput(void) //MOD CONTEST the new extra buttons for the 
             else
                 gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_MISS;
         }
-        if (pressedL && gSpecialVar_0x8004 > 6)
+        if (pressedL && gSpecialVar_0x8004 > 5)
         {
-            u8 proximity;
-            StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[0]]], 0 + 4);
-            proximity = GetArrowProximity(sBerryBlender->arrowPos, 0);
+            if(gSpecialVar_0x8004 == 7)
+            {
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[0]]], 0 + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, 0);
+            }
+            else
+            {
+                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[0]]], 0 + 4);
+                proximity = GetArrowProximity(sBerryBlender->arrowPos, 2);
+            }
 
             if (proximity == PROXIMITY_BEST)
                 gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
@@ -3022,8 +3037,7 @@ static void HandleReplayoptionsSoloMode(u8 i) //MOD CONTEST
             sBerryBlender->Progress++;
             break;
         case 1: //Menu pop up
-            CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, 1, 0xD, (gSpecialVar_0x8004 - 5)); //MOD CONTEST TODO Modify this to berry quantity selection dialog
-            //CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
+            CreateBerryMenu(&sChooseBerryWindowTemplate_BerryQuantity, 1, 0xD, (gSpecialVar_0x8004 - 5)); 
             sBerryBlender->Progress++;
             break;
         case 2: 

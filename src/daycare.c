@@ -228,7 +228,7 @@ static void TransferEggMoves(void)
 
                 // Check if you can inherit from them
                 if (GET_BASE_SPECIES_ID(moveTeacherSpecies) != GET_BASE_SPECIES_ID(moveLearnerSpecies)
-                    && (P_EGG_MOVE_TRANSFER < GEN_9 || GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_HELD_ITEM) != ITEM_MIRROR_HERB)
+                    && (P_EGG_MOVE_TRANSFER < GEN_9 /*|| GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[i].mon, MON_DATA_HELD_ITEM) != ITEM_MIRROR_HERB*/)
                 )
                     continue;
 

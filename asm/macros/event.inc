@@ -1297,6 +1297,17 @@
 	.byte SCR_OP_POKEMARTDECORATION2
 	.4byte \products
 	.endm
+	
+	@ MOD CONTEST new mart type :D
+	.macro pokemartflower products:req
+	.byte SCR_OP_POKEMARTFLOWER
+	.4byte \products
+	.endm
+
+	.macro pokemartberry products:req
+	.byte SCR_OP_POKEMARTBERRY
+	.4byte \products
+	.endm
 
 	@ Starts up the slot machine minigame. id is a SLOT_MACHINE_* value that influences probabilities of certain reel outcomes.
 	.macro playslotmachine id:req

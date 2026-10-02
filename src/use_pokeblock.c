@@ -1085,6 +1085,13 @@ static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon
             data = stat;
             SetMonData(mon, MON_DATA_OVERFLOWSHEEN, &data);
         }
+            //MOD CONTEST This makes every flavor above sheen value be equal to it after a CLEAR Pokéblock is used (no more cheating the system hehehe)
+            stat = (u8)(GetMonData(mon, MON_DATA_SHEEN));
+            for (i = 0; i < CONDITION_COUNT; i++)
+            {
+                if (GetMonData(mon, sConditionToMonData[i]) > stat)
+                    SetMonData(mon, sConditionToMonData[i], 0);
+            }
     }
 }
 

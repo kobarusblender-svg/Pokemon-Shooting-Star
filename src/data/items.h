@@ -176,7 +176,7 @@ const struct ItemInfo gItemsInfo[] =
 
 // Poké Balls
 
-    [ITEM_STRANGE_BALL] =
+    /*[ITEM_STRANGE_BALL] =
     {
         .name = ITEM_NAME("Strange Ball"),
         .price = 0,
@@ -190,7 +190,7 @@ const struct ItemInfo gItemsInfo[] =
         .secondaryId = BALL_STRANGE,
         .iconPic = gItemIcon_StrangeBall,
         .iconPalette = gItemIconPalette_StrangeBall,
-    },
+    },*/
 
     [ITEM_POKE_BALL] =
     {
@@ -6446,7 +6446,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Diancite,
     },
 
-    [ITEM_CLEFABLITE] =
+    /*[ITEM_CLEFABLITE] =
     {
         .name = ITEM_NAME("Clefablite"),
         .price = 0,
@@ -7239,7 +7239,7 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 80,
         .iconPic = gItemIcon_Glimmoranite,
         .iconPalette = gItemIconPalette_Glimmoranite,
-    },
+    },*/
 
 // Gems
     #if I_PRICE >= GEN_9
@@ -12161,6 +12161,20 @@ const struct ItemInfo gItemsInfo[] =
 
 // TMs/HMs. They don't have a set flingPower, as that's handled by GetFlingPowerFromItemId.
 
+    [ITEM_TM00] =
+    {
+        .name = ITEM_NAME("TM00"),
+        .price = 3000,
+        .description = COMPOUND_STRING(
+            "A blank TM that\n"
+            "stores a move for\n"
+            "later use."),
+        .importance = I_REUSABLE_TMS,
+        .pocket = POCKET_TM_HM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_TMHM,
+    },
+
     [ITEM_TM_FOCUS_PUNCH] =
     {
         .name = ITEM_NAME("TM01"),
@@ -14652,7 +14666,890 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_Gem,
         .iconPalette = gItemIconPalette_Sapphire,
     },
+    
+    //MOD CONTEST BERRY FLOWER ITEMS (Not real Items, just to register them as bought)
+    [ITEM_FLOWER_CHERI] =
+    {
+        .name = ITEM_NAME("Cheri Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite CHERI\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
 
+    [ITEM_FLOWER_CHESTO] =
+    {
+        .name = ITEM_NAME("Chesto Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite CHESTO\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_PECHA] =
+    {
+        .name = ITEM_NAME("Pecha Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite PECHA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_RAWST] =
+    {
+        .name = ITEM_NAME("Rawst Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite RAWST\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_ASPEAR] =
+    {
+        .name = ITEM_NAME("Aspear Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite ASPEAR\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_LEPPA] =
+    {
+        .name = ITEM_NAME("Leppa Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite LEPPA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_ORAN] =
+    {
+        .name = ITEM_NAME("Oran Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite ORAN\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_PERSIM] =
+    {
+        .name = ITEM_NAME("Persim Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite PERSIM\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_LUM] =
+    {
+        .name = ITEM_NAME("Lum Flower"),
+        .price = 5,
+        .description = COMPOUND_STRING(
+            "An exquisite LUM\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_SITRUS] =
+    {
+        .name = ITEM_NAME("Sitrus Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite SITRUS\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_FIGY] =
+    {
+        .name = ITEM_NAME("Figy Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite FIGY\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_WIKI] =
+    {
+        .name = ITEM_NAME("Wiki Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite WIKI\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_MAGO] =
+    {
+        .name = ITEM_NAME("Mago Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite MAGO\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_AGUAV] =
+    {
+        .name = ITEM_NAME("Aguav Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite AGUAV\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_IAPAPA] =
+    {
+        .name = ITEM_NAME("Iapapa Flower"),
+        .price = 9,
+        .description = COMPOUND_STRING(
+            "An exquisite IAPAPA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_RAZZ] =
+    {
+        .name = ITEM_NAME("Razz Flower"),
+        .price = 20,
+        .description = COMPOUND_STRING(
+            "An exquisite RAZZ\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_BLUK] =
+    {
+        .name = ITEM_NAME("Bluk Flower"),
+        .price = 20,
+        .description = COMPOUND_STRING(
+            "An exquisite BLUK\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_NANAB] =
+    {
+        .name = ITEM_NAME("Nanab Flower"),
+        .price = 20,
+        .description = COMPOUND_STRING(
+            "An exquisite NANAB\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_WEPEAR] =
+    {
+        .name = ITEM_NAME("Wepear Flower"),
+        .price = 20,
+        .description = COMPOUND_STRING(
+            "An exquisite WEPEAR\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_PINAP] =
+    {
+        .name = ITEM_NAME("Pinap Flower"),
+        .price = 20,
+        .description = COMPOUND_STRING(
+            "An exquisite PINAP\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_POMEG] =
+    {
+        .name = ITEM_NAME("Pomeg Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite POMEG\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_KELPSY] =
+    {
+        .name = ITEM_NAME("Kelpsy Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite KELPSY\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_QUALOT] =
+    {
+        .name = ITEM_NAME("Qualot Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite QUALOT\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_HONDEW] =
+    {
+        .name = ITEM_NAME("Hondew Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite HONDEW\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_GREPA] =
+    {
+        .name = ITEM_NAME("Grepa Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite GREPA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_TAMATO] =
+    {
+        .name = ITEM_NAME("Tamato Flower"),
+        .price = 16,
+        .description = COMPOUND_STRING(
+            "An exquisite TAMATO\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_CORNN] =
+    {
+        .name = ITEM_NAME("Cornn Flower"),
+        .price = 12,
+        .description = COMPOUND_STRING(
+            "An exquisite CORNN\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_MAGOST] =
+    {
+        .name = ITEM_NAME("Magost Flower"),
+        .price = 12,
+        .description = COMPOUND_STRING(
+            "An exquisite MAGOST\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_RABUTA] =
+    {
+        .name = ITEM_NAME("Rabuta Flower"),
+        .price = 12,
+        .description = COMPOUND_STRING(
+            "An exquisite RABUTA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_NOMEL] =
+    {
+        .name = ITEM_NAME("Nomel Flower"),
+        .price = 12,
+        .description = COMPOUND_STRING(
+            "An exquisite NOMEL\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_SPELON] =
+    {
+        .name = ITEM_NAME("Spelon Flower"),
+        .price = 15,
+        .description = COMPOUND_STRING(
+            "An exquisite SPELON\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_PAMTRE] =
+    {
+        .name = ITEM_NAME("Pamtre Flower"),
+        .price = 15,
+        .description = COMPOUND_STRING(
+            "An exquisite PAMTRE\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_WATMEL] =
+    {
+        .name = ITEM_NAME("Watmel Flower"),
+        .price = 15,
+        .description = COMPOUND_STRING(
+            "An exquisite WATMEL\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_DURIN] =
+    {
+        .name = ITEM_NAME("Durin Flower"),
+        .price = 15,
+        .description = COMPOUND_STRING(
+            "An exquisite DURIN\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_BELUE] =
+    {
+        .name = ITEM_NAME("Belue Flower"),
+        .price = 15,
+        .description = COMPOUND_STRING(
+            "An exquisite BELUE\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_PAPRIK] =
+    {
+        .name = ITEM_NAME("Paprik Flower"),
+        .price = 30,
+        .description = COMPOUND_STRING(
+            "An exquisite PAPRIK\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_EGGANT] =
+    {
+        .name = ITEM_NAME("Eggant Flower"),
+        .price = 30,
+        .description = COMPOUND_STRING(
+            "An exquisite EGGANT\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_DRASH] =
+    {
+        .name = ITEM_NAME("Drash Flower"),
+        .price = 30,
+        .description = COMPOUND_STRING(
+            "An exquisite DRASH\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_SKUASH] =
+    {
+        .name = ITEM_NAME("Skuash Flower"),
+        .price = 30,
+        .description = COMPOUND_STRING(
+            "An exquisite SKUASH\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_PUMKIN] =
+    {
+        .name = ITEM_NAME("Pumkin Flower"),
+        .price = 39,
+        .description = COMPOUND_STRING(
+            "An exquisite PUMKIN\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_CHILAN] =
+    {
+        .name = ITEM_NAME("Chilan Flower"),
+        .price = 20,
+        .description = COMPOUND_STRING(
+            "An exquisite CHILAN\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_MALIUM] =
+    {
+        .name = ITEM_NAME("Malium Flower"),
+        .price = 29,
+        .description = COMPOUND_STRING(
+            "An exquisite MALIUM\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_TOPO] =
+    {
+        .name = ITEM_NAME("Topo Flower"),
+        .price = 100,
+        .description = COMPOUND_STRING(
+            "An exquisite TOPO\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_STRIB] =
+    {
+        .name = ITEM_NAME("Strib Flower"),
+        .price = 100,
+        .description = COMPOUND_STRING(
+            "An exquisite STRIB\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_NOION] =
+    {
+        .name = ITEM_NAME("Noion Flower"),
+        .price = 16,
+        .description = COMPOUND_STRING(
+            "An exquisite NOION\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_NUTPEA] =
+    {
+        .name = ITEM_NAME("Nutpea Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite NUTPEA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_ROKA] =
+    {
+        .name = ITEM_NAME("Roka Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite ROKA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_LIECHI] =
+    {
+        .name = ITEM_NAME("Liechi Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite LIECHI\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_GANLON] =
+    {
+        .name = ITEM_NAME("Ganlon Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite GANLON\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_SALAC] =
+    {
+        .name = ITEM_NAME("Salac Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite SALAC\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_PETAYA] =
+    {
+        .name = ITEM_NAME("Petaya Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite PETAYA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_APICOT] =
+    {
+        .name = ITEM_NAME("Apicot Flower"),
+        .price = 25,
+        .description = COMPOUND_STRING(
+            "An exquisite APICOT\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_LANSAT] =
+    {
+        .name = ITEM_NAME("Lansat Flower"),
+        .price = 7,
+        .description = COMPOUND_STRING(
+            "An exquisite LANSAT\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_STARF] =
+    {
+        .name = ITEM_NAME("Starf Flower"),
+        .price = 7,
+        .description = COMPOUND_STRING(
+            "An exquisite STARF\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+    [ITEM_FLOWER_ENIGMA] =
+    {
+        .name = ITEM_NAME("Enigma Flower"),
+        .price = 7,
+        .description = COMPOUND_STRING(
+            "An exquisite ENIGMA\n"
+            "flower, grown with\n"
+            "tender care."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_FlowerSweet,
+        .iconPalette = gItemIconPalette_FlowerSweet,
+    },
+
+// GEN 9 ITEMS
+/*
     [ITEM_ABILITY_SHIELD] =
     {
         .name = ITEM_NAME("Ability Shield"),
@@ -14669,8 +15566,6 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_AbilityShield,
         .iconPalette = gItemIconPalette_AbilityShield,
     },
-
-// GEN 9 ITEMS
 
     [ITEM_CLEAR_AMULET] =
     {
@@ -14904,7 +15799,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_ScrollOfWaters,
         .iconPalette = gItemIconPalette_ScrollOfWaters,
     },
-
+*/
     [ITEM_TERA_ORB] =
     {
         .name = ITEM_NAME("Tera Orb"),
@@ -14920,7 +15815,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_TeraOrb,
         .iconPalette = gItemIconPalette_TeraOrb,
     },
-
+/*
     [ITEM_TINY_BAMBOO_SHOOT] =
     {
         .name = ITEM_NAME("Tiny Bamboo Shoot"),
@@ -15246,7 +16141,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_BlackAugurite,
         .iconPalette = gItemIconPalette_BlackAugurite,
     },
-
+*/
     [ITEM_LINKING_CORD] =
     {
         .name = ITEM_NAME("Linking Cord"),
@@ -15264,7 +16159,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_LinkingCord,
         .iconPalette = gItemIconPalette_LinkingCord,
     },
-
+/*
     [ITEM_PEAT_BLOCK] =
     {
         .name = ITEM_NAME("Peat Block"),
@@ -15822,6 +16717,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+    */
 };
 
 #undef ITEM_NAME

@@ -248,6 +248,22 @@ static bool32 NONNULL BagPocket_CheckHasItem(struct BagPocket *pocket, enum Item
     return count == 0;
 }
 
+//MOD CONTEST Made so it can check for items ignoring quantity (as berries now can have 0)
+bool32 BagPocket_CheckHasItem2(struct BagPocket *pocket, enum Item itemId)
+{
+    struct ItemSlot tempItem;
+
+    // Check for item slots that contain the item
+    for (u32 i = 0; i < pocket->capacity; i++)
+    {
+        tempItem = BagPocket_GetSlotData(pocket, i);
+        if (tempItem.itemId == itemId)
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 bool32 CheckBagHasItem(enum Item itemId, u16 count)
 {
     if (GetItemPocket(itemId) >= POCKETS_COUNT)

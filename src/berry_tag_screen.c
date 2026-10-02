@@ -30,6 +30,10 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+//MOD CONTEST FLower FLag Control
+#include "constants/flags.h"
+#include "event_data.h"
+
 // There are 4 windows used in berry tag screen.
 enum //MOD CONTEST
 {
@@ -60,7 +64,6 @@ struct BerryTagScreenStruct //MOD CONTEST
     u8 flavorXIds[8]; //
     u8 seasonQuestionSpriteId;//
     u8 flavorProfileSpriteIds[4];//
-    //u8 flowerSprite; //
 };
 
 // EWRAM vars
@@ -121,7 +124,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .bg = 1,
         .tilemapLeft = 11,
         .tilemapTop = 4,
-        .width = 8,
+        .width = 10,
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 69,
@@ -133,7 +136,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .width = 18,
         .height = 4,
         .paletteNum = 15,
-        .baseBlock = 85,
+        .baseBlock = 90,
     },
     [WIN_DESC] = {
         .bg = 1,
@@ -142,7 +145,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .width = 25,
         .height = 4,
         .paletteNum = 15,
-        .baseBlock = 157,
+        .baseBlock = 162,
     },
     [WIN_BERRY_TAG] = {
         .bg = 0,
@@ -151,7 +154,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .width = 8,
         .height = 2,
         .paletteNum = 15,
-        .baseBlock = 257,
+        .baseBlock = 262,
     },
     [WIN_BERRY_DATA] = {
         .bg = 1,
@@ -160,7 +163,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .width = 12,
         .height = 8,
         .paletteNum = 15,
-        .baseBlock = 257,
+        .baseBlock = 262,
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -267,6 +270,7 @@ static const u8 sText_SizeSlash[] = _("SIZE /");
 static const u8 sText_FirmSlash[] = _("FIRM /");
 static const u8 sText_Var1DotVar2[] = _("{STR_VAR_1}.{STR_VAR_2}”");
 static const u8 sText_NumberVar1Var2[] = _("{NO}{STR_VAR_1} {STR_VAR_2}");
+static const u8 sText_NumberEReader[] = _("{NO}{STR_VAR_1} {STR_VAR_2}{E_READER}");
 static const u8 sText_BerryTag[] = _("BERRY TAG");
 static const u8 sText_ThreeMarks[] = _("???");
 
@@ -353,7 +357,14 @@ static void SetBerrySpriteVisibility(void){ //MOD CONTEST this one sets the visi
         if(!sBerryTag->onBack)
         {
             gSprites[sBerryTag->berrySpriteId].invisible = FALSE;
-            gSprites[sBerryTag->seasonSpriteId].invisible = FALSE; //Modify this to make it dependent on flags for each berry
+
+            if(FlagGet(FLAG_FLOWER_CHERI + sBerryTag->berryId - 1) //MOD CONTEST checks if can show flower sprite.
+                || (sBerryTag->berryId <= ItemIdToBerryType(ITEM_BELUE_BERRY) && FlagGet(FLAG_FLOWERS_COMMON))
+                || (sBerryTag->berryId >= ItemIdToBerryType(ITEM_PAPRIK_BERRY) && FlagGet(FLAG_FLOWERS_LEGEND)))
+                gSprites[sBerryTag->seasonSpriteId].invisible = FALSE;
+            else
+                gSprites[sBerryTag->seasonSpriteId].invisible = TRUE;
+
             gSprites[sBerryTag->flavorGrafSpriteId[0]].invisible = TRUE;
             gSprites[sBerryTag->flavorGrafSpriteId[1]].invisible = TRUE;
             gSprites[sBerryTag->flavorGrafSpriteId[2]].invisible = TRUE;
@@ -815,7 +826,10 @@ static void PrintBerryNumberAndName(void)
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
     ConvertIntToDecimalStringN(gStringVar1, sBerryTag->berryId, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringCopy(gStringVar2, berry->name);
-    StringExpandPlaceholders(gStringVar4, sText_NumberVar1Var2);
+    if(sBerryTag->berryId >= 36 && sBerryTag->berryId <= 47)
+        StringExpandPlaceholders(gStringVar4, sText_NumberEReader);
+    else
+        StringExpandPlaceholders(gStringVar4, sText_NumberVar1Var2);
     PrintTextInBerryTagScreen(WIN_BERRY_NAME, gStringVar4, 0, 1, 0, 0);
 }
 
@@ -1291,7 +1305,7 @@ static void TryChangeDisplayedBerry(u8 taskId, s8 toMove) //MOD CONTEST original
     s16 *data = gTasks[taskId].data;
     s16 currPocketPosition = gBagPosition.scrollPosition[POCKET_BERRIES] + gBagPosition.cursorPosition[POCKET_BERRIES];
     u32 newPocketPosition = currPocketPosition + toMove;
-    if (newPocketPosition < ITEM_TO_BERRY(LAST_BERRY_INDEX) && GetBagItemId(POCKET_BERRIES, newPocketPosition) != ITEM_NONE)
+    if (newPocketPosition < ITEM_TO_BERRY(LAST_BERRY_INDEX - 1) && GetBagItemId(POCKET_BERRIES, newPocketPosition) != ITEM_NONE)
     {
         if (toMove < 0)
             tBgOp = BG_COORD_SUB;

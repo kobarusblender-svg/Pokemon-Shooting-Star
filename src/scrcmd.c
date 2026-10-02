@@ -2586,6 +2586,29 @@ bool8 ScrCmd_pokemartdecoration2(struct ScriptContext *ctx)
     return TRUE;
 }
 
+// MOD CONTEST New mart types
+bool8 ScrCmd_pokemartflower(struct ScriptContext *ctx)
+{
+    const void *ptr = (void *)ScriptReadWord(ctx);
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    CreateFlowerShopMenu(ptr);
+    ScriptContext_Stop();
+    return TRUE;
+}
+
+bool8 ScrCmd_pokemartberry(struct ScriptContext *ctx)
+{
+    const void *ptr = (void *)ScriptReadWord(ctx);
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    CreateBerryShopMenu(ptr);
+    ScriptContext_Stop();
+    return TRUE;
+}
+
 bool8 ScrCmd_playslotmachine(struct ScriptContext *ctx)
 {
     u8 machineId = VarGet(ScriptReadHalfword(ctx));

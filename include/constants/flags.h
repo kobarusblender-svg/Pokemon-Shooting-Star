@@ -664,24 +664,27 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
-#define FLAG_UNUSED_0x264  0x264 // Unused Flag
-#define FLAG_UNUSED_0x265  0x265 // Unused Flag
-#define FLAG_UNUSED_0x266  0x266 // Unused Flag
-#define FLAG_UNUSED_0x267  0x267 // Unused Flag
-#define FLAG_UNUSED_0x268  0x268 // Unused Flag
-#define FLAG_UNUSED_0x269  0x269 // Unused Flag
-#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
-#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
-#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
-#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
-#define FLAG_UNUSED_0x26F  0x26F // Unused Flag
-#define FLAG_UNUSED_0x270  0x270 // Unused Flag
-#define FLAG_UNUSED_0x271  0x271 // Unused Flag
-#define FLAG_UNUSED_0x272  0x272 // Unused Flag
-#define FLAG_UNUSED_0x273  0x273 // Unused Flag
-#define FLAG_UNUSED_0x274  0x274 // Unused Flag
-#define FLAG_UNUSED_0x275  0x275 // Unused Flag
+//MOD CONTEST Wish Fragment flags
+#define FLAG_WISH_FRAGMENTS  0x264 // Sets all other wish fragment event objects to TRUE, so the player can find them and set true to the flags below.
+
+//These flags allow the player to toggle the ACTUAL flags from the start menu.
+#define FLAG_SINNOH_BERRY_TREES     0x265 // Makes berry trees follow GEN4 standards (which usually means more berries in less time) All planted berry trees get set to NONE when toggled
+#define FLAG_COMMON_BERRY_FLOWERS   0x266 // adds every common berry flower to berry tag and allows player to buy berries even on a new game or a second save file
+#define FLAG_RARE_BERRY_FLOWERS     0x267 // adds every rare berry flower to berry tag
+#define FLAG_SECONDARY_SAVE         0x268 // Shows a second save slot on the start menu that shares the PC with the main save. Perfect for replays.
+#define FLAG_RUBY_SCREEN            0x269 // sets the player colors and the title screen to those of Ruby
+#define FLAG_SAPPHIRE_SCREEN        0x26A // sets the player colors and the title screen to those of Sapphire
+#define FLAG_EMERALD_SCREEN         0x26B // sets the player colors and the title screen to those of Emerald
+#define FLAG_SHOOTING_STAR_SCREEN   0x26C // sets new player blue colors and the title screen to a new one, starring Jirachi falling on a meteor shower
+#define FLAG_INVERSE_BATTLES        0x26D // Inverses battles
+#define FLAG_MIRROR_HOENN           0x26E // The player will start a new game on any free slot on Mossdeep city, going on a reverse journey across Hoenn.
+#define FLAG_MYSTERY_HOENN          0x26F // The player will start a new game on any free slot where you'll be the starter. If you faint, it's game over.
+#define FLAG_E_READER_CARDS         0x270 // Will allow you to scan virtual E-Reader cards for the game, which you'll have to find first.
+#define FLAG_RANDOMIZE_TRAINERS     0x271 // Self explanatory (save made with it not compatible with PC or Link)
+#define FLAG_RANDOMIZE_POKEMON      0x272 // (save made with it not compatible with PC or Link)
+#define FLAG_RANDOMIZE_ITEMS        0x273 // (save made with it not compatible with PC or Link)
+#define FLAG_ONLY_CONTEST_BATTLES   0x274 
+#define FLAG_ONLY_DOUBLE_BATTLES    0x275
 #define FLAG_UNUSED_0x276  0x276 // Unused Flag
 #define FLAG_UNUSED_0x277  0x277 // Unused Flag
 #define FLAG_UNUSED_0x278  0x278 // Unused Flag
@@ -1223,68 +1226,70 @@
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
 //MOD CONTEST Flags that set special battle thingys on battle.h
-#define FLAG_INVERSE_BATTLE                                         0x493 // MOD CONTEST If this flag is set, the battle's type effectiveness are inversed. For example, fire is super effective against water.
-#define FLAG_FORCE_DOUBLE_WILD                                      0x494 // MOD CONTEST If this flag is set, all land and surfing wild battles will be double battles.
-#define FLAG_SMART_WILD_AI_FLAG                                     0x495 // MOD CONTEST If this flag is set, wild Pokémon will become smart, with all AI flags enabled.
+#define FLAG_INVERSE_BATTLE                                         0x493 // If this flag is set, the battle's type effectiveness are inversed. For example, fire is super effective against water.
+#define FLAG_FORCE_DOUBLE_WILD                                      0x494 // If this flag is set, all land and surfing wild battles will be double battles.
+#define FLAG_SMART_WILD_AI_FLAG                                     0x495 // If this flag is set, wild Pokémon will become smart, with all AI flags enabled.
 
-#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
-#define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
-#define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
-#define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
-#define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
-#define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
-#define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag
-#define FLAG_UNUSED_0x49D                                           0x49D // Unused Flag
-#define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag
-#define FLAG_UNUSED_0x49F                                           0x49F // Unused Flag
-#define FLAG_UNUSED_0x4A0                                           0x4A0 // Unused Flag
-#define FLAG_UNUSED_0x4A1                                           0x4A1 // Unused Flag
-#define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
-#define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
-#define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
-#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
-#define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
-#define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
-#define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
-#define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag
-#define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag
-#define FLAG_UNUSED_0x4AB                                           0x4AB // Unused Flag
-#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused Flag
-#define FLAG_UNUSED_0x4AD                                           0x4AD // Unused Flag
-#define FLAG_UNUSED_0x4AE                                           0x4AE // Unused Flag
-#define FLAG_UNUSED_0x4AF                                           0x4AF // Unused Flag
-#define FLAG_UNUSED_0x4B0                                           0x4B0 // Unused Flag
-#define FLAG_UNUSED_0x4B1                                           0x4B1 // Unused Flag
-#define FLAG_UNUSED_0x4B2                                           0x4B2 // Unused Flag
-#define FLAG_UNUSED_0x4B3                                           0x4B3 // Unused Flag
-#define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag
-#define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag
-#define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag
-#define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag
-#define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag
-#define FLAG_UNUSED_0x4B9                                           0x4B9 // Unused Flag
-#define FLAG_UNUSED_0x4BA                                           0x4BA // Unused Flag
-#define FLAG_UNUSED_0x4BB                                           0x4BB // Unused Flag
-#define FLAG_UNUSED_0x4BC                                           0x4BC // Unused Flag
-#define FLAG_UNUSED_0x4BD                                           0x4BD // Unused Flag
-#define FLAG_UNUSED_0x4BE                                           0x4BE // Unused Flag
-#define FLAG_UNUSED_0x4BF                                           0x4BF // Unused Flag
-#define FLAG_UNUSED_0x4C0                                           0x4C0 // Unused Flag
-#define FLAG_UNUSED_0x4C1                                           0x4C1 // Unused Flag
-#define FLAG_UNUSED_0x4C2                                           0x4C2 // Unused Flag
-#define FLAG_UNUSED_0x4C3                                           0x4C3 // Unused Flag
-#define FLAG_UNUSED_0x4C4                                           0x4C4 // Unused Flag
-#define FLAG_UNUSED_0x4C5                                           0x4C5 // Unused Flag
-#define FLAG_UNUSED_0x4C6                                           0x4C6 // Unused Flag
-#define FLAG_UNUSED_0x4C7                                           0x4C7 // Unused Flag
-#define FLAG_UNUSED_0x4C8                                           0x4C8 // Unused Flag
-#define FLAG_UNUSED_0x4C9                                           0x4C9 // Unused Flag
-#define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
-#define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
-#define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
-#define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
-#define FLAG_UNUSED_0x4CE                                           0x4CE // Unused Flag
-#define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag
+//MOD CONTEST Berry Flower Flags
+#define FLAG_FLOWERS_COMMON                                         0x496  // Sets all regular berry flowers active
+#define FLAG_FLOWERS_LEGEND                                         0x497  // Sets all legendary berry flowers active
+#define FLAG_FLOWER_ANY                                             0x498  // Must be enabled for the flower shop to open if FLAG_FLOWERS_COMMON or FLAG_FLOWERS_LEGEND are not set
+#define FLAG_FLOWER_CHERI                                           0x499  // All individual berry flower flags in order
+#define FLAG_FLOWER_CHESTO                                          0x49A  
+#define FLAG_FLOWER_PECHA                                           0x49B  
+#define FLAG_FLOWER_RAWST                                           0x49C  
+#define FLAG_FLOWER_ASPEAR                                          0x49D  
+#define FLAG_FLOWER_LEPPA                                           0x49E  
+#define FLAG_FLOWER_ORAN                                            0x49F  
+#define FLAG_FLOWER_PERSIM                                          0x4A0  
+#define FLAG_FLOWER_LUM                                             0x4A1  
+#define FLAG_FLOWER_SITRUS                                          0x4A2  
+#define FLAG_FLOWER_FIGY                                            0x4A3  
+#define FLAG_FLOWER_WIKI                                            0x4A4  
+#define FLAG_FLOWER_MAGO                                            0x4A5  
+#define FLAG_FLOWER_AGUAV                                           0x4A6  
+#define FLAG_FLOWER_IAPAPA                                          0x4A7  
+#define FLAG_FLOWER_RAZZ                                            0x4A8  
+#define FLAG_FLOWER_BLUK                                            0x4A9  
+#define FLAG_FLOWER_NANAB                                           0x4AA  
+#define FLAG_FLOWER_WEPEAR                                          0x4AB  
+#define FLAG_FLOWER_PINAP                                           0x4AC  
+#define FLAG_FLOWER_POMEG                                           0x4AD  
+#define FLAG_FLOWER_KELPSY                                          0x4AE  
+#define FLAG_FLOWER_QUALOT                                          0x4AF  
+#define FLAG_FLOWER_HONDEW                                          0x4B0  
+#define FLAG_FLOWER_GREPA                                           0x4B1  
+#define FLAG_FLOWER_TAMATO                                          0x4B2  
+#define FLAG_FLOWER_CORNN                                           0x4B3  
+#define FLAG_FLOWER_MAGOST                                          0x4B4  
+#define FLAG_FLOWER_RABUTA                                          0x4B5  
+#define FLAG_FLOWER_NOMEL                                           0x4B6  
+#define FLAG_FLOWER_SPELON                                          0x4B7  
+#define FLAG_FLOWER_PAMTRE                                          0x4B8  
+#define FLAG_FLOWER_WATMEL                                          0x4B9  
+#define FLAG_FLOWER_DURIN                                           0x4BA  
+#define FLAG_FLOWER_BELUE                                           0x4BB  
+#define FLAG_FLOWER_PAPRIK                                          0x4BC  
+#define FLAG_FLOWER_EGGANT                                          0x4BD  
+#define FLAG_FLOWER_DRASH                                           0x4BE  
+#define FLAG_FLOWER_SKUASH                                          0x4BF  
+#define FLAG_FLOWER_PUMKIN                                          0x4C0  
+#define FLAG_FLOWER_CHILAN                                          0x4C1  
+#define FLAG_FLOWER_MALIUM                                          0x4C2  
+#define FLAG_FLOWER_TOPO                                            0x4C3  
+#define FLAG_FLOWER_STRIB                                           0x4C4  
+#define FLAG_FLOWER_NOION                                           0x4C5  
+#define FLAG_FLOWER_NUTPEA                                          0x4C6  
+#define FLAG_FLOWER_ROKA                                            0x4C7  
+#define FLAG_FLOWER_LIECHI                                          0x4C8  
+#define FLAG_FLOWER_GANLON                                          0x4C9  
+#define FLAG_FLOWER_SALAC                                           0x4CA  
+#define FLAG_FLOWER_PETAYA                                          0x4CB  
+#define FLAG_FLOWER_APICOT                                          0x4CC  
+#define FLAG_FLOWER_LANSAT                                          0x4CD  
+#define FLAG_FLOWER_STARF                                           0x4CE  
+#define FLAG_FLOWER_ENIGMA                                          0x4CF
+
 #define FLAG_UNUSED_0x4D0                                           0x4D0 // Unused Flag
 #define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
 #define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
@@ -1328,7 +1333,7 @@
 #define FLAG_DEFEATED_SOOTOPOLIS_GYM                                0x4F7
 #define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8
 
-#define FLAG_UNUSED_0x4F9                                           0x4F9 // Unused Flag
+#define FLAG_BERRY_SHOP                                             0x4F9 // MOD CONTEST Checks if you've enabled the berry shop
 #define FLAG_UNUSED_0x4FA                                           0x4FA // Unused Flag
 
 #define FLAG_DEFEATED_ELITE_4_SIDNEY                                0x4FB

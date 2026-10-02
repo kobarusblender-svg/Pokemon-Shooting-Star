@@ -390,7 +390,7 @@ static const struct WindowTemplate sWindowTemplates[] =
         .width = 6,
         .height = 6,
         .paletteNum = 15,
-        .baseBlock = 0x162
+        .baseBlock = 0x168
     },
     [WIN_ACTIONS] = {
         .bg = 1,

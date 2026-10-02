@@ -41,6 +41,9 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+//MOD CONTEST to handle new flags for stores and check items
+#include "event_data.h"
+
 #define TAG_SCROLL_ARROW   2100
 #define TAG_ITEM_ICON_BASE 9110 // immune to time blending
 
@@ -59,6 +62,7 @@ enum {
     WIN_QUANTITY_IN_BAG,
     WIN_QUANTITY_PRICE,
     WIN_MESSAGE,
+    WIN_TRADE_IN_BAG,
 };
 
 enum {
@@ -69,6 +73,8 @@ enum {
 
 enum {
     MART_TYPE_NORMAL,
+    MART_TYPE_FLOWER,
+    MART_TYPE_BERRY,
     MART_TYPE_DECOR,
     MART_TYPE_DECOR2,
 };
@@ -318,6 +324,15 @@ static const struct WindowTemplate sShopBuyMenuWindowTemplates[] =
         .height = 4,
         .paletteNum = 15,
         .baseBlock = 0x01A2,
+    },
+    [WIN_TRADE_IN_BAG] = {
+        .bg = 0,
+        .tilemapLeft = 10,
+        .tilemapTop = 2,
+        .width = 3,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 0x001E,
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -582,8 +597,19 @@ static void BuyMenuBuildListMenuTemplate(void)
 
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, enum Item item, u8 *name)
 {
-    if (sMartInfo.martType == MART_TYPE_NORMAL)
+    u8 FlowerBerryGauge = FIRST_FLOWER_INDEX - FIRST_BERRY_INDEX;
+
+    //MOD CONTEST now this checks if the flower/berry mart can sell you the goods based on what berries do you have unlocked.
+    if(item == ITEM_LIST_END || sMartInfo.martType == MART_TYPE_NORMAL 
+        || (sMartInfo.martType == MART_TYPE_FLOWER && BagPocket_CheckHasItem2(&gBagPockets[POCKET_BERRIES], item - FlowerBerryGauge)) 
+        || (sMartInfo.martType == MART_TYPE_BERRY && BagPocket_CheckHasItem2(&gBagPockets[POCKET_BERRIES], item)))
+    {
         CopyItemName(item, name);
+    }
+    else if (sMartInfo.martType == MART_TYPE_FLOWER || sMartInfo.martType == MART_TYPE_BERRY)
+    {
+        StringCopy(name, gText_ThreeQuestionMarks);
+    }
     else
         StringCopy(name, gDecorations[item].name);
 
@@ -594,6 +620,8 @@ static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, enum Item item, u
 static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, struct ListMenu *list)
 {
     const u8 *description;
+    u8 FlowerBerryGauge = FIRST_FLOWER_INDEX - FIRST_BERRY_INDEX;
+
     if (onInit != TRUE)
         PlaySE(SE_SELECT);
 
@@ -602,11 +630,12 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     else
         BuyMenuAddItemIcon(ITEM_LIST_END, sShopData->iconSlot);
 
-    BuyMenuRemoveItemIcon(item, sShopData->iconSlot ^ 1);
-    sShopData->iconSlot ^= 1;
+        BuyMenuRemoveItemIcon(item, sShopData->iconSlot ^ 1);
+        sShopData->iconSlot ^= 1;
+
     if (item != LIST_CANCEL)
     {
-        if (sMartInfo.martType == MART_TYPE_NORMAL)
+        if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_BERRY)
             description = GetItemDescription(item);
         else
             description = gDecorations[item].description;
@@ -615,9 +644,24 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     {
         description = gText_QuitShopping;
     }
-
     FillWindowPixelBuffer(WIN_ITEM_DESCRIPTION, PIXEL_FILL(0));
     BuyMenuPrint(WIN_ITEM_DESCRIPTION, description, 3, 1, 0, COLORID_NORMAL);
+    
+    if(sMartInfo.martType == MART_TYPE_FLOWER)
+    {
+        if(item != LIST_CANCEL)
+        {
+            FillWindowPixelBuffer(WIN_TRADE_IN_BAG, PIXEL_FILL(0));
+            ConvertIntToDecimalStringN(gStringVar3, CountTotalItemQuantityInBag(item - FlowerBerryGauge), STR_CONV_MODE_RIGHT_ALIGN, 3);
+            StringExpandPlaceholders(gStringVar4, gText_QuantityOFX);
+            BuyMenuPrint(WIN_TRADE_IN_BAG, gStringVar4, 0, 0, 0, COLORID_NORMAL);
+        }
+        else
+        {
+            FillWindowPixelBuffer(WIN_TRADE_IN_BAG, 0);
+            BuyMenuPrint(WIN_TRADE_IN_BAG, gText_Space, 0, 0, 0, COLORID_NORMAL);
+        }
+    }
 }
 
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
@@ -626,7 +670,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
 
     if (itemId != LIST_CANCEL)
     {
-        if (sMartInfo.martType == MART_TYPE_NORMAL)
+        if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_FLOWER || sMartInfo.martType == MART_TYPE_BERRY)
         {
             ConvertIntToDecimalStringN(
                 gStringVar1,
@@ -643,10 +687,18 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 6);
         }
 
-        if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+        if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1) || (sMartInfo.martType == MART_TYPE_FLOWER && FlagGet(FLAG_FLOWER_CHERI + itemId - FIRST_FLOWER_INDEX))))
+        {
             StringCopy(gStringVar4, gText_SoldOut);
+        }
+        else if(sMartInfo.martType == MART_TYPE_FLOWER) //MOD CONTEST now, it changes the money sign for a berry one on th flower shop.
+        {
+            StringExpandPlaceholders(gStringVar4, gText_BerryVar1);
+        }
         else
+        {
             StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
+        }
         x = GetStringRightAlignXOffset(FONT_NARROW, gStringVar4, 120);
         AddTextPrinterParameterized4(windowId, FONT_NARROW, x, y, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, gStringVar4);
     }
@@ -685,26 +737,46 @@ static void BuyMenuPrintCursor(u8 scrollIndicatorsTaskId, u8 colorSet)
 
 static void BuyMenuAddItemIcon(enum Item item, u8 iconSlot)
 {
+    u8 FlowerBerryGauge = FIRST_FLOWER_INDEX - FIRST_BERRY_INDEX;
     u8 spriteId;
     u8 *spriteIdPtr = &sShopData->itemSpriteIds[iconSlot];
     if (*spriteIdPtr != SPRITE_NONE)
         return;
 
-    if (sMartInfo.martType == MART_TYPE_NORMAL || item == ITEM_LIST_END)
+    if(sMartInfo.martType != MART_TYPE_FLOWER)
     {
-        spriteId = AddItemIconSprite(iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE, item);
-        if (spriteId != MAX_SPRITES)
+        if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_BERRY || item == ITEM_LIST_END)
         {
-            *spriteIdPtr = spriteId;
-            gSprites[spriteId].x2 = 24;
-            gSprites[spriteId].y2 = 88;
+            spriteId = AddItemIconSprite(iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE, item);
+            if (spriteId != MAX_SPRITES)
+            {
+                *spriteIdPtr = spriteId;
+                gSprites[spriteId].x2 = 24;
+                gSprites[spriteId].y2 = 88;
+            }
+        }
+        else
+        {
+            spriteId = AddDecorationIconObject(item, 20, 84, 1, iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE);
+            if (spriteId != MAX_SPRITES)
+                *spriteIdPtr = spriteId;
         }
     }
     else
     {
-        spriteId = AddDecorationIconObject(item, 20, 84, 1, iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE);
+        if(BagPocket_CheckHasItem2(&gBagPockets[POCKET_BERRIES], item - FlowerBerryGauge))
+            spriteId = AddItemIconSprite(iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE, item - FlowerBerryGauge);
+        else if(item == ITEM_LIST_END)
+            return;
+        else
+            spriteId = AddItemIconSprite(iconSlot + TAG_ITEM_ICON_BASE, iconSlot + TAG_ITEM_ICON_BASE, ITEM_LIST_END - FlowerBerryGauge); //It adds a cool ? Icon. What a happy mistake.
+
         if (spriteId != MAX_SPRITES)
-            *spriteIdPtr = spriteId;
+        {
+                *spriteIdPtr = spriteId;
+                gSprites[spriteId].x2 = 66;
+                gSprites[spriteId].y2 = 28;
+        }
     }
 }
 
@@ -746,7 +818,10 @@ static void BuyMenuInitBgs(void)
 static void BuyMenuDecompressBgGraphics(void)
 {
     DecompressAndCopyTileDataToVram(1, gShopMenu_Gfx, 0x3A0, 0x3E3, 0);
-    DecompressDataWithHeaderWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
+    if(sMartInfo.martType != MART_TYPE_FLOWER)
+        DecompressDataWithHeaderWram(gShopMenu_Tilemap, sShopData->tilemapBuffers[0]);
+    else
+        DecompressDataWithHeaderWram(gShopMenu2_Tilemap, sShopData->tilemapBuffers[0]);
     LoadPalette(gShopMenu_Pal, BG_PLTT_ID(SHOP_MENU_PALETTE_ID), PLTT_SIZE_4BPP);
 }
 
@@ -754,11 +829,20 @@ static void BuyMenuInitWindows(void)
 {
     InitWindows(sShopBuyMenuWindowTemplates);
     DeactivateAllTextPrinters();
+    PutWindowTilemap(WIN_ITEM_LIST);
     LoadUserWindowBorderGfx(WIN_MONEY, 1, BG_PLTT_ID(13));
     LoadMessageBoxGfx(WIN_MONEY, 0xA, BG_PLTT_ID(14));
-    PutWindowTilemap(WIN_MONEY);
-    PutWindowTilemap(WIN_ITEM_LIST);
-    PutWindowTilemap(WIN_ITEM_DESCRIPTION);
+    if(sMartInfo.martType != MART_TYPE_FLOWER)
+    {
+        PutWindowTilemap(WIN_MONEY);
+        PutWindowTilemap(WIN_ITEM_DESCRIPTION);
+    }
+    else
+    {
+        PutWindowTilemap(WIN_TRADE_IN_BAG);
+        PutWindowTilemap(WIN_TRADE_IN_BAG);
+        CopyWindowToVram(WIN_TRADE_IN_BAG, COPYWIN_FULL);
+    }
 }
 
 static void BuyMenuPrint(u8 windowId, const u8 *text, u8 x, u8 y, s8 speed, u8 colorSet)
@@ -776,8 +860,17 @@ static void BuyMenuDrawGraphics(void)
 {
     BuyMenuDrawMapGraphics();
     BuyMenuCopyMenuBgToBg1TilemapBuffer();
-    AddMoneyLabelObject(19, 11);
-    PrintMoneyAmountInMoneyBoxWithBorder(WIN_MONEY, 1, 13, GetMoney(&gSaveBlock1Ptr->money));
+
+    if(sMartInfo.martType == MART_TYPE_FLOWER)
+    {
+        AddInBagLabelObject(34, 22);
+    }
+    else
+    {
+        AddMoneyLabelObject(19, 11);
+        PrintMoneyAmountInMoneyBoxWithBorder(WIN_MONEY, 1, 13, GetMoney(&gSaveBlock1Ptr->money));
+    }
+
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
@@ -981,6 +1074,7 @@ static bool8 BuyMenuCheckForOverlapWithMenuBg(int x, int y)
 static void Task_BuyMenu(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    u8 FlowerBerryGauge = FIRST_FLOWER_INDEX - FIRST_BERRY_INDEX;
 
     if (!gPaletteFade.active)
     {
@@ -1002,20 +1096,26 @@ static void Task_BuyMenu(u8 taskId)
             BuyMenuRemoveScrollIndicatorArrows();
             BuyMenuPrintCursor(tListTaskId, COLORID_GRAY_CURSOR);
 
-            if (sMartInfo.martType == MART_TYPE_NORMAL)
+            if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_BERRY || sMartInfo.martType == MART_TYPE_FLOWER)
                 sShopData->totalCost = (GetItemPrice(itemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT));
             else
                 sShopData->totalCost = gDecorations[itemId].price;
-
-            if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+            
+            if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1) || (sMartInfo.martType == MART_TYPE_FLOWER && FlagGet(FLAG_FLOWER_CHERI + tItemId - FIRST_FLOWER_INDEX))))
+            {
                 BuyMenuDisplayMessage(taskId, gText_ThatItemIsSoldOut, BuyMenuReturnToItemList);
+            }
+            else if (!CheckBagHasItem(itemId - FlowerBerryGauge, sShopData->totalCost) && sMartInfo.martType == MART_TYPE_FLOWER)
+            {
+                BuyMenuDisplayMessage(taskId, gText_YouDontHaveBerries, BuyMenuReturnToItemList);
+            }
             else if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
             {
                 BuyMenuDisplayMessage(taskId, gText_YouDontHaveMoney, BuyMenuReturnToItemList);
             }
             else
             {
-                if (sMartInfo.martType == MART_TYPE_NORMAL)
+                if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_BERRY)
                 {
                     CopyItemName(itemId, gStringVar1);
                     if (GetItemImportance(itemId))
@@ -1030,6 +1130,22 @@ static void Task_BuyMenu(u8 taskId)
                     {
                         StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(itemId)));
                         BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany2, Task_BuyHowManyDialogueInit);
+                    }
+                    else
+                    {
+                        BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
+                    }
+                }
+                else if (sMartInfo.martType == MART_TYPE_FLOWER)
+                {
+                    CopyItemName(itemId, gStringVar1);
+                    if (GetItemImportance(itemId))
+                    {
+                        ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
+                        CopyItemNameHandlePlural(itemId - FlowerBerryGauge, gStringVar3, sShopData->totalCost);
+                        StringExpandPlaceholders(gStringVar4, gText_YouWantedBerryFlowertrade);
+                        tItemCount = 1;
+                        BuyMenuDisplayMessage(taskId, gStringVar4, BuyMenuConfirmPurchase);
                     }
                     else
                     {
@@ -1099,9 +1215,7 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
         {
             PlaySE(SE_SELECT);
             ClearStdWindowAndFrameToTransparent(WIN_QUANTITY_PRICE, FALSE);
-            ClearStdWindowAndFrameToTransparent(WIN_QUANTITY_IN_BAG, FALSE);
             ClearWindowTilemap(WIN_QUANTITY_PRICE);
-            ClearWindowTilemap(WIN_QUANTITY_IN_BAG);
             PutWindowTilemap(WIN_ITEM_LIST);
             CopyItemName(tItemId, gStringVar1);
             ConvertIntToDecimalStringN(gStringVar2, tItemCount, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
@@ -1128,12 +1242,29 @@ static void BuyMenuConfirmPurchase(u8 taskId)
 static void BuyMenuTryMakePurchase(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-
+    u8 FlowerBerryGauge = FIRST_FLOWER_INDEX - FIRST_BERRY_INDEX;
     PutWindowTilemap(WIN_ITEM_LIST);
 
-    if (sMartInfo.martType == MART_TYPE_NORMAL)
+    if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_BERRY || sMartInfo.martType == MART_TYPE_FLOWER)
     {
-        if (AddBagItem(tItemId, tItemCount) == TRUE)
+        if(sMartInfo.martType == MART_TYPE_FLOWER)
+        { //Flower Shop behabior
+            FlagSet(FLAG_FLOWER_CHERI + tItemId - FIRST_FLOWER_INDEX);
+
+            if(FlagGet(FLAG_FLOWER_ANY) == FALSE)
+            {
+                FlagSet(FLAG_FLOWER_ANY);
+            }
+            RecordItemPurchase(taskId);
+            RemoveBagItem(tItemId - FlowerBerryGauge, sShopData->totalCost);
+            PrintMoneyAmountInMoneyBox(WIN_TRADE_IN_BAG, CountTotalItemQuantityInBag(tItemId - FlowerBerryGauge), 0);
+            FillWindowPixelBuffer(WIN_TRADE_IN_BAG, PIXEL_FILL(0));
+            ConvertIntToDecimalStringN(gStringVar3, CountTotalItemQuantityInBag(tItemId - FlowerBerryGauge), STR_CONV_MODE_RIGHT_ALIGN, 3);
+            StringExpandPlaceholders(gStringVar4, gText_QuantityOFX);
+            BuyMenuPrint(WIN_TRADE_IN_BAG, gStringVar4, 0, 0, 0, COLORID_NORMAL);
+            BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
+        }
+        else if (AddBagItem(tItemId, tItemCount) == TRUE)
         {
             GetSetItemObtained(tItemId, FLAG_SET_ITEM_OBTAINED);
             RecordItemPurchase(taskId);
@@ -1163,11 +1294,17 @@ static void BuyMenuTryMakePurchase(u8 taskId)
 static void BuyMenuSubtractMoney(u8 taskId)
 {
     IncrementGameStat(GAME_STAT_SHOPPED);
-    RemoveMoney(&gSaveBlock1Ptr->money, sShopData->totalCost);
-    PlaySE(SE_SHOP);
-    PrintMoneyAmountInMoneyBox(WIN_MONEY, GetMoney(&gSaveBlock1Ptr->money), 0);
-
-    if (sMartInfo.martType == MART_TYPE_NORMAL)
+    if(sMartInfo.martType == MART_TYPE_FLOWER)
+    {
+        PlaySE(SE_PIN);
+    }
+    else
+    {
+        RemoveMoney(&gSaveBlock1Ptr->money, sShopData->totalCost);
+        PlaySE(SE_SHOP);
+        PrintMoneyAmountInMoneyBox(WIN_MONEY, GetMoney(&gSaveBlock1Ptr->money), 0);
+    }
+    if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_FLOWER || sMartInfo.martType == MART_TYPE_BERRY)
         gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
     else
         gTasks[taskId].func = Task_ReturnToItemListAfterDecorationPurchase;
@@ -1224,7 +1361,10 @@ static void BuyMenuReturnToItemList(u8 taskId)
     RedrawListMenu(tListTaskId);
     BuyMenuPrintCursor(tListTaskId, COLORID_ITEM_LIST);
     PutWindowTilemap(WIN_ITEM_LIST);
-    PutWindowTilemap(WIN_ITEM_DESCRIPTION);
+    if(sMartInfo.martType != MART_TYPE_FLOWER)
+    {
+        PutWindowTilemap(WIN_ITEM_DESCRIPTION);
+    }
     ScheduleBgCopyTilemapToVram(0);
     BuyMenuAddScrollIndicatorArrows();
     gTasks[taskId].func = Task_BuyMenu;
@@ -1300,6 +1440,22 @@ static void RecordItemPurchase(u8 taskId)
 void CreatePokemartMenu(const u16 *itemsForSale)
 {
     CreateShopMenu(MART_TYPE_NORMAL);
+    SetShopItemsForSale(itemsForSale);
+    ClearItemPurchases();
+    SetShopMenuCallback(ScriptContext_Enable);
+}
+
+void CreateFlowerShopMenu(const u16 *itemsForSale) //MOD CONTEST New mart types
+{
+    CreateShopMenu(MART_TYPE_FLOWER);
+    SetShopItemsForSale(itemsForSale);
+    ClearItemPurchases();
+    SetShopMenuCallback(ScriptContext_Enable);
+}
+
+void CreateBerryShopMenu(const u16 *itemsForSale)
+{
+    CreateShopMenu(MART_TYPE_BERRY);
     SetShopItemsForSale(itemsForSale);
     ClearItemPurchases();
     SetShopMenuCallback(ScriptContext_Enable);

@@ -104,6 +104,38 @@ Route123_BerryMastersHouse_Text_VisitPrettyPetalFlowerShop:
 	.string "flower shop near RUSTBORO.\p"
 	.string "Let flowers fill the world!$"
 
+Route123_BerryMastersHouse_Text_DidYouNeedAnythingElse:
+	.string "I'm done for today.\p"
+	.string "Did you need anything else?$"
+
+	Route123_BerryMastersHouse_Text_WhatABeautifulFlower1:
+	.string "Well, that's all... Wait!\p"
+	.string "What a beautiful BERRY FLOWER\n"
+	.string "you got there!\p"
+	.string "isn't it from the PRETTY PETAL\n"
+	.string "flower shop near RUSTBORO?\p"
+	.string "You really do care about\n"
+	.string "BERRIES, do you?\p"
+	.string "Well, in that case...\p"
+	.string "Feel free to take a look at my\n"
+	.string "personal BERRY selection!$"
+	
+Route123_BerryMastersHouse_Text_WhatABeautifulFlower2:
+	.string "I'm done for today... Wait!\p"
+	.string "What a beautiful BERRY FLOWER\n"
+	.string "you got there!\p"
+	.string "isn't it from the PRETTY PETAL\n"
+	.string "flower shop near RUSTBORO?\p"
+	.string "You really do care about\n"
+	.string "BERRIES, do you?\p"
+	.string "Well, in that case...\p"
+	.string "Feel free to take a look at my\n"
+	.string "personal BERRY selection!$"
+
+Route123_BerryMastersHouse_Text_ComeAgainAnotherDay:
+	.string "Come again another day.\p"
+	.string "Let flowers fill the world!$"
+
 Route123_BerryMastersHouse_Text_DoneForToday:
 	.string "I'm done for today.\n"
 	.string "Come again another day.\p"
@@ -184,6 +216,14 @@ Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation:
 	.string "But they'll sprout again.\p"
 	.string "Isn't that awesome?\n"
 	.string "It's like they have the will to live.$"
+	
+Route104_PrettyPetalFlowerShop_Text_InterestedInPlants:
+	.string "We have a wide selection of\n"
+	.string "potted plants available.$"
+	
+Route104_PrettyPetalFlowerShop_Text_InterestedInFlowers:
+	.string "We're struggling to meet demand, but\n"
+	.string "I'm willing to trade some for berries.$"
 
 Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers:
 	.string "I'm trying to be like my big sisters.\n"
