@@ -8,8 +8,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DESK,
         .price = 0,
-        .description = DecorDesc_SMALL_DESK,
+        .description = COMPOUND_STRING(
+            "A small desk built\n"
+            "for one."),
         .tiles = DecorGfx_SMALL_DESK,
+        .icon = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     },
 
     [DECOR_SMALL_DESK] =
@@ -20,8 +23,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DESK,
         .price = 3000,
-        .description = DecorDesc_SMALL_DESK,
+        .description = COMPOUND_STRING(
+            "A small desk built\n"
+            "for one."),
         .tiles = DecorGfx_SMALL_DESK,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_POKEMON_DESK] =
@@ -32,8 +38,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DESK,
         .price = 3000,
-        .description = DecorDesc_POKEMON_DESK,
+        .description = COMPOUND_STRING(
+            "A small desk built in\n"
+            "the shape of a POKé\n"
+            "BALL."),
         .tiles = DecorGfx_POKEMON_DESK,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_HEAVY_DESK] =
@@ -44,8 +54,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x2,
         .category = DECORCAT_DESK,
         .price = 6000,
-        .description = DecorDesc_HEAVY_DESK,
+        .description = COMPOUND_STRING(
+            "A large desk made\n"
+            "of steel. Put some\n"
+            "decorations on it."),
         .tiles = DecorGfx_HEAVY_DESK,
+        .icon = {gDecorIcon_HeavyDesk, gDecorIconPalette_HeavyDesk},
     },
 
     [DECOR_RAGGED_DESK] =
@@ -56,8 +70,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x2,
         .category = DECORCAT_DESK,
         .price = 6000,
-        .description = DecorDesc_RAGGED_DESK,
+        .description = COMPOUND_STRING(
+            "A large desk made\n"
+            "of wood. Put some\n"
+            "decorations on it."),
         .tiles = DecorGfx_RAGGED_DESK,
+        .icon = {gDecorIcon_RaggedDesk, gDecorIconPalette_RaggedDesk},
     },
 
     [DECOR_COMFORT_DESK] =
@@ -68,8 +86,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x2,
         .category = DECORCAT_DESK,
         .price = 6000,
-        .description = DecorDesc_COMFORT_DESK,
+        .description = COMPOUND_STRING(
+            "A large desk made\n"
+            "of leaves. Put some\n"
+            "decorations on it."),
         .tiles = DecorGfx_COMFORT_DESK,
+        .icon = {gDecorIcon_ComfortDesk, gDecorIconPalette_ComfortDesk},
     },
 
     [DECOR_PRETTY_DESK] =
@@ -80,8 +102,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_DESK,
         .price = 9000,
-        .description = DecorDesc_PRETTY_DESK,
+        .description = COMPOUND_STRING(
+            "A huge desk made\n"
+            "of glass. Holds lots\n"
+            "of decorations."),
         .tiles = DecorGfx_PRETTY_DESK,
+        .icon = {gDecorIcon_PrettyDesk, gDecorIconPalette_PrettyDesk},
     },
 
     [DECOR_BRICK_DESK] =
@@ -92,8 +118,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_DESK,
         .price = 9000,
-        .description = DecorDesc_BRICK_DESK,
+        .description = COMPOUND_STRING(
+            "A huge desk made\n"
+            "of brick. Holds lots\n"
+            "of decorations."),
         .tiles = DecorGfx_BRICK_DESK,
+        .icon = {gDecorIcon_BrickDesk, gDecorIconPalette_BrickDesk},
     },
 
     [DECOR_CAMP_DESK] =
@@ -104,8 +134,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_DESK,
         .price = 9000,
-        .description = DecorDesc_CAMP_DESK,
+        .description = COMPOUND_STRING(
+            "A huge desk made\n"
+            "of logs. Put lots of\n"
+            "decorations on it."),
         .tiles = DecorGfx_CAMP_DESK,
+        .icon = {gDecorIcon_CampDesk, gDecorIconPalette_CampDesk},
     },
 
     [DECOR_HARD_DESK] =
@@ -116,8 +150,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_DESK,
         .price = 9000,
-        .description = DecorDesc_HARD_DESK,
+        .description = COMPOUND_STRING(
+            "A huge desk made\n"
+            "of rocks. Holds\n"
+            "many decorations."),
         .tiles = DecorGfx_HARD_DESK,
+        .icon = {gDecorIcon_HardDesk, gDecorIconPalette_HardDesk},
     },
 
     [DECOR_SMALL_CHAIR] =
@@ -128,8 +166,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_SMALL_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "for one."),
         .tiles = DecorGfx_SMALL_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_POKEMON_CHAIR] =
@@ -140,8 +181,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_POKEMON_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair built\n"
+            "in the shape of a\n"
+            "POKé BALL."),
         .tiles = DecorGfx_POKEMON_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_HEAVY_CHAIR] =
@@ -152,8 +197,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_HEAVY_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "of steel."),
         .tiles = DecorGfx_HEAVY_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_PRETTY_CHAIR] =
@@ -164,8 +212,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_PRETTY_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "of glass."),
         .tiles = DecorGfx_PRETTY_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_COMFORT_CHAIR] =
@@ -176,8 +227,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_COMFORT_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "of leaves."),
         .tiles = DecorGfx_COMFORT_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_RAGGED_CHAIR] =
@@ -188,8 +242,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_RAGGED_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "of wood."),
         .tiles = DecorGfx_RAGGED_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_BRICK_CHAIR] =
@@ -200,8 +257,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_BRICK_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "of brick."),
         .tiles = DecorGfx_BRICK_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_CAMP_CHAIR] =
@@ -212,8 +272,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_CAMP_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "of logs."),
         .tiles = DecorGfx_CAMP_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_HARD_CHAIR] =
@@ -224,8 +287,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CHAIR,
         .price = 2000,
-        .description = DecorDesc_HARD_CHAIR,
+        .description = COMPOUND_STRING(
+            "A small chair made\n"
+            "of rock."),
         .tiles = DecorGfx_HARD_CHAIR,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_RED_PLANT] =
@@ -236,8 +302,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_PLANT,
         .price = 3000,
-        .description = DecorDesc_RED_PLANT,
+        .description = COMPOUND_STRING(
+            "A vivid red potted\n"
+            "plant."),
         .tiles = DecorGfx_RED_PLANT,
+        .icon = {gDecorIcon_RedPlant, gDecorIconPalette_RedPlant},
     },
 
     [DECOR_TROPICAL_PLANT] =
@@ -248,8 +317,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_PLANT,
         .price = 3000,
-        .description = DecorDesc_TROPICAL_PLANT,
+        .description = COMPOUND_STRING(
+            "A flowering tropical\n"
+            "plant in a pot."),
         .tiles = DecorGfx_TROPICAL_PLANT,
+        .icon = {gDecorIcon_TropicalPlant, gDecorIconPalette_TropicalPlant},
     },
 
     [DECOR_PRETTY_FLOWERS] =
@@ -260,8 +332,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_PLANT,
         .price = 3000,
-        .description = DecorDesc_PRETTY_FLOWERS,
+        .description = COMPOUND_STRING(
+            "A pot of cute\n"
+            "flowers."),
         .tiles = DecorGfx_PRETTY_FLOWERS,
+        .icon = {gDecorIcon_PrettyFlowers, gDecorIconPalette_PrettyFlowers},
     },
 
     [DECOR_COLORFUL_PLANT] =
@@ -272,8 +347,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x2,
         .category = DECORCAT_PLANT,
         .price = 5000,
-        .description = DecorDesc_COLORFUL_PLANT,
+        .description = COMPOUND_STRING(
+            "A large pot with\n"
+            "many colorful\n"
+            "flowers."),
         .tiles = DecorGfx_COLORFUL_PLANT,
+        .icon = {gDecorIcon_ColorfulPlant, gDecorIconPalette_ColorfulPlant},
     },
 
     [DECOR_BIG_PLANT] =
@@ -284,8 +363,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x2,
         .category = DECORCAT_PLANT,
         .price = 5000,
-        .description = DecorDesc_BIG_PLANT,
+        .description = COMPOUND_STRING(
+            "A large, umbrella-\n"
+            "shaped plant in a\n"
+            "big pot."),
         .tiles = DecorGfx_BIG_PLANT,
+        .icon = {gDecorIcon_BigPlant, gDecorIconPalette_BigPlant},
     },
 
     [DECOR_GORGEOUS_PLANT] =
@@ -296,8 +379,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x2,
         .category = DECORCAT_PLANT,
         .price = 5000,
-        .description = DecorDesc_GORGEOUS_PLANT,
+        .description = COMPOUND_STRING(
+            "A large, impressive\n"
+            "plant in a big pot."),
         .tiles = DecorGfx_GORGEOUS_PLANT,
+        .icon = {gDecorIcon_GorgeousPlant, gDecorIconPalette_GorgeousPlant},
     },
 
     [DECOR_RED_BRICK] =
@@ -308,8 +394,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_RED_BRICK,
+        .description = COMPOUND_STRING(
+            "A red-colored brick.\n"
+            "Decorations can be\n"
+            "placed on top."),
         .tiles = DecorGfx_RED_BRICK,
+        .icon = {gDecorIcon_RedBrick, gDecorIconPalette_RedBrick},
     },
 
     [DECOR_YELLOW_BRICK] =
@@ -320,8 +410,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_YELLOW_BRICK,
+        .description = COMPOUND_STRING(
+            "A yellow-colored\n"
+            "brick. Put some\n"
+            "decorations on top."),
         .tiles = DecorGfx_YELLOW_BRICK,
+        .icon = {gDecorIcon_YellowBrick, gDecorIconPalette_YellowBrick},
     },
 
     [DECOR_BLUE_BRICK] =
@@ -332,8 +426,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_BLUE_BRICK,
+        .description = COMPOUND_STRING(
+            "A blue-colored\n"
+            "brick. Put some\n"
+            "decorations on top."),
         .tiles = DecorGfx_BLUE_BRICK,
+        .icon = {gDecorIcon_BlueBrick, gDecorIconPalette_BlueBrick},
     },
 
     [DECOR_RED_BALLOON] =
@@ -344,8 +442,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_RED_BALLOON,
+        .description = COMPOUND_STRING(
+            "A red balloon filled\n"
+            "with water. Bursts\n"
+            "if stepped on."),
         .tiles = DecorGfx_RED_BALLOON,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_BLUE_BALLOON] =
@@ -356,8 +458,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_BLUE_BALLOON,
+        .description = COMPOUND_STRING(
+            "A blue balloon filled\n"
+            "with water. Bursts\n"
+            "if stepped on."),
         .tiles = DecorGfx_BLUE_BALLOON,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_YELLOW_BALLOON] =
@@ -368,8 +474,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_YELLOW_BALLOON,
+        .description = COMPOUND_STRING(
+            "A yellow balloon\n"
+            "filled with water.\n"
+            "Pops if stepped on."),
         .tiles = DecorGfx_YELLOW_BALLOON,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_RED_TENT] =
@@ -380,8 +490,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_ORNAMENT,
         .price = 10000,
-        .description = DecorDesc_RED_TENT,
+        .description = COMPOUND_STRING(
+            "A large red tent.\n"
+            "You can hide inside\n"
+            "it."),
         .tiles = DecorGfx_RED_TENT,
+        .icon = {gDecorIcon_RedTent, gDecorIconPalette_RedTent},
     },
 
     [DECOR_BLUE_TENT] =
@@ -392,8 +506,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_ORNAMENT,
         .price = 10000,
-        .description = DecorDesc_BLUE_TENT,
+        .description = COMPOUND_STRING(
+            "A large blue tent.\n"
+            "You can hide inside\n"
+            "it."),
         .tiles = DecorGfx_BLUE_TENT,
+        .icon = {gDecorIcon_BlueTent, gDecorIconPalette_BlueTent},
     },
 
     [DECOR_SOLID_BOARD] =
@@ -404,8 +522,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 3000,
-        .description = DecorDesc_SOLID_BOARD,
+        .description = COMPOUND_STRING(
+            "Place over a hole to\n"
+            "cross to the other\n"
+            "side."),
         .tiles = DecorGfx_SOLID_BOARD,
+        .icon = {gDecorIcon_SolidBoard, gDecorIconPalette_SolidBoard},
     },
 
     [DECOR_SLIDE] =
@@ -416,8 +538,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x4,
         .category = DECORCAT_ORNAMENT,
         .price = 8000,
-        .description = DecorDesc_SLIDE,
+        .description = COMPOUND_STRING(
+            "Use to slide down\n"
+            "from the platform."),
         .tiles = DecorGfx_SLIDE,
+        .icon = {gDecorIcon_Slide, gDecorIconPalette_Slide},
     },
 
     [DECOR_FENCE_LENGTH] =
@@ -428,8 +553,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_FENCE_LENGTH,
+        .description = COMPOUND_STRING(
+            "A small fence that\n"
+            "blocks passage."),
         .tiles = DecorGfx_FENCE_LENGTH,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_FENCE_WIDTH] =
@@ -440,8 +568,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 500,
-        .description = DecorDesc_FENCE_WIDTH,
+        .description = COMPOUND_STRING(
+            "A small fence that\n"
+            "blocks passage."),
         .tiles = DecorGfx_FENCE_WIDTH,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_TIRE] =
@@ -452,8 +583,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x2,
         .category = DECORCAT_ORNAMENT,
         .price = 800,
-        .description = DecorDesc_TIRE,
+        .description = COMPOUND_STRING(
+            "An old large tire.\n"
+            "Decorations can be\n"
+            "placed on top."),
         .tiles = DecorGfx_TIRE,
+        .icon = {gDecorIcon_Tire, gDecorIconPalette_Tire},
     },
 
     [DECOR_STAND] =
@@ -464,8 +599,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_4x2,
         .category = DECORCAT_ORNAMENT,
         .price = 7000,
-        .description = DecorDesc_STAND,
+        .description = COMPOUND_STRING(
+            "A large pedestal\n"
+            "with steps."),
         .tiles = DecorGfx_STAND,
+        .icon = {gDecorIcon_Stand, gDecorIconPalette_Stand},
     },
 
     [DECOR_MUD_BALL] =
@@ -476,8 +614,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 200,
-        .description = DecorDesc_MUD_BALL,
+        .description = COMPOUND_STRING(
+            "A large ball of mud.\n"
+            "Crumbles if stepped\n"
+            "on."),
         .tiles = DecorGfx_MUD_BALL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_BREAKABLE_DOOR] =
@@ -488,8 +630,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 3000,
-        .description = DecorDesc_BREAKABLE_DOOR,
+        .description = COMPOUND_STRING(
+            "A weird door that\n"
+            "people can walk\n"
+            "right through."),
         .tiles = DecorGfx_BREAKABLE_DOOR,
+        .icon = {gDecorIcon_BreakableDoor, gDecorIconPalette_BreakableDoor},
     },
 
     [DECOR_SAND_ORNAMENT] =
@@ -500,8 +646,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 3000,
-        .description = DecorDesc_SAND_ORNAMENT,
+        .description = COMPOUND_STRING(
+            "An ornament made\n"
+            "of sand. Crumbles if\n"
+            "touched."),
         .tiles = DecorGfx_SAND_ORNAMENT,
+        .icon = {gDecorIcon_SandOrnament, gDecorIconPalette_SandOrnament},
     },
 
     [DECOR_SILVER_SHIELD] =
@@ -512,8 +662,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 0,
-        .description = DecorDesc_SILVER_SHIELD,
+        .description = COMPOUND_STRING(
+            "Awarded for 50\n"
+            "straight wins at\n"
+            "the BATTLE TOWER."),
         .tiles = DecorGfx_SILVER_SHIELD,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_GOLD_SHIELD] =
@@ -524,8 +678,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 0,
-        .description = DecorDesc_GOLD_SHIELD,
+        .description = COMPOUND_STRING(
+            "Awarded for 100\n"
+            "straight wins at\n"
+            "the BATTLE TOWER."),
         .tiles = DecorGfx_GOLD_SHIELD,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_GLASS_ORNAMENT] =
@@ -536,8 +694,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_ORNAMENT,
         .price = 0,
-        .description = DecorDesc_GLASS_ORNAMENT,
+        .description = COMPOUND_STRING(
+            "A glass replica of\n"
+            "a famous sculpture\n"
+            "at the ART MUSEUM."),
         .tiles = DecorGfx_GLASS_ORNAMENT,
+        .icon = {gDecorIcon_GlassOrnament, gDecorIconPalette_GlassOrnament},
     },
 
     [DECOR_TV] =
@@ -548,8 +710,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 3000,
-        .description = DecorDesc_TV,
+        .description = COMPOUND_STRING(
+            "A small, gray-\n"
+            "colored toy TV."),
         .tiles = DecorGfx_TV,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_ROUND_TV] =
@@ -560,8 +725,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 4000,
-        .description = DecorDesc_ROUND_TV,
+        .description = COMPOUND_STRING(
+            "A toy TV modeled\n"
+            "in the image of a\n"
+            "SEEDOT."),
         .tiles = DecorGfx_ROUND_TV,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_CUTE_TV] =
@@ -572,8 +741,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_ORNAMENT,
         .price = 4000,
-        .description = DecorDesc_CUTE_TV,
+        .description = COMPOUND_STRING(
+            "A toy TV modeled\n"
+            "in the image of a\n"
+            "SKITTY."),
         .tiles = DecorGfx_CUTE_TV,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_GLITTER_MAT] =
@@ -584,8 +757,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 2000,
-        .description = DecorDesc_GLITTER_MAT,
+        .description = COMPOUND_STRING(
+            "An odd mat that\n"
+            "glitters if stepped\n"
+            "on."),
         .tiles = DecorGfx_GLITTER_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_JUMP_MAT] =
@@ -596,8 +773,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 2000,
-        .description = DecorDesc_JUMP_MAT,
+        .description = COMPOUND_STRING(
+            "A trick mat that\n"
+            "jumps when it is\n"
+            "stepped on."),
         .tiles = DecorGfx_JUMP_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SPIN_MAT] =
@@ -608,8 +789,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 2000,
-        .description = DecorDesc_SPIN_MAT,
+        .description = COMPOUND_STRING(
+            "A trick mat that\n"
+            "spins around when\n"
+            "stepped on."),
         .tiles = DecorGfx_SPIN_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_C_LOW_NOTE_MAT] =
@@ -620,8 +805,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_C_LOW_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "a low C note when\n"
+            "stepped on."),
         .tiles = DecorGfx_C_LOW_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_D_NOTE_MAT] =
@@ -632,8 +821,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_D_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "a D note when\n"
+            "stepped on."),
         .tiles = DecorGfx_D_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_E_NOTE_MAT] =
@@ -644,8 +837,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_E_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "an E note when\n"
+            "stepped on."),
         .tiles = DecorGfx_E_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_F_NOTE_MAT] =
@@ -656,8 +853,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_F_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "an F note when\n"
+            "stepped on."),
         .tiles = DecorGfx_F_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_G_NOTE_MAT] =
@@ -668,8 +869,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_G_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "a G note when\n"
+            "stepped on."),
         .tiles = DecorGfx_G_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_A_NOTE_MAT] =
@@ -680,8 +885,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_A_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "an A note when\n"
+            "stepped on."),
         .tiles = DecorGfx_A_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_B_NOTE_MAT] =
@@ -692,8 +901,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_B_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "a B note when\n"
+            "stepped on."),
         .tiles = DecorGfx_B_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_C_HIGH_NOTE_MAT] =
@@ -704,8 +917,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_MAT,
         .price = 500,
-        .description = DecorDesc_C_HIGH_NOTE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat that plays\n"
+            "a high C note when\n"
+            "stepped on."),
         .tiles = DecorGfx_C_HIGH_NOTE_MAT,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SURF_MAT] =
@@ -716,8 +933,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_MAT,
         .price = 4000,
-        .description = DecorDesc_SURF_MAT,
+        .description = COMPOUND_STRING(
+            "A mat designed with\n"
+            "a SURF image.\n"
+            "Put items on top."),
         .tiles = DecorGfx_SURF_MAT,
+        .icon = {gDecorIcon_SurfMat, gDecorIconPalette_SurfMat},
     },
 
     [DECOR_THUNDER_MAT] =
@@ -728,8 +949,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_MAT,
         .price = 4000,
-        .description = DecorDesc_THUNDER_MAT,
+        .description = COMPOUND_STRING(
+            "A mat designed with\n"
+            "a THUNDER image.\n"
+            "Put items on top."),
         .tiles = DecorGfx_THUNDER_MAT,
+        .icon = {gDecorIcon_ThunderMat, gDecorIconPalette_ThunderMat},
     },
 
     [DECOR_FIRE_BLAST_MAT] =
@@ -740,8 +965,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_MAT,
         .price = 4000,
-        .description = DecorDesc_FIRE_BLAST_MAT,
+        .description = COMPOUND_STRING(
+            "A mat designed with\n"
+            "a FIRE BLAST image.\n"
+            "Put items on top."),
         .tiles = DecorGfx_FIRE_BLAST_MAT,
+        .icon = {gDecorIcon_FireBlastMat, gDecorIconPalette_FireBlastMat},
     },
 
     [DECOR_POWDER_SNOW_MAT] =
@@ -752,8 +981,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_MAT,
         .price = 4000,
-        .description = DecorDesc_POWDER_SNOW_MAT,
+        .description = COMPOUND_STRING(
+            "A mat with a POWDER\n"
+            "SNOW image design.\n"
+            "Put items on top."),
         .tiles = DecorGfx_POWDER_SNOW_MAT,
+        .icon = {gDecorIcon_PowderSnowMat, gDecorIconPalette_PowderSnowMat},
     },
 
     [DECOR_ATTRACT_MAT] =
@@ -764,8 +997,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_MAT,
         .price = 4000,
-        .description = DecorDesc_ATTRACT_MAT,
+        .description = COMPOUND_STRING(
+            "A mat designed with\n"
+            "an ATTRACT image.\n"
+            "Put items on top."),
         .tiles = DecorGfx_ATTRACT_MAT,
+        .icon = {gDecorIcon_AttractMat, gDecorIconPalette_AttractMat},
     },
 
     [DECOR_FISSURE_MAT] =
@@ -776,8 +1013,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_MAT,
         .price = 4000,
-        .description = DecorDesc_FISSURE_MAT,
+        .description = COMPOUND_STRING(
+            "A mat designed with\n"
+            "a FISSURE image.\n"
+            "Put items on top."),
         .tiles = DecorGfx_FISSURE_MAT,
+        .icon = {gDecorIcon_FissureMat, gDecorIconPalette_FissureMat},
     },
 
     [DECOR_SPIKES_MAT] =
@@ -788,8 +1029,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_3x3,
         .category = DECORCAT_MAT,
         .price = 4000,
-        .description = DecorDesc_SPIKES_MAT,
+        .description = COMPOUND_STRING(
+            "A mat designed with\n"
+            "a SPIKES image.\n"
+            "Put items on top."),
         .tiles = DecorGfx_SPIKES_MAT,
+        .icon = {gDecorIcon_SpikesMat, gDecorIconPalette_SpikesMat},
     },
 
     [DECOR_BALL_POSTER] =
@@ -800,8 +1045,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_POSTER,
         .price = 1000,
-        .description = DecorDesc_BALL_POSTER,
+        .description = COMPOUND_STRING(
+            "A small poster\n"
+            "printed with POKé\n"
+            "BALLS."),
         .tiles = DecorGfx_BALL_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_GREEN_POSTER] =
@@ -812,8 +1061,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_POSTER,
         .price = 1000,
-        .description = DecorDesc_GREEN_POSTER,
+        .description = COMPOUND_STRING(
+            "A small poster with\n"
+            "a TREECKO print."),
         .tiles = DecorGfx_GREEN_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_RED_POSTER] =
@@ -824,8 +1076,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_POSTER,
         .price = 1000,
-        .description = DecorDesc_RED_POSTER,
+        .description = COMPOUND_STRING(
+            "A small poster with\n"
+            "a TORCHIC print."),
         .tiles = DecorGfx_RED_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_BLUE_POSTER] =
@@ -836,8 +1091,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_POSTER,
         .price = 1000,
-        .description = DecorDesc_BLUE_POSTER,
+        .description = COMPOUND_STRING(
+            "A small poster with\n"
+            "a MUDKIP print."),
         .tiles = DecorGfx_BLUE_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_CUTE_POSTER] =
@@ -848,8 +1106,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_POSTER,
         .price = 1000,
-        .description = DecorDesc_CUTE_POSTER,
+        .description = COMPOUND_STRING(
+            "A small poster with\n"
+            "an AZURILL print."),
         .tiles = DecorGfx_CUTE_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_PIKA_POSTER] =
@@ -860,8 +1121,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x1,
         .category = DECORCAT_POSTER,
         .price = 1500,
-        .description = DecorDesc_PIKA_POSTER,
+        .description = COMPOUND_STRING(
+            "A large poster with\n"
+            "a PIKACHU and\n"
+            "PICHU print."),
         .tiles = DecorGfx_PIKA_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_LONG_POSTER] =
@@ -872,8 +1137,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x1,
         .category = DECORCAT_POSTER,
         .price = 1500,
-        .description = DecorDesc_LONG_POSTER,
+        .description = COMPOUND_STRING(
+            "A large poster with\n"
+            "a SEVIPER print."),
         .tiles = DecorGfx_LONG_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SEA_POSTER] =
@@ -884,8 +1152,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x1,
         .category = DECORCAT_POSTER,
         .price = 1500,
-        .description = DecorDesc_SEA_POSTER,
+        .description = COMPOUND_STRING(
+            "A large poster with\n"
+            "a RELICANTH print."),
         .tiles = DecorGfx_SEA_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SKY_POSTER] =
@@ -896,8 +1167,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x1,
         .category = DECORCAT_POSTER,
         .price = 1500,
-        .description = DecorDesc_SKY_POSTER,
+        .description = COMPOUND_STRING(
+            "A large poster with\n"
+            "a WINGULL print."),
         .tiles = DecorGfx_SKY_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_KISS_POSTER] =
@@ -908,8 +1182,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_2x1,
         .category = DECORCAT_POSTER,
         .price = 1500,
-        .description = DecorDesc_KISS_POSTER,
+        .description = COMPOUND_STRING(
+            "A large poster with\n"
+            "a SMOOCHUM print."),
         .tiles = DecorGfx_KISS_POSTER,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_PICHU_DOLL] =
@@ -920,8 +1197,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_PICHU_DOLL,
+        .description = COMPOUND_STRING(
+            "A PICHU doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_PICHU_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_PIKACHU_DOLL] =
@@ -932,8 +1213,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_PIKACHU_DOLL,
+        .description = COMPOUND_STRING(
+            "A PIKACHU doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_PIKACHU_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_MARILL_DOLL] =
@@ -944,8 +1229,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_MARILL_DOLL,
+        .description = COMPOUND_STRING(
+            "A MARILL doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_MARILL_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_TOGEPI_DOLL] =
@@ -956,8 +1245,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_TOGEPI_DOLL,
+        .description = COMPOUND_STRING(
+            "A TOGEPI doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_TOGEPI_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_CYNDAQUIL_DOLL] =
@@ -968,8 +1261,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_CYNDAQUIL_DOLL,
+        .description = COMPOUND_STRING(
+            "A CYNDAQUIL doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_CYNDAQUIL_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_CHIKORITA_DOLL] =
@@ -980,8 +1277,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_CHIKORITA_DOLL,
+        .description = COMPOUND_STRING(
+            "A CHIKORITA doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_CHIKORITA_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_TOTODILE_DOLL] =
@@ -992,8 +1293,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_TOTODILE_DOLL,
+        .description = COMPOUND_STRING(
+            "A TOTODILE doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_TOTODILE_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_JIGGLYPUFF_DOLL] =
@@ -1004,8 +1309,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_JIGGLYPUFF_DOLL,
+        .description = COMPOUND_STRING(
+            "A JIGGLYPUFF doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_JIGGLYPUFF_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_MEOWTH_DOLL] =
@@ -1016,8 +1325,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_MEOWTH_DOLL,
+        .description = COMPOUND_STRING(
+            "A MEOWTH doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_MEOWTH_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_CLEFAIRY_DOLL] =
@@ -1028,8 +1341,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_CLEFAIRY_DOLL,
+        .description = COMPOUND_STRING(
+            "A CLEFAIRY doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_CLEFAIRY_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_DITTO_DOLL] =
@@ -1040,8 +1357,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_DITTO_DOLL,
+        .description = COMPOUND_STRING(
+            "A DITTO doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_DITTO_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SMOOCHUM_DOLL] =
@@ -1052,8 +1373,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_SMOOCHUM_DOLL,
+        .description = COMPOUND_STRING(
+            "A SMOOCHUM doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_SMOOCHUM_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_TREECKO_DOLL] =
@@ -1064,8 +1389,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_TREECKO_DOLL,
+        .description = COMPOUND_STRING(
+            "A TREECKO doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_TREECKO_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_TORCHIC_DOLL] =
@@ -1076,8 +1405,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_TORCHIC_DOLL,
+        .description = COMPOUND_STRING(
+            "A TORCHIC doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_TORCHIC_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_MUDKIP_DOLL] =
@@ -1088,8 +1421,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_MUDKIP_DOLL,
+        .description = COMPOUND_STRING(
+            "A MUDKIP doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_MUDKIP_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_DUSKULL_DOLL] =
@@ -1100,8 +1437,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_DUSKULL_DOLL,
+        .description = COMPOUND_STRING(
+            "A DUSKULL doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_DUSKULL_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_WYNAUT_DOLL] =
@@ -1112,8 +1453,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_WYNAUT_DOLL,
+        .description = COMPOUND_STRING(
+            "A WYNAUT doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_WYNAUT_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_BALTOY_DOLL] =
@@ -1124,8 +1469,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_BALTOY_DOLL,
+        .description = COMPOUND_STRING(
+            "A BALTOY doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_BALTOY_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_KECLEON_DOLL] =
@@ -1136,8 +1485,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_KECLEON_DOLL,
+        .description = COMPOUND_STRING(
+            "A KECLEON doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_KECLEON_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_AZURILL_DOLL] =
@@ -1148,8 +1501,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_AZURILL_DOLL,
+        .description = COMPOUND_STRING(
+            "An AZURILL doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_AZURILL_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SKITTY_DOLL] =
@@ -1160,8 +1517,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_SKITTY_DOLL,
+        .description = COMPOUND_STRING(
+            "A SKITTY doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_SKITTY_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SWABLU_DOLL] =
@@ -1172,8 +1533,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_SWABLU_DOLL,
+        .description = COMPOUND_STRING(
+            "A SWABLU doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_SWABLU_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_GULPIN_DOLL] =
@@ -1184,8 +1549,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_GULPIN_DOLL,
+        .description = COMPOUND_STRING(
+            "A GULPIN doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_GULPIN_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_LOTAD_DOLL] =
@@ -1196,8 +1565,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_LOTAD_DOLL,
+        .description = COMPOUND_STRING(
+            "A LOTAD doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_LOTAD_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SEEDOT_DOLL] =
@@ -1208,8 +1581,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_SEEDOT_DOLL,
+        .description = COMPOUND_STRING(
+            "A SEEDOT doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_SEEDOT_DOLL,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_PIKA_CUSHION] =
@@ -1220,8 +1597,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_PIKA_CUSHION,
+        .description = COMPOUND_STRING(
+            "A PIKACHU cushion.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_PIKA_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_ROUND_CUSHION] =
@@ -1232,8 +1613,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_ROUND_CUSHION,
+        .description = COMPOUND_STRING(
+            "A MARILL cushion.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_ROUND_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_KISS_CUSHION] =
@@ -1244,8 +1629,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_KISS_CUSHION,
+        .description = COMPOUND_STRING(
+            "A SMOOCHUM\n"
+            "cushion. Place it on\n"
+            "a mat or a desk."),
         .tiles = DecorGfx_KISS_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_ZIGZAG_CUSHION] =
@@ -1256,8 +1645,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_ZIGZAG_CUSHION,
+        .description = COMPOUND_STRING(
+            "A ZIGZAGOON\n"
+            "cushion. Place it on\n"
+            "a mat or a desk."),
         .tiles = DecorGfx_ZIGZAG_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SPIN_CUSHION] =
@@ -1268,8 +1661,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_SPIN_CUSHION,
+        .description = COMPOUND_STRING(
+            "A SPINDA cushion.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_SPIN_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_DIAMOND_CUSHION] =
@@ -1280,8 +1677,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_DIAMOND_CUSHION,
+        .description = COMPOUND_STRING(
+            "A SABLEYE cushion.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_DIAMOND_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_BALL_CUSHION] =
@@ -1292,8 +1693,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_BALL_CUSHION,
+        .description = COMPOUND_STRING(
+            "A BALL cushion.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_BALL_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_GRASS_CUSHION] =
@@ -1304,8 +1709,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_GRASS_CUSHION,
+        .description = COMPOUND_STRING(
+            "A grass-mark\n"
+            "cushion. Place it on\n"
+            "a mat or a desk."),
         .tiles = DecorGfx_GRASS_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_FIRE_CUSHION] =
@@ -1316,8 +1725,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_FIRE_CUSHION,
+        .description = COMPOUND_STRING(
+            "A fire-mark\n"
+            "cushion. Place it on\n"
+            "a mat or a desk."),
         .tiles = DecorGfx_FIRE_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_WATER_CUSHION] =
@@ -1328,8 +1741,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_CUSHION,
         .price = 2000,
-        .description = DecorDesc_WATER_CUSHION,
+        .description = COMPOUND_STRING(
+            "A water-mark\n"
+            "cushion. Place it on\n"
+            "a mat or a desk."),
         .tiles = DecorGfx_WATER_CUSHION,
+        .icon = {NULL, NULL},
     },
 
     [DECOR_SNORLAX_DOLL] =
@@ -1340,8 +1757,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_SNORLAX_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_SNORLAX_DOLL,
+        .icon = {gDecorIcon_SnorlaxDoll, gDecorIconPalette_SnorlaxDoll},
     },
 
     [DECOR_RHYDON_DOLL] =
@@ -1352,8 +1773,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_RHYDON_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_RHYDON_DOLL,
+        .icon = {gDecorIcon_RhydonDoll, gDecorIconPalette_RhydonDoll},
     },
 
     [DECOR_LAPRAS_DOLL] =
@@ -1364,8 +1789,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_LAPRAS_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_LAPRAS_DOLL,
+        .icon = {gDecorIcon_LaprasDoll, gDecorIconPalette_LaprasDoll},
     },
 
     [DECOR_VENUSAUR_DOLL] =
@@ -1376,8 +1805,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_VENUSAUR_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_VENUSAUR_DOLL,
+        .icon = {gDecorIcon_VenusaurDoll, gDecorIconPalette_VenusaurDoll},
     },
 
     [DECOR_CHARIZARD_DOLL] =
@@ -1388,8 +1821,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_CHARIZARD_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_CHARIZARD_DOLL,
+        .icon = {gDecorIcon_CharizardDoll, gDecorIconPalette_CharizardDoll},
     },
 
     [DECOR_BLASTOISE_DOLL] =
@@ -1400,8 +1837,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_BLASTOISE_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_BLASTOISE_DOLL,
+        .icon = {gDecorIcon_BlastoiseDoll, gDecorIconPalette_BlastoiseDoll},
     },
 
     [DECOR_WAILMER_DOLL] =
@@ -1412,8 +1853,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_WAILMER_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_WAILMER_DOLL,
+        .icon = {gDecorIcon_WailmerDoll, gDecorIconPalette_WailmerDoll},
     },
 
     [DECOR_REGIROCK_DOLL] =
@@ -1424,8 +1869,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_REGIROCK_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_REGIROCK_DOLL,
+        .icon = {gDecorIcon_RegirockDoll, gDecorIconPalette_RegirockDoll},
     },
 
     [DECOR_REGICE_DOLL] =
@@ -1436,8 +1885,12 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_REGICE_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_REGICE_DOLL,
+        .icon = {gDecorIcon_RegiceDoll, gDecorIconPalette_RegiceDoll},
     },
 
     [DECOR_REGISTEEL_DOLL] =
@@ -1448,667 +1901,11 @@ const struct Decoration gDecorations[] =
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_REGISTEEL_DOLL,
+        .description = COMPOUND_STRING(
+            "A large doll.\n"
+            "Place it on a mat\n"
+            "or a desk."),
         .tiles = DecorGfx_REGISTEEL_DOLL,
-    }/*,
-    
-    [DECOR_CHERI_FLOWER] =
-    {
-        .id = DECOR_CHERI_FLOWER,
-        .name = _("CHERI FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25, // MOD CONTEST How to modify this to work like on DP? ALSO how to hide it until berry is first Acquired
-        .description = DecorDesc_CHERI_FLOWER,
-        .tiles = DecorGfx_CHERI_FLOWER,
-    },
-
-    [DECOR_CHESTO_FLOWER] =
-    {
-        .id = DECOR_CHESTO_FLOWER,
-        .name = _("CHESTO FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_CHESTO_FLOWER,
-        .tiles = DecorGfx_CHESTO_FLOWER,
-    },
-
-    [DECOR_PECHA_FLOWER] =
-    {
-        .id = DECOR_PECHA_FLOWER,
-        .name = _("PECHA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_PECHA_FLOWER,
-        .tiles = DecorGfx_PECHA_FLOWER,
-    },
-
-    [DECOR_RAWST_FLOWER] =
-    {
-        .id = DECOR_RAWST_FLOWER,
-        .name = _("RAWST FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_RAWST_FLOWER,
-        .tiles = DecorGfx_RAWST_FLOWER,
-    },
-
-    [DECOR_ASPEAR_FLOWER] =
-    {
-        .id = DECOR_ASPEAR_FLOWER,
-        .name = _("ASPEAR FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_ASPEAR_FLOWER,
-        .tiles = DecorGfx_ASPEAR_FLOWER,
-    },
-
-    [DECOR_LEPPA_FLOWER] =
-    {
-        .id = DECOR_LEPPA_FLOWER,
-        .name = _("LEPPA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_LEPPA_FLOWER,
-        .tiles = DecorGfx_LEPPA_FLOWER,
-    },
-
-    [DECOR_ORAN_FLOWER] =
-    {
-        .id = DECOR_ORAN_FLOWER,
-        .name = _("ORAN FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_ORAN_FLOWER,
-        .tiles = DecorGfx_ORAN_FLOWER,
-    },
-
-    [DECOR_PERSIM_FLOWER] =
-    {
-        .id = DECOR_PERSIM_FLOWER,
-        .name = _("PERSIM FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_PERSIM_FLOWER,
-        .tiles = DecorGfx_PERSIM_FLOWER,
-    },
-
-    [DECOR_LUM_FLOWER] =
-    {
-        .id = DECOR_LUM_FLOWER,
-        .name = _("LUM FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_LUM_FLOWER,
-        .tiles = DecorGfx_LUM_FLOWER,
-    },
-
-    [DECOR_SITRUS_FLOWER] =
-    {
-        .id = DECOR_SITRUS_FLOWER,
-        .name = _("SITRUS FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_SITRUS_FLOWER,
-        .tiles = DecorGfx_SITRUS_FLOWER,
-    },
-
-    [DECOR_FIGY_FLOWER] =
-    {
-        .id = DECOR_FIGY_FLOWER,
-        .name = _("FIGY FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_FIGY_FLOWER,
-        .tiles = DecorGfx_FIGY_FLOWER,
-    },
-
-    [DECOR_WIKI_FLOWER] =
-    {
-        .id = DECOR_WIKI_FLOWER,
-        .name = _("WIKI FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_WIKI_FLOWER,
-        .tiles = DecorGfx_WIKI_FLOWER,
-    },
-
-    [DECOR_MAGO_FLOWER] =
-    {
-        .id = DECOR_MAGO_FLOWER,
-        .name = _("MAGO FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_MAGO_FLOWER,
-        .tiles = DecorGfx_MAGO_FLOWER,
-    },
-
-    [DECOR_AGUAV_FLOWER] =
-    {
-        .id = DECOR_AGUAV_FLOWER,
-        .name = _("AGUAV FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_AGUAV_FLOWER,
-        .tiles = DecorGfx_AGUAV_FLOWER,
-    },
-
-    [DECOR_IAPAPA_FLOWER] =
-    {
-        .id = DECOR_IAPAPA_FLOWER,
-        .name = _("IAPAPA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_IAPAPA_FLOWER,
-        .tiles = DecorGfx_IAPAPA_FLOWER,
-    },
-
-    [DECOR_RAZZ_FLOWER] =
-    {
-        .id = DECOR_RAZZ_FLOWER,
-        .name = _("RAZZ FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 50,
-        .description = DecorDesc_RAZZ_FLOWER,
-        .tiles = DecorGfx_RAZZ_FLOWER,
-    },
-
-    [DECOR_BLUK_FLOWER] =
-    {
-        .id = DECOR_BLUK_FLOWER,
-        .name = _("BLUK FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 50,
-        .description = DecorDesc_BLUK_FLOWER,
-        .tiles = DecorGfx_BLUK_FLOWER,
-    },
-
-    [DECOR_NANAB_FLOWER] =
-    {
-        .id = DECOR_NANAB_FLOWER,
-        .name = _("NANAB FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 50,
-        .description = DecorDesc_NANAB_FLOWER,
-        .tiles = DecorGfx_NANAB_FLOWER,
-    },
-
-    [DECOR_WEPEAR_FLOWER] =
-    {
-        .id = DECOR_WEPEAR_FLOWER,
-        .name = _("WEPEAR FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_WEPEAR_FLOWER,
-        .tiles = DecorGfx_WEPEAR_FLOWER,
-    },
-
-    [DECOR_PINAP_FLOWER] =
-    {
-        .id = DECOR_PINAP_FLOWER,
-        .name = _("PINAP FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_PINAP_FLOWER,
-        .tiles = DecorGfx_PINAP_FLOWER,
-    },
-
-    [DECOR_POMEG_FLOWER] =
-    {
-        .id = DECOR_POMEG_FLOWER,
-        .name = _("POMEG FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_POMEG_FLOWER,
-        .tiles = DecorGfx_POMEG_FLOWER,
-    },
-
-    [DECOR_KELPSY_FLOWER] =
-    {
-        .id = DECOR_KELPSY_FLOWER,
-        .name = _("KELPSY FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_KELPSY_FLOWER,
-        .tiles = DecorGfx_KELPSY_FLOWER,
-    },
-
-    [DECOR_QUALOT_FLOWER] =
-    {
-        .id = DECOR_QUALOT_FLOWER,
-        .name = _("QUALOT FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_QUALOT_FLOWER,
-        .tiles = DecorGfx_QUALOT_FLOWER,
-    },
-
-    [DECOR_HONDEW_FLOWER] =
-    {
-        .id = DECOR_HONDEW_FLOWER,
-        .name = _("HONDEW FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_HONDEW_FLOWER,
-        .tiles = DecorGfx_HONDEW_FLOWER,
-    },
-
-    [DECOR_GREPA_FLOWER] =
-    {
-        .id = DECOR_GREPA_FLOWER,
-        .name = _("GREPA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_GREPA_FLOWER,
-        .tiles = DecorGfx_GREPA_FLOWER,
-    },
-
-    [DECOR_TAMATO_FLOWER] =
-    {
-        .id = DECOR_TAMATO_FLOWER,
-        .name = _("TAMATO FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_TAMATO_FLOWER,
-        .tiles = DecorGfx_TAMATO_FLOWER,
-    },
-
-    [DECOR_CORNN_FLOWER] =
-    {
-        .id = DECOR_CORNN_FLOWER,
-        .name = _("CORNN FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 50,
-        .description = DecorDesc_CORNN_FLOWER,
-        .tiles = DecorGfx_CORNN_FLOWER,
-    },
-
-    [DECOR_MAGOST_FLOWER] =
-    {
-        .id = DECOR_MAGOST_FLOWER,
-        .name = _("MAGOST FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 50,
-        .description = DecorDesc_MAGOST_FLOWER,
-        .tiles = DecorGfx_MAGOST_FLOWER,
-    },
-
-    [DECOR_RABUTA_FLOWER] =
-    {
-        .id = DECOR_RABUTA_FLOWER,
-        .name = _("RABUTA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 20,
-        .description = DecorDesc_RABUTA_FLOWER,
-        .tiles = DecorGfx_RABUTA_FLOWER,
-    },
-
-    [DECOR_NOMEL_FLOWER] =
-    {
-        .id = DECOR_NOMEL_FLOWER,
-        .name = _("NOMEL FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 50,
-        .description = DecorDesc_NOMEL_FLOWER,
-        .tiles = DecorGfx_NOMEL_FLOWER,
-    },
-
-    [DECOR_SPELON_FLOWER] =
-    {
-        .id = DECOR_SPELON_FLOWER,
-        .name = _("SPELON FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 75,
-        .description = DecorDesc_SPELON_FLOWER,
-        .tiles = DecorGfx_SPELON_FLOWER,
-    },
-
-    [DECOR_PAMTRE_FLOWER] =
-    {
-        .id = DECOR_PAMTRE_FLOWER,
-        .name = _("PAMTRE FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 75,
-        .description = DecorDesc_PAMTRE_FLOWER,
-        .tiles = DecorGfx_PAMTRE_FLOWER,
-    },
-
-    [DECOR_WATMEL_FLOWER] =
-    {
-        .id = DECOR_WATMEL_FLOWER,
-        .name = _("WATMEL FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 75,
-        .description = DecorDesc_WATMEL_FLOWER,
-        .tiles = DecorGfx_WATMEL_FLOWER,
-    },
-
-    [DECOR_DURIN_FLOWER] =
-    {
-        .id = DECOR_DURIN_FLOWER,
-        .name = _("DURIN FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 75,
-        .description = DecorDesc_DURIN_FLOWER,
-        .tiles = DecorGfx_DURIN_FLOWER,
-    },
-
-    [DECOR_BELUE_FLOWER] =
-    {
-        .id = DECOR_BELUE_FLOWER,
-        .name = _("BELUE FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 75,
-        .description = DecorDesc_BELUE_FLOWER,
-        .tiles = DecorGfx_BELUE_FLOWER,
-    },
-
-    [DECOR_PAPRIK_FLOWER] =
-    {
-        .id = DECOR_PAPRIK_FLOWER,
-        .name = _("PAPRIK FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_PAPRIK_FLOWER,
-        .tiles = DecorGfx_PAPRIK_FLOWER,
-    },
-
-    [DECOR_EGGANT_FLOWER] =
-    {
-        .id = DECOR_EGGANT_FLOWER,
-        .name = _("EGGANT FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_EGGANT_FLOWER,
-        .tiles = DecorGfx_EGGANT_FLOWER,
-    },
-
-    [DECOR_DRASH_FLOWER] =
-    {
-        .id = DECOR_DRASH_FLOWER,
-        .name = _("DRASH FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_DRASH_FLOWER,
-        .tiles = DecorGfx_DRASH_FLOWER,
-    },
-
-    [DECOR_SKUASH_FLOWER] =
-    {
-        .id = DECOR_SKUASH_FLOWER,
-        .name = _("SKUASH FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 30,
-        .description = DecorDesc_RSKUASH_FLOWER,
-        .tiles = DecorGfx_SKUASH_FLOWER,
-    },
-
-    [DECOR_PUMKIN_FLOWER] =
-    {
-        .id = DECOR_PUMKIN_FLOWER,
-        .name = _("PUMKIN FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 39,
-        .description = DecorDesc_PUMKIN_FLOWER,
-        .tiles = DecorGfx_PUMKIN_FLOWER,
-    },
-
-    [DECOR_CHILAN_FLOWER] =
-    {
-        .id = DECOR_CHILAN_FLOWER,
-        .name = _("CHILAN FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 20,
-        .description = DecorDesc_CHILAN_FLOWER,
-        .tiles = DecorGfx_CHILAN_FLOWER,
-    },
-
-    [DECOR_MALIUM_FLOWER] =
-    {
-        .id = DECOR_MALIUM_FLOWER,
-        .name = _("MALIUM FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 29,
-        .description = DecorDesc_MALIUM_FLOWER,
-        .tiles = DecorGfx_MALIUM_FLOWER,
-    },
-
-    [DECOR_TOPO_FLOWER] =
-    {
-        .id = DECOR_TOPO_FLOWER,
-        .name = _("TOPO FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 100,
-        .description = DecorDesc_TOPO_FLOWER,
-        .tiles = DecorGfx_TOPO_FLOWER,
-    },
-
-    [DECOR_STRIB_FLOWER] =
-    {
-        .id = DECOR_STRIB_FLOWER,
-        .name = _("STRIB FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 100,
-        .description = DecorDesc_STRIB_FLOWER,
-        .tiles = DecorGfx_STRIB_FLOWER,
-    },
-
-    [DECOR_NOION_FLOWER] =
-    {
-        .id = DECOR_NOION_FLOWER,
-        .name = _("NOION FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 16,
-        .description = DecorDesc_NOION_FLOWER,
-        .tiles = DecorGfx_NOION_FLOWER,
-    },
-
-    [DECOR_NUTPEA_FLOWER] =
-    {
-        .id = DECOR_NUTPEA_FLOWER,
-        .name = _("NUTPEA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_NUTPEA_FLOWER,
-        .tiles = DecorGfx_NUTPEA_FLOWER,
-    },
-
-    [DECOR_ROKA_FLOWER] =
-    {
-        .id = DECOR_ROKA_FLOWER,
-        .name = _("ROKA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_ROKA_FLOWER,
-        .tiles = DecorGfx_ROKA_FLOWER,
-    },
-
-    [DECOR_LIECHI_FLOWER] =
-    {
-        .id = DECOR_LIECHI_FLOWER,
-        .name = _("LIECHI FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_LIECHI_FLOWER,
-        .tiles = DecorGfx_LIECHI_FLOWER,
-    },
-
-    [DECOR_GANLON_FLOWER] =
-    {
-        .id = DECOR_GANLON_FLOWER,
-        .name = _("GANLON FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_GANLON_FLOWER,
-        .tiles = DecorGfx_GANLON_FLOWER,
-    },
-
-    [DECOR_SALAC_FLOWER] =
-    {
-        .id = DECOR_SALAC_FLOWER,
-        .name = _("SALAC FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_SALAC_FLOWER,
-        .tiles = DecorGfx_SALAC_FLOWER,
-    },
-
-    [DECOR_PETAYA_FLOWER] =
-    {
-        .id = DECOR_PETAYA_FLOWER,
-        .name = _("PETAYA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_PETAYA_FLOWER,
-        .tiles = DecorGfx_PETAYA_FLOWER,
-    },
-
-    [DECOR_APICOT_FLOWER] =
-    {
-        .id = DECOR_APICOT_FLOWER,
-        .name = _("APICOT FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 25,
-        .description = DecorDesc_APICOT_FLOWER,
-        .tiles = DecorGfx_APICOT_FLOWER,
-    },
-
-    [DECOR_LANSAT_FLOWER] =
-    {
-        .id = DECOR_LANSAT_FLOWER,
-        .name = _("LANSAT FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 7,
-        .description = DecorDesc_LANSAT_FLOWER,
-        .tiles = DecorGfx_LANSAT_FLOWER,
-    },
-    
-    [DECOR_STARF_FLOWER] =
-    {
-        .id = DECOR_STARF_FLOWER,
-        .name = _("STARF FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 7,
-        .description = DecorDesc_STARF_FLOWER,
-        .tiles = DecorGfx_STARF_FLOWER,
-    },
-
-    [DECOR_ENIGMA_FLOWER] =
-    {
-        .id = DECOR_ENIGMA_FLOWER,
-        .name = _("ENIGMA FLOWER"),
-        .permission = DECORPERM_SPRITE,
-        .shape = DECORSHAPE_1x2,
-        .category = DECORCAT_PLANT,
-        .price = 7,
-        .description = DecorDesc_ENIGMA_FLOWER,
-        .tiles = DecorGfx_ENIGMA_FLOWER,
-    }*/
+        .icon = {gDecorIcon_RegisteelDoll, gDecorIconPalette_RegisteelDoll},
+    }
 };

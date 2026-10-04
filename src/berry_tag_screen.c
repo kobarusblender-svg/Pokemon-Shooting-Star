@@ -823,9 +823,9 @@ static bool8 Task_EndTagFlip(struct Task *task) //
 
 static void PrintBerryNumberAndName(void)
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
     ConvertIntToDecimalStringN(gStringVar1, sBerryTag->berryId, STR_CONV_MODE_LEADING_ZEROS, 2);
-    StringCopy(gStringVar2, berry->name);
+    StringCopy(gStringVar2, berryInfo->name);
     if(sBerryTag->berryId >= 36 && sBerryTag->berryId <= 47)
         StringExpandPlaceholders(gStringVar4, sText_NumberEReader);
     else
@@ -835,13 +835,13 @@ static void PrintBerryNumberAndName(void)
 
 static void PrintBerrySize(void)
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
     AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sText_SizeSlash, 0, 1, TEXT_SKIP_DRAW, NULL);
-    if (berry->size != 0)
+    if (berryInfo->size != 0)
     {
         u32 inches, fraction; //MOD CONTEST TODO turn this to CM for spanish (ez)
 
-        inches = 1000 * berry->size / 254;
+        inches = 1000 * berryInfo->size / 254;
         if (inches % 10 > 4)
             inches += 10;
         fraction = (inches % 100) / 10;
@@ -860,46 +860,46 @@ static void PrintBerrySize(void)
 
 static void PrintBerryFirmness(void)
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
     AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sText_FirmSlash, 0, 0x11, TEXT_SKIP_DRAW, NULL);
-    if (berry->firmness != BERRY_FIRMNESS_UNKNOWN)
-        AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sBerryFirmnessStrings[berry->firmness], 0x28, 0x11, 0, NULL);
+    if (berryInfo->firmness != BERRY_FIRMNESS_UNKNOWN)
+        AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sBerryFirmnessStrings[berryInfo->firmness], 0x28, 0x11, 0, NULL);
     else
         AddTextPrinterParameterized(WIN_SIZE_FIRM, FONT_NORMAL, sText_ThreeMarks, 0x28, 0x11, 0, NULL);
 }
 
 static void PrintBerryDescription1(void)
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description1, 0, 1, 0, NULL);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
+    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berryInfo->description1, 0, 1, 0, NULL);
 }
 
 static void PrintBerryDescription2(void)
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
-    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berry->description2, 0, 0x11, 0, NULL);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
+    AddTextPrinterParameterized(WIN_DESC, FONT_NORMAL, berryInfo->description2, 0, 0x11, 0, NULL);
 }
 
 static void PrintBerryFeel(void) //
 {
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
     u8 HandleString;
-    if(berry->smoothness < 20){ // E-Reader Berries with 5 feel        
+    if(berryInfo->smoothness < 20){ // E-Reader Berries with 5 feel        
         HandleString = BERRY_FEEL_1;
     }
-    else if(berry->smoothness < 25){ // Berries with 20 feel
+    else if(berryInfo->smoothness < 25){ // Berries with 20 feel
         HandleString = BERRY_FEEL_2;
     }
-    else if(berry->smoothness < 30){ // Berries with 25 feel
+    else if(berryInfo->smoothness < 30){ // Berries with 25 feel
         HandleString = BERRY_FEEL_3;
     }
-    else if(berry->smoothness < 65){ // Berries with 30 feel
+    else if(berryInfo->smoothness < 65){ // Berries with 30 feel
         HandleString = BERRY_FEEL_4;
     }
-    else if(berry->smoothness < 70){ // E-Reader Berries with 65 feel
+    else if(berryInfo->smoothness < 70){ // E-Reader Berries with 65 feel
         HandleString = BERRY_FEEL_5;
     }
-    else if(berry->smoothness < 80){ // Berries with 70 feel
+    else if(berryInfo->smoothness < 80){ // Berries with 70 feel
         HandleString = BERRY_FEEL_6;
     }
     else{ // Out of bounds, special Cases & E-Reader Berries with 80+ feel
@@ -913,25 +913,25 @@ static void PrintBerryGrowth(void) //
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
 
     u8 HandleString;
-    if(berry->growthDuration < 12){ // Berries that grow in 4-8 hours
+    if(InfogrowthDuration < 12){ // Berries that grow in 4-8 hours
         HandleString = BERRY_GROWTH_1;
     }
-    else if(berry->growthDuration < 20){ // Berries that grow in 8-12-16 hours
+    else if(InfogrowthDuration < 20){ // Berries that grow in 8-12-16 hours
         HandleString = BERRY_GROWTH_2;
     }
-    else if(berry->growthDuration < 32){ // Berries that grow in 20-24 hours
+    else if(InfogrowthDuration < 32){ // Berries that grow in 20-24 hours
         HandleString = BERRY_GROWTH_3;
     }
-    else if(berry->growthDuration < 48){ // Berries that grow in 32 hours
+    else if(InfogrowthDuration < 48){ // Berries that grow in 32 hours
         HandleString = BERRY_GROWTH_4;
     }
-    else if(berry->growthDuration < 60){ // Berries that grow in 48 hours
+    else if(InfogrowthDuration < 60){ // Berries that grow in 48 hours
         HandleString = BERRY_GROWTH_5;
     }
-    else if(berry->growthDuration < 72){ // Berries that grow in 60-72 hours
+    else if(InfogrowthDuration < 72){ // Berries that grow in 60-72 hours
         HandleString = BERRY_GROWTH_6;
     }
-    else if(berry->growthDuration < 96){ // Berries that grow in 60-72 hours
+    else if(InfogrowthDuration < 96){ // Berries that grow in 60-72 hours
         HandleString = BERRY_GROWTH_7;
     }
     else{ // Out of bounds, special Cases & Berries that grow in 96+ hours
@@ -947,19 +947,107 @@ static void PrintBerryYield(void) //
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
 
     u8 HandleString;
-    if(berry->maxYield < 3){ // Yields of 2-1 Berries
+    if(InfomaxYield < 3){ // Yields of 2-1 Berries
         HandleString = BERRY_YIELD_1;
     }
-    else if(berry->maxYield < 6){ // Yields of 3-5 Berries
+    else if(InfomaxYield < 6){ // Yields of 3-5 Berries
         HandleString = BERRY_YIELD_2;
     }
-    else if(berry->maxYield < 12){ // Yields of 6-11 Berries
+    else if(InfomaxYield < 12){ // Yields of 6-11 Berries
         HandleString = BERRY_YIELD_3;
     }
-    else if(berry->maxYield < 24){ // Yields of 12-23 Berries
+    else if(InfomaxYield < 24){ // Yields of 12-23 Berries
         HandleString = BERRY_YIELD_4;
     }
-    else if(berry->maxYield <= 24){ // Yields of 24+ Berries
+    else if(InfomaxYield <= 24){ // Yields of 24+ Berries
+        HandleString = BERRY_YIELD_5;
+    }
+    else{ // Out of bounds & special Cases
+        HandleString = BERRY_YIELD_UNKNOWN;
+    }
+    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryYieldStrings[HandleString], 5, 25, 0, NULL);
+}
+
+static void PrintBerryFeel(void) //
+{
+    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    u8 HandleString;
+    if(Infosmoothness < 20){ // E-Reader Berries with 5 feel        
+        HandleString = BERRY_FEEL_1;
+    }
+    else if(Infosmoothness < 25){ // Berries with 20 feel
+        HandleString = BERRY_FEEL_2;
+    }
+    else if(Infosmoothness < 30){ // Berries with 25 feel
+        HandleString = BERRY_FEEL_3;
+    }
+    else if(Infosmoothness < 65){ // Berries with 30 feel
+        HandleString = BERRY_FEEL_4;
+    }
+    else if(Infosmoothness < 70){ // E-Reader Berries with 65 feel
+        HandleString = BERRY_FEEL_5;
+    }
+    else if(Infosmoothness < 80){ // Berries with 70 feel
+        HandleString = BERRY_FEEL_6;
+    }
+    else{ // Out of bounds, special Cases & E-Reader Berries with 80+ feel
+        HandleString = BERRY_FEEL_UNKNOWN;
+    }
+    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryFeelStrings[HandleString], 5, 10, 0, NULL);
+}
+
+static void PrintBerryGrowth(void) //
+{
+    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+
+    u8 HandleString;
+    if(InfogrowthDuration < 12){ // Berries that grow in 4-8 hours
+        HandleString = BERRY_GROWTH_1;
+    }
+    else if(InfogrowthDuration < 20){ // Berries that grow in 8-12-16 hours
+        HandleString = BERRY_GROWTH_2;
+    }
+    else if(InfogrowthDuration < 32){ // Berries that grow in 20-24 hours
+        HandleString = BERRY_GROWTH_3;
+    }
+    else if(InfogrowthDuration < 48){ // Berries that grow in 32 hours
+        HandleString = BERRY_GROWTH_4;
+    }
+    else if(InfogrowthDuration < 60){ // Berries that grow in 48 hours
+        HandleString = BERRY_GROWTH_5;
+    }
+    else if(InfogrowthDuration < 72){ // Berries that grow in 60-72 hours
+        HandleString = BERRY_GROWTH_6;
+    }
+    else if(InfogrowthDuration < 96){ // Berries that grow in 60-72 hours
+        HandleString = BERRY_GROWTH_7;
+    }
+    else{ // Out of bounds, special Cases & Berries that grow in 96+ hours
+        HandleString = BERRY_GROWTH_UNKNOWN;
+    }
+    AddTextPrinterParameterized(WIN_BERRY_DATA, FONT_NORMAL, sBerryGrowthStrings[HandleString], 5, 40, 0, NULL);
+}
+
+static void PrintBerryYield(void) //
+{   
+    //Some of these are never seen unless "Galactic Berries" is obtained and enabled (Gen 4 Style berries)
+
+    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+
+    u8 HandleString;
+    if(InfomaxYield < 3){ // Yields of 2-1 Berries
+        HandleString = BERRY_YIELD_1;
+    }
+    else if(InfomaxYield < 6){ // Yields of 3-5 Berries
+        HandleString = BERRY_YIELD_2;
+    }
+    else if(InfomaxYield < 12){ // Yields of 6-11 Berries
+        HandleString = BERRY_YIELD_3;
+    }
+    else if(InfomaxYield < 24){ // Yields of 12-23 Berries
+        HandleString = BERRY_YIELD_4;
+    }
+    else if(InfomaxYield <= 24){ // Yields of 24+ Berries
         HandleString = BERRY_YIELD_5;
     }
     else{ // Out of bounds & special Cases
@@ -970,7 +1058,7 @@ static void PrintBerryYield(void) //
 
 static void CreateBerrySprite(void)
 {
-    sBerryTag->currentSpriteBerryId = sBerryTag->berryId - 1;
+    sBerryTag->currentSpriteBerryId = sBerryTag->berryId;
     sBerryTag->berrySpriteId = CreateBerryTagSprite(sBerryTag->currentSpriteBerryId, 56, 64);
 }
 
@@ -1025,25 +1113,25 @@ static void CreateNewFlavorProfileSprite(void) //
         u8 y1 = 63;
         u8 y2 = 63;
 
-        if(berry->tileNumber1 > 4 || (berry->sour > 30 && berry->sweet == 0 && berry->dry == 0)){ // Flip fix possition sprite 1 && sour?
+        if(InfotileNumber1 > 4 || (Infosour > 30 && Infosweet == 0 && Infodry == 0)){ // Flip fix possition sprite 1 && sour?
             x1--;
         }
-        if(berry->tileNumber2 > 4){ // Flip fix possition sprite 2
+        if(InfotileNumber2 > 4){ // Flip fix possition sprite 2
             x2--;
         }
-        if(berry->spicy > 30){ // Spicy with 40 value fix position
+        if(Infospicy > 30){ // Spicy with 40 value fix position
             y1 = y1 - 3;
         }
-        if(berry->dry > 30 && berry->spicy == 0){ // Dry with 40 value fix positions
+        if(Infodry > 30 && Infospicy == 0){ // Dry with 40 value fix positions
             x1 = x1 + 1;
         }
-        else if(berry->dry > 30){
+        else if(Infodry > 30){
             x2 = x2 + 1;
         }
-        if(berry->sour > 30 && berry->spicy < 40 && berry->dry == 0 && berry->sweet == 0 && berry->bitter < 40 ){ // Sour with 40 value fix positions
+        if(Infosour > 30 && Infospicy < 40 && Infodry == 0 && Infosweet == 0 && Infobitter < 40 ){ // Sour with 40 value fix positions
             x1--;
         }
-        else if(berry->sour > 30){
+        else if(Infosour > 30){
             x2--;
         }
 
@@ -1120,29 +1208,29 @@ static void CreateFlavorXSprites(void) //MOD CONTEST this works exactly like the
 
 static void SetFlavorCirclesVisiblity(void)
 {
-    const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
+    const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
 
-    if (berry->spicy && !sBerryTag->onBack && !sBerryTag->flipping)
+    if (berryInfo->spicy && !sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_SPICY]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_SPICY]].invisible = TRUE;
 
-    if (berry->dry && !sBerryTag->onBack && !sBerryTag->flipping)
+    if (berryInfo->dry && !sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_DRY]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_DRY]].invisible = TRUE;
 
-    if (berry->sweet && !sBerryTag->onBack && !sBerryTag->flipping)
+    if (berryInfo->sweet && !sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_SWEET]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_SWEET]].invisible = TRUE;
 
-    if (berry->bitter && !sBerryTag->onBack && !sBerryTag->flipping)
+    if (berryInfo->bitter && !sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_BITTER]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_BITTER]].invisible = TRUE;
 
-    if (berry->sour && !sBerryTag->onBack && !sBerryTag->flipping)
+    if (berryInfo->sour && !sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_SOUR]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorCircleIds[FLAVOR_SOUR]].invisible = TRUE;
@@ -1164,63 +1252,63 @@ static void SetFlavorXVisiblity(void) //MOD CONTEST this one sets the X sprites 
     */
     const struct Berry *berry = GetBerryInfo(sBerryTag->berryId);
 
-    if ((berry->growthSeasons == SEASON_A || berry->growthSeasons == SEASON_B || 
-          berry->growthSeasons == SEASON_E || berry->growthSeasons == SEASON_I) 
+    if ((InfogrowthSeasons == SEASON_A || InfogrowthSeasons == SEASON_B || 
+          InfogrowthSeasons == SEASON_E || InfogrowthSeasons == SEASON_I) 
           && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[0]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[0]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_B || berry->growthSeasons == SEASON_C ||
-          berry->growthSeasons == SEASON_F || berry->growthSeasons == SEASON_I ) 
+    if ((InfogrowthSeasons == SEASON_B || InfogrowthSeasons == SEASON_C ||
+          InfogrowthSeasons == SEASON_F || InfogrowthSeasons == SEASON_I ) 
           && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[1]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[1]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_C || berry->growthSeasons == SEASON_D ||
-          berry->growthSeasons == SEASON_G || berry->growthSeasons == SEASON_I ) 
+    if ((InfogrowthSeasons == SEASON_C || InfogrowthSeasons == SEASON_D ||
+          InfogrowthSeasons == SEASON_G || InfogrowthSeasons == SEASON_I ) 
           && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[2]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[2]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_A || berry->growthSeasons == SEASON_D ||
-          berry->growthSeasons == SEASON_H || berry->growthSeasons == SEASON_I ) 
+    if ((InfogrowthSeasons == SEASON_A || InfogrowthSeasons == SEASON_D ||
+          InfogrowthSeasons == SEASON_H || InfogrowthSeasons == SEASON_I ) 
           && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[3]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[3]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_A || berry->growthSeasons == SEASON_D ||
-          berry->growthSeasons == SEASON_G || berry->growthSeasons == SEASON_H ||
-            berry->growthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
+    if ((InfogrowthSeasons == SEASON_A || InfogrowthSeasons == SEASON_D ||
+          InfogrowthSeasons == SEASON_G || InfogrowthSeasons == SEASON_H ||
+            InfogrowthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[4]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[4]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_A || berry->growthSeasons == SEASON_B ||
-          berry->growthSeasons == SEASON_E || berry->growthSeasons == SEASON_H ||
-            berry->growthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
+    if ((InfogrowthSeasons == SEASON_A || InfogrowthSeasons == SEASON_B ||
+          InfogrowthSeasons == SEASON_E || InfogrowthSeasons == SEASON_H ||
+            InfogrowthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[5]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[5]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_B || berry->growthSeasons == SEASON_C ||
-          berry->growthSeasons == SEASON_E || berry->growthSeasons == SEASON_F ||
-            berry->growthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
+    if ((InfogrowthSeasons == SEASON_B || InfogrowthSeasons == SEASON_C ||
+          InfogrowthSeasons == SEASON_E || InfogrowthSeasons == SEASON_F ||
+            InfogrowthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[6]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[6]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_C || berry->growthSeasons == SEASON_D ||
-          berry->growthSeasons == SEASON_F || berry->growthSeasons == SEASON_G ||
-            berry->growthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
+    if ((InfogrowthSeasons == SEASON_C || InfogrowthSeasons == SEASON_D ||
+          InfogrowthSeasons == SEASON_F || InfogrowthSeasons == SEASON_G ||
+            InfogrowthSeasons == SEASON_I ) && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->flavorXIds[7]].invisible = FALSE;
     else
         gSprites[sBerryTag->flavorXIds[7]].invisible = TRUE;
 
-    if ((berry->growthSeasons == SEASON_J) && sBerryTag->onBack && !sBerryTag->flipping)
+    if ((InfogrowthSeasons == SEASON_J) && sBerryTag->onBack && !sBerryTag->flipping)
         gSprites[sBerryTag->seasonQuestionSpriteId].invisible = FALSE;
     else
         gSprites[sBerryTag->seasonQuestionSpriteId].invisible = TRUE;
@@ -1305,7 +1393,7 @@ static void TryChangeDisplayedBerry(u8 taskId, s8 toMove) //MOD CONTEST original
     s16 *data = gTasks[taskId].data;
     s16 currPocketPosition = gBagPosition.scrollPosition[POCKET_BERRIES] + gBagPosition.cursorPosition[POCKET_BERRIES];
     u32 newPocketPosition = currPocketPosition + toMove;
-    if (newPocketPosition < ITEM_TO_BERRY(LAST_BERRY_INDEX - 1) && GetBagItemId(POCKET_BERRIES, newPocketPosition) != ITEM_NONE)
+    if (newPocketPosition < NUM_BERRIES && GetBagItemId(POCKET_BERRIES, newPocketPosition) != ITEM_NONE)
     {
         if (toMove < 0)
             tBgOp = BG_COORD_SUB;
