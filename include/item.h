@@ -6,7 +6,6 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/tms_hms.h"
-#include "constants/berries.h"
 #include "constants/item_effects.h"
 #include "constants/hold_effects.h"
 

@@ -1850,11 +1850,18 @@ static void CB2_StartBlenderLocal(void)
             else
                 playerId = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
 
-            if (sBerryBlender->playerToThrowBerry == playerId)
+            if (gSpecialVar_0x8004 == 6) //Special case for 3 berries solo, as the new map breaks the animation sequence.
+            {
+                CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry++], 0);
+                CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry++], 1);
+                CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry++], 2);
+                i = 3;
+            }
+            else if (sBerryBlender->playerToThrowBerry == playerId)
             {
                 CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry++], i);
                 // If we're throwing all at once, continue the loop. If not, break out of the loop(vanilla behavior).
-                if (!BERRY_BLENDER_THROW_ALL_BERRIES_AT_ONCE && gSpecialVar_0x8004 < 5)
+                if (!BERRY_BLENDER_THROW_ALL_BERRIES_AT_ONCE && gSpecialVar_0x8004 < 4)
                     break;
             }
         }

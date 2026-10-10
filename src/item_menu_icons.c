@@ -329,6 +329,174 @@ static const struct SpriteTemplate sBerryPicRotatingSpriteTemplate =
     .affineAnims = sBerryPicRotatingAnimCmds,
 };
 
+const struct CompressedSpriteSheet gBerryFlowerSpriteSheet[] = // MOD CONTEST Berry Flower Sprites. Don't ask, I don't know.
+{
+    [BERRY_ID_CHERI]          = {gFlowerPic_Cheri,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Cheri},
+    [BERRY_ID_CHESTO]          = {gFlowerPic_Chesto, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Chesto},
+    [BERRY_ID_PECHA]          = {gFlowerPic_Pecha,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Pecha},
+    [BERRY_ID_RAWST]          = {gFlowerPic_Rawst,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Rawst},
+    [BERRY_ID_ASPEAR]          = {gFlowerPic_Aspear, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Aspear},
+    [BERRY_ID_LEPPA]          = {gFlowerPic_Leppa,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Leppa},
+    [BERRY_ID_ORAN]          = {gFlowerPic_Oran,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Oran},
+    [BERRY_ID_PERSIM]          = {gFlowerPic_Persim, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Persim},
+    [BERRY_ID_LUM]          = {gFlowerPic_Lum,    0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Lum},
+    [BERRY_ID_SITRUS]          = {gFlowerPic_Sitrus, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Sitrus},
+    [BERRY_ID_FIGY]          = {gFlowerPic_Figy,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Figy},
+    [BERRY_ID_WIKI]          = {gFlowerPic_Wiki,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Wiki},
+    [BERRY_ID_MAGO]          = {gFlowerPic_Mago,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Mago},
+    [BERRY_ID_AGUAV]          = {gFlowerPic_Aguav,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Aguav},
+    [BERRY_ID_IAPAPA]          = {gFlowerPic_Iapapa, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Iapapa},
+    [BERRY_ID_RAZZ]          = {gFlowerPic_Razz,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Razz},
+    [BERRY_ID_BLUK]          = {gFlowerPic_Bluk,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Bluk},
+    [BERRY_ID_NANAB]          = {gFlowerPic_Nanab,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Nanab},
+    [BERRY_ID_WEPEAR]          = {gFlowerPic_Wepear, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Wepear},
+    [BERRY_ID_PINAP]          = {gFlowerPic_Pinap,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Pinap},
+    [BERRY_ID_POMEG]          = {gFlowerPic_Pomeg,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Pomeg},
+    [BERRY_ID_KELPSY]          = {gFlowerPic_Kelpsy, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Kelpsy},
+    [BERRY_ID_QUALOT]          = {gFlowerPic_Qualot, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Qualot},
+    [BERRY_ID_HONDEW]          = {gFlowerPic_Hondew, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Hondew},
+    [BERRY_ID_GREPA]          = {gFlowerPic_Grepa,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Grepa},
+    [BERRY_ID_TAMATO]          = {gFlowerPic_Tamato, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Tamato},
+    [BERRY_ID_CORNN]          = {gFlowerPic_Cornn,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Cornn},
+    [BERRY_ID_MAGOST]          = {gFlowerPic_Magost, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Magost},
+    [BERRY_ID_RABUTA]          = {gFlowerPic_Rabuta, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Rabuta},
+    [BERRY_ID_NOMEL]          = {gFlowerPic_Nomel,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Nomel},
+    [BERRY_ID_SPELON]          = {gFlowerPic_Spelon, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Spelon},
+    [BERRY_ID_PAMTRE]          = {gFlowerPic_Pamtre, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Pamtre},
+    [BERRY_ID_WATMEL]          = {gFlowerPic_Watmel, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Watmel},
+    [BERRY_ID_DURIN]          = {gFlowerPic_Durin,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Durin},
+    [BERRY_ID_BELUE]          = {gFlowerPic_Belue,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Belue},
+    [BERRY_ID_PUMKIN]          = {gFlowerPic_Pumkin,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Pumkin},// MOD CONTEST E-reader berry graphics:
+    [BERRY_ID_DRASH]          = {gFlowerPic_Drash,    0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Drash},//
+    [BERRY_ID_EGGANT]          = {gFlowerPic_Eggant,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Eggant},//
+    [BERRY_ID_STRIB]          = {gFlowerPic_Strib,    0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Strib},//
+    [BERRY_ID_CHILANER]          = {gFlowerPic_ChilanER, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_ChilanER},//
+    [BERRY_ID_NUTPEA]          = {gFlowerPic_Nutpea,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Nutpea},//
+    [BERRY_ID_NOION]          = {gFlowerPic_Noion,    0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Noion},//(Japan exclusive Ginema berry)
+    [BERRY_ID_ROKA]          = {gFlowerPic_Roka,     0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Roka},//(Japan exclusive Kuo berry)
+    [BERRY_ID_SKUASH]          = {gFlowerPic_Skuash,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Skuash},//(Japan exclusive Yago berry)
+    [BERRY_ID_PAPRIK]          = {gFlowerPic_Paprik,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Paprik},//(Japan exclusive Touga berry)
+    [BERRY_ID_MALIUM]          = {gFlowerPic_Malium,   0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Malium},//(Japan exclusive Niniku berry)
+    [BERRY_ID_TOPO]          = {gFlowerPic_Topo,     0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Topo},//(Japan exclusive Topo berry)
+    //[BERRY_ID_CHILAN]          = {gFlowerPic_Chilan, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Chilan},
+    //[BERRY_ID_OCCA]          = {gFlowerPic_Occa, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Occa},
+    //[BERRY_ID_PASSHO]          = {gFlowerPic_Passho, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Passho},
+    //[BERRY_ID_WACAN]          = {gFlowerPic_Wacan, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Wacan},
+    //[BERRY_ID_RINDO]          = {gFlowerPic_Rindo, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Rindo},
+    //[BERRY_ID_YACHE]          = {gFlowerPic_Yache, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Yache},
+    //[BERRY_ID_CHOPLE]          = {gFlowerPic_Chople, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Chople},
+    //[BERRY_ID_KEBIA]          = {gFlowerPic_Kebia, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Kebia},
+    //[BERRY_ID_SHUCA]          = {gFlowerPic_Shuca, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Shuca},
+    //[BERRY_ID_COBA]          = {gFlowerPic_Coba, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Coba},
+    //[BERRY_ID_PAYAPA]          = {gFlowerPic_Payapa, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Payapa},
+    //[BERRY_ID_TANGA]          = {gFlowerPic_Tanga, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Tanga},
+    //[BERRY_ID_CHARTI]          = {gFlowerPic_Charti, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Charti},
+    //[BERRY_ID_KASIB]          = {gFlowerPic_Kasib, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Kasib},
+    //[BERRY_ID_HABAN]          = {gFlowerPic_Haban, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Haban},
+    //[BERRY_ID_COLBUR]          = {gFlowerPic_Colbur, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Colbur},
+    //[BERRY_ID_BABIRI]          = {gFlowerPic_Babiri, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Babiri},
+    //[BERRY_ID_ROSELI]          = {gFlowerPic_Roseli, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Roseli},
+    [BERRY_ID_LIECHI]          = {gFlowerPic_Liechi, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Liechi},
+    [BERRY_ID_GANLON]          = {gFlowerPic_Ganlon, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Ganlon},
+    [BERRY_ID_SALAC]          = {gFlowerPic_Salac,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Salac},
+    [BERRY_ID_PETAYA]          = {gFlowerPic_Petaya, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Petaya},
+    [BERRY_ID_APICOT]          = {gFlowerPic_Apicot, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Apicot},
+    [BERRY_ID_LANSAT]          = {gFlowerPic_Lansat, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Lansat},
+    [BERRY_ID_STARF]          = {gFlowerPic_Starf,  0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Starf},
+    [BERRY_ID_ENIGMA]          = {gFlowerPic_Enigma, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Enigma},
+    //[BERRY_ID_MICLE]          = {gFlowerPic_Micle, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Micle},
+    //[BERRY_ID_CUSTAP]          = {gFlowerPic_Custap, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Custap},
+    //[BERRY_ID_JABOCA]          = {gFlowerPic_Jaboca, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Jaboca},
+    //[BERRY_ID_ROWAP]          = {gFlowerPic_Rowap, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Rowap},
+    //[BERRY_ID_KEE]          = {gFlowerPic_Kee, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Kee},
+    //[BERRY_ID_MARANGA]          = {gFlowerPic_Maranga, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Maranga},
+    [BERRY_ID_ENGIMA_E_READER] = {gFlowerPic_Enigma, 0x800, TAG_BERRY_FLOWER_GFX}, //gFlowerPalette_Enigma},
+};
+
+const struct SpritePalette gBerryFlowerPaletteTable[] = // MOD CONTEST Berry Flower palettes
+{
+    [BERRY_ID_CHERI]          = {gFlowerPalette_Cheri, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_CHESTO]          = {gFlowerPalette_Chesto, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_PECHA]          = {gFlowerPalette_Pecha, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_RAWST]          = {gFlowerPalette_Rawst, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_ASPEAR]          = {gFlowerPalette_Aspear, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_LEPPA]          = {gFlowerPalette_Leppa, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_ORAN]          = {gFlowerPalette_Oran, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_PERSIM]          = {gFlowerPalette_Persim, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_LUM]          = {gFlowerPalette_Lum, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_SITRUS]          = {gFlowerPalette_Sitrus, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_FIGY]          = {gFlowerPalette_Figy, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_WIKI]          = {gFlowerPalette_Wiki, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_MAGO]          = {gFlowerPalette_Mago, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_AGUAV]          = {gFlowerPalette_Aguav, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_IAPAPA]          = {gFlowerPalette_Iapapa, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_RAZZ]          = {gFlowerPalette_Razz, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_BLUK]          = {gFlowerPalette_Bluk, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_NANAB]          = {gFlowerPalette_Nanab, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_WEPEAR]          = {gFlowerPalette_Wepear, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_PINAP]          = {gFlowerPalette_Pinap, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_POMEG]          = {gFlowerPalette_Pomeg, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_KELPSY]          = {gFlowerPalette_Kelpsy, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_QUALOT]          = {gFlowerPalette_Qualot, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_HONDEW]          = {gFlowerPalette_Hondew, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_GREPA]          = {gFlowerPalette_Grepa, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_TAMATO]          = {gFlowerPalette_Tamato, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_CORNN]          = {gFlowerPalette_Cornn, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_MAGOST]          = {gFlowerPalette_Magost, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_RABUTA]          = {gFlowerPalette_Rabuta, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_NOMEL]          = {gFlowerPalette_Nomel, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_SPELON]          = {gFlowerPalette_Spelon, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_PAMTRE]          = {gFlowerPalette_Pamtre, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_WATMEL]          = {gFlowerPalette_Watmel, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_DURIN]          = {gFlowerPalette_Durin, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_BELUE]          = {gFlowerPalette_Belue, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_PUMKIN]          = {gFlowerPalette_Pumkin, TAG_BERRY_FLOWER_GFX},// MOD CONTEST E-reader berry graphics:
+    [BERRY_ID_DRASH]          = {gFlowerPalette_Drash, TAG_BERRY_FLOWER_GFX},//
+    [BERRY_ID_EGGANT]          = {gFlowerPalette_Eggant, TAG_BERRY_FLOWER_GFX},//
+    [BERRY_ID_STRIB]          = {gFlowerPalette_Strib, TAG_BERRY_FLOWER_GFX},//
+    [BERRY_ID_CHILANER]          = {gFlowerPalette_ChilanER, TAG_BERRY_FLOWER_GFX},//
+    [BERRY_ID_NUTPEA]          = {gFlowerPalette_Nutpea, TAG_BERRY_FLOWER_GFX},//
+    [BERRY_ID_NOION]          = {gFlowerPalette_Noion, TAG_BERRY_FLOWER_GFX},//(Japan exclusive Ginema berry)
+    [BERRY_ID_ROKA]          = {gFlowerPalette_Roka, TAG_BERRY_FLOWER_GFX},//(Japan exclusive Kuo berry)
+    [BERRY_ID_SKUASH]          = {gFlowerPalette_Skuash, TAG_BERRY_FLOWER_GFX},//(Japan exclusive Yago berry)
+    [BERRY_ID_PAPRIK]          = {gFlowerPalette_Paprik, TAG_BERRY_FLOWER_GFX},//(Japan exclusive Touga berry)
+    [BERRY_ID_MALIUM]          = {gFlowerPalette_Malium, TAG_BERRY_FLOWER_GFX},//(Japan exclusive Niniku berry)
+    [BERRY_ID_TOPO]          = {gFlowerPalette_Topo, TAG_BERRY_FLOWER_GFX},//(Japan exclusive Topo berry)
+    //[BERRY_ID_CHILAN]          = {gFlowerPalette_Chilan, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_OCCA]          = {gFlowerPalette_Occa, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_PASSHO]          = {gFlowerPalette_Passho, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_WACAN]          = {gFlowerPalette_Wacan, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_RINDO]          = {gFlowerPalette_Rindo, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_YACHE]          = {gFlowerPalette_Yache, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_CHOPLE]          = {gFlowerPalette_Chople, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_KEBIA]          = {gFlowerPalette_Kebia, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_SHUCA]          = {gFlowerPalette_Shuca, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_COBA]          = {gFlowerPalette_Coba, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_PAYAPA]          = {gFlowerPalette_Payapa, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_TANGA]          = {gFlowerPalette_Tanga, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_CHARTI]          = {gFlowerPalette_Charti, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_KASIB]          = {gFlowerPalette_Kasib, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_HABAN]          = {gFlowerPalette_Haban, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_COLBUR]          = {gFlowerPalette_Colbur, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_BABIRI]          = {gFlowerPalette_Babiri, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_ROSELI]          = {gFlowerPalette_Roseli, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_LIECHI]          = {gFlowerPalette_Liechi, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_GANLON]          = {gFlowerPalette_Ganlon, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_SALAC]          = {gFlowerPalette_Salac, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_PETAYA]          = {gFlowerPalette_Petaya, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_APICOT]          = {gFlowerPalette_Apicot, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_LANSAT]          = {gFlowerPalette_Lansat, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_STARF]          = {gFlowerPalette_Starf, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_ENIGMA]          = {gFlowerPalette_Enigma, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_MICLE]          = {gFlowerPalette_Micle, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_CUSTAP]          = {gFlowerPalette_Custap, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_JABOCA]          = {gFlowerPalette_Jaboca, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_ROWAP]          = {gFlowerPalette_Rowap, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_KEE]          = {gFlowerPalette_Kee, TAG_BERRY_FLOWER_GFX},
+    //[BERRY_ID_MARANGA]          = {gFlowerPalette_Maranga, TAG_BERRY_FLOWER_GFX},
+    [BERRY_ID_ENGIMA_E_READER] = {gFlowerPalette_Enigma, TAG_BERRY_FLOWER_GFX},
+};
+
 
 const struct CompressedSpriteSheet gBerryCheckCircleSpriteSheet =
 {
@@ -1179,51 +1347,36 @@ u8 CreateFlavorGrafSprite(s16 x, s16 y, s16 tile) // MOD CONTEST this one create
             StartSpriteAnim(&gSprites[CurrentTile], 0);
             break;
     }
-
-    /*u8 UPleftSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y, 1); //added 1 to each subpriority to make it work with the Enigma profile sprite
-    u8 UPrightSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x + 32, y, 1);
-    u8 DOWNleftSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x - 32, y + 64, 1);
-    u8 DOWNrightSpriteId = CreateSprite(&sBerryFlavorGrafSpriteTemplate, x + 32, y + 64, 1);
-    gSprites[UPrightSpriteId].sUPLeftSpriteId = UPleftSpriteId;
-    gSprites[DOWNleftSpriteId].sUPLeftSpriteId = UPleftSpriteId;
-    gSprites[DOWNrightSpriteId].sUPLeftSpriteId = UPleftSpriteId;
-    StartSpriteAnim(&gSprites[UPrightSpriteId], 1); //tells what tile of the spritesheet is each.
-    StartSpriteAnim(&gSprites[DOWNleftSpriteId], 2);
-    StartSpriteAnim(&gSprites[DOWNrightSpriteId], 3);
-    gSprites[UPrightSpriteId].callback = &SpriteCB_BerryFlavorGrafUPright;
-    gSprites[DOWNleftSpriteId].callback = &SpriteCB_BerryFlavorGrafDOWNleft;
-    gSprites[DOWNrightSpriteId].callback = &SpriteCB_BerryFlavorGrafDOWNright;
-    return UPleftSpriteId;*/ //MOD CONTEST OLD CODE
     return CurrentTile;
 }
 
 void CalculateAndloadProfilePalette(s16 BerryNumber)
 {
-    const struct Berry *berry = GetBerryInfo(BerryNumber);
+    const struct BerryInfo *berryInfo = GetBerryInfo(BerryNumber);
     u8 HighestValue = 0;
     u8 Quantity = 0;
 
-    if((berry->spicy >= berry->dry) && (berry->spicy >= berry->sweet) && (berry->spicy >= berry->bitter) && (berry->spicy >= berry->sour))
+    if((berryInfo->spicy >= berryInfo->dry) && (berryInfo->spicy >= berryInfo->sweet) && (berryInfo->spicy >= berryInfo->bitter) && (berryInfo->spicy >= berryInfo->sour))
     {
-        HighestValue = berry->spicy;
+        HighestValue = berryInfo->spicy;
         Quantity++;
-        if(berry->dry == HighestValue)
+        if(berryInfo->dry == HighestValue)
             Quantity++;
-        if(berry->sweet == HighestValue)
+        if(berryInfo->sweet == HighestValue)
             Quantity++;
-        if(berry->bitter == HighestValue)
+        if(berryInfo->bitter == HighestValue)
             Quantity++;
-        if(berry->sour == HighestValue)
+        if(berryInfo->sour == HighestValue)
             Quantity++;
 
         if(Quantity > 3){ //All
             LoadSpritePalette(&gFlavorBalancedPaletteTable);
         }
         else if(Quantity > 2){
-            if(berry->sweet == HighestValue && berry->sour != HighestValue){//Spicy+Sweet
+            if(berryInfo->sweet == HighestValue && berryInfo->sour != HighestValue){//Spicy+Sweet
             LoadSpritePalette(&gFlavorSpicySweetPaletteTable);
             }
-            else if(berry->bitter == HighestValue){ //Spicy+Bitter
+            else if(berryInfo->bitter == HighestValue){ //Spicy+Bitter
             LoadSpritePalette(&gFlavorSpicyBitterPaletteTable);
             }
             else{ //Sour+Sweet 
@@ -1231,13 +1384,13 @@ void CalculateAndloadProfilePalette(s16 BerryNumber)
             }
         }
         else if(Quantity > 1){
-            if(berry->dry == HighestValue){//Spicy+Dry
+            if(berryInfo->dry == HighestValue){//Spicy+Dry
                 LoadSpritePalette(&gFlavorSpicyDryPaletteTable);
             }
-            else if(berry->sweet == HighestValue){//Spicy+Sweet
+            else if(berryInfo->sweet == HighestValue){//Spicy+Sweet
                 LoadSpritePalette(&gFlavorSpicySweetPaletteTable);
             }
-            else if(berry->bitter == HighestValue){//Spicy+Bitter
+            else if(berryInfo->bitter == HighestValue){//Spicy+Bitter
                 LoadSpritePalette(&gFlavorSpicyBitterPaletteTable);
             }
             else{//Spicy+Sour
@@ -1248,22 +1401,22 @@ void CalculateAndloadProfilePalette(s16 BerryNumber)
                 LoadSpritePalette(&gFlavorSpicyPaletteTable);
         }
     }
-    else if((berry->dry >= berry->sweet) && (berry->dry >= berry->bitter) && (berry->dry >= berry->sour))
+    else if((berryInfo->dry >= berryInfo->sweet) && (berryInfo->dry >= berryInfo->bitter) && (berryInfo->dry >= berryInfo->sour))
     {
-        HighestValue = berry->dry;
+        HighestValue = berryInfo->dry;
         Quantity++;
-        if(berry->sweet == HighestValue)
+        if(berryInfo->sweet == HighestValue)
             Quantity++;
-        if(berry->bitter == HighestValue)
+        if(berryInfo->bitter == HighestValue)
             Quantity++;
-        if(berry->sour == HighestValue)
+        if(berryInfo->sour == HighestValue)
             Quantity++;
 
         if(Quantity > 3){ //All
             LoadSpritePalette(&gFlavorBalancedPaletteTable);
         }
         else if(Quantity > 2){
-            if(HighestValue == berry->sweet){//Dry+Sour
+            if(HighestValue == berryInfo->sweet){//Dry+Sour
                 LoadSpritePalette(&gFlavorDrySourPaletteTable);
             }
             else{//Dry+Bitter
@@ -1271,10 +1424,10 @@ void CalculateAndloadProfilePalette(s16 BerryNumber)
             }
         }
         else if(Quantity > 1){
-            if(berry->sweet == HighestValue){ //Dry + Sweet
+            if(berryInfo->sweet == HighestValue){ //Dry + Sweet
                 LoadSpritePalette(&gFlavorDrySweetPaletteTable);
             }
-            else if(berry->bitter == HighestValue){ //Dry + Bitter
+            else if(berryInfo->bitter == HighestValue){ //Dry + Bitter
                 LoadSpritePalette(&gFlavorDryBitterPaletteTable);
             }
             else{ //Dry + Sour
@@ -1285,26 +1438,26 @@ void CalculateAndloadProfilePalette(s16 BerryNumber)
                 LoadSpritePalette(&gFlavorDryPaletteTable);
         }
     }
-    else if((berry->sweet >= berry->bitter) && (berry->sweet >= berry->sour))
+    else if((berryInfo->sweet >= berryInfo->bitter) && (berryInfo->sweet >= berryInfo->sour))
     {
-        HighestValue = berry->sweet;
-        if(HighestValue == berry->bitter){//Sweet+Bitter !
+        HighestValue = berryInfo->sweet;
+        if(HighestValue == berryInfo->bitter){//Sweet+Bitter !
             LoadSpritePalette(&gFlavorSweetBitterPaletteTable);
         }
-        else if(HighestValue == berry->sour){ //Sweet+Sour
+        else if(HighestValue == berryInfo->sour){ //Sweet+Sour
             LoadSpritePalette(&gFlavorSweetSourPaletteTable);
         }
         else{//Sweet
             LoadSpritePalette(&gFlavorSweetPaletteTable);
         }
     }
-    else if((berry->bitter >= berry->sour)){ 
-        if (berry->bitter == berry->sour){//Bitter+Sour
-            HighestValue = berry->bitter;
+    else if((berryInfo->bitter >= berryInfo->sour)){ 
+        if (berryInfo->bitter == berryInfo->sour){//Bitter+Sour
+            HighestValue = berryInfo->bitter;
             LoadSpritePalette(&gFlavorBitterSourPaletteTable);
         }
         else{//Bitter
-            HighestValue = berry->sour;
+            HighestValue = berryInfo->sour;
             LoadSpritePalette(&gFlavorBitterPaletteTable);
         }
     }
@@ -1329,9 +1482,9 @@ u8 CreateBerrySeasonsSprite(void) //MOD CONTEST
 
 void LoadFlavorProfileSpriteData(s16 BerryNumber) //this one returns the sprite that get's loaded on memory, and unloads the previous one.
 {
-    const struct Berry *berry = GetBerryInfo(BerryNumber);
+    const struct BerryInfo *berryInfo = GetBerryInfo(BerryNumber);
 
-    switch(berry->graficGroup){
+    switch(berryInfo->graficGroup){
         case 1:
             LoadCompressedSpriteSheet(&gFlavorProfileG1SpriteSheet);
             break;
@@ -1361,36 +1514,36 @@ void LoadFlavorProfileSpriteData(s16 BerryNumber) //this one returns the sprite 
     
 u8 CreateFlavorProfileSprite1(s16 BerryNumber, s16 x, s16 y) // MOD CONTEST this one creates the berry flavor grafic sprite. It's loaded with four different pieces, since it varies on size and complexity.
 { 
-    const struct Berry *berry = GetBerryInfo(BerryNumber);
+    const struct BerryInfo *berryInfo = GetBerryInfo(BerryNumber);
 
     u8 SpriteId;
 
-    if(BerryNumber == (ItemIdToBerryType(ITEM_ENIGMA_BERRY))){ //Enigma Berry
+    if(BerryNumber == (BERRY_ID_ENIGMA)){ //Enigma Berry
         SpriteId = CreateSprite(&sBerryFlavorProfileSpriteTemplate, x - 32, y, 1);
         StartSpriteAnim(&gSprites[SpriteId], 2);
     }
     else 
     {
         SpriteId = CreateSprite(&sBerryFlavorProfileSpriteTemplate, x + 5, y + 38, 1);//Regular berry profile 1 
-        StartSpriteAnim(&gSprites[SpriteId], berry->tileNumber1+1);
+        StartSpriteAnim(&gSprites[SpriteId], berryInfo->tileNumber1+1);
     }
     return SpriteId;
 }
     
 u8 CreateFlavorProfileSprite2(s16 BerryNumber, s16 x, s16 y)
 { 
-    const struct Berry *berry = GetBerryInfo(BerryNumber);
+    const struct BerryInfo *berryInfo = GetBerryInfo(BerryNumber);
 
     u8 SpriteId;
 
-    if(BerryNumber == (ItemIdToBerryType(ITEM_ENIGMA_BERRY))){ //Enigma Berry
+    if(BerryNumber == (BERRY_ID_ENIGMA)){ //Enigma Berry
         SpriteId = CreateSprite(&sBerryFlavorProfileSpriteTemplate, x + 32, y, 1);
         StartSpriteAnim(&gSprites[SpriteId], 3);
     }
     else 
     {
         SpriteId = CreateSprite(&sBerryFlavorProfileSpriteTemplate, x + 5, y + 38, 1); //Regular berry profile 2 (for combined versions)
-                StartSpriteAnim(&gSprites[SpriteId], berry->tileNumber2+1);
+                StartSpriteAnim(&gSprites[SpriteId], berryInfo->tileNumber2+1);
     }
     return SpriteId;
 }
@@ -1400,7 +1553,7 @@ u8 CreateFlavorProfileSprite3(s16 BerryNumber, s16 x, s16 y)
 
     u8 SpriteId;
 
-    if(BerryNumber == (ItemIdToBerryType(ITEM_ENIGMA_BERRY)))
+    if(BerryNumber == (BERRY_ID_ENIGMA))
     { //Enigma Berry
         SpriteId = CreateSprite(&sBerryFlavorProfileSpriteTemplate, x - 32, y + 64, 1); //Enigma Berry
         StartSpriteAnim(&gSprites[SpriteId], 4);
@@ -1417,7 +1570,7 @@ u8 CreateFlavorProfileSprite4(s16 BerryNumber, s16 x, s16 y)
 { 
     u8 SpriteId;
 
-    if(BerryNumber == (ItemIdToBerryType(ITEM_ENIGMA_BERRY)))
+    if(BerryNumber == (BERRY_ID_ENIGMA))
     { //Enigma Berry
         SpriteId = CreateSprite(&sBerryFlavorProfileSpriteTemplate, x + 32, y + 64, 1); //Enigma Berry
         StartSpriteAnim(&gSprites[SpriteId], 5);

@@ -4,7 +4,7 @@ const u16 gBerryCheck_Pal[] = INCGFX_U16("graphics/bag/check_berry.pal", ".gbapa
 
 
 const u32 gBerryTag_Gfx[] = INCGFX_U32("graphics/bag/berry_tag.bin", ".smolTM");
-const u32 gBerryTagFlip_Gfx[] = INCBIN_U32("graphics/bag/berry_tag_flip.bin", ".smolTM");//MOD CONTEST Berry tag flip tilemap (uses new version of tilesheet)
+const u32 gBerryTagFlip_Gfx[] = INCGFX_U32("graphics/bag/berry_tag_flip.bin", ".smolTM");//MOD CONTEST Berry tag flip tilemap (uses new version of tilesheet)
 const u32 gBerryTag_Tilemap[] = INCGFX_U32("graphics/bag/berry_tag_title.bin", ".smolTM");
 
 const u32 gBerryCheckCircle_Gfx[] = INCGFX_U32("graphics/bag/check_berry_circle.png", ".4bpp.smol");

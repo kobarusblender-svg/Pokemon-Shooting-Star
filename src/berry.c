@@ -805,7 +805,7 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .berryCrushPowder =  70,
         .berryPic = gBerryPic_Pinap,
         .berryPal =  gBerryPalette_Pinap,
-        .berryTreePicTable = gPicTable_IapapaBerryPinap,
+        .berryTreePicTable = gPicTable_PinapBerryTree,
         .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Pinap,
     },
 
@@ -2156,10 +2156,10 @@ const struct Berry gBerries[NUM_BERRIES + 1] =
         .naturalGiftPower = 100,
         .berryCrushDifficulty = 160,
         .berryCrushPowder = 250,
-        .berryPic = gBerryPic_Paprik,
-        .berryPal =  gBerryPalette_Paprik,
-        .berryTreePicTable = gPicTable_PaprikBerryTree,
-        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Paprik,
+        .berryPic = gBerryPic_Malium,
+        .berryPal =  gBerryPalette_Malium,
+        .berryTreePicTable = gPicTable_MaliumBerryTree,
+        .berryTreePaletteSlotTable = gBerryTreePaletteSlotTable_Malium,
     },
 
     [BERRY_ID_TOPO] =// E-reader Topo berry (Japanese exclusive Topo berry)
