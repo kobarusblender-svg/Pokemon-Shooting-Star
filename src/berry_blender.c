@@ -1665,6 +1665,8 @@ static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct B
     u16 opponentBerryId;
     u16 berryMasterDiff;
     u16 i;
+    u16 RandomVar = (Random() / 655);
+
         if (playerBerryItemId == ITEM_ENIGMA_BERRY_E_READER ) //this checks the flavors of the e-reader berry stored to not weaken it's flavors (Doesn't work very well tbh.)
         {
             for (i = 0; i < FLAVOR_COUNT; i++)
@@ -1675,20 +1677,12 @@ static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct B
             opponentSetId += NUM_NPC_BERRIES;
         }
         if (playerBerryItemId == ITEM_NUTPEA_BERRY || playerBerryItemId == ITEM_ROKA_BERRY //MOD CONTEST The E-reader berries fit with the pattern of the rest, so now, they work the same,
-                                                                                        ) //But for the Roka and the Nutpea berries, they choose a random set of berries.
+            || playerBerryItemId == ITEM_LANSAT_BERRY || playerBerryItemId == ITEM_STARF_BERRY //But for the Roka and the Nutpea berries, they choose a random set of berries.
+            || playerBerryItemId == ITEM_ENIGMA_BERRY)
         {
-            opponentSetId = ItemIdToBerryType(RandomUniform(RNG_NONE, 1, 5));
-            if (opponentSetId >= NUM_NPC_BERRIES)
-                opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
-        }
-        else if (playerBerryItemId == ITEM_LIECHI_BERRY || playerBerryItemId == ITEM_GANLON_BERRY
-                                                        || playerBerryItemId == ITEM_SALAC_BERRY || playerBerryItemId == ITEM_PETAYA_BERRY // MOD CONTEST This function makes NPCs choose the correct berries for the
-                                                        || playerBerryItemId == ITEM_APICOT_BERRY || playerBerryItemId == ITEM_LANSAT_BERRY // player berries listed after the E-Reader ones, as the numbers don't match anymore.
-                                                        || playerBerryItemId == ITEM_STARF_BERRY || playerBerryItemId == ITEM_ENIGMA_BERRY)
-        {
-            opponentSetId = ItemIdToBerryType(playerBerryItemId) - 3;
-            if (opponentSetId >= NUM_NPC_BERRIES)
-                opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
+            opponentSetId = RandomVar;
+            if (opponentSetId > NUM_NPC_BERRIES)
+                opponentSetId = ((opponentSetId - 1) % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
         }
         else
         {

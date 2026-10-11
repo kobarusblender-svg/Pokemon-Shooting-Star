@@ -545,7 +545,7 @@ static void CB2_InitBuyMenu(void)
         sShopData->scrollIndicatorsTaskId = TASK_NONE;
         sShopData->itemSpriteIds[0] = SPRITE_NONE;
         sShopData->itemSpriteIds[1] = SPRITE_NONE;
-        if (sMartInfo.martType == MART_TYPE_NORMAL)
+        if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_FLOWER || sMartInfo.martType == MART_TYPE_BERRY)
             TryBuildDynamicShopItemList(&sMartInfo.itemList, &sMartInfo.itemCount);
         BuyMenuBuildListMenuTemplate();
         BuyMenuInitBgs();
@@ -576,7 +576,7 @@ static void CB2_InitBuyMenu(void)
 
 static void BuyMenuFreeMemory(void)
 {
-    if (sMartInfo.martType == MART_TYPE_NORMAL)
+    if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_FLOWER || sMartInfo.martType == MART_TYPE_BERRY)
         TryFreeDynamicShopItemList(&sMartInfo.itemList);
 
     Free(sShopData);
@@ -614,13 +614,12 @@ static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, enum Item item, u
     u8 FlowerBerryGauge = FIRST_FLOWER_INDEX - FIRST_BERRY_INDEX;
 
     //MOD CONTEST now this checks if the flower/berry mart can sell you the goods based on what berries do you have unlocked.
-    if(item == ITEM_LIST_END || sMartInfo.martType == MART_TYPE_NORMAL 
-        || (sMartInfo.martType == MART_TYPE_FLOWER && BagPocket_CheckHasItem2(&gBagPockets[POCKET_BERRIES], item - FlowerBerryGauge)) 
-        || (sMartInfo.martType == MART_TYPE_BERRY && BagPocket_CheckHasItem2(&gBagPockets[POCKET_BERRIES], item)))
+    if(item == ITEM_LIST_END || sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_BERRY
+        || (sMartInfo.martType == MART_TYPE_FLOWER && BagPocket_CheckHasItem2(&gBagPockets[POCKET_BERRIES], item - FlowerBerryGauge)))
     {
         CopyItemName(item, name);
     }
-    else if (sMartInfo.martType == MART_TYPE_FLOWER || sMartInfo.martType == MART_TYPE_BERRY)
+    else if (sMartInfo.martType == MART_TYPE_FLOWER)
     {
         StringCopy(name, gText_ThreeQuestionMarks);
     }
@@ -701,7 +700,9 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 6);
         }
 
-        if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1) || (sMartInfo.martType == MART_TYPE_FLOWER && FlagGet(FLAG_FLOWER_CHERI + itemId - FIRST_FLOWER_INDEX))))
+        if ((GetItemImportance(itemId) && CheckBagHasItem(itemId, 1)) || (GetItemImportance(itemId) && CheckPCHasItem(itemId, 1)) 
+            || (sMartInfo.martType == MART_TYPE_FLOWER && FlagGet(FLAG_FLOWER_CHERI + itemId - FIRST_FLOWER_INDEX))
+            || (sMartInfo.martType == MART_TYPE_BERRY && (CheckBagHasItem(itemId, 1) && itemId > ITEM_SITRUS_BERRY)))
         {
             StringCopy(gStringVar4, gText_SoldOut);
         }
@@ -1115,7 +1116,9 @@ static void Task_BuyMenu(u8 taskId)
             else
                 sShopData->totalCost = gDecorations[itemId].price;
             
-            if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1) || (sMartInfo.martType == MART_TYPE_FLOWER && FlagGet(FLAG_FLOWER_CHERI + tItemId - FIRST_FLOWER_INDEX))))
+            if ((GetItemImportance(itemId) && CheckBagHasItem(itemId, 1)) || CheckPCHasItem(itemId, 1) 
+                || (sMartInfo.martType == MART_TYPE_FLOWER && FlagGet(FLAG_FLOWER_CHERI + tItemId - FIRST_FLOWER_INDEX))
+                || (sMartInfo.martType == MART_TYPE_BERRY && itemId > ITEM_SITRUS_BERRY && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1))))
             {
                 BuyMenuDisplayMessage(taskId, gText_ThatItemIsSoldOut, BuyMenuReturnToItemList);
             }
@@ -1132,7 +1135,7 @@ static void Task_BuyMenu(u8 taskId)
                 if (sMartInfo.martType == MART_TYPE_NORMAL || sMartInfo.martType == MART_TYPE_BERRY)
                 {
                     CopyItemName(itemId, gStringVar1);
-                    if (GetItemImportance(itemId))
+                    if (GetItemImportance(itemId) || (sMartInfo.martType == MART_TYPE_BERRY && itemId > ITEM_SITRUS_BERRY))
                     {
                         ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
                         StringExpandPlaceholders(gStringVar4, gText_YouWantedVar1ThatllBeVar2);

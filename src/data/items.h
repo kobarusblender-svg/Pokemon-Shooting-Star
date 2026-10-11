@@ -10910,7 +10910,7 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Cheri Berry"),
         .pluralName = ITEM_PLURAL_NAME("Cheri Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_CURE_PAR,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -10924,13 +10924,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_CheriBerry,
         .iconPalette = gItemIconPalette_CheriBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_CHESTO_BERRY] =
     {
         .name = ITEM_NAME("Chesto Berry"),
         .pluralName = ITEM_PLURAL_NAME("Chesto Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_CURE_SLP,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -10944,13 +10945,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_ChestoBerry,
         .iconPalette = gItemIconPalette_ChestoBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_PECHA_BERRY] =
     {
         .name = ITEM_NAME("Pecha Berry"),
         .pluralName = ITEM_PLURAL_NAME("Pecha Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_CURE_PSN,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -10964,13 +10966,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PechaBerry,
         .iconPalette = gItemIconPalette_PechaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_RAWST_BERRY] =
     {
         .name = ITEM_NAME("Rawst Berry"),
         .pluralName = ITEM_PLURAL_NAME("Rawst Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_CURE_BRN,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -10984,13 +10987,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_RawstBerry,
         .iconPalette = gItemIconPalette_RawstBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_ASPEAR_BERRY] =
     {
         .name = ITEM_NAME("Aspear Berry"),
         .pluralName = ITEM_PLURAL_NAME("Aspear Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_CURE_FRZ,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -11004,13 +11008,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_AspearBerry,
         .iconPalette = gItemIconPalette_AspearBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_LEPPA_BERRY] =
     {
         .name = ITEM_NAME("Leppa Berry"),
         .pluralName = ITEM_PLURAL_NAME("Leppa Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 5000,
         .holdEffect = HOLD_EFFECT_RESTORE_PP,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING(
@@ -11025,13 +11030,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_LeppaBerry,
         .iconPalette = gItemIconPalette_LeppaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_ORAN_BERRY] =
     {
         .name = ITEM_NAME("Oran Berry"),
         .pluralName = ITEM_PLURAL_NAME("Oran Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 5000,
         .holdEffect = HOLD_EFFECT_RESTORE_HP,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING(
@@ -11046,13 +11052,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_OranBerry,
         .iconPalette = gItemIconPalette_OranBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_PERSIM_BERRY] =
     {
         .name = ITEM_NAME("Persim Berry"),
         .pluralName = ITEM_PLURAL_NAME("Persim Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_CURE_CONFUSION,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -11066,13 +11073,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PersimBerry,
         .iconPalette = gItemIconPalette_PersimBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_LUM_BERRY] =
     {
         .name = ITEM_NAME("Lum Berry"),
         .pluralName = ITEM_PLURAL_NAME("Lum Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 20000,
         .holdEffect = HOLD_EFFECT_CURE_STATUS,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -11086,13 +11094,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_LumBerry,
         .iconPalette = gItemIconPalette_LumBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_SITRUS_BERRY] =
     {
         .name = ITEM_NAME("Sitrus Berry"),
         .pluralName = ITEM_PLURAL_NAME("Sitrus Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 10000,
     #if I_SITRUS_BERRY_HEAL >= GEN_4
         .holdEffect = HOLD_EFFECT_RESTORE_PCT_HP,
         .holdEffectParam = 25,
@@ -11116,13 +11125,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_SitrusBerry,
         .iconPalette = gItemIconPalette_SitrusBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_FIGY_BERRY] =
     {
         .name = ITEM_NAME("Figy Berry"),
         .pluralName = ITEM_PLURAL_NAME("Figy Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 5000,
         .holdEffect = HOLD_EFFECT_CONFUSE_SPICY,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
@@ -11132,13 +11142,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_FigyBerry,
         .iconPalette = gItemIconPalette_FigyBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_WIKI_BERRY] =
     {
         .name = ITEM_NAME("Wiki Berry"),
         .pluralName = ITEM_PLURAL_NAME("Wiki Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 5000,
         .holdEffect = HOLD_EFFECT_CONFUSE_DRY,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
@@ -11148,13 +11159,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_WikiBerry,
         .iconPalette = gItemIconPalette_WikiBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_MAGO_BERRY] =
     {
         .name = ITEM_NAME("Mago Berry"),
         .pluralName = ITEM_PLURAL_NAME("Mago Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 5000,
         .holdEffect = HOLD_EFFECT_CONFUSE_SWEET,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
@@ -11164,13 +11176,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_MagoBerry,
         .iconPalette = gItemIconPalette_MagoBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_AGUAV_BERRY] =
     {
         .name = ITEM_NAME("Aguav Berry"),
         .pluralName = ITEM_PLURAL_NAME("Aguav Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 5000,
         .holdEffect = HOLD_EFFECT_CONFUSE_BITTER,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
@@ -11180,13 +11193,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_AguavBerry,
         .iconPalette = gItemIconPalette_AguavBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_IAPAPA_BERRY] =
     {
         .name = ITEM_NAME("Iapapa Berry"),
         .pluralName = ITEM_PLURAL_NAME("Iapapa Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 5000,
         .holdEffect = HOLD_EFFECT_CONFUSE_SOUR,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
@@ -11196,13 +11210,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_IapapaBerry,
         .iconPalette = gItemIconPalette_IapapaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_RAZZ_BERRY] =
     {
         .name = ITEM_NAME("Razz Berry"),
         .pluralName = ITEM_PLURAL_NAME("Razz Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11213,13 +11228,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_RazzBerry,
         .iconPalette = gItemIconPalette_RazzBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_BLUK_BERRY] =
     {
         .name = ITEM_NAME("Bluk Berry"),
         .pluralName = ITEM_PLURAL_NAME("Bluk Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11230,13 +11246,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_BlukBerry,
         .iconPalette = gItemIconPalette_BlukBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_NANAB_BERRY] =
     {
         .name = ITEM_NAME("Nanab Berry"),
         .pluralName = ITEM_PLURAL_NAME("Nanab Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11247,13 +11264,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_NanabBerry,
         .iconPalette = gItemIconPalette_NanabBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_WEPEAR_BERRY] =
     {
         .name = ITEM_NAME("Wepear Berry"),
         .pluralName = ITEM_PLURAL_NAME("Wepear Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11264,13 +11282,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_WepearBerry,
         .iconPalette = gItemIconPalette_WepearBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_PINAP_BERRY] =
     {
         .name = ITEM_NAME("Pinap Berry"),
         .pluralName = ITEM_PLURAL_NAME("Pinap Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11281,13 +11300,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PinapBerry,
         .iconPalette = gItemIconPalette_PinapBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_POMEG_BERRY] =
     {
         .name = ITEM_NAME("Pomeg Berry"),
         .pluralName = ITEM_PLURAL_NAME("Pomeg Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 15000,
         .description = COMPOUND_STRING(
             "Makes a Pokémon\n"
             "friendly but lowers\n"
@@ -11299,13 +11319,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PomegBerry,
         .iconPalette = gItemIconPalette_PomegBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_KELPSY_BERRY] =
     {
         .name = ITEM_NAME("Kelpsy Berry"),
         .pluralName = ITEM_PLURAL_NAME("Kelpsy Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 15000,
         .description = COMPOUND_STRING(
             "Makes a Pokémon\n"
             "friendly but lowers\n"
@@ -11317,13 +11338,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_KelpsyBerry,
         .iconPalette = gItemIconPalette_KelpsyBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_QUALOT_BERRY] =
     {
         .name = ITEM_NAME("Qualot Berry"),
         .pluralName = ITEM_PLURAL_NAME("Qualot Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 15000,
         .description = COMPOUND_STRING(
             "Makes a Pokémon\n"
             "friendly but lowers\n"
@@ -11335,13 +11357,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_QualotBerry,
         .iconPalette = gItemIconPalette_QualotBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_HONDEW_BERRY] =
     {
         .name = ITEM_NAME("Hondew Berry"),
         .pluralName = ITEM_PLURAL_NAME("Hondew Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 15000,
         .description = COMPOUND_STRING(
             "Makes a Pokémon\n"
             "friendly but lowers\n"
@@ -11353,13 +11376,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_HondewBerry,
         .iconPalette = gItemIconPalette_HondewBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_GREPA_BERRY] =
     {
         .name = ITEM_NAME("Grepa Berry"),
         .pluralName = ITEM_PLURAL_NAME("Grepa Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 15000,
         .description = COMPOUND_STRING(
             "Makes a Pokémon\n"
             "friendly but lowers\n"
@@ -11371,13 +11395,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_GrepaBerry,
         .iconPalette = gItemIconPalette_GrepaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_TAMATO_BERRY] =
     {
         .name = ITEM_NAME("Tamato Berry"),
         .pluralName = ITEM_PLURAL_NAME("Tamato Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 15000,
         .description = COMPOUND_STRING(
             "Makes a Pokémon\n"
             "friendly but lowers\n"
@@ -11389,13 +11414,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_TamatoBerry,
         .iconPalette = gItemIconPalette_TamatoBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_CORNN_BERRY] =
     {
         .name = ITEM_NAME("Cornn Berry"),
         .pluralName = ITEM_PLURAL_NAME("Cornn Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11406,13 +11432,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_CornnBerry,
         .iconPalette = gItemIconPalette_CornnBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_MAGOST_BERRY] =
     {
         .name = ITEM_NAME("Magost Berry"),
         .pluralName = ITEM_PLURAL_NAME("Magost Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11423,13 +11450,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_MagostBerry,
         .iconPalette = gItemIconPalette_MagostBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_RABUTA_BERRY] =
     {
         .name = ITEM_NAME("Rabuta Berry"),
         .pluralName = ITEM_PLURAL_NAME("Rabuta Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11440,13 +11468,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_RabutaBerry,
         .iconPalette = gItemIconPalette_RabutaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_NOMEL_BERRY] =
     {
         .name = ITEM_NAME("Nomel Berry"),
         .pluralName = ITEM_PLURAL_NAME("Nomel Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 7000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11457,13 +11486,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_NomelBerry,
         .iconPalette = gItemIconPalette_NomelBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_SPELON_BERRY] =
     {
         .name = ITEM_NAME("Spelon Berry"),
         .pluralName = ITEM_PLURAL_NAME("Spelon Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 100000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11474,13 +11504,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_SpelonBerry,
         .iconPalette = gItemIconPalette_SpelonBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_PAMTRE_BERRY] =
     {
         .name = ITEM_NAME("Pamtre Berry"),
         .pluralName = ITEM_PLURAL_NAME("Pamtre Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 100000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11491,13 +11522,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PamtreBerry,
         .iconPalette = gItemIconPalette_PamtreBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_WATMEL_BERRY] =
     {
         .name = ITEM_NAME("Watmel Berry"),
         .pluralName = ITEM_PLURAL_NAME("Watmel Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 100000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11508,13 +11540,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_WatmelBerry,
         .iconPalette = gItemIconPalette_WatmelBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_DURIN_BERRY] =
     {
         .name = ITEM_NAME("Durin Berry"),
         .pluralName = ITEM_PLURAL_NAME("Durin Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 100000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11525,13 +11558,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_DurinBerry,
         .iconPalette = gItemIconPalette_DurinBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_BELUE_BERRY] =
     {
         .name = ITEM_NAME("Belue Berry"),
         .pluralName = ITEM_PLURAL_NAME("Belue Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 100000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11542,6 +11576,7 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_BelueBerry,
         .iconPalette = gItemIconPalette_BelueBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     //MOD CONTEST Bag Item E-Reader berries:
@@ -11550,7 +11585,7 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Pumkin Berry"),
         .pluralName = ITEM_PLURAL_NAME("Pumkin Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 150000,
         .holdEffect = HOLD_EFFECT_CURE_FRZ,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -11564,13 +11599,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PumkinBerry,
         .iconPalette = gItemIconPalette_PumkinBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_DRASH_BERRY] =// E-reader Drash berry
     {
         .name = ITEM_NAME("Drash Berry"),
         .pluralName = ITEM_PLURAL_NAME("Drash Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 150000,
         .holdEffect = HOLD_EFFECT_CURE_PSN,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -11584,13 +11620,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_DrashBerry,
         .iconPalette = gItemIconPalette_DrashBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_EGGANT_BERRY] =// E-reader Eggant berry
     {
         .name = ITEM_NAME("Eggant Berry"),
         .pluralName = ITEM_PLURAL_NAME("Eggant Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 150000,
         .holdEffect = HOLD_EFFECT_CURE_STATUS, 
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
@@ -11604,13 +11641,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_EggantBerry,
         .iconPalette = gItemIconPalette_EggantBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_STRIB_BERRY] = // E-reader Strib Berry
     {
         .name = ITEM_NAME("Strib Berry"),
         .pluralName = ITEM_PLURAL_NAME("Strib Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 200000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11621,13 +11659,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_StribBerry,
         .iconPalette = gItemIconPalette_StribBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_CHILANER_BERRY] =// E-reader Chilan berry
     {
         .name = ITEM_NAME("Chilan Berry"),
         .pluralName = ITEM_PLURAL_NAME("Chilan Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 100000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11638,13 +11677,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_ChilanERBerry,
         .iconPalette = gItemIconPalette_ChilanERBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_NUTPEA_BERRY] =// E-reader Nutpea berry
     {
         .name = ITEM_NAME("Nutpea Berry"),
         .pluralName = ITEM_PLURAL_NAME("Nutpea Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 500000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11655,13 +11695,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_NutpeaBerry,
         .iconPalette = gItemIconPalette_NutpeaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_NOION_BERRY] =// E-reader Noion berry (Japan exclusive Ginema berry)
     {
         .name = ITEM_NAME("Noion Berry"),
         .pluralName = ITEM_PLURAL_NAME("Noion Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 150000,
         .holdEffect = HOLD_EFFECT_WHITE_HERB,
         .description = COMPOUND_STRING( 
             "A hold item that\n"
@@ -11673,13 +11714,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_NoionBerry,
         .iconPalette = gItemIconPalette_NoionBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_ROKA_BERRY] =// E-reader Roka berry (Japanese exclusive Kuo berry)
     {
         .name = ITEM_NAME("Roka Berry"),
         .pluralName = ITEM_PLURAL_NAME("Roka Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 500000,
         .holdEffect = HOLD_EFFECT_CURE_BRN,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -11691,13 +11733,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_RokaBerry,
         .iconPalette = gItemIconPalette_RokaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_SKUASH_BERRY] =// E-reader Skuash berry (Japanese exclusive Yago berry)
     {
         .name = ITEM_NAME("Skuash Berry"),
         .pluralName = ITEM_PLURAL_NAME("Skuash Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 150000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11710,13 +11753,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_SkuashBerry,
         .iconPalette = gItemIconPalette_SkuashBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_PAPRIK_BERRY] =// E-reader Paprik berry (Japanese exclusive Touga berry)
     {
         .name = ITEM_NAME("Paprik Berry"),
         .pluralName = ITEM_PLURAL_NAME("Paprik Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 150000,
         .holdEffect = HOLD_EFFECT_CURE_CONFUSION,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -11730,13 +11774,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PaprikBerry,
         .iconPalette = gItemIconPalette_PaprikBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_MALIUM_BERRY] =// E-reader Malium Berry (Japanese exclusive Niniku berry)
     {
         .name = ITEM_NAME("Malium Berry"),
         .pluralName = ITEM_PLURAL_NAME("Malium Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 100000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11747,13 +11792,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_MaliumBerry,
         .iconPalette = gItemIconPalette_MaliumBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_TOPO_BERRY] =// E-reader Topo berry (Japanese exclusive Topo berry)
     {
         .name = ITEM_NAME("Topo Berry"),
         .pluralName = ITEM_PLURAL_NAME("Topo Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 200000,
         .description = COMPOUND_STRING(
             "{POKEBLOCK} ingredient.\n"
             "Plant in loamy soil\n"
@@ -11764,6 +11810,7 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_TopoBerry,
         .iconPalette = gItemIconPalette_TopoBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     /*[ITEM_CHARTI_BERRY] =
@@ -11884,7 +11931,7 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Liechi Berry"),
         .pluralName = ITEM_PLURAL_NAME("Liechi Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 200000,
         .holdEffect = HOLD_EFFECT_ATTACK_UP,
         .holdEffectParam = 4,
         .description = COMPOUND_STRING(
@@ -11897,13 +11944,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_LiechiBerry,
         .iconPalette = gItemIconPalette_LiechiBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_GANLON_BERRY] =
     {
         .name = ITEM_NAME("Ganlon Berry"),
         .pluralName = ITEM_PLURAL_NAME("Ganlon Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 200000,
         .holdEffect = HOLD_EFFECT_DEFENSE_UP,
         .holdEffectParam = 4,
         .description = COMPOUND_STRING(
@@ -11916,13 +11964,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_GanlonBerry,
         .iconPalette = gItemIconPalette_GanlonBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_SALAC_BERRY] =
     {
         .name = ITEM_NAME("Salac Berry"),
         .pluralName = ITEM_PLURAL_NAME("Salac Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 200000,
         .holdEffect = HOLD_EFFECT_SPEED_UP,
         .holdEffectParam = 4,
         .description = COMPOUND_STRING(
@@ -11935,13 +11984,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_SalacBerry,
         .iconPalette = gItemIconPalette_SalacBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_PETAYA_BERRY] =
     {
         .name = ITEM_NAME("Petaya Berry"),
         .pluralName = ITEM_PLURAL_NAME("Petaya Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 200000,
         .holdEffect = HOLD_EFFECT_SP_ATTACK_UP,
         .holdEffectParam = 4,
         .description = COMPOUND_STRING(
@@ -11954,13 +12004,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_PetayaBerry,
         .iconPalette = gItemIconPalette_PetayaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_APICOT_BERRY] =
     {
         .name = ITEM_NAME("Apicot Berry"),
         .pluralName = ITEM_PLURAL_NAME("Apicot Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 200000,
         .holdEffect = HOLD_EFFECT_SP_DEFENSE_UP,
         .holdEffectParam = 4,
         .description = COMPOUND_STRING(
@@ -11973,13 +12024,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_ApicotBerry,
         .iconPalette = gItemIconPalette_ApicotBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_LANSAT_BERRY] =
     {
         .name = ITEM_NAME("Lansat Berry"),
         .pluralName = ITEM_PLURAL_NAME("Lansat Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 500000,
         .holdEffect = HOLD_EFFECT_CRITICAL_UP,
         .holdEffectParam = 4,
         .description = COMPOUND_STRING(
@@ -11992,13 +12044,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_LansatBerry,
         .iconPalette = gItemIconPalette_LansatBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_STARF_BERRY] =
     {
         .name = ITEM_NAME("Starf Berry"),
         .pluralName = ITEM_PLURAL_NAME("Starf Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 500000,
         .holdEffect = HOLD_EFFECT_RANDOM_STAT_UP,
         .holdEffectParam = 4,
         .description = COMPOUND_STRING(
@@ -12011,13 +12064,14 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_StarfBerry,
         .iconPalette = gItemIconPalette_StarfBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     [ITEM_ENIGMA_BERRY] =
     {
         .name = ITEM_NAME("Enigma Berry"),
         .pluralName = ITEM_PLURAL_NAME("Enigma Berries"),
-        .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
+        .price = 500000,
         .holdEffect = HOLD_EFFECT_ENIGMA_BERRY,
         .description = COMPOUND_STRING(
             "A hold item that\n"
@@ -12029,6 +12083,7 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 10,
         .iconPic = gItemIcon_EnigmaBerry,
         .iconPalette = gItemIconPalette_EnigmaBerry,
+        .shopCriteriaFunc = ShopCriteriaBerry,
     },
 
     /*[ITEM_MICLE_BERRY] =
@@ -14667,7 +14722,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Sapphire,
     },
     
-    //MOD CONTEST BERRY FLOWER ITEMS (Not real Items, just to register them as bought)
+    //MOD CONTEST BERRY FLOWER ITEMS (Not real Items, just for them to appear in the flower shop)
     [ITEM_FLOWER_CHERI] =
     {
         .name = ITEM_NAME("Cheri Flower"),
@@ -14682,6 +14737,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_CHESTO] =
@@ -14698,6 +14754,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_PECHA] =
@@ -14714,6 +14771,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_RAWST] =
@@ -14730,6 +14788,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_ASPEAR] =
@@ -14746,6 +14805,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_LEPPA] =
@@ -14762,6 +14822,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_ORAN] =
@@ -14778,6 +14839,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_PERSIM] =
@@ -14794,6 +14856,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_LUM] =
@@ -14810,6 +14873,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_SITRUS] =
@@ -14826,6 +14890,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_FIGY] =
@@ -14842,6 +14907,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_WIKI] =
@@ -14858,6 +14924,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_MAGO] =
@@ -14874,6 +14941,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_AGUAV] =
@@ -14890,6 +14958,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_IAPAPA] =
@@ -14906,6 +14975,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_RAZZ] =
@@ -14922,6 +14992,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_BLUK] =
@@ -14938,6 +15009,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_NANAB] =
@@ -14954,6 +15026,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_WEPEAR] =
@@ -14970,6 +15043,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_PINAP] =
@@ -14986,6 +15060,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_POMEG] =
@@ -15002,6 +15077,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_KELPSY] =
@@ -15018,6 +15094,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_QUALOT] =
@@ -15034,6 +15111,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_HONDEW] =
@@ -15050,6 +15128,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_GREPA] =
@@ -15066,6 +15145,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_TAMATO] =
@@ -15082,6 +15162,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_CORNN] =
@@ -15098,6 +15179,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_MAGOST] =
@@ -15114,6 +15196,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_RABUTA] =
@@ -15130,6 +15213,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_NOMEL] =
@@ -15146,6 +15230,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_SPELON] =
@@ -15162,6 +15247,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_PAMTRE] =
@@ -15178,6 +15264,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_WATMEL] =
@@ -15194,6 +15281,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_DURIN] =
@@ -15210,6 +15298,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_BELUE] =
@@ -15226,6 +15315,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_PAPRIK] =
@@ -15242,6 +15332,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_EGGANT] =
@@ -15258,6 +15349,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_DRASH] =
@@ -15274,6 +15366,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_SKUASH] =
@@ -15290,6 +15383,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_PUMKIN] =
@@ -15306,6 +15400,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_CHILAN] =
@@ -15322,6 +15417,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_MALIUM] =
@@ -15338,6 +15434,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_TOPO] =
@@ -15354,6 +15451,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_STRIB] =
@@ -15370,6 +15468,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_NOION] =
@@ -15386,6 +15485,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_NUTPEA] =
@@ -15402,6 +15502,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_ROKA] =
@@ -15418,6 +15519,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_LIECHI] =
@@ -15434,6 +15536,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_GANLON] =
@@ -15450,6 +15553,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_SALAC] =
@@ -15466,6 +15570,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_PETAYA] =
@@ -15482,6 +15587,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_APICOT] =
@@ -15498,6 +15604,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_LANSAT] =
@@ -15514,6 +15621,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_STARF] =
@@ -15530,6 +15638,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
     [ITEM_FLOWER_ENIGMA] =
@@ -15546,6 +15655,7 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_FlowerSweet,
         .iconPalette = gItemIconPalette_FlowerSweet,
+        .shopCriteriaFunc = ShopCriteriaFlower,
     },
 
 // GEN 9 ITEMS

@@ -47,13 +47,13 @@
     F(TOPO) \
     F(STRIB) \
     F(NOION) \
-    F(NUTPEA) \
-    F(ROKA) \
     F(LIECHI) \
     F(GANLON) \
     F(SALAC) \
     F(PETAYA) \
     F(APICOT) \
+    F(NUTPEA) \
+    F(ROKA) \
     F(LANSAT) \
     F(STARF) \
     F(ENIGMA)

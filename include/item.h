@@ -243,6 +243,7 @@ bool32 HasEnoughBerries(void);
 bool32 CheckBagHasItem(enum Item itemId, u16 count);
 bool32 HasAtLeastOneBerry(void);
 bool32 BagPocket_CheckHasItem2(struct BagPocket *pocket, enum Item itemId); //MOD CONTEST
+u8 BagPocket_CheckHasHowMany(struct BagPocket *pocket, enum Item itemId); //MOD CONTEST
 bool32 HasAtLeastOnePokeBall(void);
 bool32 CheckBagHasSpace(enum Item itemId, u16 count);
 u32 GetFreeSpaceForItemInBag(enum Item itemId);

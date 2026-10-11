@@ -826,7 +826,8 @@ static void PrintBerryNumberAndName(void)
     const struct BerryInfo *berryInfo = GetBerryInfo(sBerryTag->berryId);
     ConvertIntToDecimalStringN(gStringVar1, sBerryTag->berryId, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringCopy(gStringVar2, berryInfo->name);
-    if(sBerryTag->berryId >= 36 && sBerryTag->berryId <= 47)
+    if((sBerryTag->berryId >= BERRY_ID_PAPRIK && sBerryTag->berryId <= BERRY_ID_NOION) //If berry is E-Reader, display symbol alongside name and number.
+        || sBerryTag->berryId == BERRY_ID_NUTPEA || sBerryTag->berryId == BERRY_ID_ROKA)
         StringExpandPlaceholders(gStringVar4, sText_NumberEReader);
     else
         StringExpandPlaceholders(gStringVar4, sText_NumberVar1Var2);
