@@ -226,6 +226,7 @@ extern const u8 gText_LinkStandby2[];
 extern const u8 gText_CloseBag[];
 extern const u8 gText_NumberItem_HM[];
 extern const u8 gText_NumberItem_TMBerry[];
+extern const u8 gText_HMModeSelection[]; //MOD CONTEST HMMode Selection
 extern const u8 gText_xVar1[];
 extern const u8 gText_ReturnToVar1[];
 extern const u8 gText_SelectorArrow2[];
@@ -294,7 +295,9 @@ extern const u8 gText_PkmnFriendlyBaseVar2Fell[];
 extern const u8 gText_PkmnFriendlyBaseVar2CantFall[];
 extern const u8 gText_PkmnAdoresBaseVar2Fell[];
 extern const u8 gText_PkmnAlreadyKnows[];
+extern const u8 gText_PkmnLearnedHM[];
 extern const u8 gText_PkmnCantLearnMove[];
+extern const u8 gText_PkmnCantLearnAnyMoreMoves[];
 extern const u8 gText_PkmnNeedsToReplaceMove[];
 extern const u8 gText_PkmnLearnedMove3[];
 extern const u8 gText_PkmnLearnedMove4[];

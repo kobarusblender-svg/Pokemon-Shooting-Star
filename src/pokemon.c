@@ -2184,6 +2184,30 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_MOVE4:
             retVal = GetSubstruct1(boxMon)->move4;
             break;
+        case MON_DATA_CUT_ENABLED:
+            retVal = GetSubstruct1(boxMon)->CutEnabled;
+            break;
+        case MON_DATA_FLY_ENABLED:
+            retVal = GetSubstruct1(boxMon)->FlyEnabled;
+            break;
+        case MON_DATA_STRENGTH_ENABLED:
+            retVal = GetSubstruct1(boxMon)->StrengthEnabled;
+            break;
+        case MON_DATA_ROCKSMASH_ENABLED:
+            retVal = GetSubstruct1(boxMon)->RockSmashEnabled;
+            break;
+        case MON_DATA_FLASH_ENABLED:
+            retVal = GetSubstruct1(boxMon)->FlashEnabled;
+            break;
+        case MON_DATA_SURF_ENABLED:
+            retVal = GetSubstruct1(boxMon)->SurfEnabled;
+            break;
+        case MON_DATA_DIVE_ENABLED:
+            retVal = GetSubstruct1(boxMon)->DiveEnabled;
+            break;
+        case MON_DATA_WATERFALL_ENABLED:
+            retVal = GetSubstruct1(boxMon)->WaterfallEnabled;
+            break;
         case MON_DATA_PP1:
             retVal = GetSubstruct1(boxMon)->pp1;
             break;
@@ -2701,6 +2725,30 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_MOVE4:
             SET16(GetSubstruct1(boxMon)->move4);
+            break;
+        case MON_DATA_CUT_ENABLED:
+            SET16(GetSubstruct1(boxMon)->CutEnabled);
+            break;
+        case MON_DATA_FLY_ENABLED:
+            SET16(GetSubstruct1(boxMon)->FlyEnabled);
+            break;
+        case MON_DATA_STRENGTH_ENABLED:
+            SET16(GetSubstruct1(boxMon)->StrengthEnabled);
+            break;
+        case MON_DATA_ROCKSMASH_ENABLED:
+            SET16(GetSubstruct1(boxMon)->RockSmashEnabled);
+            break;
+        case MON_DATA_FLASH_ENABLED:
+            SET16(GetSubstruct1(boxMon)->FlashEnabled);
+            break;
+        case MON_DATA_SURF_ENABLED:
+            SET16(GetSubstruct1(boxMon)->SurfEnabled);
+            break;
+        case MON_DATA_DIVE_ENABLED:
+            SET16(GetSubstruct1(boxMon)->DiveEnabled);
+            break;
+        case MON_DATA_WATERFALL_ENABLED:
+            SET16(GetSubstruct1(boxMon)->WaterfallEnabled);
             break;
         case MON_DATA_PP1:
             SET8(GetSubstruct1(boxMon)->pp1);

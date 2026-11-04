@@ -31,6 +31,7 @@ enum {
     ITEMWIN_MESSAGE,
     ITEMWIN_YESNO_LOW,
     ITEMWIN_YESNO_HIGH,
+    ITEMWIN_HM_MODE,
     ITEMWIN_QUANTITY,
     ITEMWIN_QUANTITY_WIDE,
     ITEMWIN_MONEY,
@@ -121,6 +122,7 @@ void CB2_ChooseBerry(void);
 void CB2_ChooseMulch(void);
 void Task_FadeAndCloseBagMenu(u8 taskId);
 void BagMenu_YesNo(u8 taskId, u8 windowType, const struct YesNoFuncTable *funcTable);
+void BagMenu_HMMode(u8 taskId, u8 windowType, const struct YesNoMaybeFuncTable *funcTable);
 void UpdatePocketItemList(enum Pocket pocketId);
 void DisplayItemMessage(u8 taskId, u8 fontId, const u8 *str, TaskFunc callback);
 void DisplayItemMessageOnField(u8 taskId, const u8 *string, TaskFunc callback);

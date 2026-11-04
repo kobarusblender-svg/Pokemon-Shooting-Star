@@ -185,7 +185,7 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[8];
+    u8 actions[9];
     u8 numActions;
     // In vanilla Emerald, only the first 0xB0 hwords (0x160 bytes) are actually used.
     // However, a full 0x100 hwords (0x200 bytes) are allocated.
@@ -2950,11 +2950,17 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
 
     // Add field moves to action list
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    for (j = 0; j != FIELD_MOVES_COUNT; j++)
     {
-        for (j = 0; j != FIELD_MOVES_COUNT; j++)
+        for (i = 0; i < MAX_MON_MOVES + 1; i++)
         {
             if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j))
+            {
+                AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
+                break;
+            }
+            else if((GetMonData(&mons[slotId], MON_DATA_FLASH_ENABLED) != 0 && j == 1) 
+                || (GetMonData(&mons[slotId], MON_DATA_FLY_ENABLED) != 0 && j == 5))
             {
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
                 break;
@@ -5557,6 +5563,132 @@ void ItemUseCB_TMHM(u8 taskId, TaskFunc task)
     struct Pokemon *mon;
     enum Item item = gSpecialVar_ItemId;
     enum Move move = ItemIdToBattleMoveId(item);
+    u8 MoveBool;
+    u8 i;
+    u8 j;
+    u8 k = 0;
+
+    gPartyMenu.data1 = move;
+    gPartyMenu.learnMoveState = 0;
+
+    PlaySE(SE_SELECT);
+    mon = &gParties[B_TRAINER_PLAYER][gPartyMenu.slotId];
+
+    GetMonNickname(mon, gStringVar1);
+    StringCopy(gStringVar2, GetMoveName(move));
+
+    switch (CanTeachMove(mon, move))
+    {
+    case CANNOT_LEARN_MOVE:
+        DisplayLearnMoveMessageAndClose(taskId, gText_PkmnCantLearnMove);
+        return;
+    case ALREADY_KNOWS_MOVE:
+        DisplayLearnMoveMessageAndClose(taskId, gText_PkmnAlreadyKnows);
+        return;
+    default:
+        break;
+    }
+    
+    for (j = 0; j != FIELD_MOVES_COUNT; j++)
+    {
+        for (i = 0; i < MAX_MON_MOVES + 1; i++)
+        {
+            if (GetMonData(mon, i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j))
+            {
+                k++;
+                break;
+            }
+            else if((GetMonData(mon, MON_DATA_FLASH_ENABLED) != 0 && j == 1) 
+                || (GetMonData(mon, MON_DATA_FLY_ENABLED) != 0 && j == 5))
+            {
+                k++;
+                break;
+            }
+        }
+    }
+
+    if(move == MOVE_CUT || move == MOVE_FLY || move == MOVE_STRENGTH || move == MOVE_ROCK_SMASH 
+         || move == MOVE_FLASH || move == MOVE_SURF || move == MOVE_DIVE || move == MOVE_WATERFALL 
+         || move == MOVE_DIG || move == MOVE_TELEPORT || move == MOVE_SWEET_SCENT || move == MOVE_MILK_DRINK 
+         || move == MOVE_SOFT_BOILED || move == MOVE_SECRET_POWER)
+    { // All 14 field moves special cases (yes, i know its bad, leave me alone)
+        if (k < 5)
+        {
+            switch(move) //clears the bit of the hidden move if learned again as Technical Move
+            {
+                case MOVE_CUT: 
+                    MoveBool = MON_DATA_CUT_ENABLED;
+                    break;
+                case MOVE_FLY: 
+                    MoveBool = MON_DATA_FLY_ENABLED;
+                    break;
+                case MOVE_STRENGTH: 
+                    MoveBool = MON_DATA_STRENGTH_ENABLED;
+                    break;
+                case MOVE_ROCK_SMASH: 
+                    MoveBool = MON_DATA_ROCKSMASH_ENABLED;
+                    break;
+                case MOVE_FLASH: 
+                    MoveBool = MON_DATA_FLASH_ENABLED;
+                    break;
+                case MOVE_SURF: 
+                    MoveBool = MON_DATA_SURF_ENABLED;
+                    break;
+                case MOVE_DIVE: 
+                    MoveBool = MON_DATA_DIVE_ENABLED;
+                    break;
+                case MOVE_WATERFALL: 
+                    MoveBool = MON_DATA_WATERFALL_ENABLED;
+                    break;
+                default:
+                    MoveBool = 0;
+                    break;
+            }
+        
+            if (GetMonData(mon, MoveBool) != 0)
+            {
+                SetMonData(mon, MoveBool, 0);
+            }
+
+            if (GiveMoveToMon(mon, move) != MON_HAS_MAX_MOVES)
+            {
+                gTasks[taskId].func = Task_LearnedMove;
+            }
+            else
+            {
+                DisplayLearnMoveMessage(gText_PkmnNeedsToReplaceMove);
+                gTasks[taskId].func = Task_ReplaceMoveYesNo;
+            }
+        }
+        else
+        {
+            DisplayLearnMoveMessageAndClose(taskId, gText_PkmnCantLearnAnyMoreMoves);
+        }
+    }
+    else //Regular moves behabior.
+    {
+        if (GiveMoveToMon(mon, move) != MON_HAS_MAX_MOVES)
+        {
+            gTasks[taskId].func = Task_LearnedMove;
+        }
+        else
+        {
+            DisplayLearnMoveMessage(gText_PkmnNeedsToReplaceMove);
+            gTasks[taskId].func = Task_ReplaceMoveYesNo;
+        }
+    }
+}
+
+void ItemUseCB_HM(u8 taskId, TaskFunc task) //MOD CONTEST teaches a Hidden move without using a move slot.
+{
+    struct Pokemon *mon;
+    enum Item item = gSpecialVar_ItemId;
+    enum Move move = ItemIdToBattleMoveId(item);
+    u8 hasHM;
+    u8 MoveBool;
+    u8 i;
+    u8 j;
+    u8 k = 0;
 
     gPartyMenu.data1 = move;
     gPartyMenu.learnMoveState = 0;
@@ -5579,15 +5711,90 @@ void ItemUseCB_TMHM(u8 taskId, TaskFunc task)
         break;
     }
 
-    if (GiveMoveToMon(mon, move) != MON_HAS_MAX_MOVES)
+    for (j = 0; j != FIELD_MOVES_COUNT; j++)
     {
-        gTasks[taskId].func = Task_LearnedMove;
+        for (i = 0; i < MAX_MON_MOVES + 1; i++)
+        {
+            if (GetMonData(mon, i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j))
+            {
+                k++;
+                break;
+            }
+            else if((GetMonData(mon, MON_DATA_FLASH_ENABLED) != 0 && j == 1) 
+                || (GetMonData(mon, MON_DATA_FLY_ENABLED) != 0 && j == 5))
+            {
+                k++;
+                break;
+            }
+        }
     }
-    else
+
+    switch(move)
     {
-        DisplayLearnMoveMessage(gText_PkmnNeedsToReplaceMove);
-        gTasks[taskId].func = Task_ReplaceMoveYesNo;
+        case MOVE_CUT:
+            MoveBool = MON_DATA_CUT_ENABLED;
+            break;
+        case MOVE_FLY:
+            MoveBool = MON_DATA_FLY_ENABLED;
+            break;
+        case MOVE_STRENGTH:
+            MoveBool = MON_DATA_STRENGTH_ENABLED;
+            break;
+        case MOVE_ROCK_SMASH:
+            MoveBool = MON_DATA_ROCKSMASH_ENABLED;
+            break;
+        case MOVE_FLASH:
+            MoveBool = MON_DATA_FLASH_ENABLED;
+            break;
+        case MOVE_SURF:
+            MoveBool = MON_DATA_SURF_ENABLED;
+            break;
+        case MOVE_DIVE:
+            MoveBool = MON_DATA_DIVE_ENABLED;
+            break;
+        case MOVE_WATERFALL:
+            MoveBool = MON_DATA_WATERFALL_ENABLED;
+            break;
+        default:
+            MoveBool = 0;
+            break;
     }
+    
+    
+    if (move == MOVE_FLY || move == MOVE_FLASH) //If the pokemon already has 5 moves in the selection screen, forbid learning the move.
+    {
+        if(k < 5)
+        {
+            hasHM = GetMonData(mon, MoveBool);
+    
+            if (hasHM == 0)
+            {
+                hasHM = 1;
+                SetMonData(mon, MoveBool, &hasHM);
+                DisplayLearnMoveMessageAndClose(taskId, gText_PkmnLearnedHM);
+            }
+            else    
+                DisplayLearnMoveMessageAndClose(taskId, gText_PkmnAlreadyKnows);
+        }
+        else
+        {
+            DisplayLearnMoveMessageAndClose(taskId, gText_PkmnCantLearnAnyMoreMoves);
+        }
+    }
+    else if (MoveBool != 0) //Hidden HMs don't need to check limitations
+    {
+        hasHM = GetMonData(mon, MoveBool);
+    
+        if (hasHM == 0)
+        {
+            hasHM = 1;
+            SetMonData(mon, MoveBool, &hasHM);
+            DisplayLearnMoveMessageAndClose(taskId, gText_PkmnLearnedHM);
+        }
+        else    
+            DisplayLearnMoveMessageAndClose(taskId, gText_PkmnAlreadyKnows);
+    }
+    
 }
 
 static void Task_LearnedMove(u8 taskId)
@@ -8196,6 +8403,22 @@ void GetNumMovesSelectedMonHas(void)
     }
 }
 
+void GetNumHiddenMovesSelectedMonHas(void) //MOD CONTEST checks how many Hidden moves the Pokémon has
+{
+    u32 i, j;
+    struct BoxPokemon *boxmon = GetSelectedBoxMonFromPcOrParty();
+
+    gSpecialVar_Result = 0;
+    for (j = 0; j < FIELD_MOVE_TELEPORT; j++)
+    {
+        if(GetBoxMonData(boxmon, MON_DATA_CUT_ENABLED + j) != 0)
+        {
+            gSpecialVar_Result = 1;
+            break;
+        }
+    }
+}
+
 void BufferMoveDeleterNicknameAndMove(void)
 {
     enum Move move = MOVE_NONE;
@@ -8216,6 +8439,35 @@ void MoveDeleterForgetMove(void)
     SetBoxMonData(boxmon, MON_DATA_PP_BONUSES, &ppBonuses);
     for (u32 i = gSpecialVar_0x8005; i < MAX_MON_MOVES - 1; i++)
         ShiftMoveSlot(boxmon, i, i + 1);
+}
+
+void MoveDeleterForgetHiddenMoves(void) // MOD CONTEST Sets all hidden move flags to NULL. If you're doing this, you'll be releasing the poor thing anyway.
+{
+    u8 i;
+    struct BoxPokemon *boxmon = GetSelectedBoxMonFromPcOrParty();
+
+    SetBoxMonData(boxmon, MON_DATA_CUT_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_FLY_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_STRENGTH_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_ROCKSMASH_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_FLASH_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_SURF_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_DIVE_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_WATERFALL_ENABLED, 0);
+}
+
+void MoveDeleterForgetHiddenMovesExceptSurf(void) // MOD CONTEST Sets all hidden move flags to NULL. If you're doing this, you'll be releasing the poor thing anyway.
+{
+    u8 i;
+    struct BoxPokemon *boxmon = GetSelectedBoxMonFromPcOrParty();
+
+    SetBoxMonData(boxmon, MON_DATA_CUT_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_FLY_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_STRENGTH_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_ROCKSMASH_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_FLASH_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_DIVE_ENABLED, 0);
+    SetBoxMonData(boxmon, MON_DATA_WATERFALL_ENABLED, 0);
 }
 
 static void ShiftMoveSlot(struct BoxPokemon *mon, u8 slotTo, u8 slotFrom)
@@ -8266,12 +8518,40 @@ void IsLastMonThatKnowsSurf(void)
             {
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
-                    if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_MOVE1 + j) == MOVE_SURF)
+                    if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_MOVE1 + j) == MOVE_SURF || GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SURF_ENABLED) != 0)
                         return;
                 }
             }
         }
         if (AnyStorageMonWithMove(move) != TRUE)
+            gSpecialVar_Result = !P_CAN_FORGET_HIDDEN_MOVE;
+    }
+}
+
+void IsLastMonThatKnowsSurfHM(void) //New variant because I don't wanna mess with it for the HM
+{
+    enum Move move;
+    u32 i, j;
+
+    gSpecialVar_Result = FALSE;
+    if (gSpecialVar_0x8004 == PC_MON_CHOSEN)
+        return;
+
+    move = GetMonData(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004], MON_DATA_SURF_ENABLED);
+    if (move != 0)
+    {
+        for (i = 0; i < CalculatePlayerPartyCount(); i++)
+        {
+            if (i != gSpecialVar_0x8004)
+            {
+                for (j = 0; j < MAX_MON_MOVES; j++)
+                {
+                    if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_MOVE1 + j) == MOVE_SURF || GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SURF_ENABLED) != 0)
+                        return;
+                }
+            }
+        }
+        if (AnyStorageMonWithMove(MOVE_SURF) != TRUE)
             gSpecialVar_Result = !P_CAN_FORGET_HIDDEN_MOVE;
     }
 }

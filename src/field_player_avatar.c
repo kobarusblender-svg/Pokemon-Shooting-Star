@@ -1629,6 +1629,8 @@ bool8 PartyHasMonWithSurf(void)
                 break;
             if (MonKnowsMove(&gParties[B_TRAINER_PLAYER][i], MOVE_SURF))
                 return TRUE;
+            if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SURF_ENABLED) == 1)
+                return TRUE;
         }
     }
     return FALSE;

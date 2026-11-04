@@ -94,11 +94,37 @@ static u32 ChooseBoxMon_CanMonDeleteMove(struct BoxPokemon *boxmon)
 
 static u32 ChooseBoxMon_CanMonLearnMove(struct BoxPokemon *boxmon, enum Move move)
 {
+    u8 i;
+    u8 k = 0;
+
+    for (i = 0; i < MAX_MON_MOVES + 1; i++)
+    { //MOD CONTEST checking if softboiled has space for Mew world-breaking potential.
+        if (GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_DIG || GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_SECRET_POWER
+            || GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_DIVE || GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_SURF
+            || GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_WATERFALL || GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_STRENGTH
+            || GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_ROCK_SMASH || GetBoxMonData(boxmon, i + MON_DATA_MOVE1) == MOVE_CUT)
+        {
+            k++;
+            break;
+        }
+    }
+    if(GetBoxMonData(boxmon, MON_DATA_FLASH_ENABLED) != 0)
+        k++;
+    if(GetBoxMonData(boxmon, MON_DATA_FLY_ENABLED) != 0)
+        k++;
+    
     if (GetBoxMonData(boxmon, MON_DATA_IS_EGG))
         return CANNOT_LEARN_MOVE_IS_EGG;
     if (BoxMonKnowsMove(boxmon, move))
         return ALREADY_KNOWS_MOVE;
-    if (CanLearnTeachableMove(GetBoxMonData(boxmon, MON_DATA_SPECIES), move))
+    if(move == MOVE_SOFT_BOILED && k > 4)
+    {
+        if (CanLearnTeachableMove(GetBoxMonData(boxmon, MON_DATA_SPECIES), move))
+            return VALID_MON;
+        else
+            return CANNOT_LEARN_MOVE;
+    }
+    else if (CanLearnTeachableMove(GetBoxMonData(boxmon, MON_DATA_SPECIES), move))
         return VALID_MON;
     return CANNOT_LEARN_MOVE;
 }

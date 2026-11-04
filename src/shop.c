@@ -1122,9 +1122,30 @@ static void Task_BuyMenu(u8 taskId)
             {
                 BuyMenuDisplayMessage(taskId, gText_ThatItemIsSoldOut, BuyMenuReturnToItemList);
             }
-            else if (!CheckBagHasItem(itemId - FlowerBerryGauge, sShopData->totalCost) && sMartInfo.martType == MART_TYPE_FLOWER)
+            else if (sMartInfo.martType == MART_TYPE_FLOWER) //Mart type behabior that breaks other stores.
             {
-                BuyMenuDisplayMessage(taskId, gText_YouDontHaveBerries, BuyMenuReturnToItemList);
+                if (!CheckBagHasItem(itemId - FlowerBerryGauge, sShopData->totalCost))
+                    BuyMenuDisplayMessage(taskId, gText_YouDontHaveBerries, BuyMenuReturnToItemList);
+                else if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
+                {
+                    BuyMenuDisplayMessage(taskId, gText_YouDontHaveMoney, BuyMenuReturnToItemList);
+                }
+                else
+                {
+                    CopyItemName(itemId, gStringVar1);
+                    if (GetItemImportance(itemId))
+                    {
+                        ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
+                        CopyItemNameHandlePlural(itemId - FlowerBerryGauge, gStringVar3, sShopData->totalCost);
+                        StringExpandPlaceholders(gStringVar4, gText_YouWantedBerryFlowertrade);
+                        tItemCount = 1;
+                        BuyMenuDisplayMessage(taskId, gStringVar4, BuyMenuConfirmPurchase);
+                    }
+                    else
+                    {
+                        BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
+                    }
+                }
             }
             else if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
             {
@@ -1147,22 +1168,6 @@ static void Task_BuyMenu(u8 taskId)
                     {
                         StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(itemId)));
                         BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany2, Task_BuyHowManyDialogueInit);
-                    }
-                    else
-                    {
-                        BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
-                    }
-                }
-                else if (sMartInfo.martType == MART_TYPE_FLOWER)
-                {
-                    CopyItemName(itemId, gStringVar1);
-                    if (GetItemImportance(itemId))
-                    {
-                        ConvertIntToDecimalStringN(gStringVar2, sShopData->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
-                        CopyItemNameHandlePlural(itemId - FlowerBerryGauge, gStringVar3, sShopData->totalCost);
-                        StringExpandPlaceholders(gStringVar4, gText_YouWantedBerryFlowertrade);
-                        tItemCount = 1;
-                        BuyMenuDisplayMessage(taskId, gStringVar4, BuyMenuConfirmPurchase);
                     }
                     else
                     {
@@ -1232,6 +1237,8 @@ static void Task_BuyHowManyDialogueHandleInput(u8 taskId)
         {
             PlaySE(SE_SELECT);
             ClearStdWindowAndFrameToTransparent(WIN_QUANTITY_PRICE, FALSE);
+            if(sMartInfo.martType != MART_TYPE_FLOWER)
+                ClearStdWindowAndFrameToTransparent(WIN_QUANTITY_IN_BAG, FALSE);
             ClearWindowTilemap(WIN_QUANTITY_PRICE);
             PutWindowTilemap(WIN_ITEM_LIST);
             CopyItemName(tItemId, gStringVar1);

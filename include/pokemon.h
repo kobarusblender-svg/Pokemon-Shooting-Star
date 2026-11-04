@@ -48,6 +48,14 @@ enum MonData {
     MON_DATA_MOVE2,
     MON_DATA_MOVE3,
     MON_DATA_MOVE4,
+    MON_DATA_CUT_ENABLED,
+    MON_DATA_FLASH_ENABLED,
+    MON_DATA_ROCKSMASH_ENABLED,
+    MON_DATA_STRENGTH_ENABLED,
+    MON_DATA_SURF_ENABLED,
+    MON_DATA_FLY_ENABLED,
+    MON_DATA_DIVE_ENABLED,
+    MON_DATA_WATERFALL_ENABLED,
     MON_DATA_PP1,
     MON_DATA_PP2,
     MON_DATA_PP3,
@@ -150,9 +158,17 @@ struct PokemonSubstruct1
     enum Move move2:11; // 2047 moves.
     u16 evolutionTracker2:5;
     enum Move move3:11; // 2047 moves.
-    u16 unused_04:5;
+    //u16 unused_04:5; original unused
+    u16 CutEnabled:1; //MOD CONTEST Flags for which field moves the Pokémon can use
+    u16 FlyEnabled:1;
+    u16 StrengthEnabled:1;
+    u16 RockSmashEnabled:1;
+    u16 FlashEnabled:1; //^
     enum Move move4:11; // 2047 moves.
-    u16 unused_06:3;
+    //u16 unused_06:3; original Unused
+    u16 SurfEnabled:1; //MOD CONTEST Flags for which water moves the Pokémon can use
+    u16 DiveEnabled:1;
+    u16 WaterfallEnabled:1; //^
     u16 hyperTrainedHP:1;
     u16 hyperTrainedAttack:1;
     u8 pp1:7; // 127 PP.
@@ -187,7 +203,7 @@ struct PokemonSubstruct3
     u8 metLocation;
     u16 metLevel:7;
     u16 metGame:4;
-    u16 dynamaxLevel:4;
+    u16 dynamaxLevel:4; //MOD CONTEST TODO get rid of this and add ribbons
     u16 otGender:1;
     u32 hpIV:5;
     u32 attackIV:5;
@@ -196,7 +212,7 @@ struct PokemonSubstruct3
     u32 spAttackIV:5;
     u32 spDefenseIV:5;
     u32 isEgg:1;
-    u32 gigantamaxFactor:1;
+    u32 gigantamaxFactor:1; //MOD CONTEST TODO get rid of this and add ribbons
     u32 coolRibbon:3;     // Stores the highest contest rank achieved in the Cool category.
     u32 beautyRibbon:3;   // Stores the highest contest rank achieved in the Beauty category.
     u32 cuteRibbon:3;     // Stores the highest contest rank achieved in the Cute category.
@@ -207,15 +223,15 @@ struct PokemonSubstruct3
     u32 victoryRibbon:1;  // Given at the Battle Tower's Level 100 challenge by winning a set of seven battles that extends the current streak to 56 or more.
     u32 artistRibbon:1;   // Given at the Contest Hall by winning a Master Rank contest with at least 800 points, and agreeing to have the Pokémon's portrait placed in the museum after being offered.
     u32 effortRibbon:1;   // Given at Slateport's market to Pokémon with maximum EVs.
-    u32 marineRibbon:1;   // Never distributed.
-    u32 landRibbon:1;     // Never distributed.
-    u32 skyRibbon:1;      // Never distributed.
+    u32 marineRibbon:1;   // Never distributed. //MOD CONTEST TODO get rid of this and add ribbons
+    u32 landRibbon:1;     // Never distributed. //MOD CONTEST TODO get rid of this and add ribbons
+    u32 skyRibbon:1;      // Never distributed. //MOD CONTEST TODO get rid of this and add ribbons
     u32 countryRibbon:1;  // Distributed during Pokémon Festa '04 and '05 to tournament winners.
     u32 nationalRibbon:1; // Given to purified Shadow Pokémon in Colosseum/XD.
     u32 earthRibbon:1;    // Given to teams that have beaten Mt. Battle's 100-battle challenge in Colosseum/XD.
     u32 worldRibbon:1;    // Distributed during Pokémon Festa '04 and '05 to tournament winners.
     u32 isShadow:1;
-    u32 unused_0B:1;
+    u32 unused_0B:1; //MOD CONTEST TODO get rid of this and add ribbons
     u32 abilityNum:2;
 
     // The functionality of this bit changed in FRLG:

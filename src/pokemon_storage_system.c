@@ -6603,6 +6603,7 @@ static void InitCanReleaseMonVars(void)
         return;
     }
 
+
     if (sIsMonBeingMoved)
     {
         sStorage->tempMon = sStorage->movingMon;
@@ -6637,6 +6638,17 @@ static void InitCanReleaseMonVars(void)
         // Pokémon knows no restricted moves, can be released
         sStorage->releaseStatusResolved = TRUE;
         sStorage->canReleaseMon = TRUE;
+    }
+    
+    if(GetMonData(&sStorage->tempMon, MON_DATA_CUT_ENABLED) != 0 || GetMonData(&sStorage->tempMon, MON_DATA_FLY_ENABLED) != 0 ||
+        GetMonData(&sStorage->tempMon, MON_DATA_SURF_ENABLED) != 0 || GetMonData(&sStorage->tempMon, MON_DATA_DIVE_ENABLED) != 0 ||
+        GetMonData(&sStorage->tempMon, MON_DATA_FLASH_ENABLED) != 0 || GetMonData(&sStorage->tempMon, MON_DATA_WATERFALL_ENABLED) != 0 ||
+        GetMonData(&sStorage->tempMon, MON_DATA_ROCKSMASH_ENABLED) != 0 || GetMonData(&sStorage->tempMon, MON_DATA_STRENGTH_ENABLED) != 0)
+    {
+        //MOD CONTEST If Pokémon knows any Hidden Moves, it won't be released
+        sStorage->releaseStatusResolved = TRUE;
+        sStorage->canReleaseMon = FALSE;
+        return;
     }
 
     sStorage->releaseCheckState = 0;
@@ -9723,7 +9735,8 @@ bool32 AnyStorageMonWithMove(enum Move move)
         {
             if (GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SANITY_HAS_SPECIES)
                 && !GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SANITY_IS_EGG)
-                && GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_KNOWN_MOVES, (u8 *)moves))
+                && (GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_KNOWN_MOVES, (u8 *)moves)
+                || (GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SURF_ENABLED) != 0 && move == MOVE_SURF)))
                 return TRUE;
         }
     }
