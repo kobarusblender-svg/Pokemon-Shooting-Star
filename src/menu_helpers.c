@@ -21,8 +21,10 @@
 
 static void Task_ContinueTaskAfterMessagePrints(u8 taskId);
 static void Task_CallYesOrNoCallback(u8 taskId);
+static void Task_CallYesOrNoCancelCallback(u8 taskId);
 
 EWRAM_DATA static struct YesNoFuncTable sYesNo = {0};
+EWRAM_DATA static struct YesNoMaybeFuncTable sYesNoMaybe = {0};
 EWRAM_DATA static u8 sMessageWindowId = 0;
 
 static TaskFunc sMessageNextTask;
@@ -157,6 +159,13 @@ void CreateYesNoMenuWithCallbacks(u8 taskId, const struct WindowTemplate *templa
     gTasks[taskId].func = Task_CallYesOrNoCallback;
 }
 
+void CreateHMModeMenuWithCallbacks(u8 taskId, const struct WindowTemplate *template, u8 unused1, u8 unused2, u8 unused3, u16 tileStart, u8 palette, const struct YesNoMaybeFuncTable *yesNoMaybe)
+{
+    CreateHMModeMenu(template, tileStart, palette, 0);
+    sYesNoMaybe = *yesNoMaybe;
+    gTasks[taskId].func = Task_CallYesOrNoCancelCallback;
+}
+
 static void Task_CallYesOrNoCallback(u8 taskId)
 {
     switch (Menu_ProcessInputNoWrapClearOnChoose())
@@ -169,6 +178,25 @@ static void Task_CallYesOrNoCallback(u8 taskId)
     case MENU_B_PRESSED:
         PlaySE(SE_SELECT);
         sYesNo.noFunc(taskId);
+        break;
+    }
+}
+
+static void Task_CallYesOrNoCancelCallback(u8 taskId)
+{
+    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    {
+    case 0:
+        PlaySE(SE_SELECT);
+        sYesNoMaybe.yesFunc(taskId);
+        break;
+    case 1:
+        PlaySE(SE_SELECT);
+        sYesNoMaybe.noFunc(taskId);
+        break;
+    case MENU_B_PRESSED:
+        PlaySE(SE_SELECT);
+        sYesNoMaybe.cancelFunc(taskId);
         break;
     }
 }

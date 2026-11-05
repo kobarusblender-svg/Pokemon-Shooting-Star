@@ -549,6 +549,15 @@ static const struct WindowTemplate sContextMenuWindowTemplates[] =
         .paletteNum = 15,
         .baseBlock = 0x21D,
     },
+    [ITEMWIN_HM_MODE] = { // Yes/No higher up, positioned above a lower message box
+        .bg = 1,
+        .tilemapLeft = 21,
+        .tilemapTop = 9,
+        .width = 6,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x21D,
+    },
     [ITEMWIN_QUANTITY] = { // Used for quantity of items to Toss/Deposit
         .bg = 1,
         .tilemapLeft = 24,
@@ -2751,6 +2760,11 @@ static void RemoveItemMessageWindow(u8 windowType)
 void BagMenu_YesNo(u8 taskId, u8 windowType, const struct YesNoFuncTable *funcTable)
 {
     CreateYesNoMenuWithCallbacks(taskId, &sContextMenuWindowTemplates[windowType], 1, 0, 2, 1, 14, funcTable);
+}
+
+void BagMenu_HMMode(u8 taskId, u8 windowType, const struct YesNoMaybeFuncTable *funcTable)
+{
+    CreateHMModeMenuWithCallbacks(taskId, &sContextMenuWindowTemplates[windowType], 1, 0, 2, 1, 14, funcTable);
 }
 
 static void DisplayCurrentMoneyWindow(void)

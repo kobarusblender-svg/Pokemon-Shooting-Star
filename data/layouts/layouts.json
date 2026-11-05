@@ -158,10 +158,10 @@
     {
       "id": "LAYOUT_VERDANTURF_TOWN",
       "name": "VerdanturfTown_Layout",
-      "width": 30,
+      "width": 31,
       "height": 20,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Mauville",
+      "secondary_tileset": "gTileset_VerdanturfTown",
       "border_filepath": "data/layouts/VerdanturfTown/border.bin",
       "blockdata_filepath": "data/layouts/VerdanturfTown/map.bin",
       "layout_version": "emerald"
@@ -1445,8 +1445,8 @@
     {
       "id": "LAYOUT_GRANITE_CAVE_1F",
       "name": "GraniteCave_1F_Layout",
-      "width": 42,
-      "height": 15,
+      "width": 52,
+      "height": 22,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/GraniteCave_1F/border.bin",
@@ -9367,6 +9367,116 @@
       "border_filepath": "data/layouts/Waterflow_Forest/border.bin",
       "blockdata_filepath": "data/layouts/Waterflow_Forest/map.bin",
       "layout_version": "emerald"
+    },
+    {
+      "id": "LAYOUT_RUSTBORO_CONTEST_HALL",
+      "name": "RustboroContestHall_Layout",
+      "width": 19,
+      "height": 18,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/RustboroContestHall/border.bin",
+      "blockdata_filepath": "data/layouts/RustboroContestHall/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTBORO_CONTEST_LOBBY",
+      "name": "RustboroContestLobby_Layout",
+      "width": 22,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/RustboroContestLobby/border.bin",
+      "blockdata_filepath": "data/layouts/RustboroContestLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_TOWN_CONTEST_HALL",
+      "name": "DewfordTown_ContestHall_Layout",
+      "width": 19,
+      "height": 18,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/DewfordTown_ContestHall/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordTown_ContestHall/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_TOWN_CONTEST_LOBBY",
+      "name": "DewfordTown_ContestLobby_Layout",
+      "width": 16,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/DewfordTown_ContestLobby/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordTown_ContestLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOSSDEEP_CITY_CONTEST_LOBBY",
+      "name": "MossdeepCity_ContestLobby_Layout",
+      "width": 22,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/MossdeepCity_ContestLobby/border.bin",
+      "blockdata_filepath": "data/layouts/MossdeepCity_ContestLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_FALLARBOR_TOWN_CONTEST_LOBBY",
+      "name": "FallarborTown_ContestLobby_Layout",
+      "width": 22,
+      "height": 12,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/FallarborTown_ContestLobby/border.bin",
+      "blockdata_filepath": "data/layouts/FallarborTown_ContestLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_FALLARBOR_TOWN_CONTEST_HALL",
+      "name": "FallarborTown_ContestHall_Layout",
+      "width": 19,
+      "height": 18,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/FallarborTown_ContestHall/border.bin",
+      "blockdata_filepath": "data/layouts/FallarborTown_ContestHall/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLATEPORT_CITY_CONTEST_HALL",
+      "name": "SlateportCity_ContestHall_Layout",
+      "width": 19,
+      "height": 18,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/SlateportCity_ContestHall/border.bin",
+      "blockdata_filepath": "data/layouts/SlateportCity_ContestHall/map.bin"
+    },
+    {
+      "id": "LAYOUT_SLATEPORT_CITY_CONTEST_LOBBY",
+      "name": "SlateportCity_ContestLobby_Layout",
+      "width": 22,
+      "height": 15,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/SlateportCity_ContestLobby/border.bin",
+      "blockdata_filepath": "data/layouts/SlateportCity_ContestLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERDANTURF_TOWN_CONTEST_LOBBY",
+      "name": "VerdanturfTown_ContestLobby_Layout",
+      "width": 21,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/VerdanturfTown_ContestLobby/border.bin",
+      "blockdata_filepath": "data/layouts/VerdanturfTown_ContestLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERDANTURF_TOWN_CONTEST_HALL",
+      "name": "VerdanturfTown_ContestHall_Layout",
+      "width": 19,
+      "height": 18,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/VerdanturfTown_ContestHall/border.bin",
+      "blockdata_filepath": "data/layouts/VerdanturfTown_ContestHall/map.bin"
     }
   ]
 }

@@ -68,10 +68,18 @@ static void ItemUseOnFieldCB_Berry(u8);
 static void ItemUseOnFieldCB_WailmerPailBerry(u8);
 static void ItemUseOnFieldCB_WailmerPailSudowoodo(u8);
 static bool8 TryToWaterSudowoodo(void);
-static void BootUpSoundTMHM(u8);
-static void Task_ShowTMHMContainedMessage(u8);
+static void BootUpSoundHM(u8);
+static void BootUpSoundTM(u8);
+static void Task_ShowTMHMContainedMessage1(u8);
+static void Task_ShowHMContainedMessage1(u8);
+static void Task_ShowTMContainedMessage(u8);
+static void Task_ShowTMModeMessage(u8);
+static void Task_ShowHMModeMessage(u8);
 static void UseTMHMYesNo(u8);
 static void UseTMHM(u8);
+static void UseHM(u8);
+static void UseHMModeYesNo(u8);
+static void SelectHMTMMode(u8);
 static void Task_StartUseRepel(u8);
 static void Task_StartUseLure(u8 taskId);
 static void Task_UseRepel(u8);
@@ -91,6 +99,9 @@ static const u8 sText_PowderQty[] = _("POWDER QTY: {STR_VAR_1}{PAUSE_UNTIL_PRESS
 static const u8 sText_BootedUpTM[] = _("Booted up a TM.");
 static const u8 sText_BootedUpHM[] = _("Booted up an HM.");
 static const u8 sText_TMHMContainedVar1[] = _("It contained\n{STR_VAR_1}.\pTeach {STR_VAR_1}\nto a POKéMON?");
+static const u8 sText_TMHMContainedVar2[] = _("It contained\n{STR_VAR_1}.\pPlease, select a mode\nto continue."); //MOD CONTEST dialog for new HM behavior
+static const u8 sText_TeachHMToAPokemon[] = _("Teach Hidden Move {STR_VAR_1}\nto a POKéMON?");
+static const u8 sText_TeachTMToAPokemon[] = _("Teach Technical Move {STR_VAR_1}\nto a POKéMON?");
 static const u8 sText_UsedVar2WildLured[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild POKéMON will be lured.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild POKéMON will be repelled.{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
@@ -118,6 +129,19 @@ static const u8 sClockwiseDirections[] = {DIR_NORTH, DIR_EAST, DIR_SOUTH, DIR_WE
 static const struct YesNoFuncTable sUseTMHMYesNoFuncTable =
 {
     .yesFunc = UseTMHM,
+    .noFunc = CloseItemMessage,
+};
+
+static const struct YesNoMaybeFuncTable sSelectHMTMModeFuncTable = //MOD CONTEST FuncTable for HM mode selection
+{ 
+    .yesFunc = Task_ShowHMModeMessage,
+    .noFunc = Task_ShowTMModeMessage,
+    .cancelFunc = CloseItemMessage,
+};
+
+static const struct YesNoFuncTable sUseHMYesNoFuncTable =
+{
+    .yesFunc = UseHM, //MOD CONTEST TODO make it work to set the HM flag on the pokemon
     .noFunc = CloseItemMessage,
 };
 
@@ -922,21 +946,27 @@ void ItemUseOutOfBattle_DynamaxCandy(u8 taskId)
     SetUpItemUseCallback(taskId);
 }
 
-void ItemUseOutOfBattle_TMHM(u8 taskId)
+void ItemUseOutOfBattle_TMHM(u8 taskId) //MOD CONTEST Splitted functions to add extra HM behavior
 {
     if (GetItemTMHMIndex(gSpecialVar_ItemId) > NUM_TECHNICAL_MACHINES)
-        DisplayItemMessage(taskId, FONT_NORMAL, sText_BootedUpHM, BootUpSoundTMHM); // HM
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_BootedUpHM, BootUpSoundHM); // HM
     else
-        DisplayItemMessage(taskId, FONT_NORMAL, sText_BootedUpTM, BootUpSoundTMHM); // TM
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_BootedUpTM, BootUpSoundTM); // TM
 }
 
-static void BootUpSoundTMHM(u8 taskId)
+static void BootUpSoundTM(u8 taskId) //
 {
     PlaySE(SE_PC_LOGIN);
-    gTasks[taskId].func = Task_ShowTMHMContainedMessage;
+    gTasks[taskId].func = Task_ShowTMContainedMessage;
 }
 
-static void Task_ShowTMHMContainedMessage(u8 taskId)
+static void BootUpSoundHM(u8 taskId) //
+{
+    PlaySE(SE_PC_LOGIN);
+    gTasks[taskId].func = Task_ShowHMContainedMessage1;
+}
+
+static void Task_ShowTMContainedMessage(u8 taskId) //
 {
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
@@ -946,14 +976,62 @@ static void Task_ShowTMHMContainedMessage(u8 taskId)
     }
 }
 
+static void Task_ShowHMContainedMessage1(u8 taskId) //
+{
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
+    {
+        StringCopy(gStringVar1, GetMoveName(ItemIdToBattleMoveId(gSpecialVar_ItemId)));
+        StringExpandPlaceholders(gStringVar4, sText_TMHMContainedVar2);
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, SelectHMTMMode);
+    }
+}
+
+
 static void UseTMHMYesNo(u8 taskId)
 {
     BagMenu_YesNo(taskId, ITEMWIN_YESNO_HIGH, &sUseTMHMYesNoFuncTable);
 }
 
+static void SelectHMTMMode(u8 taskId)//
+{
+    BagMenu_HMMode(taskId, ITEMWIN_HM_MODE, &sSelectHMTMModeFuncTable);
+}
+
+static void Task_ShowHMModeMessage(u8 taskId) //
+{
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
+    {
+        StringCopy(gStringVar1, GetMoveName(ItemIdToBattleMoveId(gSpecialVar_ItemId)));
+        StringExpandPlaceholders(gStringVar4, sText_TeachHMToAPokemon);
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, UseHMModeYesNo);
+    }
+}
+
+static void Task_ShowTMModeMessage(u8 taskId) //
+{
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
+    {
+        StringCopy(gStringVar1, GetMoveName(ItemIdToBattleMoveId(gSpecialVar_ItemId)));
+        StringExpandPlaceholders(gStringVar4, sText_TeachTMToAPokemon);
+        DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, UseTMHMYesNo);
+    }
+}
+
+static void UseHMModeYesNo(u8 taskId)//
+{ //MOD CONTEST add HM mode behavior
+    BagMenu_YesNo(taskId, ITEMWIN_YESNO_HIGH, &sUseHMYesNoFuncTable);
+}
+
 static void UseTMHM(u8 taskId)
 {
     gItemUseCB = ItemUseCB_TMHM;
+    SetUpItemUseCallback(taskId);
+}
+
+
+static void UseHM(u8 taskId) //
+{
+    gItemUseCB = ItemUseCB_HM;
     SetUpItemUseCallback(taskId);
 }
 

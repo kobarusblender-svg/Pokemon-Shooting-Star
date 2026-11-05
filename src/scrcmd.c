@@ -2312,20 +2312,51 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
     enum FieldMove fieldMove = ScriptReadByte(ctx);
     bool32 doUnlockedCheck = ScriptReadByte(ctx);
     enum Move move;
-
+    u8 MoveBool;
     Script_RequestEffects(SCREFF_V1);
 
     gSpecialVar_Result = PARTY_SIZE;
     if (doUnlockedCheck && !IsFieldMoveUnlocked(fieldMove))
         return FALSE;
 
+    switch(fieldMove)
+    {
+        case 0:
+            MoveBool = MON_DATA_CUT_ENABLED;
+            break;
+        case 1:
+            MoveBool = MON_DATA_FLY_ENABLED;
+            break;
+        case 2:
+            MoveBool = MON_DATA_STRENGTH_ENABLED;
+            break;
+        case 3:
+            MoveBool = MON_DATA_ROCKSMASH_ENABLED;
+            break;
+        case 4:
+            MoveBool = MON_DATA_FLASH_ENABLED;
+            break;
+        case 5:
+            MoveBool = MON_DATA_SURF_ENABLED;
+            break;
+        case 6:
+            MoveBool = MON_DATA_DIVE_ENABLED;
+            break;
+        case 7:
+            MoveBool = MON_DATA_WATERFALL_ENABLED;
+            break;
+        default:
+            MoveBool = 0;
+            break;
+    }
     move = FieldMove_GetMoveId(fieldMove);
     for (u32 i = 0; i < PARTY_SIZE; i++)
     {
         enum Species species = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
         if (!species)
             break;
-        if (!GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG) && MonKnowsMove(&gParties[B_TRAINER_PLAYER][i], move) == TRUE)
+        if (!GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_IS_EGG) 
+        && ((MonKnowsMove(&gParties[B_TRAINER_PLAYER][i], move) == TRUE) || GetMonData(&gParties[B_TRAINER_PLAYER][i], MoveBool) != 0))
         {
             gSpecialVar_Result = i;
             gSpecialVar_0x8004 = species;

@@ -945,8 +945,8 @@
 #define METATILE_SilphCo_Wall_RightEdge                 0x346
 
 // gTileset_Slateport
-#define METATILE_Slateport_Door             0x2DC
-#define METATILE_Slateport_Door_BattleTent  0x393
+#define METATILE_Slateport_Door             0x2D4
+#define METATILE_Slateport_Door_BattleTent  0x31F
 
 // gTileset_Sootopolis
 #define METATILE_Sootopolis_Door             0x21E
@@ -1014,6 +1014,11 @@
 // gTileset_Underwater
 #define METATILE_Underwater_FloorShadow  0x228
 #define METATILE_Underwater_RockWall     0x21E
+
+// gTileset_VerdanturfTown
+#define METATILE_VerdanturfTown_Door_BattleTent   0x312
+#define METATILE_VerdanturfTown_Door_CyclingRoad  0x2B8
+#define METATILE_VerdanturfTown_Door_Verdanturf   0x339
 
 // gTileset_VermilionCity
 #define METATILE_VermilionCity_Door        0x29E

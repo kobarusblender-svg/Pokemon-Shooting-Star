@@ -242,8 +242,11 @@ gSpecials::
 	def_special ChooseMonForMoveRelearner, waitstate=1
 	def_special MoveDeleterChooseMoveToForget
 	def_special MoveDeleterForgetMove
+	def_special MoveDeleterForgetHiddenMoves
+	def_special MoveDeleterForgetHiddenMovesExceptSurf
 	def_special BufferMoveDeleterNicknameAndMove
 	def_special GetNumMovesSelectedMonHas
+	def_special GetNumHiddenMovesSelectedMonHas
 	def_special TeachMoveRelearnerMove, waitstate=1
 	def_special GetRecordedCyclingRoadResults
 	def_special Special_BeginCyclingRoadChallenge
@@ -538,6 +541,7 @@ gSpecials::
 	def_special PlayerFaceTrainerAfterBattle
 	def_special ResetHealLocationFromDewford
 	def_special IsLastMonThatKnowsSurf
+	def_special IsLastMonThatKnowsSurfHM
 	def_special CountPartyAliveNonEggMons
 	def_special TryPrepareSecondApproachingTrainer
 	def_special RemoveRecordsWindow

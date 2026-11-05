@@ -542,7 +542,11 @@
 #define PH_NURSE_BLEND              607
 #define PH_NURSE_HELD               608
 #define PH_NURSE_SOLO               609
+#define MUS_CONTEST_BREAK           610
 #define SHOOTINGSTAR_NEW_WEATHER_THEME              610
+#define MUS_CONTEST_DISQUALIFICATION 611
+#define MUS_CONTEST_INTERMISSION    612
+#define MUS_GLASS_TAPPER            613
 
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 

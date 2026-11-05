@@ -18,7 +18,7 @@
     },
     {
       "id": "MAPSEC_DEWFORD_TOWN",
-      "name": "DEWFORD SHORE",
+      "name": "DEWFORD TOWN",
       "x": 2,
       "y": 14,
       "width": 1,
@@ -837,7 +837,7 @@
     },
     {
       "id": "MAPSEC_ROUTE_6",
-      "name": "ROUTE 6",
+      "name": "ROUTE",
       "x": 14,
       "y": 7,
       "width": 1,

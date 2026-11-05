@@ -597,17 +597,21 @@ static bool8 MailReadBuildGraphics(void)
         gPaletteFade.bufferTransferDisabled = TRUE;
         break;
     case 17:
-        icon = GetIconSpeciesNoPersonality(sMailRead->mail->species);
-        switch (sMailRead->iconType)
+        if(sMailRead->mail->species != SPECIES_NONE)
         {
-        case ICON_TYPE_BEAD:
-            LoadMonIconPalette(icon);
-            sMailRead->monIconSpriteId = CreateMonIconNoPersonality(icon, SpriteCallbackDummy, 96, 128, 0);
-            break;
-        case ICON_TYPE_DREAM:
-            LoadMonIconPalette(icon);
-            sMailRead->monIconSpriteId = CreateMonIconNoPersonality(icon, SpriteCallbackDummy, 40, 128, 0);
-            break;
+            switch (sMailRead->iconType)
+            {
+                case ICON_TYPE_BEAD:
+                    icon = GetIconSpeciesNoPersonality(sMailRead->mail->species);
+                    LoadMonIconPalette(icon);
+                    sMailRead->monIconSpriteId = CreateMonIconNoPersonality(icon, SpriteCallbackDummy, 96, 128, 0);
+                break;
+                case ICON_TYPE_DREAM:
+                    icon = GetIconSpeciesNoPersonality(sMailRead->mail->species);
+                    LoadMonIconPalette(icon);
+                    sMailRead->monIconSpriteId = CreateMonIconNoPersonality(icon, SpriteCallbackDummy, 40, 128, 0);
+                break;
+            }
         }
         break;
     case 18:

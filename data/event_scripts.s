@@ -1744,3 +1744,25 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/battle_frontier.inc"
 	.include "data/scripts/apricorn_tree.inc"
 	.include "data/scripts/wild_encounter.inc"
+
+	.include "data/maps/RustboroContestHall/scripts.inc"
+
+	.include "data/maps/RustboroContestLobby/scripts.inc"
+
+	.include "data/maps/DewfordTown_ContestLobby/scripts.inc"
+
+	.include "data/maps/DewfordTown_ContestHall/scripts.inc"
+
+	.include "data/maps/MossdeepCity_ContestLobby/scripts.inc"
+
+	.include "data/maps/FallarborTown_ContestLobby/scripts.inc"
+
+	.include "data/maps/FallarborTown_ContestHall/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestHall/scripts.inc"
+
+	.include "data/maps/SlateportCity_ContestLobby/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_ContestLobby/scripts.inc"
+
+	.include "data/maps/VerdanturfTown_ContestHall/scripts.inc"
